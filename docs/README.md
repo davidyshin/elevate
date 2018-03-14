@@ -27,17 +27,16 @@ Elevate is a web application for tracking job application process. By the end of
 
 ## Implementation Timeline
 
-### Phase 1: Backend setup and Front End User Authentication
-**Objective:** Functioning project with front-end Authentication
+- ### Phase 1: Backend setup and Front End User Authentication
+    **Objective:** Functioning project with front-end Authentication
 
-### Phase 2: Job application tracker
+- ### Phase 2: Job application tracker
+    **Objective:** Jobs Applications that can be created, read, edited and destroyed through the API.
 
-**Objective:** Jobs Applications that can be created, read, edited and destroyed through the API.
+- ### Phase 3: Gamify application process
 
-### Phase 3: Gamify application process
+    **Objective:** As the user submits more job applications, they gain experience points and "level-up" accordingly. 
 
-**Objective:** As the user submits more job applications, they gain experience points and "level-up" accordingly. 
+- ### Phase 4: Notification System
 
-### Phase 4: Notification System
-
-**Objective:** Reminders can be created by user to sms/email them to remind them of upcoming interviews, follow-ups, ...etc.
+    **Objective:** Reminders can be created by user to sms/email them to remind them of upcoming interviews, follow-ups, ...etc.
