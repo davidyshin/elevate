@@ -2,14 +2,14 @@
 
 import React, { Component } from 'react';
 
-class AddJobForm extends Component {
+class UserStats extends Component {
   constructor() {
     super();
     this.state = {};
   }
   render() {
-      return (<h1>Jobs Container </h1>)
+      return (<h1>{this.props.activeUser.username} User Stats </h1>)
   }
 }
 
-export default AddJobForm;
+export default UserStats;
