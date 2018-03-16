@@ -1,17 +1,15 @@
 // Login page
 
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 class LoginForm extends Component {
-    constructor() {
-        super()
-        this.state = {
-
-        }
-    }
-    render() {
-        return (<h1>Login Form</h1>) 
-    }
+  constructor() {
+    super();
+    this.state = {};
+  }
+  render() {
+    return <h1>Login Form</h1>;
+  }
 }
 
-export default LoginForm
+export default LoginForm;
