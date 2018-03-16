@@ -1,6 +1,6 @@
 // Container to hold everything AFTER user has logged in
-import React, { Component } from "react";
-import HomeNavBar from "./HomeNavBar.jsx";
+import React, { Component } from 'react';
+import HomeNavBar from './HomeNavBar.jsx';
 
 class HomeContainer extends Component {
   constructor() {

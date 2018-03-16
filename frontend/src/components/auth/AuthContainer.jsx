@@ -1,21 +1,21 @@
 // Container for Login and SignUp components
 
-import React, { Component } from "react";
-import LoginForm from "./LoginForm.jsx";
-import SignUpForm from "./SignUpForm.jsx";
+import React, { Component } from 'react';
+import LoginForm from './LoginForm.jsx';
+import SignUpForm from './SignUpForm.jsx';
 
 class AuthContainer extends Component {
   constructor() {
     super();
     this.state = {
-      activeForm: "signup"
+      activeForm: 'signup'
     };
   }
 
   activeComponent = props => {
-    if (props.activeForm === "login") {
+    if (props.activeForm === 'login') {
       return <LoginForm />;
-    } else if (props.activeForm === "signup") {
+    } else if (props.activeForm === 'signup') {
       return <SignUpForm />;
     }
   };
@@ -33,7 +33,7 @@ class AuthContainer extends Component {
         <h3 onClick={this.toggleActive} id="login">
           Login
         </h3>
-        {"   "}
+        {'   '}
         <h3 onClick={this.toggleActive} id="signup">
           Sign Up
         </h3>
