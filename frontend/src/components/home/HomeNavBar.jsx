@@ -1,6 +1,6 @@
 // Global nav bar for Home AFTER user has logged in
 
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 class HomeNavBar extends Component {
   constructor() {

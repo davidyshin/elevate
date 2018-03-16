@@ -1,6 +1,6 @@
 // Login page
 
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 class LoginForm extends Component {
   constructor() {

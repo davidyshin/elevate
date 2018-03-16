@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import AuthContainer from "./auth/AuthContainer.jsx";
-import HomeContainer from "./home/HomeContainer.jsx";
-import "../stylesheets/App.css";
+import React, { Component } from 'react';
+import AuthContainer from './auth/AuthContainer.jsx';
+import HomeContainer from './home/HomeContainer.jsx';
+import '../stylesheets/App.css';
 
 class App extends Component {
   constructor() {
@@ -17,12 +17,12 @@ class App extends Component {
   }
 
   checkActiveUser() {
-    console.log("This should check if user is active (logged in or not)");
+    console.log('This should check if user is active (logged in or not)');
   }
 
   activeComponent = props => {
-    return props.activeUser ? <HomeContainer /> : <AuthContainer />
-  }
+    return props.activeUser ? <HomeContainer /> : <AuthContainer />;
+  };
 
   render() {
     return (
