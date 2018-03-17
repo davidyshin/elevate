@@ -7,8 +7,17 @@ class AddJobForm extends Component {
     super();
     this.state = {};
   }
+  submitForm = () => {
+
+  }
+
   render() {
-      return (<h1>Jobs Container </h1>)
+
+    return (
+      <div className="add-job-form">
+        <h1>Add Job</h1>
+      </div>
+    );
   }
 }
 

@@ -1,12 +1,15 @@
 // container for user profile, edit user, user settings components.
 
 import React, { Component } from 'react';
-import UserProfile from './overview/UserProfile.jsx';
+import UserOverview from './overview/UserOverview.jsx';
+import UserInfo from './account/UserInfo.jsx';
+
 class UserContainer extends Component {
   constructor() {
     super();
     this.state = {
-      activeUser: ''
+      activeUser: '',
+      activeComponent: 'overview'
     };
   }
   componentDidMount() {
@@ -15,16 +18,44 @@ class UserContainer extends Component {
     });
   }
 
-  renderUserProfile = () => {
-    return <UserProfile activeUser={this.state.activeUser} />;
-  }
-  
+  renderUserOverview = () => {
+    return <UserOverview activeUser={this.state.activeUser} />;
+  };
+
+  renderUserInfo = () => {
+    return <UserInfo activeUser={this.state.activeUser} />;
+  };
+
+  activeComponent = props => {
+    switch (props.activeComponent) {
+      case 'overview':
+        return <this.renderUserOverview />;
+        break;
+      case 'account':
+        return <this.renderUserInfo />;
+        break;
+    }
+  };
+
+  toggleActive = e => {
+    this.setState({
+      activeComponent: e.target.id
+    });
+  };
+
   render() {
-    console.log(this.state)
+    const {activeComponent} = this.state
+
     return (
       <div className="user-container">
-        <h1>User Container</h1>
-        <this.renderUserProfile />
+        <h3 onClick={this.toggleActive} id="overview">
+          Overview
+        </h3>
+        {'   '}
+        <h3 onClick={this.toggleActive} id="account">
+          Account
+        </h3>
+        <this.activeComponent activeComponent={activeComponent} />
       </div>
     );
   }

@@ -8,7 +8,7 @@ class EditJobForm extends Component {
     this.state = {};
   }
   render() {
-    return <h1>EditJobForm </h1>;
+    return <h1>Edit Job Form </h1>;
   }
 }
 
