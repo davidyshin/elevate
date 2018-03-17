@@ -1,7 +1,6 @@
 // Job item in list inside job container
 
 import React, { Component } from 'react';
-import { Link, Switch, Route } from 'react-router-dom';
 
 class Job extends Component {
   constructor() {
