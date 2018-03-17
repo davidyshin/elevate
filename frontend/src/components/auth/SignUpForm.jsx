@@ -13,7 +13,7 @@ class SignUpForm extends Component {
         <form onSubmit={this.submitForm}>
           <input
             placeholder="Email"
-            type="text"
+            type="email"
             name="emailInput"
             onChange={this.handleInput}
             required
