@@ -40,7 +40,7 @@ class EditUser extends Component {
           <p>Email</p>
           <input
             onChange={this.handleInput}
-            type="text"
+            type="email"
             name="email"
             value={this.state.email}
           />
