@@ -8,7 +8,27 @@ class LoginForm extends Component {
     this.state = {};
   }
   render() {
-    return <h1>Login Form</h1>;
+    return (
+      <div className="login-form">
+        <form onSubmit={this.submitForm}>
+          <input
+            placeholder="Email"
+            type="email"
+            name="emailInput"
+            onChange={this.handleInput}
+            required
+          />
+          <input
+            placeholder="Password"
+            type="password"
+            name="passwordInput"
+            onChange={this.handleInput}
+            required
+          />
+          <input type="submit" value="Log in" />
+        </form>
+      </div>
+    );
   }
 }
 
