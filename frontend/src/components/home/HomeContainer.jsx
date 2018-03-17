@@ -3,8 +3,7 @@ import React, { Component } from 'react';
 import HomeNavBar from './HomeNavBar.jsx';
 import JobsContainer from '../jobs/JobsContainer.jsx';
 import UserContainer from '../user/UserContainer.jsx';
-import UserSettings from '../user/account/UserSettings.jsx';
-import EditUser from '../user/account/EditUser.jsx';
+import UserInfo from '../user/account/UserInfo.jsx';
 import { Route, Link, Switch, Redirect } from 'react-router-dom';
 
 class HomeContainer extends Component {
@@ -27,12 +26,9 @@ class HomeContainer extends Component {
   renderUserContainer = () => {
     return <UserContainer activeUser={this.props.activeUser} />;
   };
-  renderEditUser = () => {
-    return <EditUser activeUser={this.props.activeUser} />;
-  };
-  renderUserSettings = () => {
-    return <UserSettings activeUser={this.props.activeUser} />;
-  };
+  // renderUserInfo = () => {
+  //   return <UserInfo activeUser={this.props.activeUser} />;
+  // };
 
   render() {
     return (
@@ -40,8 +36,6 @@ class HomeContainer extends Component {
         <h1>{this.state.activeUser.username}</h1>
         <HomeNavBar />
         <Route exact path="/" component={this.renderJobsContainer} />
-        <Route exact path="/profile/settings" component={this.renderUserSettings} />
-        <Route exact path="/profile/edit" component={this.renderEditUser} />
         <Route exact path="/profile/" component={this.renderUserContainer} />
       </div>
     );

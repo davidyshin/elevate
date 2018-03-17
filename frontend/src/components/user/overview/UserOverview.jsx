@@ -5,7 +5,7 @@ import UserActivity from './UserActivity.jsx';
 import UserProgress from './UserProgress.jsx';
 import UserStats from './UserStats.jsx';
 
-class UserProfile extends Component {
+class UserOverview extends Component {
   constructor() {
     super();
   }
@@ -23,7 +23,7 @@ class UserProfile extends Component {
   render() {
     return (
       <div ClassName="user-profile">
-        <h1> {this.props.activeUser.username} User Profile</h1>
+        <h1> {this.props.activeUser.username} User Overview</h1>
         <this.renderUserProgress />
         <this.renderUserActivity />
         <this.renderUserStats />
@@ -32,4 +32,4 @@ class UserProfile extends Component {
   }
 }
 
-export default UserProfile;
+export default UserOverview;
