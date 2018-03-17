@@ -22,7 +22,7 @@ class UserInfo extends Component {
     return (
       <div className="user-info">
         <h1>{this.props.activeUser.username} User Info</h1>
-        <h1 onClick={this.toggleModal}>Edit</h1>
+        <h3 onClick={this.toggleModal}>Edit</h3>
         <Modal
           isOpen={this.state.modalOpen}
           contentLabel="Follower List"
