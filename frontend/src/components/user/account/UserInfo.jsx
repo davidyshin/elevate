@@ -21,12 +21,15 @@ class UserInfo extends Component {
   render() {
     return (
       <div className="user-info">
-        <h1>{this.props.activeUser.username} User Info</h1>
         <h3 onClick={this.toggleModal}>Edit</h3>
+        <h2>Username: {this.props.activeUser.username}</h2>
+        <h2>Email: {this.props.activeUser.email}</h2>
+        <h2>Phone Number: {this.props.activeUser.phone_number}</h2>
+        
         <Modal
           isOpen={this.state.modalOpen}
-          contentLabel="Follower List"
-          className="follows-modal"
+          contentLabel="edit-user-modal"
+          className="edit-user-modal"
         >
           <EditUser
             activeUser={this.props.activeUser}
