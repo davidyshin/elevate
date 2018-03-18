@@ -5,10 +5,11 @@ CASCADE;
 CREATE TABLE Users
 (
     id SERIAL UNIQUE,
-    username VARCHAR(13),
+    first_name VARCHAR(13),
+    last_name VARCHAR(13),
     password_digest VARCHAR(13),
     email VARCHAR(27) UNIQUE,
-    phone_number VARCHAR(12) UNIQUE,
+    phone_number INTEGER (9) UNIQUE,
     email_notification VARCHAR(20),
     phone_notification VARCHAR(20),
     experience INTEGER,
@@ -17,11 +18,11 @@ CREATE TABLE Users
 
 
 INSERT INTO Users
-    (username, password_digest, email, phone_number,email_notification,phone_notification, experience)
+    (first_name, last_name, password_digest, email, phone_number,email_notification,phone_notification, experience)
 VALUES
-    ('Jerell Davis', 'home', 'blah@gmail.com', '341-233-1093', 'N', 'N', 0),
-    ('Nick Davis', 'home', 'blah@ghmail.com', '302-233-1093', 'N', 'N', 0),
-    ('Bob Davis', 'home', 'blahhh@gmail.com', '942-233-1093', 'N', 'N', 0);
+    ('Jerell', 'Davis', 'home', 'blah@gmail.com', '341-233-1093', 'N', 'N', 0),
+    ('Nick', 'Davis', 'home', 'blah@ghmail.com', '302-233-1093', 'N', 'N', 0),
+    ('Bob', 'Davis', 'home', 'blahhh@gmail.com', '942-233-1093', 'N', 'N', 0);
 
 
 Drop TABLE Users_Personal_Info CASCADE;
