@@ -80,7 +80,6 @@ VALUES
 
 
 
-Drop TABLE Cover_Letter;
 Drop TABLE Cover_Letters CASCADE;
 CREATE TABLE Cover_Letters
 (
@@ -92,7 +91,7 @@ CREATE TABLE Cover_Letters
     FOREIGN KEY (user_id) REFERENCES Users(id)
 );
 
-Drop TABLE Rank_Badges ;
+Drop TABLE Rank_Badges;
 CREATE TABLE Rank_Badges
 (
     badge_id VARCHAR,
@@ -103,8 +102,7 @@ CREATE TABLE Rank_Badges
 
 );
 
-Drop TABLE Acheivement_Badges ;
-Drop TABLE Achievement_Badges ;
+Drop TABLE Achievement_Badges;
 CREATE TABLE Achievement_Badges
 (
     badge_id VARCHAR,
