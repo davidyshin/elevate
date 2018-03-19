@@ -8,6 +8,7 @@ class HomeNavBar extends Component {
     super();
     this.state = {};
   }
+  
   render() {
     return (
       <div className="home-nav-bar">
@@ -17,9 +18,12 @@ class HomeNavBar extends Component {
         {/* profile link will be on top right side of the page, replaced by an icon(?) most likely*/}
         <Link to="/profile">Profile</Link>
         
+        <h1 onClick={this.props.logOut}>Logout</h1>
       </div>
     );
   }
 }
 
 export default HomeNavBar;
+
+
