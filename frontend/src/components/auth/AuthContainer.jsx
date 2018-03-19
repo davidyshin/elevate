@@ -15,10 +15,10 @@ class AuthContainer extends Component {
   activeComponent = props => {
     switch (props.activeForm) {
       case 'login':
-        return <LoginForm />;
+        return <LoginForm setActiveUser={this.props.setActiveUser} />;
         break;
       case 'signup':
-        return <SignUpForm />;
+        return <SignUpForm setActiveUser={this.props.setActiveUser} />;
         break;
     }
   };
