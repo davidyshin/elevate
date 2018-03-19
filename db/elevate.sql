@@ -64,9 +64,9 @@ VALUES
     (3, 'Apple', 'Junior Developer', 'threeblurb@gmail', '3471218976', 'A', '70,000','02/10/2018', '03/19/2018', 'Sarah', 'Just excited!', 'N/A'),
     (3, 'Apple', 'Junior Developer', 'blurnnb@gmail', '3471218976', 'A','70,000', '02/17/2018', '03/19/2018', 'Sera', 'Super nervous!', 'N/A');
   
-
-
-
+  
+  
+  
 Drop TABLE Resumes CASCADE;
 CREATE TABLE Resumes
 (
