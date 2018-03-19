@@ -12,7 +12,7 @@ CREATE TABLE Users
     email_notification VARCHAR(1),
     phone_notification VARCHAR(1),
     experience INTEGER,
-    PRIMARY Key (id)
+    PRIMARY KEY (id)
 );
 
 INSERT INTO Users
@@ -89,23 +89,46 @@ CREATE TABLE Cover_Letters
     FOREIGN KEY (user_id) REFERENCES Users(id)
 );
 
+INSERT INTO Cover_Letters
+    (user_id, job_id, cover_letter_url)
+VALUES
+    (1, 1, 'davidsh.in/coverletter.pdf'),
+    (1, 2, 'davidsh.in/coverletter.pdf'),
+    (2, 3, 'http://helencho.io/images/helenchocoverletter.pdf'),
+    (1, 4, 'file:///Users/c4q/Downloads/Jerell-Daviscoverletter.pdf'),
+    (2, 5, '@blurb.com');
+
+
 
 Drop TABLE Rank_Badges;
 CREATE TABLE Rank_Badges
 (
-    badge_id VARCHAR,
-    badge_url VARCHAR,
+    badge_id SERIAL UNIQUE,
+    badge_url VARCHAR UNIQUE,
     badge_name VARCHAR,
     PRIMARY KEY (badge_id)
 );
+
+INSERT INTO Rank_Badges
+    (badge_url, badge_name)
+VALUES
+    ('https://drive.google.com/file/d/1Ig8MivzctCcUDuz7UqSjLzgar4p8-5ue/view?usp=sharing', 'rookie');
+
 
 
 Drop TABLE Achievement_Badges;
 CREATE TABLE Achievement_Badges
 (
-    badge_id VARCHAR,
-    badge_url VARCHAR,
+    badge_id SERIAL UNIQUE,
+    badge_url VARCHAR UNIQUE,
     badge_name VARCHAR,
     PRIMARY KEY (badge_id)
-)
+);
 
+INSERT INTO Achievement_Badges
+    (badge_url, badge_name)
+VALUES
+    ('https://drive.google.com/file/d/16fcWlOZQH-bc98Tc-dSvkeQFXkyfJGqo/view?usp=sharing','25-apps'),
+    ('https://drive.google.com/file/d/1mGrNYmuCmUn4L_SDRDaqGI3xoI2Ake5B/view?usp=sharing','50-apps'),
+    ('https://drive.google.com/file/d/121mVMSFP6CxmBng1Y79L9kNsF2vnGSjo/view?usp=sharing','100-apps'),
+    ('https://drive.google.com/file/d/1a4KZJ5EUiZ5nrmGs_VF_9ygBlP-4Ce8r/view?usp=sharing','200-apps');
