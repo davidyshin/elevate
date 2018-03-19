@@ -22,8 +22,8 @@ class UserInfo extends Component {
     return (
       <div className="user-info">
         <h3 onClick={this.toggleModal}>Edit</h3>
-        <h2>Username: {this.props.activeUser.username}</h2>
-        <h2>Email: {this.props.activeUser.email}</h2>
+        <h2>Welcome {this.props.activeUser.first_name}</h2>
+        <h2>Email: {this.props.activeUser.username}</h2>
         <h2>Phone Number: {this.props.activeUser.phone_number}</h2>
         
         <Modal
