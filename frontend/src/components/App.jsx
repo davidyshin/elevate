@@ -1,35 +1,53 @@
 import React, { Component } from 'react';
 import AuthContainer from './auth/AuthContainer.jsx';
 import HomeContainer from './home/HomeContainer.jsx';
+import axios from 'axios';
 import '../stylesheets/App.css';
-
-const mockUser = {
-  id: 1,
-  username: 'Dave',
-  email: 'y.davidshin@gmail.com',
-  phone_number: '3478030075',
-  experience: 999
-};
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      activeUser: mockUser
+      activeUser: ''
     };
   }
 
-  componentDidMount() {
-    //call fetchUser() here fetch user function to set activeUser to logged in User
-  }
+  setActiveUser = user => {
+    if (!user) {
+      console.log('Error, user not found');
+    }
+    this.setState({
+      activeUser: user
+    });
+  };
 
-  /* 
-  fetchUser() { 
-    Function to make axios call to backend to retriever AUTHENTICATED user.
-    This function will be passed down to child components that EDIT user so that we can 
-    re-state the activeUser once edits happen.
-  } 
-  */
+  logOut = () => {
+    axios
+      .get('/users/logout')
+      .then(res => {
+        this.setState({
+          activeUser: ''
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  componentDidMount() {
+    const { activeUser } = this.state;
+    axios
+      .get('/users/getUser')
+      .then(res => {
+        console.log('THIS IS A RESPONSE', res);
+        this.setState({
+          activeUser: res.data.user
+        });
+      })
+      .catch(err => {
+        console.log(`errrr`, err);
+      });
+  }
 
   activeComponent = () => {
     // activeUser is the logged in user, if it exists it will render the homepage of the user
@@ -38,9 +56,9 @@ class App extends Component {
     const { activeUser } = this.state;
 
     return activeUser ? (
-      <HomeContainer activeUser={activeUser} />
+      <HomeContainer logOut={this.logOut} activeUser={activeUser} />
     ) : (
-      <AuthContainer />
+      <AuthContainer setActiveUser={this.setActiveUser} />
     );
   };
 
@@ -52,5 +70,6 @@ class App extends Component {
     );
   }
 }
+
 
 export default App;

@@ -1,41 +1,36 @@
-// Authenticate username and passport with local strategy 
 const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
+const localStrategy = require('passport-local').Strategy;
 const init = require('./passport');
-const pgp = require('pg-promise')({});
-const db = pgp('postgres://localhost/elevate');
 const authHelpers = require('./helpers');
 
-const options = {}
+const db = require('../db/index');
+
+const options = {};
 
 init();
-
 passport.use(
-    new LocalStrategy(options, (username, password, done) => {
-        console.log('Trying to authenticate...');
+  new localStrategy(options, (username, password, done) => {
+    db
+      .any('SELECT * FROM Users WHERE username = $1', [username])
+      .then(rows => {
+        const user = rows[0];
 
-        // Select user from Users table 
-        db.any('SELECT * FROM users WHERE username=$1', [username])
-            .then((rows) => {
-                const user = rows[0];
-                console.log('user: ' + user);
+        if (!user) {
+          return done(null, false);
+        }
+        if (!authHelpers.comparePassword(password, user.password_digest)) {
+          console.log("password doesn't work");
+          return done(null, false);
+        } else {
+          console.log('password correct', user);
+          return done(null, user);
+        }
+      })
+      .catch(err => {
+        console.log(`login err     `, err);
+        return done(err);
+      });
+  })
+);
 
-                if (!user) {
-                    return done(null, false);
-                }
-
-                if (!authHelpers.comparePassword(password, user.password_digest)) {
-                    return done(null, false);
-                } else {
-                    return done(null, user);
-                }
-            })
-            .catch((err) => {
-                console.log('error: ' + err);
-                return done(err);
-            })
-    })
-)
-
-
-module.exports = passport 
+module.exports = passport;

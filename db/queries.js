@@ -1,6 +1,52 @@
-const pgp = require('pg-promise')({});
+const db = require('./index');
 
-const db = pgp("postgres://localhost/capTest");
+const authHelpers = require('../auth/helpers.js');
+const passport = require('../auth/local.js');
+
+function registerUser(req, res, next) {
+  const hash = authHelpers.createHash(req.body.user.password);
+  db
+    .none(
+      'INSERT INTO Users (username, first_name, last_name, password_digest, phone_number) VALUES (${username}, ${firstName}, ${lastName}, ${password}, ${phoneNumber})',
+      {
+        username: req.body.user.username,
+        firstName: req.body.user.firstName,
+        lastName: req.body.user.lastName,
+        password: hash,
+        phoneNumber: req.body.user.phoneNumber
+      }
+    )
+    .then(() => {
+      res.status(200).json({
+        message: 'it worked'
+      });
+    })
+    .catch(err => {
+      console.log(`this is your error`, err);
+      res.status(500).json({
+        message: `Registration Failed   ${err} `,
+        err
+      });
+    });
+}
+
+function logoutUser(req, res, next) {
+  req.logout();
+  res.status(200).send('log out success');
+}
+
+// post
+
+function getUser(req, res, next) {
+    // console.log(req)
+    db
+      .one("SELECT * FROM Users WHERE id=${id}", {
+        id: req.user.id
+      })
+      .then(data => {
+        res.status(200).json({ user: data });
+      });
+  }
 
 //Users
 function getAllUsers() {
@@ -36,6 +82,9 @@ function getSingleUserJobApps(id) {
 
 
 module.exports = {
+    registerUser,
+    logoutUser,
+    getUser,
     getAllUsers,
     getSingleUser,
     getAllUsersInfo,
