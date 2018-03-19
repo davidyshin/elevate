@@ -47,7 +47,6 @@ function getUser(req, res, next) {
         res.status(200).json({ user: data });
       });
   }
-  
 
 //Users
 function getAllUsers() {
