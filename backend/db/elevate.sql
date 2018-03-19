@@ -1,4 +1,7 @@
+DROP DATABASE IF EXISTS elevate;
+CREATE DATABASE elevate;
 
+\c elevate;
 
 Drop TABLE Users CASCADE;
 CREATE TABLE Users
