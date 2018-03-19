@@ -5,7 +5,7 @@ import '../stylesheets/App.css';
 
 const mockUser = {
   id: 1,
-  username: 'doge',
+  username: 'Dave',
   email: 'y.davidshin@gmail.com',
   phone_number: '3478030075',
   experience: 999
@@ -15,7 +15,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      activeUser: 'mockUser'
+      activeUser: mockUser
     };
   }
 
