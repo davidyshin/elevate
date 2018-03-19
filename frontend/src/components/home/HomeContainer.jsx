@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import HomeNavBar from './HomeNavBar.jsx';
 import JobsContainer from '../jobs/JobsContainer.jsx';
+import AddJobForm from '../jobs/AddJobForm.jsx'
 import UserContainer from '../user/UserContainer.jsx';
 import UserInfo from '../user/account/UserInfo.jsx';
 import { Route, Link, Switch, Redirect } from 'react-router-dom';
@@ -26,9 +27,9 @@ class HomeContainer extends Component {
   renderUserContainer = () => {
     return <UserContainer activeUser={this.props.activeUser} />;
   };
-  // renderUserInfo = () => {
-  //   return <UserInfo activeUser={this.props.activeUser} />;
-  // };
+  renderAddJobForm = () => {
+    return <AddJobForm activeUser={this.props.activeUser} />;
+  };
 
   render() {
     return (
@@ -37,6 +38,7 @@ class HomeContainer extends Component {
         <HomeNavBar logOut={this.props.logOut} />
         <Route exact path="/" component={this.renderJobsContainer} />
         <Route exact path="/profile/" component={this.renderUserContainer} />
+        <Route exact path="/addjob/" component={this.renderAddJobForm} />
       </div>
     );
   }
