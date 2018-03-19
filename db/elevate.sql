@@ -27,6 +27,7 @@ VALUES
 
 
 
+
 Drop TABLE Jobs CASCADE;
 CREATE TABLE Jobs
 (
@@ -39,24 +40,31 @@ CREATE TABLE Jobs
     progress_in_search VARCHAR(1),
     salary VARCHAR(20),
     date_applied VARCHAR(20),
-    interview_1 VARCHAR,
-    interview_2 VARCHAR,
-    interview_3 VARCHAR,
+    interview_1_date VARCHAR,
+    interview_1_contact VARCHAR,
+    interview_1_notes VARCHAR,
+    interview_2_date VARCHAR,
+    interview_2_contact VARCHAR,
+    interview_2_notes VARCHAR,
+    interview_3_date VARCHAR,
+    interview_3_contact VARCHAR,
+    interview_3_notes VARCHAR,
     notes VARCHAR,
     PRIMARY KEY (job_id),
     FOREIGN KEY (user_id) REFERENCES Users(id)
 );
 
 INSERT INTO Jobs
-    (user_id, company_name, position_title, job_email, job_phone_number, progress_in_search, salary, date_applied, interview_1, notes)
+    (user_id, company_name, position_title, job_email, job_phone_number, progress_in_search, salary, date_applied, interview_1_date, interview_1_contact, interview_1_notes, notes)
 VALUES
-    (1, 'Apple', 'Junior Developer', 'blurb@gmail', '3471218976', 'A', '70,000','2122018', '03/19/2018', 'N/A'),
-    (3, 'Apple', 'Junior Developer', 'threeblurb@gmail', '3471218976', 'A', '70,000','2102018', '03/19/2018', 'N/A'),
-    (1, 'Apple', 'Junior Developer', 'blurb@gmail', '3471218976', 'A','70,000', '2032018', '03/19/2018', 'N/A'),
-    (2, 'Apple', 'Junior Developer', 'blurnnb@gmail', '3471218976', 'A','70,000', '2022018', '03/19/2018', 'N/A'),
-    (1, 'Apple', 'Junior Developer', 'blurnnb@gmail', '3471218976', 'A','70,000', '2222018', '03/19/2018', 'N/A'),
-    (3, 'Apple', 'Junior Developer', 'blurnnb@gmail', '3471218976', 'A','70,000', '2172018','03/19/2018', 'N/A');
+    (1, 'Apple', 'Junior Developer', 'blurb@gmail', '3471218976', 'A', '70,000','02/12/2018', '03/19/2018', 'Sally', 'Super excited!', 'N/A'),
+    (1, 'Apple', 'Junior Developer', 'blurnnb@gmail', '3471218976', 'A','70,000', '02/22/2018', '03/19/2018', 'Samantha', 'I think I went to high school with her...', 'N/A'),
+    (1, 'Apple', 'Junior Developer', 'blurb@gmail', '3471218976', 'A','70,000', '02/03/2018', '03/19/2018', 'Sam', 'Hope I do well.', 'N/A'),
+    (2, 'Apple', 'Junior Developer', 'blurnnb@gmail', '3471218976', 'A','70,000', '02/02/2018', '03/19/2018', 'Sammy', 'Nervous.', 'N/A'),
+    (3, 'Apple', 'Junior Developer', 'threeblurb@gmail', '3471218976', 'A', '70,000','02/10/2018', '03/19/2018', 'Sarah', 'Just excited!', 'N/A'),
+    (3, 'Apple', 'Junior Developer', 'blurnnb@gmail', '3471218976', 'A','70,000', '02/17/2018', '03/19/2018', 'Sera', 'Super nervous!', 'N/A');
   
+
 
 
 Drop TABLE Resumes CASCADE;
@@ -76,8 +84,9 @@ VALUES
     (1, 1, 'davidsh.in/resume.pdf'),
     (1, 2, 'davidsh.in/resume.pdf'),
     (1, 3, 'http://helencho.io/images/helenchoresume.pdf'),
-    (1, 4, 'file:///Users/c4q/Downloads/Jerell-Davis%20(2).pdf'),
-    (1, 5, '@blurb.com');
+    (2, 4, 'file:///Users/c4q/Downloads/Jerell-Davis%20(2).pdf'),
+    (3, 5, '@blurb.com');
+
 
 
 
@@ -97,9 +106,10 @@ INSERT INTO Cover_Letters
 VALUES
     (1, 1, 'davidsh.in/coverletter.pdf'),
     (1, 2, 'davidsh.in/coverletter.pdf'),
-    (2, 3, 'http://helencho.io/images/helenchocoverletter.pdf'),
-    (1, 4, 'file:///Users/c4q/Downloads/Jerell-Daviscoverletter.pdf'),
-    (2, 5, '@blurb.com');
+    (1, 3, 'http://helencho.io/images/helenchocoverletter.pdf'),
+    (2, 4, 'file:///Users/c4q/Downloads/Jerell-Daviscoverletter.pdf'),
+    (3, 5, '@blurb.com');
+
 
 
 
@@ -119,6 +129,7 @@ VALUES
 
 
 
+
 Drop TABLE Achievement_Badges;
 CREATE TABLE Achievement_Badges
 (
@@ -135,3 +146,41 @@ VALUES
     ('https://drive.google.com/file/d/1mGrNYmuCmUn4L_SDRDaqGI3xoI2Ake5B/view?usp=sharing','50-apps'),
     ('https://drive.google.com/file/d/121mVMSFP6CxmBng1Y79L9kNsF2vnGSjo/view?usp=sharing','100-apps'),
     ('https://drive.google.com/file/d/1a4KZJ5EUiZ5nrmGs_VF_9ygBlP-4Ce8r/view?usp=sharing','200-apps');
+
+
+
+
+DROP TABLE Rank_Badges_Earned;
+CREATE TABLE Rank_Badges_Earned
+(
+    user_id INTEGER,
+    badge_id INTEGER,
+    FOREIGN KEY (user_id) REFERENCES Users(id),
+    FOREIGN KEY (badge_id) REFERENCES Rank_Badges(badge_id)
+); 
+
+INSERT INTO Rank_Badges_Earned 
+    (user_id, badge_id) 
+VALUES
+    (1, 1),
+    (1, 1),
+    (1, 1);
+
+
+
+
+DROP TABLE Achievement_Badges_Earned;
+CREATE TABLE Achievement_Badges_Earned
+(
+    user_id INTEGER,
+    badge_id INTEGER,
+    FOREIGN KEY (user_id) REFERENCES Users(id),
+    FOREIGN KEY (badge_id) REFERENCES Achievement_Badges(badge_id)
+); 
+
+INSERT INTO Achievement_Badges_Earned
+    (user_id, badge_id) 
+VALUES
+    (1, 1),
+    (1, 1),
+    (1, 1);
