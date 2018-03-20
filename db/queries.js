@@ -112,7 +112,7 @@ function getAllUserApps(req, res, next) {
 function getUserAchievementBadges(req, res, next) {
   let id = req.user.id
   db
-      .any('SELECT *  FROM achievement_badges WHERE badge_id=$1',[id])
+      .any('SELECT *  FROM achievement_badges JOIN achievement_badges_earned ON  achievement_badges_earned.badge_id  = achievement_badges.badge_id  WHERE user_id=$1',[id])
       .then((data) => {
           res.status(200).json({
               status: 'success',
@@ -296,7 +296,7 @@ function updateUserInterview(req, res, next) {
       });
   }
   
-  function getUseInterview(req, res, next) {
+  function getUserInterview(req, res, next) {
     // console.log(req)
     db
       .one("SELECT * FROM Interview WHERE job_id=${job_id}", {
@@ -322,5 +322,5 @@ module.exports = {
   getRankedBadge,
   updateUsersInfo,
   getUserExp,
-  getUseInterview,
+  getUserInterview,
 }
