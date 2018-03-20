@@ -52,9 +52,7 @@ class SplashContainer extends Component {
         </div>
 
         <div className="splash-footer">
-          <p>Elevate</p>
-          <img />
-          <p>Made by The Reactors</p>
+          <a href="#" target="_blank"><i className="fab fa-github fa-5x"></i></a>
         </div>
 
       </div>
