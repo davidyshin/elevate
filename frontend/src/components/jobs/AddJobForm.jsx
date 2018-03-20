@@ -12,6 +12,8 @@ class AddJobForm extends Component {
       suggestedCompanies: [],
       companyLogo: '',
       position: '',
+      phoneNumber: '',
+      email: '',
       date: '',
       url: ''
     };
@@ -20,9 +22,11 @@ class AddJobForm extends Component {
     e.preventDefault();
     let application = {
       company: this.state.company,
+      companyLogo: this.state.companyLogo,      
       position: this.state.position,
+      phoneNumber: this.state.phoneNumber,
+      email: this.state.email,
       date: this.state.date,
-      companyLogo: this.state.companyLogo,
       url: this.state.url
     };
     this.setState({
@@ -31,6 +35,8 @@ class AddJobForm extends Component {
       suggestedCompanies: [],
       companyLogo: '',
       position: '',
+      phoneNumber: '',
+      email: '',
       date: '',
       url: ''
     });
@@ -103,7 +109,9 @@ class AddJobForm extends Component {
       suggestedCompanies,
       selectedCompany,
       position,
+      email,
       date,
+      phoneNumber,
       url
     } = this.state;
     const inputProps = {
@@ -154,8 +162,26 @@ class AddJobForm extends Component {
             <input
               onChange={this.handleInput}
               value={url}
+              placeholder="URL"
               name="url"
               type="text"
+            />
+            <p> Phone Number:</p>
+            <input
+              onChange={this.handleInput}
+              value={phoneNumber}
+              placeholder="ex: 3478030075"
+              name="phoneNumber"
+              maxLength="10"
+              type="text"
+            />
+            <p> Email:</p>
+            <input
+              onChange={this.handleInput}
+              value={email}
+              placeholder="Email Address"
+              name="email"
+              type="email"
             />
             <input type="submit" value="Next" />
           </form>
