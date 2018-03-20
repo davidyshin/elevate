@@ -36,11 +36,11 @@ CREATE TABLE Jobs
 (
     job_id SERIAL UNIQUE,
     user_id INTEGER NOT NULL,
-    resume_url VARCHAR ,
-    cover_url VARCHAR ,
-    job_posting_url VARCHAR(27),
+    company_name VARCHAR,
+    resume_url VARCHAR,
+    cover_url VARCHAR,
     company_logo VARCHAR(57),
-    company_url VARCHAR(57),
+    job_posting_url VARCHAR(27),
     position_title VARCHAR(16),
     job_email VARCHAR(53),
     job_phone_number VARCHAR(10),
@@ -54,12 +54,13 @@ CREATE TABLE Jobs
 INSERT INTO Jobs
     (user_id, company_name, resume_url, cover_url, company_logo, job_posting_url, position_title, job_email, job_phone_number, progress_in_search, salary)
 VALUES
-    (1, 'Apple', 'RESUME URL', 'COVER URL', 'COMPANY LOGO', 'company_url', 'Junior Developer', 'blurb@gmail', '3471218976', 'A', '70,000'),
-    (2, 'Apple', 'RESUME URL', 'COVER URL', 'COMPANY LOGO', 'company_url' , 'Junior Developer', 'blurnnb@gmail', '3471218976', 'A', '70,000'),
-    (1, 'Apple', 'RESUME URL', 'COVER URL', 'COMPANY LOGO', 'company_url' , 'Junior Developer', 'blurb@gmail', '3471218976', 'A', '70,000'),
-    (2, 'Apple', 'RESUME URL', 'COVER URL', 'COMPANY LOGO', 'company_url', 'Junior Developer', 'blurnnb@gmail', '3471218976', 'A', '70,000'),
-    (3, 'Apple', 'RESUME URL', 'COVER URL', 'COMPANY LOGO', 'company_url', 'Junior Developer', 'threeblurb@gmail', '3471218976', 'A', '70,000'),
-    (3, 'Apple', 'RESUME URL', 'COVER URL', 'COMPANY LOGO', 'company_url', 'Junior Developer', 'blurnnb@gmail', '3471218976', 'A', '70,000');
+    (1, 'Apple', 'RESUME URL', 'COVER URL', 'COMPANY LOGO', 'job posting url', 'Junior Developer', 'blurb@gmail', '3471218976', 'A', '70,000'),
+    (1, 'Apple', 'RESUME URL', 'COVER URL', 'COMPANY LOGO', 'job posting url' , 'Junior Developer', 'blurnnb@gmail', '3471218976', 'A', '70,000'),
+    (1, 'Apple', 'RESUME URL', 'COVER URL', 'COMPANY LOGO', 'job posting url' , 'Junior Developer', 'blurb@gmail', '3471218976', 'A', '70,000'),
+    (1, 'Apple', 'RESUME URL', 'COVER URL', 'COMPANY LOGO', 'job posting url', 'Junior Developer', 'blurnnb@gmail', '3471218976', 'A', '70,000'),
+    (1, 'Apple', 'RESUME URL', 'COVER URL', 'COMPANY LOGO', 'job posting url', 'Junior Developer', 'threeblurb@gmail', '3471218976', 'A', '70,000'),
+    (1, 'Apple', 'RESUME URL', 'COVER URL', 'COMPANY LOGO', 'job posting url', 'Junior Developer', 'blurnnb@gmail', '3471218976', 'A', '70,000');
+
 
 Drop TABLE Resumes CASCADE;
 Drop TABLE Cover_Letters CASCADE;
