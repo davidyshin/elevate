@@ -123,7 +123,7 @@ class AddJobForm extends Component {
         <div className="add-job-info">
           <h3> Job Info</h3>
           <form onSubmit={this.handleSubmit}>
-            <p>Company</p>
+            <p>Company:</p>
             <SelectedImage />
             <Autosuggest
             theme={{suggestionsList: {listStyle: "none"}}}
@@ -135,21 +135,22 @@ class AddJobForm extends Component {
               renderSuggestion={this.renderSuggestion}
               inputProps={inputProps}
             />
-            <p>Position</p>
+            <p>Position applied to:</p>
             <input
               onChange={this.handleInput}
               value={position}
+              placeholder="Position"
               name="position"
               type="text"
             />
-            <p>Date Applied</p>
+            <p>Date Applied:</p>
             <input
               onChange={this.handleDate}
               value={date}
               name="date"
               type="date"
             />
-            <p>Job Posting Url</p>
+            <p>Job Posting Url:</p>
             <input
               onChange={this.handleInput}
               value={url}
