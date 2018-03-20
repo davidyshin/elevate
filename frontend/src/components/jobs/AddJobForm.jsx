@@ -49,8 +49,12 @@ class AddJobForm extends Component {
 
   renderSuggestion = suggestion => (
     <div name={suggestion.name} className="suggestion-container">
-      <img className="suggestion-logo" src={suggestion.logo} />
-      <h1 className="suggestion-name">{suggestion.name}</h1>
+      <img
+        style={{ width: '25px', height: '25px' }}
+        className="suggestion-logo"
+        src={suggestion.logo}
+      />
+      <p className="suggestion-name">{suggestion.name}</p>
     </div>
   );
 
@@ -107,14 +111,22 @@ class AddJobForm extends Component {
       value: company,
       onChange: this.handleCompanyInput
     };
+    const SelectedImage = e => {
+      return companyLogo ? (
+        <img style={{ width: '25px', height: '25px' }} src={companyLogo} />
+      ) : (
+        ''
+      );
+    };
     return (
       <div className="add-job-form">
         <div className="add-job-info">
           <h3> Job Info</h3>
           <form onSubmit={this.handleSubmit}>
             <p>Company</p>
-            <img src={companyLogo} />
+            <SelectedImage />
             <Autosuggest
+            theme={{suggestionsList: {listStyle: "none"}}}
               suggestions={suggestedCompanies}
               onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
               onSuggestionsClearRequested={this.onSuggestionsClearRequested}
