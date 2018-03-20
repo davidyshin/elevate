@@ -3,15 +3,34 @@
 /*------------------------------------------*/
 
 .top-navigation {
-    background-color: salmon;
+    background-color: #fefefe;
     height: 60px;
     width: 100%;
     position: fixed;
     top: 0;
     display: flex;
+    justify-content: space-between;
+    font-family: Roboto, sans-serif;
 }
 
-.top-navigation h3 {
-    cursor: default;
-    font-size: 1.8rem;
+.top-navigation-left {
+    display: flex;
+    align-items: center;
 }
+
+    .top-navigation-left img {
+        width: auto;
+        height: 50px;
+        margin: 0 22px;
+    }
+
+.top-navigation-right {
+    display: flex;
+    align-items: center;
+}
+
+    .top-navigation-right h3 {
+        font-size: 1.4rem;
+        cursor: default;
+        margin: 0 22px;
+    }
