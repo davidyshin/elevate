@@ -6,9 +6,6 @@
     background-color: #f5f0f5;
     width: 100%;
     height: 100%;
-    position: absolute;
-    top: 0;
-    bottom: 0;
 }
 
 /*------------------------------------------*/
@@ -25,14 +22,71 @@
 
     .splash-top {
         background-color: rgba(255, 0, 0, 0.2);
+        /* height: 93vh; */
+        text-align: center;
     }
+
+    .splash-top h1 {
+        font-size: 3.4rem;
+    }
+
+    .splash-top p {
+        font-size: 2rem;
+    }
+
+        .splash-top-button-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .splash-top button {
+            outline: none;
+            border: none;
+            background-color: rgba(255, 0, 255, 0.4);
+            border-radius: 50px;
+            height: 50px;
+            width: 200px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.6rem;
+        }
 
     .splash-features {
         background-color: rgba(0, 255, 0, 0.2);
+        display: flex;
+        justify-content: space-evenly;
+        margin: 0 auto;
     }
+
+        .splash-feature-card {
+            height: 260px;
+            width: 240px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* justify-content: center; */
+            background-color: rgba(0, 255, 0, 0.4);
+            text-align: center;
+        }
+
+        .splash-feature-card div {
+            height: 60%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .splash-features img {
+            height: 120px;
+            width: 120px;
+        }
+
+        .splash-feature-card p {
+            font-size: 1.8rem;
+        }
 
     .splash-footer {
         background-color: rgba(0, 0, 255, 0.2);
+        height: 200px;
     }
 
 

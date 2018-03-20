@@ -17,31 +17,46 @@ class SplashContainer extends Component {
   render() {
     return (
       <div className="splash-container">
+
         <div className="splash-top">
           <h1>Elevate</h1>
           <p>Elevate is the most rewarding job application tracker.</p>
-          <button>Demo</button>
-          <button id="signup" onClick={this.props.toggleActive}>Create an account</button>
+          <div className="splash-top-button-container">
+            <button>Demo</button>
+            <button id="signup" onClick={this.props.toggleActive}>Create an account</button>
+          </div>
         </div>
+
         <div className="splash-features">
-          <div>
-            <img />
+
+          <div className="splash-feature-card">
+            <div>
+              <img src="https://i.imgur.com/u7NyCxx.png" alt="feature-1" />
+            </div>
             <p>Never forget an interview date or to follow up.</p>
           </div>
-          <div>
-            <img />
+
+          <div className="splash-feature-card">
+            <div>
+              <img src="https://i.imgur.com/WB9xBxu.png" alt="feature-2" />
+            </div>
             <p>Earn experience points towards your success.</p>
           </div>
-          <div>
-            <img />
+
+          <div className="splash-feature-card">
+            <div>
+              <img src="https://i.imgur.com/IDI6oFc.png" alt="feature-3" />
+            </div>
             <p>Some great feature</p>
           </div>
         </div>
+
         <div className="splash-footer">
           <p>Elevate</p>
           <img />
           <p>Made by The Reactors</p>
         </div>
+
       </div>
     );
   }
