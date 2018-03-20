@@ -70,16 +70,19 @@
 
     .user-progress-content {
         display: flex;
+        height: 240px;
     }
 
         .user-progress-left {
             background-color: rgba(0, 255, 0, 0.2);
             width: 70%;
+            height: 100%;
         }
 
             .user-progress-badge-container {
                 display: flex;
                 justify-content: space-between;
+                height: 70%;
             }
 
                 .user-progress-badge {
@@ -88,12 +91,14 @@
                 }
             
             .user-progress-bar-container {
-                height: 50px;
+                /* height: 50px; */
+                height: 30%;
                 background-color: rgba(0, 255, 255, 0.4);
             }
 
                 .user-progress-bar-total {
-                    width: 500px;
+                    /* width: 500px; */
+                    width: 95%;
                     height: 20px;
                     background-color: #fff;
                 }
@@ -105,6 +110,7 @@
         .user-progress-right {
             background-color: rgba(0, 255, 0, 0.6);
             width: 30%;
+            height: 100%;
         }
 
 .user-badges-container {
