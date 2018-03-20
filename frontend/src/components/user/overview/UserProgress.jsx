@@ -13,7 +13,7 @@ class UserProgress extends Component {
       <div className="user-progress-container">
         {/* <h3>Progress</h3> */}
         <div className="user-progress-header">
-          <h3>User Progress</h3>
+          <h3>Level Progress</h3>
         </div>
         <div className="user-progress-content">
           <div className="user-progress-left">
@@ -26,10 +26,14 @@ class UserProgress extends Component {
           </div>
           <div className="user-progress-right">
             <h3>Current Level</h3>
+            <p>Novice</p>
             <h3>Next Level</h3>
+            <p>Amateur</p>
             <p>XXX more to next level!</p>
           </div>
-
+        </div>
+        <div className="user-badges-container" id="badges">
+          <h3>More Badges</h3>
         </div>
       </div>
     )
