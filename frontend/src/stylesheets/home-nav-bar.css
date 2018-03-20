@@ -11,26 +11,35 @@
     display: flex;
     justify-content: space-between;
     font-family: Roboto, sans-serif;
+    color: rgb(0,149,222);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
 }
 
 .top-navigation-left {
     display: flex;
     align-items: center;
+    margin-left: 100px;
 }
 
     .top-navigation-left img {
         width: auto;
         height: 50px;
-        margin: 0 22px;
+        /* margin: 0 22px; */
     }
 
 .top-navigation-right {
     display: flex;
     align-items: center;
+    margin-right: 100px;
 }
 
     .top-navigation-right h3 {
         font-size: 1.4rem;
         cursor: default;
-        margin: 0 22px;
+        margin-left: 22px;
+        transition: 0.5s all;
+    }
+
+    .top-navigation-right h3:hover {
+        color: rgb(42,70,97);
     }
