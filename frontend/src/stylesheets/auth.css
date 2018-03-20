@@ -130,6 +130,12 @@
     }
 }
 
+@media screen and (max-width: 420px) {
+    .splash-feature-card {
+        width: 99%;
+    }
+}
+
 
 /*------------------------------------------*/
 /*           User Signup and Login          */
