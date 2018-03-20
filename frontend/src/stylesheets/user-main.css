@@ -1,10 +1,103 @@
 /*------------------------------------------*/
 /*              Main User Page              */
 /*------------------------------------------*/
+.user-container {
+    background-color: rgba(0, 0, 255, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-top {
+    background-color: rgba(255, 0, 0, 0.2);
+    width: 800px;
+    height: 250px;
+    text-align: center;
+}
+
+.user-top h3 {
+    font-size: 2.6rem;
+}
+
+
+/*------------------------------------------*/
+/*         Main User Page Navigation        */
+/*------------------------------------------*/
+.user-navigation {
+    background-color: rgba(255, 0, 0, 0.4);
+    display: flex;
+    width: 800px;
+    border-bottom: 2px solid black;
+}
+
+.user-navigation h3 {
+    padding: 6px 22px;
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+
 
 /*------------------------------------------*/
 /*               User Overview              */
 /*------------------------------------------*/
+.user-overview-container {
+    background-color: rgba(0, 0, 255, 0.4);
+}
+
+.user-progress-container {
+    background-color: salmon;
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+}
+
+    .user-progress-header {
+        background-color: rgba(0, 255, 0, 0.4);
+    }
+
+    .user-progress-content {
+        display: flex;
+    }
+
+        .user-progress-left {
+            background-color: rgba(0, 255, 0, 0.2);
+            width: 70%;
+        }
+
+            .user-progress-badge-container {
+                display: flex;
+                justify-content: space-between;
+            }
+
+                .user-progress-badge {
+                    width: auto;
+                    height: 100px;
+                }
+            
+            .user-progress-bar-container {
+                height: 50px;
+                background-color: rgba(0, 255, 255, 0.4);
+            }
+
+        .user-progress-right {
+            background-color: rgba(0, 255, 0, 0.6);
+            width: 30%;
+        }
+
+
+.user-activity-container {
+    background-color: orange;
+    width: 800px;
+}
+
+.user-stats-container {
+    background-color: orangered;
+    width: 800px;
+}
+
+
 
 /*------------------------------------------*/
 /*          User Account & Settings         */
