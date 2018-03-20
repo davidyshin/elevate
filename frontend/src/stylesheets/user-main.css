@@ -54,6 +54,7 @@
 
 .user-progress-container {
     background-color: salmon;
+    box-shadow: 3px 3px 10px black;
     width: 800px;
     display: flex;
     flex-direction: column;
@@ -61,6 +62,10 @@
 
     .user-progress-header {
         background-color: rgba(0, 255, 0, 0.4);
+    }
+
+    .user-progress-header h3 {
+        font-size: 1.8rem;
     }
 
     .user-progress-content {
@@ -87,10 +92,42 @@
                 background-color: rgba(0, 255, 255, 0.4);
             }
 
+                .user-progress-bar-total {
+                    width: 500px;
+                    height: 20px;
+                    background-color: #fff;
+                }
+
+                .user-progress-bar-earned {
+                    background-color: skyblue;
+                }
+
         .user-progress-right {
             background-color: rgba(0, 255, 0, 0.6);
             width: 30%;
         }
+
+.user-badges-container {
+    display: flex;
+    background-color: rgba(255, 255, 0, 0.6);
+}
+
+    .user-badge-image-container {
+        display: flex;
+        width: 80%;
+    }
+
+        .user-badge-image-container img {
+            width: auto;
+            height: 100px;
+            margin-right: 22px;
+            /* background-color: white; */
+        }
+
+    .user-badges-container h3 {
+        width: 20%;
+        background-color: rgba(0, 0, 0, 0.4);
+    }
 
 
 .user-activity-container {
