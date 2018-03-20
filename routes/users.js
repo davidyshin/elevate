@@ -8,7 +8,6 @@ const passport = require('../auth/local');
 
 //User login/logout and registration ROUTES
 router.post('/login', passport.authenticate('local'), (req, res) => {
-  console.log('final login step');
   res.json(req.user);
 });
 
