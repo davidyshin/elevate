@@ -19,6 +19,7 @@
     display: flex;
     align-items: center;
     margin-left: 100px;
+    transition: 0.5s all;
 }
 
     .top-navigation-left img {
@@ -30,6 +31,7 @@
     display: flex;
     align-items: center;
     margin-right: 100px;
+    transition: 0.3s all;
 }
 
     .top-navigation-right h3 {
@@ -42,3 +44,14 @@
     .top-navigation-right h3:hover {
         color: rgb(42,70,97);
     }
+
+
+@media screen and (max-width: 992px) {
+    .top-navigation-left {
+        margin-left: 3%;
+    }
+
+    .top-navigation-right{
+        margin-right: 3%;
+    }
+}
