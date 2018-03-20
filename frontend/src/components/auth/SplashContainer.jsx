@@ -21,7 +21,7 @@ class SplashContainer extends Component {
           <h1>Elevate</h1>
           <p>Elevate is the most rewarding job application tracker.</p>
           <button>Demo</button>
-          <button>Create an account</button>
+          <button id="signup" onClick={this.props.toggleActive}>Create an account</button>
         </div>
         <div className="splash-features">
           <div>

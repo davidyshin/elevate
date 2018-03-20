@@ -23,10 +23,14 @@ class AuthContainer extends Component {
         return <SignUpForm setActiveUser={this.props.setActiveUser} />;
         break;
       case 'splash':
-        return <SplashContainer setActiveUser={this.props.setActiveUser} />;
+        return <SplashContainer
+          setActiveUser={this.props.setActiveUser}
+          toggleActive={this.toggleActive} />;
         break;
       default:
-        return <SplashContainer setActiveUser={this.props.setActiveUser} />;
+        return <SplashContainer
+          setActiveUser={this.props.setActiveUser}
+          toggleActive={this.toggleActive} />;
         break;
     }
   };
@@ -42,9 +46,13 @@ class AuthContainer extends Component {
     return (
       <div className="auth-container">
         <nav className="top-navigation">
-          <h3 onClick={this.toggleActive} id="splash">LOGO</h3>
-          <h3 onClick={this.toggleActive} id="login">Login</h3>
-          <h3 onClick={this.toggleActive} id="signup">Sign Up</h3>
+          <div className="top-navigation-left">
+            <img onClick={this.toggleActive} id="splash" src="https://lh6.googleusercontent.com/YxE58-MrxQVfwgXyyMaOJ4ExoDIO189HeORfF1SMbtdA0fZKDJRO_9xyVu1GEZEecgXHRMu5sapEzKjQSut4=w1440-h780" alt="elevate" />
+          </div>
+          <div className="top-navigation-right">
+            <h3 onClick={this.toggleActive} id="login">LOGIN</h3>
+            <h3 onClick={this.toggleActive} id="signup">SIGN UP</h3>
+          </div>
         </nav>
         <this.activeComponent activeForm={activeForm} />
       </div>
