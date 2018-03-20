@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import UserOverview from './overview/UserOverview.jsx';
 import UserInfo from './account/UserInfo.jsx';
+import '../../stylesheets/user-main.css';
 
 class UserContainer extends Component {
   constructor() {
@@ -12,6 +13,7 @@ class UserContainer extends Component {
       activeComponent: 'overview'
     };
   }
+
   componentDidMount() {
     this.setState({
       activeUser: this.props.activeUser
@@ -44,17 +46,18 @@ class UserContainer extends Component {
   };
 
   render() {
-    const {activeComponent} = this.state
+    const { activeUser, activeComponent } = this.state; 
+    console.log(activeUser)
 
     return (
       <div className="user-container">
-        <h3 onClick={this.toggleActive} id="overview">
-          Overview
-        </h3>
-        {'   '}
-        <h3 onClick={this.toggleActive} id="account">
-          Account
-        </h3>
+        <div className="user-top">
+          <h3>{activeUser.first_name}</h3>
+        </div>
+        <nav className="user-navigation">
+          <h3 className={`overview ${activeComponent === 'overview' ? 'active' : null}`} onClick={this.toggleActive} id="overview">Overview</h3>
+          <h3 className={`account ${activeComponent === 'account' ? 'active' : null}`} onClick={this.toggleActive} id="account">Account</h3>
+        </nav>
         <this.activeComponent activeComponent={activeComponent} />
       </div>
     );
