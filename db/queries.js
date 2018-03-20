@@ -229,7 +229,7 @@ function updateUsersInfo(req, res, next) {
 function updateJobInterview(req, res, next) {
   db
     .none(
-      'UPDATE Interview SET contacts = ${contact}, note = ${note} WHERE job_id = ${job_id}',
+      'UPDATE Interview SET contact = ${contact}, note = ${note} WHERE job_id = ${job_id}',
       {
         contact: req.body.contact,
         note: req.body.note,
