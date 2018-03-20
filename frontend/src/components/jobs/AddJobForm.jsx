@@ -9,7 +9,6 @@ class AddJobForm extends Component {
     super();
     this.state = {
       company: '',
-      companyInput: '',
       suggestedCompanies: [],
       companyLogo: '',
       position: '',
@@ -49,9 +48,9 @@ class AddJobForm extends Component {
   };
 
   renderSuggestion = suggestion => (
-    <div name={suggestion.name} className="suggestion">
-      <img src={suggestion.logo} />
-      {suggestion.name}
+    <div name={suggestion.name} className="suggestion-container">
+      <img className="suggestion-logo" src={suggestion.logo} />
+      <h1 className="suggestion-name">{suggestion.name}</h1>
     </div>
   );
 
