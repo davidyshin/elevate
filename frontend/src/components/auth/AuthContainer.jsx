@@ -3,12 +3,13 @@
 import React, { Component } from 'react';
 import LoginForm from './LoginForm.jsx';
 import SignUpForm from './SignUpForm.jsx';
+import SplashContainer from './SplashContainer.jsx';
 
 class AuthContainer extends Component {
   constructor() {
     super();
     this.state = {
-      activeForm: 'signup'
+      activeForm: ''
     };
   }
 
@@ -19,6 +20,12 @@ class AuthContainer extends Component {
         break;
       case 'signup':
         return <SignUpForm setActiveUser={this.props.setActiveUser} />;
+        break;
+      case 'splash':
+        return <SplashContainer setActiveUser={this.props.setActiveUser} />;
+        break;
+      default:
+        return <SplashContainer setActiveUser={this.props.setActiveUser} />;
         break;
     }
   };
@@ -33,10 +40,12 @@ class AuthContainer extends Component {
     let { activeForm } = this.state;
     return (
       <div className="auth-container">
+        <h3 onClick={this.toggleActive} id="splash">
+          Home
+        </h3>
         <h3 onClick={this.toggleActive} id="login">
           Login
         </h3>
-        {'   '}
         <h3 onClick={this.toggleActive} id="signup">
           Sign Up
         </h3>
