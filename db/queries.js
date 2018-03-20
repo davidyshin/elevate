@@ -288,5 +288,5 @@ module.exports = {
   getRankedBadge,
   updateUsersInfo,
   getUserExp,
-  getUserInterview,
+  getJobInterview,
 }
