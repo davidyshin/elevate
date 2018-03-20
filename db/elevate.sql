@@ -9,6 +9,7 @@ CREATE TABLE Users
     id SERIAL UNIQUE,
     first_name VARCHAR(13),
     last_name VARCHAR(13),
+    photo_url VARCHAR,
     password_digest VARCHAR NOT NULL,
     username VARCHAR(57) UNIQUE,
     phone_number VARCHAR (10) UNIQUE,
@@ -19,11 +20,11 @@ CREATE TABLE Users
 );
 
 INSERT INTO Users
-    (first_name, last_name, password_digest, username, phone_number, email_notification, phone_notification, experience)
+    (first_name, last_name, photo_url, password_digest, username, phone_number, email_notification, phone_notification, experience)
 VALUES
-    ('Jerell', 'Davis', '$2a$10$brAZfSmByFeZmPZ/MH5zne9YDhugjW9CtsBGgXqGfix0g1tcooZWq', 'blah@gmail.com', '3412331093', 'N', 'N', 0),
-    ('Nick', 'Davis', '$2a$10$brAZfSmByFeZmPZ/MH5zne9YDhugjW9CtsBGgXqGfix0g1tcooZWq', 'blah@ghmail.com', '3022331093', 'N', 'N', 0),
-    ('Bob', 'Davis', '$2a$10$brAZfSmByFeZmPZ/MH5zne9YDhugjW9CtsBGgXqGfix0g1tcooZWq', 'blahhh@gmail.com', '9422331093', 'N', 'N', 0);
+    ('Jerell', 'Davis','https://avatars3.githubusercontent.com/u/12574319?s=400&v=4', '$2a$10$brAZfSmByFeZmPZ/MH5zne9YDhugjW9CtsBGgXqGfix0g1tcooZWq', 'blah@gmail.com', '3412331093', 'N', 'N', 0),
+    ('Nick', 'Davis','https://avatars3.githubusercontent.com/u/12574319?s=400&v=4', '$2a$10$brAZfSmByFeZmPZ/MH5zne9YDhugjW9CtsBGgXqGfix0g1tcooZWq', 'blah@ghmail.com', '3022331093', 'N', 'N', 0),
+    ('Bob', 'Davis','https://avatars3.githubusercontent.com/u/12574319?s=400&v=4', '$2a$10$brAZfSmByFeZmPZ/MH5zne9YDhugjW9CtsBGgXqGfix0g1tcooZWq', 'blahhh@gmail.com', '9422331093', 'N', 'N', 0);
 
 
 
@@ -33,6 +34,8 @@ CREATE TABLE Jobs
 (
     job_id SERIAL UNIQUE,
     user_id INTEGER NOT NULL,
+    resume_url VARCHAR ,
+    cover_url VARCHAR ,
     company_name VARCHAR(27),
     company_logo VARCHAR(57),
     company_url VARCHAR(57),
@@ -41,33 +44,20 @@ CREATE TABLE Jobs
     job_phone_number VARCHAR(10),
     progress_in_search VARCHAR(1),
     salary VARCHAR(20),
-    date_applied VARCHAR(20),
-    interview_1_date VARCHAR,
-    interview_1_contact VARCHAR,
-    interview_1_notes VARCHAR,
-    interview_2_date VARCHAR,
-    interview_2_contact VARCHAR,
-    interview_2_notes VARCHAR,
-    interview_3_date VARCHAR,
-    interview_3_contact VARCHAR,
-    interview_3_notes VARCHAR,
-    notes VARCHAR,
+    date_applied DATE ,
     PRIMARY KEY (job_id),
     FOREIGN KEY (user_id) REFERENCES Users(id)
 );
 
 INSERT INTO Jobs
-    (user_id, company_name, company_logo, company_url,  position_title, job_email, job_phone_number, progress_in_search, salary, date_applied, interview_1_date, interview_1_contact, interview_1_notes, notes)
+    (user_id, company_name,resume_url, cover_url, company_logo, company_url,  position_title, job_email, job_phone_number, progress_in_search, salary)
 VALUES
-    (1, 'Apple',',', 'Junior Developer', 'blurb@gmail', '3471218976', 'A', '70,000','02/12/2018', '03/19/2018', 'Sally', 'Super excited!', 'N/A'),
-    (1, 'Apple',',', 'Junior Developer', 'blurnnb@gmail', '3471218976', 'A','70,000', '02/22/2018', '03/19/2018', 'Samantha', 'I think I went to high school with her...', 'N/A'),
-    (1, 'Apple',', ', 'Junior Developer', 'blurb@gmail', '3471218976', 'A','70,000', '02/03/2018', '03/19/2018', 'Sam', 'Hope I do well.', 'N/A'),
-    (2, 'Apple', ', ' ,'Junior Developer', 'blurnnb@gmail', '3471218976', 'A','70,000', '02/02/2018', '03/19/2018', 'Sammy', 'Nervous.', 'N/A'),
-    (3, 'Apple', ', ', 'Junior Developer', 'threeblurb@gmail', '3471218976', 'A', '70,000','02/10/2018', '03/19/2018', 'Sarah', 'Just excited!', 'N/A'),
-    (3, 'Apple', ', ','Junior Developer', 'blurnnb@gmail', '3471218976', 'A','70,000', '02/17/2018', '03/19/2018', 'Sera', 'Super nervous!', 'N/A');
-  
-  
-  
+    (1, 'Apple', 'RESUME URL','COVER URL','COMPANY LOGO','company_url', 'Junior Developer', 'blurb@gmail', '3471218976', 'A', '70,000'),
+    (2, 'Apple', 'RESUME URL','COVER URL','COMPANY LOGO','company_url' ,'Junior Developer', 'blurnnb@gmail', '3471218976', 'A','70,000'),
+    (1, 'Apple', 'RESUME URL','COVER URL','COMPANY LOGO','company_url' ,'Junior Developer', 'blurb@gmail', '3471218976', 'A','70,000'),
+    (2, 'Apple', 'RESUME URL','COVER URL','COMPANY LOGO','company_url','Junior Developer', 'blurnnb@gmail', '3471218976', 'A','70,000'),
+    (3, 'Apple', 'RESUME URL','COVER URL','COMPANY LOGO','company_url', 'Junior Developer', 'threeblurb@gmail', '3471218976', 'A', '70,000'),
+    (3, 'Apple', 'RESUME URL','COVER URL','COMPANY LOGO','company_url','Junior Developer', 'blurnnb@gmail', '3471218976', 'A','70,000');
   
 Drop TABLE Resumes CASCADE;
 CREATE TABLE Resumes
@@ -83,7 +73,7 @@ CREATE TABLE Resumes
 INSERT INTO Resumes
     (user_id, job_id, resume_url)
 VALUES
-    (1, 1, 'davidsh.in/resume.pdf'),
+    (1, 2, 'davidsh.in/resume.pdf'),
     (1, 2, 'davidsh.in/resume.pdf'),
     (1, 3, 'http://helencho.io/images/helenchoresume.pdf'),
     (2, 4, 'file:///Users/c4q/Downloads/Jerell-Davis%20(2).pdf'),
@@ -114,6 +104,26 @@ VALUES
 
 
 
+-- Drop TABLE Interview CASCADE;
+CREATE TABLE Interview
+(
+    job_id INTEGER,
+    contacts VARCHAR,
+    note VARCHAR,
+    FOREIGN KEY (job_id) REFERENCES Jobs(job_id)
+); 
+INSERT INTO Interview
+    (job_id, contacts, note)
+VALUES
+    (1, 'First Note', 'davidsh.in/coverletter.pdf'),
+    (2, 'Second Note', 'davidsh.in/coverletter.pdf'),
+    (3, 'Third Note', 'http://helencho.io/images/helenchocoverletter.pdf'),
+    (4, 'Fourth Note', 'file:///Users/c4q/Downloads/Jerell-Daviscoverletter.pdf'),
+    (5, 'Fifth Note', '@blurb.com');
+
+
+
+
 
 Drop TABLE Rank_Badges;
 CREATE TABLE Rank_Badges
@@ -129,8 +139,6 @@ INSERT INTO Rank_Badges
     (badge_url, badge_name,badge_level)
 VALUES
     ('https://drive.google.com/file/d/1Ig8MivzctCcUDuz7UqSjLzgar4p8-5ue/view?usp=sharing', 'rookie', '2');
-
-
 
 
 Drop TABLE Achievement_Badges CASCADE;
