@@ -9,6 +9,7 @@ class LoginForm extends Component {
       password: ''
     };
   }
+
   handleInput = e => {
     this.setState({
       [e.target.name]: e.target.value
@@ -39,7 +40,7 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <div className="login-form">
+      <div className="login-form auth-form-container">
         <form onSubmit={this.handleSubmit}>
           <input
             placeholder="Email"
