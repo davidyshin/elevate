@@ -69,16 +69,17 @@ CREATE TABLE Interview
     job_id INTEGER,
     contact VARCHAR,
     note VARCHAR,
+    interview_date DATE,
     FOREIGN KEY (job_id) REFERENCES Jobs(job_id)
 );
 INSERT INTO Interview
-    (job_id, contact, note)
+    (job_id, contact, note, interview_date)
 VALUES
-    (1, 'First Note', 'davidsh.in/coverletter.pdf'),
-    (2, 'Second Note', 'davidsh.in/coverletter.pdf'),
-    (3, 'Third Note', 'http://helencho.io/images/helenchocoverletter.pdf'),
-    (4, 'Fourth Note', 'file:///Users/c4q/Downloads/Jerell-Daviscoverletter.pdf'),
-    (5, 'Fifth Note', '@blurb.com');
+    (1, 'Helen, helencho@ac.c4q.nyc', 'Interviewer was so mean', '2018-03-28'),
+    (2, 'David, 3478030075', 'I think I went to college with someone there', '2018-03-30'),
+    (3, 'Jerell Davis (Dunno his #)', 'Forgot to print out my resume, must remember for next time.', '2018-03-28'),
+    (4, 'Sami, dunno his email either..', 'I definitely killed it', '2018-03-28'),
+    (5, 'test contact', 'Hello World', '2018-03-28');
 
 
 
