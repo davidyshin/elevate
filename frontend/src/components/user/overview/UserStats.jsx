@@ -7,8 +7,14 @@ class UserStats extends Component {
     super();
     this.state = {};
   }
+  
   render() {
-      return (<h1>{this.props.activeUser.username} User Stats </h1>)
+    return (
+      <div className="user-stats-container">
+        <h3>Weekly Stats</h3>
+        <p>Whoa, a chart about weekly stats on job applications!</p>
+      </div>
+    )
   }
 }
 

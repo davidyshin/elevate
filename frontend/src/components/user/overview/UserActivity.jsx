@@ -7,8 +7,14 @@ class UserActivity extends Component {
     super();
     this.state = {};
   }
+  
   render() {
-      return (<h1>{this.props.activeUser.username} User Activity </h1>)
+    return (
+      <div className="user-activity-container">
+        <h3>User Activity</h3>
+        <p>Some charts and shizz goes here</p>
+      </div>
+    )
   }
 }
 
