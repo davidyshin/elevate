@@ -9,6 +9,11 @@
     align-items: center;
 }
 
+.user-container h1, h3, p {
+    margin: 0;
+    padding: 0;
+}
+
 .user-top {
     background-color: rgba(255, 0, 0, 0.2);
     width: 800px;
@@ -45,6 +50,7 @@
 .user-overview-container {
     background-color: rgba(0, 0, 255, 0.4);
 }
+
 
 .user-progress-container {
     background-color: salmon;
