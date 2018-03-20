@@ -7,11 +7,12 @@ function registerUser(req, res, next) {
   const hash = authHelpers.createHash(req.body.user.password);
   db
     .none(
-      'INSERT INTO Users (username, first_name, last_name, password_digest, phone_number, experience) VALUES (${username}, ${firstName}, ${lastName}, ${password}, ${phoneNumber}, ${experience})',
+      'INSERT INTO Users (username, first_name, last_name, photo_url, password_digest, phone_number, experience) VALUES (${username}, ${firstName}, ${lastName}, ${photo_url}, ${password}, ${phoneNumber}, ${experience})',
       {
         username: req.body.user.username,
         firstName: req.body.user.firstName,
         lastName: req.body.user.lastName,
+        photo_url: 'https://avatars3.githubusercontent.com/u/12574319?s=400&v=4',
         password: hash,
         phoneNumber: req.body.user.phoneNumber,
         experience: '0'
@@ -49,10 +50,15 @@ function getUser(req, res, next) {
     });
 }
 
-function getUsersResumes(req, res, next) {
+
+// For route = /users/getResume/:id/:job
+
+function getResume(req, res, next) {
   let id = req.params.id
+  let job= req.params.job
+
   db
-    .any('SELECT *  FROM resumes WHERE user_id=$1', [id])
+    .any('SELECT *  FROM resumes WHERE user_id = $1 and job_id = $2',[id, job])
     .then((data) => {
       res.status(200).json({
         status: 'success',
@@ -65,11 +71,12 @@ function getUsersResumes(req, res, next) {
     })
 }
 
-
-function getUsersCoverLetters(req, res, next) {
+// For route = /users/getCoverLetter/:id/:job
+function getCoverLetter(req, res, next) {
   let id = req.params.id
+  let job= req.params.job
   db
-      .any('SELECT *  FROM cover_letters WHERE user_id=$1',[id])
+      .any('SELECT *  FROM cover_letters WHERE user_id=$1 and job_id = $2',[id, job])
       .then((data) => {
           res.status(200).json({
               status: 'success',
@@ -81,6 +88,7 @@ function getUsersCoverLetters(req, res, next) {
           return next(err)
       })
 } 
+
 
 
 
@@ -117,7 +125,7 @@ function getUserAchievementBadges(req, res, next) {
       })
 } 
 
-function createResume(req, res, next) {
+function updateResume(req, res, next) {
   db.none(
       "INSERT INTO resumes ( user_id, job_id, resume_url) VALUES (${user_id}, ${job_id}, ${resume_url})"
       ,{ 
@@ -135,23 +143,41 @@ function createResume(req, res, next) {
     });
 }
 
-function createCoverLetter(req, res, next) {
+function updateCoverLetter(req, res, next) {
   db.none(
-      "INSERT INTO cover_letters ( user_id, job_id, cover_letter_url) VALUES (${user_id}, ${job_id}, ${cover_letter_url})"
+      "UPDATE jobs SET cover_url = ${cover_url} WHERE job_id = ${job_id}"
       ,{ 
-        resume_url: req.body.resume_url,  
+        cover_url: req.body.cover_url,  
         job_id: req.body.job_id,
-        user_id: req.user.id
       }
     )
     .then(() => {
-      res.send(`created user: ${req.body.username}`);
+      res.send(`Updated Cover Letter for user: ${req.body.job_id}`);
     })
     .catch(err => {
       console.log(err);
       res.status(500).send("error creating user");
     });
 }
+
+function updateResume(req, res, next) {
+  db.none(
+      "UPDATE jobs SET resume_url = ${resume_url} WHERE job_id = ${job_id}"
+      ,{ 
+        resume_url: req.body.resume_url,  
+        job_id: req.body.job_id,
+      }
+    )
+    .then(() => {
+      res.send(`Updated Cover Letter for user: ${req.body.job_id}`);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).send("error creating user");
+    });
+}
+
+
 
 function createJobApp(req, res, next) {
   db.none(
@@ -192,6 +218,21 @@ function getRankedBadge(req, res, next) {
       res.status(500).send("error creating job app ");
     });
 }
+function getUserAchievementBadges(req, res, next) {
+  db.any(
+      "Select badge_url and  from rank_badges Where badge_level = ${level} ",
+      {level: req.params.level}
+    )
+    .then((data) => {
+      res.send({
+        data : data
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).send("error creating job app ");
+    });
+}
 
 
 function updateUsersInfo(req, res, next) {
@@ -218,17 +259,68 @@ function updateUsersInfo(req, res, next) {
   }
 
 
+function updateUserInterview(req, res, next) {
+  db
+    .none(
+      "update jobs set interview_1 = ${interview_1}, interview_1_notes = ${interview_1_notes}, interview_1_contact = ${interview_1_contact}  where job_id = ${job_id}",
+      {
+        username: req.body.username,
+        interview_1_date: req.body.date,
+        interview_1_notes: req.body.notes,
+        interview_1_contact: req.body.contact,
+        id: req.body.job_id
+
+      }
+    )
+    .then(function(data) {
+      res.status(200).json({
+        status: "success",
+        message: "Changed user information"
+      });
+    })
+    .catch(function(err) {
+      return next(err);
+    });
+
+  }
+
+
+  function getUserExp(req, res, next) {
+    // console.log(req)
+    db
+      .one("SELECT experience FROM Users WHERE id=${id}", {
+        id: req.user.id
+      })
+      .then(data => {
+        res.status(200).json({ exp: data });
+      });
+  }
+  
+  function getUseInterview(req, res, next) {
+    // console.log(req)
+    db
+      .one("SELECT * FROM Interview WHERE job_id=${job_id}", {
+        id: req.user.id
+      })
+      .then(data => {
+        res.status(200).json({ exp: data });
+      });
+  }
+  
+
 module.exports = {
   registerUser,
   logoutUser,
   getUser,
-  getUsersResumes,
-  getUsersCoverLetters,
+  getResume,
+  getCoverLetter,
   getAllUserApps,
   getUserAchievementBadges,
-  createResume,
-  createCoverLetter,
+  updateResume,
+  updateCoverLetter,
   createJobApp,
   getRankedBadge,
   updateUsersInfo,
+  getUserExp,
+  getUseInterview,
 }
