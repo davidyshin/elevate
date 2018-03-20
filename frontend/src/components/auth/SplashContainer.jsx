@@ -33,7 +33,7 @@ class SplashContainer extends Component {
             <div>
               <img src="https://i.imgur.com/u7NyCxx.png" alt="feature-1" />
             </div>
-            <p>Never forget an interview date or to follow up.</p>
+            <p>Never forget an interview date.</p>
           </div>
 
           <div className="splash-feature-card">
@@ -47,12 +47,12 @@ class SplashContainer extends Component {
             <div>
               <img src="https://i.imgur.com/IDI6oFc.png" alt="feature-3" />
             </div>
-            <p>Some great feature</p>
+            <p>Weekly summary on your search progress.</p>
           </div>
         </div>
 
         <div className="splash-footer">
-          <a href="#" target="_blank"><i className="fab fa-github fa-5x"></i></a>
+          <a href="https://github.com/davidyshin/elevate" target="_blank"><i className="fab fa-github fa-5x"></i></a>
         </div>
 
       </div>
