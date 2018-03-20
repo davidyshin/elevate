@@ -10,7 +10,7 @@
     top: 0;
     display: flex;
     justify-content: space-between;
-    font-family: Roboto, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     color: rgb(0,149,222);
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
 }
