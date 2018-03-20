@@ -1,46 +1,129 @@
 // Add Job Form
 
 import React, { Component } from 'react';
+import Autosuggest from 'react-autosuggest';
+import axios from 'axios';
 
 class AddJobForm extends Component {
   constructor() {
     super();
     this.state = {
       company: '',
+      companyInput: '',
+      suggestedCompanies: [],
+      companyLogo: '',
       position: '',
       date: '',
       url: ''
     };
   }
   handleSubmit = e => {
-    e.preventDefault()
-    console.log(this.state)
+    e.preventDefault();
+    let application = {
+      company: this.state.company,
+      position: this.state.position,
+      date: this.state.date,
+      companyLogo: this.state.companyLogo,
+      url: this.state.url
+    };
+    this.setState({
+      company: '',
+      companyInput: '',
+      suggestedCompanies: [],
+      companyLogo: '',
+      position: '',
+      date: '',
+      url: ''
+    });
+    console.log(application);
   };
 
+  getSuggestions = value => {
+    if (value.length > 2) {
+      axios
+        .get(
+          `https://autocomplete.clearbit.com/v1/companies/suggest?query=${value}`
+        )
+        .then(res => this.setState({ suggestedCompanies: res.data }));
+    }
+  };
+
+  renderSuggestion = suggestion => (
+    <div name={suggestion.name} className="suggestion">
+      <img src={suggestion.logo} />
+      {suggestion.name}
+    </div>
+  );
+
+  getSuggestionValue = suggestion => suggestion.name;
+
+  handleCompanyInput = e => {
+    this.setState({ company: e.target.value });
+    if (this.state.company.length < 2) {
+      this.setState({
+        selectedCompany: '',
+        companyLogo: ''
+      });
+    }
+  };
+  onSuggestionsFetchRequested = ({ value }) => {
+    this.setState({
+      companySuggestions: this.getSuggestions(value)
+    });
+  };
+  // Autosuggest will call this function every time you need to clear suggestions.
+  onSuggestionsClearRequested = () => {
+    this.setState({
+      companySuggestions: []
+    });
+  };
+
+  onSuggestionSelected = (event, { suggestion, suggestionValue }) => {
+    this.setState({
+      company: suggestionValue,
+      companyLogo: suggestion.logo
+    });
+    this.onSuggestionsClearRequested();
+  };
   handleInput = e => {
     this.setState({ [e.target.name]: e.target.value });
-    console.log(this.state);
   };
 
   handleDate = e => {
-   this.setState({date: e.target.value})
+    this.setState({ date: e.target.value });
   };
 
   render() {
-    const { company, position, date, url } = this.state;
+    const {
+      company,
+      companyLogo,
+      suggestedCompanies,
+      selectedCompany,
+      position,
+      date,
+      url
+    } = this.state;
+    const inputProps = {
+      placeholder: 'Type a company name',
+      value: company,
+      onChange: this.handleCompanyInput
+    };
     return (
       <div className="add-job-form">
         <div className="add-job-info">
           <h3> Job Info</h3>
           <form onSubmit={this.handleSubmit}>
             <p>Company</p>
-            <input
-              onChange={this.handleInput}
-              value={company}
-              name="company"
-              type="text"
+            <img src={companyLogo} />
+            <Autosuggest
+              suggestions={suggestedCompanies}
+              onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+              onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+              getSuggestionValue={this.getSuggestionValue}
+              onSuggestionSelected={this.onSuggestionSelected}
+              renderSuggestion={this.renderSuggestion}
+              inputProps={inputProps}
             />
-            
             <p>Position</p>
             <input
               onChange={this.handleInput}
