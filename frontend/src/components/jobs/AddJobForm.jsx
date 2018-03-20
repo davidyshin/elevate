@@ -15,7 +15,7 @@ class AddJobForm extends Component {
       phoneNumber: '',
       email: '',
       date: '',
-      url: ''
+      url: '',
     };
   }
   handleSubmit = e => {
@@ -118,7 +118,7 @@ class AddJobForm extends Component {
       url
     } = this.state;
     const inputProps = {
-      placeholder: 'Type a company name',
+      placeholder: 'Company',
       value: company,
       onChange: this.handleCompanyInput
     };
@@ -186,7 +186,7 @@ class AddJobForm extends Component {
               name="email"
               type="email"
             />
-            <input type="submit" value="Next" />
+            <input disabled={!company || !position || !date} type="submit" value="Next" />
           </form>
         </div>
         <div style={{ display: 'none' }} className="add-job-resume">
