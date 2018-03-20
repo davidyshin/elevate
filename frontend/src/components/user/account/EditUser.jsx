@@ -14,7 +14,6 @@ class EditUser extends Component {
   componentDidMount() {
     this.setState({
       username: this.props.activeUser.username,
-      email: this.props.activeUser.email,
       phoneNumber: this.props.activeUser.phone_number
     });
   }
@@ -25,32 +24,36 @@ class EditUser extends Component {
     });
   };
 
+  handleSubmit = e => {
+    e.preventDefault();
+    const editedInfo = {
+      username: this.state.username,
+      phoneNumber: this.state.phoneNumber
+    };
+    console.log(editedInfo);
+  };
+
   render() {
     return (
       <div className="edit-user-modal">
         <h1>{this.props.activeUser.username} Edit User</h1>
-        <form>
-          <p>Username</p>
-          <input
-            type="text"
-            name="username"
-            value={this.state.username}
-            onChange={this.handleInput}
-          />
+        <form onSubmit={this.handleSubmit}>
           <p>Email</p>
           <input
             onChange={this.handleInput}
             type="email"
-            name="email"
-            value={this.state.email}
+            name="username"
+            value={this.state.username}
           />
           <p>Phone Number</p>
           <input
             onChange={this.handleInput}
             type="text"
             name="phoneNumber"
+            maxlength="10"
             value={this.state.phoneNumber}
           />
+          <input type="submit" value="Submit" />
         </form>
         <h1 onClick={this.props.toggleModal}> Cancel </h1>
       </div>
