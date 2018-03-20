@@ -1,3 +1,17 @@
 /*------------------------------------------*/
-/*           Global Navigation Bar          */
+/*             Top Navigation Bar           */
 /*------------------------------------------*/
+
+.top-navigation {
+    background-color: salmon;
+    height: 60px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    display: flex;
+}
+
+.top-navigation h3 {
+    cursor: default;
+    font-size: 1.8rem;
+}

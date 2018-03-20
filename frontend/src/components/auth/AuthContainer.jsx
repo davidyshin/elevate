@@ -1,9 +1,10 @@
-// Container for Login and SignUp components
+// Container for Login, SignUp and Splash components
 
 import React, { Component } from 'react';
 import LoginForm from './LoginForm.jsx';
 import SignUpForm from './SignUpForm.jsx';
 import SplashContainer from './SplashContainer.jsx';
+import '../../stylesheets/home-nav-bar.css';
 
 class AuthContainer extends Component {
   constructor() {
@@ -40,15 +41,11 @@ class AuthContainer extends Component {
     let { activeForm } = this.state;
     return (
       <div className="auth-container">
-        <h3 onClick={this.toggleActive} id="splash">
-          Home
-        </h3>
-        <h3 onClick={this.toggleActive} id="login">
-          Login
-        </h3>
-        <h3 onClick={this.toggleActive} id="signup">
-          Sign Up
-        </h3>
+        <nav className="top-navigation">
+          <h3 onClick={this.toggleActive} id="splash">LOGO</h3>
+          <h3 onClick={this.toggleActive} id="login">Login</h3>
+          <h3 onClick={this.toggleActive} id="signup">Sign Up</h3>
+        </nav>
         <this.activeComponent activeForm={activeForm} />
       </div>
     );

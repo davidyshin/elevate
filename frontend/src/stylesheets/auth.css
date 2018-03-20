@@ -1,5 +1,20 @@
 /*------------------------------------------*/
+/*                 Splash Page              */
+/*------------------------------------------*/
+.splash-container h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+    padding: 0;
+}
+
+.splash-container {
+    margin-top: 60px;
+}
+
+
+
+/*------------------------------------------*/
 /*           User Signup and Login          */
 /*------------------------------------------*/
-
-
+.auth-form-container {
+    margin-top: 60px;
+}
