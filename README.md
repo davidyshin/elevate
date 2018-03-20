@@ -1,4 +1,4 @@
-Our app has been deployed - [Click here to check it out!](/#)
+Our app has been deployed - [Click here to check it out!]('#)
 
 # ELEVATE
 
@@ -16,9 +16,12 @@ Elevate is a full stack web application that aims to assist and motivate active 
 
 ## Technologies
 
-ELEVATE was built using ReactJS, HTML/CSS, and the following APIs:
+ELEVATE was built using ReactJS, HTML/CSS, and the following APIs and Packages:
 * [Twilio](https://www.twilio.com/docs/api)
 * [React-autosuggest](http://react-autosuggest.js.org/)
+* [Plotly.js](https://plot.ly/javascript/)
+* [Clearbit](https://clearbit.com/docs#autocomplete-api)
+
 
 ## Authors
 * [Helen Cho](https://github.com/helencho)
