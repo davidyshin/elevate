@@ -22,7 +22,7 @@ class AddJobForm extends Component {
     e.preventDefault();
     let application = {
       company: this.state.company,
-      companyLogo: this.state.companyLogo,      
+      companyLogo: this.state.companyLogo,
       position: this.state.position,
       phoneNumber: this.state.phoneNumber,
       email: this.state.email,
@@ -49,7 +49,10 @@ class AddJobForm extends Component {
         .get(
           `https://autocomplete.clearbit.com/v1/companies/suggest?query=${value}`
         )
-        .then(res => this.setState({ suggestedCompanies: res.data }));
+        .then(res => this.setState({ suggestedCompanies: res.data }))
+        .catch(err => {
+          console.log('Error fetching suggestions for dropdown, message:', err);
+        });
     }
   };
 
@@ -134,7 +137,7 @@ class AddJobForm extends Component {
             <p>Company:</p>
             <SelectedImage />
             <Autosuggest
-            theme={{suggestionsList: {listStyle: "none"}}}
+              theme={{ suggestionsList: { listStyle: 'none' } }}
               suggestions={suggestedCompanies}
               onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
               onSuggestionsClearRequested={this.onSuggestionsClearRequested}
