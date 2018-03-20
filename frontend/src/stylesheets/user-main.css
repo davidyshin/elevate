@@ -48,24 +48,30 @@
 /*               User Overview              */
 /*------------------------------------------*/
 .user-overview-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     background-color: rgba(0, 0, 255, 0.4);
 }
 
 
 .user-progress-container {
-    background-color: salmon;
-    box-shadow: 3px 3px 10px black;
+    background-color: #fefefe;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
     width: 800px;
     display: flex;
     flex-direction: column;
+    margin: 52px auto;
 }
 
-    .user-progress-header {
+    /* .user-progress-header {
         background-color: rgba(0, 255, 0, 0.4);
-    }
+    } */
 
     .user-progress-header h3 {
         font-size: 1.8rem;
+        padding: 22px 22px 6px 22px;
     }
 
     .user-progress-content {
@@ -74,7 +80,7 @@
     }
 
         .user-progress-left {
-            background-color: rgba(0, 255, 0, 0.2);
+            /* background-color: rgba(0, 255, 0, 0.2); */
             width: 70%;
             height: 100%;
         }
@@ -102,27 +108,34 @@
                 }
             
             .user-progress-bar-container {
-                /* height: 50px; */
                 height: 30%;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                background-color: rgba(0, 255, 255, 0.4);
+                /* background-color: rgba(0, 255, 255, 0.4); */
             }
 
-                .user-progress-bar-total {
-                    /* width: 500px; */
-                    width: 95%;
-                    height: 20px;
-                    background-color: #fff;
+                .user-progress-bar-container p {
+                    font-size: 1.6rem;
+                    width: 100%;
+                    position: relative;
+                    text-align: center;
                 }
 
-                .user-progress-bar-earned {
+                .user-progress-bar-total {
+                    width: 95%;
+                    height: 20px;
                     background-color: skyblue;
                 }
 
+                .user-progress-bar-earned {
+                    background-color: rgb(51, 156, 197);
+                }
+
         .user-progress-right {
-            background-color: rgba(0, 255, 0, 0.6);
+            /* background-color: rgba(0, 255, 0, 0.6); */
+            display: flex;
+            flex-direction: column;
             width: 30%;
             height: 100%;
         }
@@ -138,12 +151,41 @@
             }
 
             .user-progress-right p {
-                font-size: 1rem;
+                font-size: 1.4rem;
                 color: rgba(0, 0, 0, 0.6);
             }
 
+            .user-progress-current,
+            .user-progress-next,
+            .user-progress-message {
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                padding-left: 18px;
+            }
+
+            .user-progress-blank {
+                height: 20%;
+            }
+
+            .user-progress-current,
+            .user-progress-next {
+                /* background-color: rgba(0, 0, 0, 0.2); */
+                height: 30%;
+                border-left: 2px solid rgba(0, 0, 0, 0.1);
+            }
+
+            .user-progress-message {
+                /* background-color: rgba(255, 0, 255, 0.2); */
+                justify-content: center;
+                height: 20%;
+            }
+
+
 .user-badges-container {
     display: flex;
+    width: 800px;
+    margin: 52px auto;
     background-color: rgba(255, 255, 0, 0.6);
 }
 
@@ -156,7 +198,6 @@
             width: auto;
             height: 100px;
             margin-right: 22px;
-            /* background-color: white; */
         }
 
     .user-badges-container h3 {
@@ -168,11 +209,13 @@
 .user-activity-container {
     background-color: orange;
     width: 800px;
+    margin: 52px auto;
 }
 
 .user-stats-container {
     background-color: orangered;
     width: 800px;
+    margin: 52px auto;
 }
 
 

@@ -16,7 +16,7 @@ class UserOverview extends Component {
   renderUserBadges = () => {
     return <UserBadges activeUser={this.props.activeUser} />;
   }
-  
+
   renderUserActivity = () => {
     return <UserActivity activeUser={this.props.activeUser} />;
   };
@@ -28,7 +28,6 @@ class UserOverview extends Component {
   render() {
     return (
       <div ClassName="user-overview-container">
-        <h3>User Overview</h3>
         <this.renderUserProgress />
         <this.renderUserBadges />
         <this.renderUserActivity />
