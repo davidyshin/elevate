@@ -3,10 +3,20 @@ import React, { Component } from 'react';
 class UserProgress extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      earned: 1600,
+      nextLevel: 2000
+    };
   }
 
-  render() {
+  render() { 
+    const { earned, nextLevel } = this.state; 
+    const progressPercentage = (earned / nextLevel) * 100; 
+
+    var progressStyle = {
+      width: `${progressPercentage}%`
+    }
+
     return (
       <div className="user-progress-container">
 
@@ -25,7 +35,7 @@ class UserProgress extends Component {
 
             <div className="user-progress-bar-container">
               <div className="user-progress-bar-total">
-                <div className="user-progress-bar-earned" />
+                <div className="user-progress-bar-earned" style={progressStyle} />
                 <p>1600/2000</p>
               </div>
             </div>

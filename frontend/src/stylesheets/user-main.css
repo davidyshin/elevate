@@ -129,8 +129,21 @@
                 }
 
                 .user-progress-bar-earned {
+                    height: 20px;
                     background-color: rgb(51, 156, 197);
+                    transform-origin: top left;
+                    animation: progress-grow 0.5s;
                 }
+
+                    @keyframes progress-grow {
+                        0% {
+                            transform: scale(0, 1);
+                        }
+                        
+                        100% {
+                            transform: scale(1, 1);
+                        }
+                    }
 
         .user-progress-right {
             /* background-color: rgba(0, 255, 0, 0.6); */
