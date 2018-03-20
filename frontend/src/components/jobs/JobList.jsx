@@ -6,8 +6,10 @@ import React, { Component } from 'react';
 class JobList extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+    };
   }
+  
   render() {
       return (<h1>{this.props.activeUser.username} Jobs List </h1>)
   }
