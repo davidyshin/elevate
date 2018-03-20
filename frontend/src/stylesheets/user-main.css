@@ -2,7 +2,7 @@
 /*              Main User Page              */
 /*------------------------------------------*/
 .user-container {
-    background-color: rgba(0, 0, 255, 0.2);
+    background-color: rgb(245, 240, 245);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -33,16 +33,48 @@
     background-color: rgba(255, 0, 0, 0.4);
     display: flex;
     width: 800px;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
 }
 
-.user-navigation h3 {
-    padding: 6px 22px;
-    font-size: 1.8rem;
-    margin: 0;
-}
+    .user-navigation h3 {
+        display: inline-block;
+        position: relative;
+        padding: 6px 22px;
+        font-size: 1.8rem;
+        margin: 0;
+        cursor: default;
+        border-bottom: 2px solid rgba(0, 0, 0, 0);
+    }
 
+    .user-navigation.active {
+        border-bottom: 2px solid red;
+    }
 
+    .user-navigation.overview::before,
+    .user-navigation.account::before {
+        content: '';
+        position: absolute;
+        width: 0; 
+        height: 2px;
+        display: block;
+        margin-top: 10px;
+        right: 0;
+        background: red;
+        transform: scale(0, 1);
+        transform-origin: right top;
+        /* transition: width .5s ease; */
+        transition: color 0.1s, transform 0.3s ease-out;
+
+    }
+    
+    .user-navigation.overview:hover::before,
+    .user-navigation.account:hover::before {
+        /* width: 100%; */
+        /* left: 0; */
+        transform-origin: left top;
+        background: red;
+        transform: scale(1, 1);
+    }
 
 /*------------------------------------------*/
 /*               User Overview              */
@@ -52,7 +84,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0, 0, 255, 0.4);
+    background-color: rgb(245,240,245);
 }
 
 

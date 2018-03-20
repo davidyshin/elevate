@@ -46,7 +46,7 @@ class UserContainer extends Component {
   };
 
   render() {
-    const { activeUser, activeComponent } = this.state
+    const { activeUser, activeComponent } = this.state; 
     console.log(activeUser)
 
     return (
@@ -55,8 +55,8 @@ class UserContainer extends Component {
           <h3>{activeUser.first_name}</h3>
         </div>
         <nav className="user-navigation">
-          <h3 onClick={this.toggleActive} id="overview">Overview</h3>
-          <h3 onClick={this.toggleActive} id="account">Account</h3>
+          <h3 className={`overview ${activeComponent === 'overview' ? 'active' : null}`} onClick={this.toggleActive} id="overview">Overview</h3>
+          <h3 className={`account ${activeComponent === 'account' ? 'active' : null}`} onClick={this.toggleActive} id="account">Account</h3>
         </nav>
         <this.activeComponent activeComponent={activeComponent} />
       </div>
