@@ -9,7 +9,7 @@
     align-items: center;
 }
 
-.user-container h1, h3, p {
+.user-container h1, h2, h3, h4, h5, h6, p {
     margin: 0;
     padding: 0;
 }
@@ -82,17 +82,31 @@
             .user-progress-badge-container {
                 display: flex;
                 justify-content: space-between;
+                align-items: flex-end;
                 height: 70%;
             }
 
                 .user-progress-badge {
                     width: auto;
                     height: 100px;
+                    margin: 22px;
+                }
+
+                .badge-inactive {
+                    filter: grayscale(100%);
+                    transition: 0.5s all;
+                }
+
+                .badge-inactive:hover {
+                    filter: grayscale(40%);
                 }
             
             .user-progress-bar-container {
                 /* height: 50px; */
                 height: 30%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 background-color: rgba(0, 255, 255, 0.4);
             }
 
@@ -112,6 +126,21 @@
             width: 30%;
             height: 100%;
         }
+
+            .user-progress-right h3 {
+                font-size: 1.8rem;
+                color: rgba(0, 0, 0, 1);
+            }
+
+            .user-progress-right h4 {
+                font-size: 1.8rem;
+                color: rgba(0, 0, 0, 0.6);
+            }
+
+            .user-progress-right p {
+                font-size: 1rem;
+                color: rgba(0, 0, 0, 0.6);
+            }
 
 .user-badges-container {
     display: flex;
