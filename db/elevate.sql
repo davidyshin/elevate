@@ -34,6 +34,8 @@ CREATE TABLE Jobs
     job_id SERIAL UNIQUE,
     user_id INTEGER NOT NULL,
     company_name VARCHAR(27),
+    company_logo VARCHAR(57),
+    company_url VARCHAR(57),
     position_title VARCHAR(16),
     job_email VARCHAR(53),
     job_phone_number VARCHAR(10),
@@ -55,14 +57,14 @@ CREATE TABLE Jobs
 );
 
 INSERT INTO Jobs
-    (user_id, company_name, position_title, job_email, job_phone_number, progress_in_search, salary, date_applied, interview_1_date, interview_1_contact, interview_1_notes, notes)
+    (user_id, company_name, company_logo, company_url,  position_title, job_email, job_phone_number, progress_in_search, salary, date_applied, interview_1_date, interview_1_contact, interview_1_notes, notes)
 VALUES
-    (1, 'Apple', 'Junior Developer', 'blurb@gmail', '3471218976', 'A', '70,000','02/12/2018', '03/19/2018', 'Sally', 'Super excited!', 'N/A'),
-    (1, 'Apple', 'Junior Developer', 'blurnnb@gmail', '3471218976', 'A','70,000', '02/22/2018', '03/19/2018', 'Samantha', 'I think I went to high school with her...', 'N/A'),
-    (1, 'Apple', 'Junior Developer', 'blurb@gmail', '3471218976', 'A','70,000', '02/03/2018', '03/19/2018', 'Sam', 'Hope I do well.', 'N/A'),
-    (2, 'Apple', 'Junior Developer', 'blurnnb@gmail', '3471218976', 'A','70,000', '02/02/2018', '03/19/2018', 'Sammy', 'Nervous.', 'N/A'),
-    (3, 'Apple', 'Junior Developer', 'threeblurb@gmail', '3471218976', 'A', '70,000','02/10/2018', '03/19/2018', 'Sarah', 'Just excited!', 'N/A'),
-    (3, 'Apple', 'Junior Developer', 'blurnnb@gmail', '3471218976', 'A','70,000', '02/17/2018', '03/19/2018', 'Sera', 'Super nervous!', 'N/A');
+    (1, 'Apple',',', 'Junior Developer', 'blurb@gmail', '3471218976', 'A', '70,000','02/12/2018', '03/19/2018', 'Sally', 'Super excited!', 'N/A'),
+    (1, 'Apple',',', 'Junior Developer', 'blurnnb@gmail', '3471218976', 'A','70,000', '02/22/2018', '03/19/2018', 'Samantha', 'I think I went to high school with her...', 'N/A'),
+    (1, 'Apple',', ', 'Junior Developer', 'blurb@gmail', '3471218976', 'A','70,000', '02/03/2018', '03/19/2018', 'Sam', 'Hope I do well.', 'N/A'),
+    (2, 'Apple', ', ' ,'Junior Developer', 'blurnnb@gmail', '3471218976', 'A','70,000', '02/02/2018', '03/19/2018', 'Sammy', 'Nervous.', 'N/A'),
+    (3, 'Apple', ', ', 'Junior Developer', 'threeblurb@gmail', '3471218976', 'A', '70,000','02/10/2018', '03/19/2018', 'Sarah', 'Just excited!', 'N/A'),
+    (3, 'Apple', ', ','Junior Developer', 'blurnnb@gmail', '3471218976', 'A','70,000', '02/17/2018', '03/19/2018', 'Sera', 'Super nervous!', 'N/A');
   
   
   
@@ -119,18 +121,19 @@ CREATE TABLE Rank_Badges
     badge_id SERIAL UNIQUE,
     badge_url VARCHAR UNIQUE,
     badge_name VARCHAR,
+    badge_level VARCHAR,
     PRIMARY KEY (badge_id)
 );
 
 INSERT INTO Rank_Badges
-    (badge_url, badge_name)
+    (badge_url, badge_name,badge_level)
 VALUES
-    ('https://drive.google.com/file/d/1Ig8MivzctCcUDuz7UqSjLzgar4p8-5ue/view?usp=sharing', 'rookie');
+    ('https://drive.google.com/file/d/1Ig8MivzctCcUDuz7UqSjLzgar4p8-5ue/view?usp=sharing', 'rookie', '2');
 
 
 
 
-Drop TABLE Achievement_Badges;
+Drop TABLE Achievement_Badges CASCADE;
 CREATE TABLE Achievement_Badges
 (
     badge_id SERIAL UNIQUE,
@@ -150,25 +153,6 @@ VALUES
 
 
 
-DROP TABLE Rank_Badges_Earned;
-CREATE TABLE Rank_Badges_Earned
-(
-    user_id INTEGER,
-    badge_id INTEGER,
-    FOREIGN KEY (user_id) REFERENCES Users(id),
-    FOREIGN KEY (badge_id) REFERENCES Rank_Badges(badge_id)
-); 
-
-INSERT INTO Rank_Badges_Earned 
-    (user_id, badge_id) 
-VALUES
-    (1, 1),
-    (1, 1),
-    (1, 1);
-
-
-
-
 DROP TABLE Achievement_Badges_Earned;
 CREATE TABLE Achievement_Badges_Earned
 (
@@ -184,3 +168,4 @@ VALUES
     (1, 1),
     (1, 1),
     (1, 1);
+
