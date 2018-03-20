@@ -23,6 +23,18 @@
     margin-top: 60px;
 }
 
+    .splash-top {
+        background-color: rgba(255, 0, 0, 0.2);
+    }
+
+    .splash-features {
+        background-color: rgba(0, 255, 0, 0.2);
+    }
+
+    .splash-footer {
+        background-color: rgba(0, 0, 255, 0.2);
+    }
+
 
 
 /*------------------------------------------*/
