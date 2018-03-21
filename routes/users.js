@@ -24,7 +24,6 @@ const passport = require('../auth/local');
  10. createJobApp // POST Route /users/createJobApp
  11. createInterview // // POST Route /users/createInterview
  12. registerUser // POST Route = /users/newuser
-
  ---------------------------------------
   PUT Requests
 ---------------------------------------
@@ -37,7 +36,7 @@ const passport = require('../auth/local');
 
 /* ----------------------- GET Requests. ----------------------- */
 
-/* 1. getAllUserApps  // GET Route = /users/getAllUserApps */
+/*  1. getAllUserApps  // GET Route = /users/getAllUserApps */
 router.get('/getAllUserApps', loginRequired, db.getAllUserApps);
 
 /* 2. getCoverLetter  // GET Route = /users/getCoverLetter/:job */
@@ -94,7 +93,6 @@ router.put('/updateInterview', loginRequired, db.updateInterview);
 
 /* 16. updateUserInfo // PUT Route = /users/updateUserInfo */
 router.put('/updateUserInfo', loginRequired, db.updateUserInfo);
-
 
 
 module.exports = router;
