@@ -10,7 +10,7 @@ const passport = require('../auth/local');
 ---------------------------------------
  1. getAllUserApps  // GET Route = /users/getAllUserApps
  2. getCoverLetter  // GET Route = /users/getCoverLetter/:job
- 3. getJobInterview // GET Route = /users/getJobInterview/:job
+ 3. getInterview // GET Route = /users/getInterview/:job
  4. getRankedBadge  // GET Route = /users/getRankedBadge/:level
  5. getResume // GET Route = /users/getResume/:job
  6. getUser // GET Route = /users/getUser
@@ -22,19 +22,20 @@ const passport = require('../auth/local');
   POST Requests
 ---------------------------------------
  10. createJobApp // POST Route /users/createJobApp
- 11. registerUser // POST Route = /users/newuser
-
+ 11. createInterview // // POST Route /users/createInterview
+ 12. registerUser // POST Route = /users/newuser
  ---------------------------------------
   PUT Requests
 ---------------------------------------
- 12. updateCoverLetter // PUT Route = /users/updateCoverLetter
- 13. updateResume // PUT Route = /users/updateResume
- 14. updateInterview // PUT Route = /users/updateInterview
- 15. updateUserInfo // PUT Route = /users/updateInfo
+ 13. updateCoverLetter // PUT Route = /users/updateCoverLetter
+ 14. updateResume // PUT Route = /users/updateResume
+ 15. updateInterview // PUT Route = /users/updateInterview
+ 16. updateUserInfo // PUT Route = /users/updateInfo
 --------------------------------------- 
 */
 
 /* ----------------------- GET Requests. ----------------------- */
+
 
 /*  1. getAllUserApps  // GET Route = /users/getAllUserApps */
 router.get('/getAllUserApps', loginRequired, db.getAllUserApps);
@@ -42,8 +43,8 @@ router.get('/getAllUserApps', loginRequired, db.getAllUserApps);
 /* 2. getCoverLetter  // GET Route = /users/getCoverLetter/:job */
 router.get('/getCoverLetter/:job', loginRequired, db.getCoverLetter);
 
-/* 3. getJobInterview // GET Route = /users/getJobInterview/:job */
-router.get('/getJobInterview/:job', loginRequired, db.getJobInterview);
+/* 3. getInterview // GET Route = /users/getInterview/:job */
+router.get('/getInterview/:job', loginRequired, db.getInterview);
 
 /* 4. getRankedBadge  // GET Route = /users/getRankedBadge/:level */
 router.get('/getRankedBadge/:level', loginRequired, db.getRankedBadge);
@@ -68,7 +69,10 @@ router.get('/logout', loginRequired, db.logoutUser);
 /* 10. createJobApp // POST Route /users/createJobApp */
 router.post('/createJobApp', loginRequired, db.createJobApp);
 
-/* 11. registerUser // POST Route = /users/newuser */
+/* 11. createInterview // POST Route /users/createInterview */
+router.post('/createInterview', loginRequired, db.createInterview)
+
+/* 12. registerUser // POST Route = /users/newuser */
 router.post('/newuser', db.registerUser);
 
 /* Login User // POST Route = /users/login */
@@ -79,16 +83,17 @@ router.post('/login', passport.authenticate('local'), (req, res) => {
 
 /* ----------------------- PUT Requests. ----------------------- */
 
-/* 12. updateCoverLetter // PUT Route = /users/updateCoverLetter */
+/* 13. updateCoverLetter // PUT Route = /users/updateCoverLetter */
 router.put('/updateCoverLetter', loginRequired, db.updateCoverLetter);
 
-/* 13. updateResume // PUT Route = /users/updateResume */
+/* 14. updateResume // PUT Route = /users/updateResume */
 router.put('/updateResume', loginRequired, db.updateResume);
 
-/* 14. updateInterview // PUT Route = /users/updateInterview */
+/* 15. updateInterview // PUT Route = /users/updateInterview */
 router.put('/updateInterview', loginRequired, db.updateInterview);
 
-/* 15. updateUserInfo // PUT Route = /users/updateUserInfo */
+/* 16. updateUserInfo // PUT Route = /users/updateUserInfo */
 router.put('/updateUserInfo', loginRequired, db.updateUserInfo);
+
 
 module.exports = router;

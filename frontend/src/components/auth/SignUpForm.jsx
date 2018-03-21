@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import '../../stylesheets/auth-form.css';
 
-
 class SignUpForm extends Component {
   constructor() {
     super();
@@ -13,7 +12,8 @@ class SignUpForm extends Component {
       phoneNumber: '',
       password: '',
       retypePassword: '',
-      message: null
+      message: null,
+      photo_url: ''
     };
   }
 
@@ -25,7 +25,15 @@ class SignUpForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const { username, firstName, lastName, phoneNumber, password, retypePassword } = this.state;
+    const {
+      username,
+      firstName,
+      lastName,
+      phoneNumber,
+      password,
+      photoUrl,
+      retypePassword
+    } = this.state;
 
     if (password.length < 6) {
       this.setState({
@@ -38,13 +46,12 @@ class SignUpForm extends Component {
     } else {
       axios
         .post('/users/newuser', {
-          user: {
-            username: username,
-            firstName: firstName,
-            lastName: lastName,
-            phoneNumber: phoneNumber,
-            password: password
-          }
+          username: username,
+          firstName: firstName,
+          lastName: lastName,
+          phoneNumber: phoneNumber,
+          password: password,
+          photo_url: photo_url
         })
         .then(() => {
           axios
@@ -59,7 +66,7 @@ class SignUpForm extends Component {
               console.log(err);
               this.setState({
                 message: 'Error logging in'
-              })
+              });
             });
         })
         .catch(err => {
@@ -74,8 +81,16 @@ class SignUpForm extends Component {
   };
 
   render() {
-    const { username, firstName, lastName, phoneNumber, password, retypePassword, message } = this.state;
-    const errorMessage = message ? <p>{message}</p> : null
+    const {
+      username,
+      firstName,
+      lastName,
+      phoneNumber,
+      password,
+      retypePassword,
+      message
+    } = this.state;
+    const errorMessage = message ? <p>{message}</p> : null;
 
     return (
       <div className="signup-form auth-form-container">
