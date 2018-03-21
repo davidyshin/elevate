@@ -1,6 +1,7 @@
-
 import React, { Component } from 'react';
 import axios from 'axios';
+import '../../stylesheets/auth-form.css';
+
 
 class SignUpForm extends Component {
   constructor() {
@@ -10,7 +11,9 @@ class SignUpForm extends Component {
       firstName: '',
       lastName: '',
       phoneNumber: '',
-      password: ''
+      password: '',
+      retypePassword: '',
+      message: ''
     };
   }
 
@@ -23,6 +26,7 @@ class SignUpForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const { username, firstName, lastName, phoneNumber, password } = this.state;
+
     axios
       .post('/users/newuser', {
         user: {
@@ -33,12 +37,6 @@ class SignUpForm extends Component {
           password: password
         }
       })
-      .then(res => {
-        console.log(res);
-        this.setState({
-          message: 'REGISTRATION SUCCESS!'
-        });
-      })
       .then(() => {
         axios
           .post('/users/login', {
@@ -46,30 +44,35 @@ class SignUpForm extends Component {
             password: password
           })
           .then(res => {
-            this.props.setActiveUser(res.data)
+            this.props.setActiveUser(res.data);
           })
           .catch(err => {
             console.log(err);
+            this.setState({
+              message: 'Error logging in'
+            })
           });
       })
       .catch(err => {
-        console.log(err, 'Error line 61, SignUpForm.jsx');
+        console.log(err);
         this.setState({
           username: '',
           password: '',
-          message: 'Invalid Login'
+          message: 'Error registering'
         });
       });
   };
 
   render() {
+    const { username, firstName, lastName, phoneNumber, password, retypePassword, message } = this.state;
+
     return (
       <div className="signup-form auth-form-container">
         <form onSubmit={this.handleSubmit}>
           <input
             placeholder="Email"
             type="email"
-            value={this.state.username}
+            value={username}
             name="username"
             onChange={this.handleInput}
             required
@@ -78,7 +81,7 @@ class SignUpForm extends Component {
             placeholder="First Name"
             type="text"
             name="firstName"
-            value={this.state.firstName}
+            value={firstName}
             onChange={this.handleInput}
             required
           />
@@ -86,7 +89,7 @@ class SignUpForm extends Component {
             placeholder="Last Name"
             type="text"
             name="lastName"
-            value={this.state.lastName}
+            value={lastName}
             onChange={this.handleInput}
             required
           />
@@ -94,7 +97,7 @@ class SignUpForm extends Component {
             placeholder="Phone Number"
             type="text"
             name="phoneNumber"
-            value={this.state.phoneNumber}
+            value={phoneNumber}
             maxLength="10"
             onChange={this.handleInput}
             required
@@ -103,13 +106,21 @@ class SignUpForm extends Component {
             placeholder="Password"
             type="password"
             name="password"
-            value={this.state.password}
+            value={password}
+            onChange={this.handleInput}
+            required
+          />
+          <input
+            placeholder="Retype password"
+            type="password"
+            name="retypePassword"
+            value={retypePassword}
             onChange={this.handleInput}
             required
           />
           <input type="submit" value="Sign Up" />
         </form>
-        {this.state.message}
+        {message}
       </div>
     );
   }

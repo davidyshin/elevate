@@ -232,11 +232,3 @@ buttons stack up vertically.
         align-items: center;
     }
 }
-
-
-/*------------------------------------------*/
-/*           User Signup and Login          */
-/*------------------------------------------*/
-.auth-form-container {
-    margin-top: 60px;
-}
