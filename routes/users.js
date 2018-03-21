@@ -10,7 +10,7 @@ const passport = require('../auth/local');
 ---------------------------------------
  1. getAllUserApps  // GET Route = /users/getAllUserApps
  2. getCoverLetter  // GET Route = /users/getCoverLetter/:job
- 3. getJobInterview // GET Route = /users/getJobInterview/:job
+ 3. getInterview // GET Route = /users/getInterview/:job
  4. getRankedBadge  // GET Route = /users/getRankedBadge/:level
  5. getResume // GET Route = /users/getResume/:job
  6. getUser // GET Route = /users/getUser
@@ -42,8 +42,8 @@ router.get('/getAllUserApps', loginRequired, db.getAllUserApps);
 /* 2. getCoverLetter  // GET Route = /users/getCoverLetter/:job */
 router.get('/getCoverLetter/:job', loginRequired, db.getCoverLetter);
 
-/* 3. getJobInterview // GET Route = /users/getJobInterview/:job */
-router.get('/getJobInterview/:job', loginRequired, db.getJobInterview);
+/* 3. getInterview // GET Route = /users/getInterview/:job */
+router.get('/getInterview/:job', loginRequired, db.getInterview);
 
 /* 4. getRankedBadge  // GET Route = /users/getRankedBadge/:level */
 router.get('/getRankedBadge/:level', loginRequired, db.getRankedBadge);
