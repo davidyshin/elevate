@@ -2,6 +2,11 @@
 /*             Top Navigation Bar           */
 /*------------------------------------------*/
 
+/*
+Found in AuthContainer.jsx 
+Holds the global navigation bar 
+Usage: <nav className="top-navigation">
+*/
 .top-navigation {
     background-color: #fefefe;
     height: 60px;
@@ -9,16 +14,24 @@
     position: fixed;
     top: 0;
     display: flex;
+    z-index: 9;
     justify-content: space-between;
     font-family: 'Montserrat', sans-serif;
     color: rgb(0, 149, 222);
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
 }
 
+/*
+Contains logo on the left side of the navigation bar 
+Usage: <div className="top-navigation-left">
+*/
 .top-navigation-left {
     display: flex;
     align-items: center;
     margin-left: 160px;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -webkit-transition: 0.5s all;
     transition: 0.5s all;
 }
 
@@ -28,10 +41,17 @@
         cursor: pointer;
     }
 
+/*
+Contains login and signup text on the right side of navigation bar 
+Usage: <div className="top-navigation-right"> 
+*/
 .top-navigation-right {
     display: flex;
     align-items: center;
     margin-right: 160px;
+    -moz-transition: 0.3s all;
+    -o-transition: 0.3s all;
+    -webkit-transition: 0.3s all;
     transition: 0.3s all;
 }
 
@@ -40,14 +60,20 @@
         cursor: default;
         margin-left: 22px;
         cursor: pointer;
-        transition: 0.5s all;
+        -moz-transition: 0.5s color;
+        -o-transition: 0.5s color;
+        -webkit-transition: 0.5s color;
+        transition: 0.5s color;
     }
 
     .top-navigation-right h3:hover {
         color: rgb(42, 70, 97);
     }
 
-
+/*
+When screen width is smaller than 1300px,
+left and right margins become responsive 
+*/
 @media screen and (max-width: 1300px) {
     .top-navigation-left {
         margin-left: 3%;
