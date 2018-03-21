@@ -22,7 +22,8 @@ class AddJobForm extends Component {
       applicationStage: 1,
       job_id: '',
       resume_url: '',
-      cover_url: ''
+      cover_url: '',
+      saved: false
     };
   }
 
@@ -41,7 +42,7 @@ class AddJobForm extends Component {
       .then(data => {
         this.setState({
           job_id: data.data.returned.job_id,
-          applicationStage: 2
+          saved: true
         });
       })
       .catch(err => {
@@ -187,6 +188,7 @@ class AddJobForm extends Component {
       resume_url,
       cover_url,
       job_id,
+      saved,
       applicationStage
     } = this.state;
     const inputProps = {
@@ -205,7 +207,7 @@ class AddJobForm extends Component {
       <div className="add-job-form">
         <div className="add-job-info">
           <h3> Job Info</h3>
-          <form id="1" onSubmit={this.handleFirstSubmit}>
+          <form onSubmit={this.handleFirstSubmit}>
             <p>Company:</p>
             <SelectedImage />
             <Autosuggest
@@ -259,11 +261,14 @@ class AddJobForm extends Component {
               type="email"
             />
             <input
-              disabled={!company || !position || !date}
+              disabled={saved || !company || !position || !date}
               type="submit"
-              value="Next"
+              value="Save"
             />
           </form>
+          <button id="1" disabled={!saved} onClick={this.handleSecondSubmit}>
+            Next{' '}
+          </button>
         </div>
         <div
           hidden={applicationStage > 1 ? false : true}
