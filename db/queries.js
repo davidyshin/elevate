@@ -27,7 +27,7 @@ const passport = require('../auth/local.js');
 ---------------------------------------
  12. updateCoverLetter // PUT Route = /users/updateCoverLetter
  13. updateResume // PUT Route = /users/updateResume
- 14. updateJobInterview // PUT Route = /users/updateInterview
+ 14. updateInterview // PUT Route = /users/updateInterview
  15. updateUserInfo // PUT Route = /users/updateInfo
 --------------------------------------- 
 */
@@ -279,7 +279,7 @@ const registerUser = (req, res, next) => {
 /* ------------------------ PUT REQUESTS QUERIES ------------------------ */
 
 /* 12. */
-// PUT Route = /users/updateCoverLetter
+// PUT Route = /users/updateCoverLetter/:job
 
 const updateCoverLetter = (req, res, next) => {
   db
@@ -325,7 +325,7 @@ const updateResume = (req, res, next) => {
 /* 14. */
 // PUT Route = /users/updateInterview
 
-const updateJobInterview = (req, res, next) => {
+const updateInterview = (req, res, next) => {
   db
     .none(
       'UPDATE Interview SET contact = ${contact}, note = ${note} WHERE job_id = ${job_id}',
@@ -385,6 +385,6 @@ module.exports = {
   registerUser,
   updateCoverLetter,
   updateResume,
-  updateJobInterview,
+  updateInterview,
   updateUserInfo
 };
