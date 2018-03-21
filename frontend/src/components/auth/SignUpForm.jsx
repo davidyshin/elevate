@@ -104,24 +104,26 @@ class SignUpForm extends Component {
             onChange={this.handleInput}
             required
           />
+          <div className="auth-form-input-horizontal">
+            <input
+              placeholder="First name"
+              type="text"
+              name="firstName"
+              value={firstName}
+              onChange={this.handleInput}
+              required
+            />
+            <input
+              placeholder="Last name"
+              type="text"
+              name="lastName"
+              value={lastName}
+              onChange={this.handleInput}
+              required
+            />
+          </div>
           <input
-            placeholder="First Name"
-            type="text"
-            name="firstName"
-            value={firstName}
-            onChange={this.handleInput}
-            required
-          />
-          <input
-            placeholder="Last Name"
-            type="text"
-            name="lastName"
-            value={lastName}
-            onChange={this.handleInput}
-            required
-          />
-          <input
-            placeholder="Phone Number"
+            placeholder="Phone number"
             type="text"
             name="phoneNumber"
             value={phoneNumber}
