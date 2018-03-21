@@ -2,45 +2,45 @@ const db = require('./index');
 const authHelpers = require('../auth/helpers.js');
 const passport = require('../auth/local.js');
 
-/* List of queries for reference
+/* List of queries/routes for reference
 ---------------------------------------
   GET Requests
 ---------------------------------------
- 1. getAllUserApps
- 2. getCoverLetter
- 3. getJobInterview
- 4. getRankedBadge
- 5. getResume
- 6. getUser
- 7. getUserAchievementBadges
- 8. getUserExp
- 9. logoutUser
+ 1. getAllUserApps  // GET Route = /users/getAllUserApps
+ 2. getCoverLetter  // GET Route = /users/getCoverLetter/:job
+ 3. getJobInterview // GET Route = /users/getJobInterview/:job
+ 4. getRankedBadge  // GET Route = /users/getRankedBadge/:level
+ 5. getResume // GET Route = /users/getResume/:job
+ 6. getUser // GET Route = /users/getUser
+ 7. getUserAchievementBadges  // GET Route = /users/getUserAchieves
+ 8. getUserExp // GET Route = /users/getUserExp
+ 9. logoutUser // GET Route = /users/logout
 
 ---------------------------------------
   POST Requests
 ---------------------------------------
- 10. createJobApp
- 11. registerUser
+ 10. createJobApp // POST Route /users/createJobApp
+ 11. registerUser // POST Route = /users/newuser
 
  ---------------------------------------
   PUT Requests
 ---------------------------------------
- 12. updateCoverLetter
- 13. updateResume
- 14. updateJobInterview
- 15. updateUsersInfo
+ 12. updateCoverLetter // PUT Route = /users/updateCoverLetter
+ 13. updateResume // PUT Route = /users/updateResume
+ 14. updateInterview // PUT Route = /users/updateInterview
+ 15. updateUserInfo // PUT Route = /users/updateInfo
 --------------------------------------- 
-
 */
 
 /* ------------------------ GET REQUESTS QUERIES ------------------------ */
 
 /* 1. */
-// GET Route = /users/getAllUserApps/:id
+// GET Route = /users/getAllUserApps
 const getAllUserApps = (req, res, next) => {
-  let id = req.params.id;
   db
-    .any('SELECT * FROM jobs WHERE user_id=$1', [id])
+    .any('SELECT * FROM jobs WHERE user_id=${user_id}', {
+      user_id: req.user.id
+    })
     .then(data => {
       res.status(200).json({
         status: 'success',
@@ -49,8 +49,9 @@ const getAllUserApps = (req, res, next) => {
       });
     })
     .catch(err => {
-      res.status(500).send('error getting all job applications for user');
-      return next(err);
+      res
+        .status(500)
+        .send(`error getting all job applications for user:  ${err}`);
     });
 };
 
@@ -60,9 +61,9 @@ const getAllUserApps = (req, res, next) => {
 const getCoverLetter = (req, res, next) => {
   db
     .one(
-      'SELECT cover_url FROM jobs WHERE user_id=${id} AND job_id = ${job}',
+      'SELECT cover_url FROM jobs WHERE user_id=${user_id} AND job_id = ${job}',
       {
-        id: req.user.id,
+        user_id: req.user.id,
         job: req.params.job
       }
     )
@@ -74,7 +75,7 @@ const getCoverLetter = (req, res, next) => {
       });
     })
     .catch(err => {
-      res.status(500).send('error getting job cover letter');
+      res.status(500).send(`error getting job cover letter: ${err}`);
     });
 };
 
@@ -90,7 +91,7 @@ const getJobInterview = (req, res, next) => {
       res.status(200).json({ interviews: data });
     })
     .catch(function(err) {
-      res.status(500).send('Error getting job interview');
+      res.status(500).send(`Error getting job interview: ${err}`);
     });
 };
 
@@ -111,7 +112,7 @@ const getRankedBadge = (req, res, next) => {
     })
     .catch(err => {
       console.log(err);
-      res.status(500).send('error getting ranked badge');
+      res.status(500).send(`error getting ranked badge: ${err}`);
     });
 };
 
@@ -124,7 +125,7 @@ const getResume = (req, res, next) => {
       'SELECT resume_url FROM jobs WHERE user_id = ${id} AND job_id = ${job}',
       {
         id: req.user.id,
-        job: req.params.id
+        job: req.params.job
       }
     )
     .then(data => {
@@ -135,7 +136,7 @@ const getResume = (req, res, next) => {
       });
     })
     .catch(err => {
-      res.status(500).send('error getting job resume');
+      res.status(500).send(`error getting job resume: ${err}`);
     });
 };
 
@@ -155,7 +156,7 @@ const getUser = (req, res, next) => {
       });
     })
     .catch(err => {
-      res.status(500).send('error getting user');
+      res.status(500).send(`error getting user: ${err}`);
       return next(err);
     });
 };
@@ -177,7 +178,7 @@ const getUserAchievementBadges = (req, res, next) => {
       });
     })
     .catch(err => {
-      res.status(500).send('error getting user achievement badges earned');
+      res.status(500).send(`error getting user achievement badges earned: ${err}`);
     });
 };
 
@@ -192,12 +193,12 @@ const getUserExp = (req, res, next) => {
     .then(data => {
       res.status(200).json({
         status: 'success',
-        exp: data,
+        data,
         message: 'Retrieved user experience'
       });
     })
-    .catch(function(err) {
-      res.status(500).send('Error getting user experience');
+    .catch(err => {
+      res.status(500).send(`Error getting user experience: ${err}`);
     });
 };
 
@@ -209,9 +210,7 @@ const logoutUser = (req, res, next) => {
   res.status(200).send('log out success');
 };
 
-
 /* ------------------------ POST REQUESTS QUERIES ------------------------ */
-
 
 /* 10. */
 // POST Route /users/createJobApp
@@ -219,7 +218,7 @@ const logoutUser = (req, res, next) => {
 const createJobApp = (req, res, next) => {
   db
     .none(
-      'INSERT INTO jobs ( user_id, company_name, company_logo, date_applied, position_title, job_email, job_phone_number) VALUES (${user_id}, ${job_id}, ${cover_letter_url})',
+      'INSERT INTO jobs ( user_id, company_name, company_logo, date_applied, job_email, job_phone_number, position_title, job_posting_url, progress_in_search) VALUES ( ${user_id}, ${company_name}, ${company_logo}, ${date_applied}, ${job_email}, ${job_phone_number}, ${position_title}, ${job_posting_url}, ${progress_in_search})',
       {
         user_id: req.user.id,
         company_name: req.body.company_name,
@@ -228,7 +227,8 @@ const createJobApp = (req, res, next) => {
         job_email: req.body.job_email,
         job_phone_number: req.body.job_phone_number,
         position_title: req.body.position_title,
-        company_url: req.body.url
+        job_posting_url: req.body.job_posting_url,
+        progress_in_search: 'A'
       }
     )
     .then(() => {
@@ -238,8 +238,7 @@ const createJobApp = (req, res, next) => {
       });
     })
     .catch(err => {
-      console.log(err);
-      res.status(500).send('error creating job app');
+      res.status(500).send(`Error creating job app:  ${err}`);
     });
 };
 
@@ -271,17 +270,16 @@ const registerUser = (req, res, next) => {
     .catch(err => {
       console.log(`Registration`, err);
       res.status(500).json({
-        message: `Registration Failed   ${err} `,
+        message: `Registration Failed: ${err} `,
         err
       });
     });
 };
 
-
 /* ------------------------ PUT REQUESTS QUERIES ------------------------ */
 
 /* 12. */
-// PUT Route = /users/updateCoverLetter
+// PUT Route = /users/updateCoverLetter/:job
 
 const updateCoverLetter = (req, res, next) => {
   db
@@ -296,10 +294,9 @@ const updateCoverLetter = (req, res, next) => {
       });
     })
     .catch(err => {
-      console.log(err);
-      res.status(500).send('error updating cover letter');
+      console.log(err)(`Error updating cover letter: ${err}`);
     });
-}
+};
 
 /* 13. */
 // PUT Route = /users/updateResume
@@ -321,14 +318,14 @@ const updateResume = (req, res, next) => {
     })
     .catch(err => {
       console.log(err);
-      res.status(500).send('error updating resume');
+      res.status(500).send(`Error updating resume: ${err}`);
     });
-}
+};
 
 /* 14. */
 // PUT Route = /users/updateInterview
 
-const updateJobInterview = (req, res, next) => {
+const updateInterview = (req, res, next) => {
   db
     .none(
       'UPDATE Interview SET contact = ${contact}, note = ${note} WHERE job_id = ${job_id}',
@@ -345,14 +342,14 @@ const updateJobInterview = (req, res, next) => {
       });
     })
     .catch(function(err) {
-      res.status(500).send('Error updating job interview');
+      res.status(500).send(`Error updating job interview: ${err}`);
     });
-}
+};
 
 /* 15. */
 // PUT Route = /users/updateInfo
 
-const updateUsersInfo = (req, res, next) => {
+const updateUserInfo = (req, res, next) => {
   db
     .none(
       'UPDATE users SET username = ${username}, phone_number = ${phone_number} WHERE id = ${id}',
@@ -369,10 +366,10 @@ const updateUsersInfo = (req, res, next) => {
       });
     })
     .catch(function(err) {
-      res.status(500).send('error updating user information');
+      res.status(500).send(`Error updating user information: ${err}`);
       return next(err);
     });
-}
+};
 
 module.exports = {
   getAllUserApps,
@@ -388,6 +385,6 @@ module.exports = {
   registerUser,
   updateCoverLetter,
   updateResume,
-  updateJobInterview,
-  updateUsersInfo
+  updateInterview,
+  updateUserInfo
 };
