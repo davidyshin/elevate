@@ -4,7 +4,7 @@ const passport = require('../auth/local.js');
 
 /* List of queries for reference
 ---------------------------------------
-  Get Requests
+  GET Requests
 ---------------------------------------
  1. getAllUserApps
  2. getCoverLetter
@@ -17,13 +17,13 @@ const passport = require('../auth/local.js');
  9. logoutUser
 
 ---------------------------------------
-  Post Requests
+  POST Requests
 ---------------------------------------
  10. createJobApp
  11. registerUser
 
  ---------------------------------------
-  Put Requests
+  PUT Requests
 ---------------------------------------
  12. updateCoverLetter
  13. updateResume
@@ -59,8 +59,8 @@ const getAllUserApps = (req, res, next) => {
 
 const getCoverLetter = (req, res, next) => {
   db
-    .any(
-      'SELECT cover_url  FROM jobs WHERE user_id=${id} and job_id = ${job}',
+    .one(
+      'SELECT cover_url FROM jobs WHERE user_id=${id} and job_id = ${job}',
       {
         id: req.user.id,
         job: req.params.job
@@ -83,11 +83,11 @@ const getCoverLetter = (req, res, next) => {
 
 const getJobInterview = (req, res, next) => {
   db
-    .one('SELECT * FROM Interview WHERE job_id=${job}', {
+    .any('SELECT * FROM Interview WHERE job_id=${job}', {
       job: req.params.job
     })
     .then(data => {
-      res.status(200).json({ interview: data });
+      res.status(200).json({ interviews: data });
     })
     .catch(function(err) {
       res.status(500).send('Error getting job interview');
@@ -99,7 +99,7 @@ const getJobInterview = (req, res, next) => {
 
 const getRankedBadge = (req, res, next) => {
   db
-    .any('SELECT badge_url from rank_badges WHERE badge_level = ${level}', {
+    .one('SELECT badge_url from rank_badges WHERE badge_level = ${level}', {
       level: req.params.level
     })
     .then(data => {
@@ -120,8 +120,8 @@ const getRankedBadge = (req, res, next) => {
 
 const getResume = (req, res, next) => {
   db
-    .any(
-      'SELECT resume_url  FROM jobs WHERE user_id = ${id} and job_id = ${job}',
+    .one(
+      'SELECT resume_url FROM jobs WHERE user_id = ${id} and job_id = ${job}',
       {
         id: req.user.id,
         job: req.params.id
