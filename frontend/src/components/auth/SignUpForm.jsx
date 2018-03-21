@@ -59,7 +59,7 @@ class SignUpForm extends Component {
         this.setState({
           username: '',
           password: '',
-          message: 'Invalid Login'
+          message: 'Invalid Registration'
         });
       });
   };
