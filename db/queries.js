@@ -178,7 +178,9 @@ const getUserAchievementBadges = (req, res, next) => {
       });
     })
     .catch(err => {
-      res.status(500).send(`error getting user achievement badges earned: ${err}`);
+      res
+        .status(500)
+        .send(`error getting user achievement badges earned: ${err}`);
     });
 };
 
@@ -328,11 +330,12 @@ const updateResume = (req, res, next) => {
 const updateInterview = (req, res, next) => {
   db
     .none(
-      'UPDATE Interview SET contact = ${contact}, note = ${note} WHERE job_id = ${job_id}',
+      'UPDATE Interview SET contact = ${contact}, note = ${note}, interview_date = ${interview_date} WHERE job_id = ${job_id}',
       {
         contact: req.body.contact,
         note: req.body.note,
-        job_id: req.body.job_id
+        job_id: req.body.job_id,
+        interview_date: req.body.interview_date
       }
     )
     .then(function(data) {
