@@ -60,7 +60,7 @@ const getAllUserApps = (req, res, next) => {
 const getCoverLetter = (req, res, next) => {
   db
     .one(
-      'SELECT cover_url FROM jobs WHERE user_id=${id} and job_id = ${job}',
+      'SELECT cover_url FROM jobs WHERE user_id=${id} AND job_id = ${job}',
       {
         id: req.user.id,
         job: req.params.job
@@ -99,7 +99,7 @@ const getJobInterview = (req, res, next) => {
 
 const getRankedBadge = (req, res, next) => {
   db
-    .one('SELECT badge_url from rank_badges WHERE badge_level = ${level}', {
+    .one('SELECT badge_url FROM rank_badges WHERE badge_level = ${level}', {
       level: req.params.level
     })
     .then(data => {
@@ -121,7 +121,7 @@ const getRankedBadge = (req, res, next) => {
 const getResume = (req, res, next) => {
   db
     .one(
-      'SELECT resume_url FROM jobs WHERE user_id = ${id} and job_id = ${job}',
+      'SELECT resume_url FROM jobs WHERE user_id = ${id} AND job_id = ${job}',
       {
         id: req.user.id,
         job: req.params.id
