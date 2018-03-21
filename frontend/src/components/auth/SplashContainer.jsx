@@ -16,7 +16,7 @@ class SplashContainer extends Component {
 
   render() {
     return (
-      <div className="splash-container">
+      <div className="splash-container" data-aos="fade-up'">
 
         <div className="splash-top">
           <h1>Elevate</h1>
