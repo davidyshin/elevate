@@ -13,7 +13,7 @@ class SignUpForm extends Component {
       phoneNumber: '',
       password: '',
       retypePassword: '',
-      message: ''
+      message: null
     };
   }
 
@@ -25,50 +25,62 @@ class SignUpForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const { username, firstName, lastName, phoneNumber, password } = this.state;
+    const { username, firstName, lastName, phoneNumber, password, retypePassword } = this.state;
 
-    axios
-      .post('/users/newuser', {
-        user: {
-          username: username,
-          firstName: firstName,
-          lastName: lastName,
-          phoneNumber: phoneNumber,
-          password: password
-        }
-      })
-      .then(() => {
-        axios
-          .post('/users/login', {
-            username: username,
-            password: password
-          })
-          .then(res => {
-            this.props.setActiveUser(res.data);
-          })
-          .catch(err => {
-            console.log(err);
-            this.setState({
-              message: 'Error logging in'
-            })
-          });
-      })
-      .catch(err => {
-        console.log(err);
-        this.setState({
-          username: '',
-          password: '',
-          message: 'Error registering'
-        });
+    if (password.length < 6) {
+      this.setState({
+        message: 'Password too short'
       });
+    } else if (password !== retypePassword) {
+      this.setState({
+        message: 'Passwords do not match'
+      });
+    } else {
+      axios
+        .post('/users/newuser', {
+          user: {
+            username: username,
+            firstName: firstName,
+            lastName: lastName,
+            phoneNumber: phoneNumber,
+            password: password
+          }
+        })
+        .then(() => {
+          axios
+            .post('/users/login', {
+              username: username,
+              password: password
+            })
+            .then(res => {
+              this.props.setActiveUser(res.data);
+            })
+            .catch(err => {
+              console.log(err);
+              this.setState({
+                message: 'Error logging in'
+              })
+            });
+        })
+        .catch(err => {
+          console.log(err);
+          this.setState({
+            username: '',
+            password: '',
+            message: 'Error registering'
+          });
+        });
+    }
   };
 
   render() {
     const { username, firstName, lastName, phoneNumber, password, retypePassword, message } = this.state;
+    const errorMessage = message ? <p>{message}</p> : null
 
     return (
       <div className="signup-form auth-form-container">
         <form onSubmit={this.handleSubmit}>
+          {errorMessage}
           <input
             placeholder="Email"
             type="email"
@@ -120,7 +132,6 @@ class SignUpForm extends Component {
           />
           <input type="submit" value="Sign Up" />
         </form>
-        {message}
       </div>
     );
   }
