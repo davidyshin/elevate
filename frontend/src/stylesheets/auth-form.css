@@ -12,6 +12,8 @@
     align-items: center;
     width: 100%;
     padding-top: 140px;
+    padding-bottom: 20px;
+    background-color: #f5f0f5;
     transition: 0.3s all;
 }
 
@@ -96,6 +98,7 @@
         margin: 12px;
         border-radius: 4px;
         font-size: 1.4rem;
+        color: rgb(146, 43, 33);
         background-color: rgba(255, 0, 0, 0.2);
     }
 
