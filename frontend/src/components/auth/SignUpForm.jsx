@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import axios from 'axios';
 
@@ -23,17 +22,22 @@ class SignUpForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const { username, firstName, lastName, phoneNumber, password, photo_url } = this.state;
+    const {
+      username,
+      firstName,
+      lastName,
+      phoneNumber,
+      password,
+      photo_url
+    } = this.state;
     axios
       .post('/users/newuser', {
-        user: {
-          username: username,
-          firstName: firstName,
-          lastName: lastName,
-          phoneNumber: phoneNumber,
-          password: password,
-          photo_url: photo_url
-        }
+        username: username,
+        firstName: firstName,
+        lastName: lastName,
+        phoneNumber: phoneNumber,
+        password: password,
+        photo_url: photo_url
       })
       .then(res => {
         console.log(res);
@@ -48,7 +52,7 @@ class SignUpForm extends Component {
             password: password
           })
           .then(res => {
-            this.props.setActiveUser(res.data)
+            this.props.setActiveUser(res.data);
           })
           .catch(err => {
             console.log(err);

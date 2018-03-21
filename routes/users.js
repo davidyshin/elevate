@@ -37,7 +37,7 @@ const passport = require('../auth/local');
 
 /* ----------------------- GET Requests. ----------------------- */
 
-/*  1. getAllUserApps  // GET Route = /users/getAllUserApps */
+/* 1. getAllUserApps  // GET Route = /users/getAllUserApps */
 router.get('/getAllUserApps', loginRequired, db.getAllUserApps);
 
 /* 2. getCoverLetter  // GET Route = /users/getCoverLetter/:job */
