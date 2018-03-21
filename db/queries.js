@@ -273,17 +273,17 @@ const createInterview = (req, res, next) => {
 // POST Route = /users/newuser
 
 const registerUser = (req, res, next) => {
-  const hash = authHelpers.createHash(req.body.user.password);
+  const hash = authHelpers.createHash(req.body.password);
   db
     .none(
       'INSERT INTO Users (username, first_name, last_name, photo_url, password_digest, phone_number, experience) VALUES (${username}, ${firstName}, ${lastName}, ${photo_url}, ${password}, ${phoneNumber}, ${experience})',
       {
-        username: req.body.user.username,
-        firstName: req.body.user.firstName,
-        lastName: req.body.user.lastName,
-        photo_url: req.body.user.photo_url,
+        username: req.body.username,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        photo_url: req.body.photo_url,
         password: hash,
-        phoneNumber: req.body.user.phoneNumber,
+        phoneNumber: req.body.phoneNumber,
         experience: 0
       }
     )
