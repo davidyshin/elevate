@@ -2,45 +2,45 @@ const db = require('./index');
 const authHelpers = require('../auth/helpers.js');
 const passport = require('../auth/local.js');
 
-/* List of queries for reference
+/* List of queries/routes for reference
 ---------------------------------------
   GET Requests
 ---------------------------------------
- 1. getAllUserApps
- 2. getCoverLetter
- 3. getJobInterview
- 4. getRankedBadge
- 5. getResume
- 6. getUser
- 7. getUserAchievementBadges
- 8. getUserExp
- 9. logoutUser
+ 1. getAllUserApps  // GET Route = /users/getAllUserApps
+ 2. getCoverLetter  // GET Route = /users/getCoverLetter/:job
+ 3. getJobInterview // GET Route = /users/getJobInterview/:job
+ 4. getRankedBadge  // GET Route = /users/getRankedBadge/:level
+ 5. getResume // GET Route = /users/getResume/:job
+ 6. getUser // GET Route = /users/getUser
+ 7. getUserAchievementBadges  // GET Route = /users/getUserAchieves
+ 8. getUserExp // GET Route = /users/getUserExp
+ 9. logoutUser // GET Route = /users/logout
 
 ---------------------------------------
   POST Requests
 ---------------------------------------
- 10. createJobApp
- 11. registerUser
+ 10. createJobApp // POST Route /users/createJobApp
+ 11. registerUser // POST Route = /users/newuser
 
  ---------------------------------------
   PUT Requests
 ---------------------------------------
- 12. updateCoverLetter
- 13. updateResume
- 14. updateJobInterview
- 15. updateUsersInfo
+ 12. updateCoverLetter // PUT Route = /users/updateCoverLetter
+ 13. updateResume // PUT Route = /users/updateResume
+ 14. updateJobInterview // PUT Route = /users/updateInterview
+ 15. updateUsersInfo // PUT Route = /users/updateInfo
 --------------------------------------- 
-
 */
 
 /* ------------------------ GET REQUESTS QUERIES ------------------------ */
 
 /* 1. */
-// GET Route = /users/getAllUserApps/:id
+// GET Route = /users/getAllUserApps/
 const getAllUserApps = (req, res, next) => {
-  let id = req.params.id;
   db
-    .any('SELECT * FROM jobs WHERE user_id=$1', [id])
+    .any('SELECT * FROM jobs WHERE user_id=${user_id}', {
+      user_id: req.user.id
+    })
     .then(data => {
       res.status(200).json({
         status: 'success',
@@ -60,9 +60,9 @@ const getAllUserApps = (req, res, next) => {
 const getCoverLetter = (req, res, next) => {
   db
     .one(
-      'SELECT cover_url FROM jobs WHERE user_id=${id} AND job_id = ${job}',
+      'SELECT cover_url FROM jobs WHERE user_id=${user_id} AND job_id = ${job}',
       {
-        id: req.user.id,
+        user_id: req.user.id,
         job: req.params.job
       }
     )
@@ -209,9 +209,7 @@ const logoutUser = (req, res, next) => {
   res.status(200).send('log out success');
 };
 
-
 /* ------------------------ POST REQUESTS QUERIES ------------------------ */
-
 
 /* 10. */
 // POST Route /users/createJobApp
@@ -277,7 +275,6 @@ const registerUser = (req, res, next) => {
     });
 };
 
-
 /* ------------------------ PUT REQUESTS QUERIES ------------------------ */
 
 /* 12. */
@@ -299,7 +296,7 @@ const updateCoverLetter = (req, res, next) => {
       console.log(err);
       res.status(500).send('error updating cover letter');
     });
-}
+};
 
 /* 13. */
 // PUT Route = /users/updateResume
@@ -323,7 +320,7 @@ const updateResume = (req, res, next) => {
       console.log(err);
       res.status(500).send('error updating resume');
     });
-}
+};
 
 /* 14. */
 // PUT Route = /users/updateInterview
@@ -347,7 +344,7 @@ const updateJobInterview = (req, res, next) => {
     .catch(function(err) {
       res.status(500).send('Error updating job interview');
     });
-}
+};
 
 /* 15. */
 // PUT Route = /users/updateInfo
@@ -372,7 +369,7 @@ const updateUsersInfo = (req, res, next) => {
       res.status(500).send('error updating user information');
       return next(err);
     });
-}
+};
 
 module.exports = {
   getAllUserApps,
