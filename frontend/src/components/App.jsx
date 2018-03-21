@@ -3,6 +3,8 @@ import AuthContainer from './auth/AuthContainer.jsx';
 import HomeContainer from './home/HomeContainer.jsx';
 import axios from 'axios';
 import '../stylesheets/App.css';
+import AOS from 'aos';
+import '../../node_modules/aos/dist/aos.css';
 
 class App extends Component {
   constructor() {
@@ -63,6 +65,9 @@ class App extends Component {
   };
 
   render() {
+    AOS.init({
+      once: true
+    });
     return (
       <div className="App">
         <this.activeComponent />

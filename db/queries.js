@@ -269,7 +269,6 @@ const createInterview = (req, res, next) => {
     });
 };
 
-
 /* 11. */
 // POST Route = /users/newuser
 
