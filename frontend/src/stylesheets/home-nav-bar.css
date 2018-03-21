@@ -11,26 +11,27 @@
     display: flex;
     justify-content: space-between;
     font-family: 'Montserrat', sans-serif;
-    color: rgb(0,149,222);
+    color: rgb(0, 149, 222);
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
 }
 
 .top-navigation-left {
     display: flex;
     align-items: center;
-    margin-left: 100px;
+    margin-left: 160px;
     transition: 0.5s all;
 }
 
     .top-navigation-left img {
         width: auto;
         height: 50px;
+        cursor: pointer;
     }
 
 .top-navigation-right {
     display: flex;
     align-items: center;
-    margin-right: 100px;
+    margin-right: 160px;
     transition: 0.3s all;
 }
 
@@ -38,15 +39,16 @@
         font-size: 1.4rem;
         cursor: default;
         margin-left: 22px;
+        cursor: pointer;
         transition: 0.5s all;
     }
 
     .top-navigation-right h3:hover {
-        color: rgb(42,70,97);
+        color: rgb(42, 70, 97);
     }
 
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 1300px) {
     .top-navigation-left {
         margin-left: 3%;
     }
