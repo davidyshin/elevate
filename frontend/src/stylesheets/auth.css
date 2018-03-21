@@ -21,7 +21,7 @@
 }
 
     .splash-top {
-        background-color: rgba(255, 0, 0, 0.2);
+        /* background-color: rgba(255, 0, 0, 0.2); */
         height: 92.4vh;
         display: flex;
         flex-direction: column;
@@ -75,7 +75,7 @@
         /* .splash-top button:last-child:hover {
             background-color: rgb(197, 17, 146);
         } */
-        
+
         .splash-top button:hover {
             box-shadow: 0 0 14px rgba(0, 0, 0, 0.3);
         }
