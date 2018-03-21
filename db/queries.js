@@ -8,7 +8,7 @@ const passport = require('../auth/local.js');
 ---------------------------------------
  1. getAllUserApps  // GET Route = /users/getAllUserApps
  2. getCoverLetter  // GET Route = /users/getCoverLetter/:job
- 3. getJobInterview // GET Route = /users/getJobInterview/:job
+ 3. getInterview // GET Route = /users/getbInterview/:job
  4. getRankedBadge  // GET Route = /users/getRankedBadge/:level
  5. getResume // GET Route = /users/getResume/:job
  6. getUser // GET Route = /users/getUser
@@ -80,9 +80,9 @@ const getCoverLetter = (req, res, next) => {
 };
 
 /* 3. */
-// GET Route = /users/getJobInterview/:job
+// GET Route = /users/getInterview/:job
 
-const getJobInterview = (req, res, next) => {
+const getInterview = (req, res, next) => {
   db
     .any('SELECT * FROM Interview WHERE job_id=${job}', {
       job: req.params.job
