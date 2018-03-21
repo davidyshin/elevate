@@ -46,8 +46,9 @@ class LoginForm extends Component {
     const errorMessage = message ? <p>{message}</p> : null; 
 
     return (
-      <div className="login-form auth-form-container">
+      <div className="login-form auth-form-container" data-aos="fade-up">
         <form onSubmit={this.handleSubmit}>
+          <h3>Welcome back</h3>
           {errorMessage}
           <input
             placeholder="Email"

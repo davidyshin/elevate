@@ -93,7 +93,7 @@ class SignUpForm extends Component {
     const errorMessage = message ? <p>{message}</p> : null;
 
     return (
-      <div className="signup-form auth-form-container">
+      <div className="signup-form auth-form-container" data-aos="fade-up">
         <form onSubmit={this.handleSubmit}>
           {errorMessage}
           <input
