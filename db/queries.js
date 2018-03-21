@@ -382,7 +382,7 @@ const updateUserInfo = (req, res, next) => {
     .none(
       'UPDATE users SET username = ${username}, phone_number = ${phone_number} WHERE id = ${id}',
       {
-        username: req.bodyname,
+        username: req.body.username,
         phone_number: req.body.phone_number,
         id: req.user.id
       }
