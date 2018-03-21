@@ -31,7 +31,7 @@ class SignUpForm extends Component {
       lastName,
       phoneNumber,
       password,
-      photoUrl,
+      photo_url,
       retypePassword
     } = this.state;
 

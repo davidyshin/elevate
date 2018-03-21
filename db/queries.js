@@ -72,7 +72,7 @@ const getCoverLetter = (req, res, next) => {
       res.status(200).json({
         status: 'success',
         cover_url: data,
-        message: 'Retrieved cover letter'
+        message: 'Retrieved job cover letter'
       });
     })
     .catch(err => {
