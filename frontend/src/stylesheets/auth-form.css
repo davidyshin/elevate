@@ -1,0 +1,13 @@
+/*------------------------------------------*/
+/*           User Signup and Login          */
+/*------------------------------------------*/
+.auth-form-container {
+    margin-top: 60px;
+    background-color: rgba(255, 0, 0, 0.4);
+}
+
+
+.auth-form-container form {
+    display: flex;
+    flex-direction: column;
+}
