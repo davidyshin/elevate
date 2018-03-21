@@ -47,7 +47,7 @@ class AuthContainer extends Component {
       <div className="auth-container">
         <nav className="top-navigation">
           <div className="top-navigation-left">
-            <img onClick={this.toggleActive} id="splash" src="https://lh6.googleusercontent.com/YxE58-MrxQVfwgXyyMaOJ4ExoDIO189HeORfF1SMbtdA0fZKDJRO_9xyVu1GEZEecgXHRMu5sapEzKjQSut4=w1440-h780" alt="elevate" />
+            <img onClick={this.toggleActive} id="splash" src="https://i.imgur.com/JdYm85w.png" alt="elevate" />
           </div>
           <div className="top-navigation-right">
             <h3 onClick={this.toggleActive} id="login">LOGIN</h3>
