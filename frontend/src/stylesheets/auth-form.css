@@ -94,6 +94,7 @@
     .auth-form-container p {
         padding: 22px;
         margin: 12px;
+        border-radius: 4px;
         font-size: 1.4rem;
         background-color: rgba(255, 0, 0, 0.2);
     }
