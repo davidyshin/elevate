@@ -50,7 +50,7 @@
             outline: none;
             border: none;
             /* background-color: rgb(0, 149, 222); */
-            background: linear-gradient(to right, rgba(67,42,246,1) 0%,rgba(0,149,222,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            background: linear-gradient(to right, rgba(67, 42, 246, 1) 0%,rgba(0, 149, 222, 1) 100%); 
             color: #fefefe;
             border-radius: 60px;
             height: 60px;
@@ -59,25 +59,12 @@
             font-weight: 300;
             font-size: 1.6rem;
             margin: 12px;
-            transition: 0.5s all;
+            transition: 0.3s all;
             cursor: pointer;
         }
 
-        /* .splash-top button:hover {
-            background-color: rgb(23, 159, 228);
-        } */
-
-        .splash-top button:last-child {
-            /* background: linear-gradient(to right, rgba(0,149,222,1) 0%,rgba(255,0,142,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */            
-            background-color: rgb(171, 0, 122);
-        }
-
-        /* .splash-top button:last-child:hover {
-            background-color: rgb(197, 17, 146);
-        } */
-
         .splash-top button:hover {
-            box-shadow: 0 0 14px rgba(0, 0, 0, 0.3);
+            transform: scale(1.02);
         }
 
     .splash-features {
@@ -101,7 +88,14 @@
             padding: 12px;
             box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
             transition: 0.3s all;
+            animation: deanimate-on-hover .3s;
+            animation-fill-mode: forwards;
         }
+
+            .splash-feature-card:hover {
+                animation: animate-on-hover .3s;
+                animation-fill-mode: forwards;
+            }
 
         .splash-feature-card div {
             height: 65%;
@@ -144,10 +138,31 @@
         }
 
 
+@keyframes animate-on-hover {
+    from {
+        transform: translate(0, 0);
+    }
+
+    to {
+        transform: translate(0, -5px);
+    }
+}
+
+@keyframes deanimate-on-hover {
+    from {
+        transform: translate(0, -5px);
+    }
+
+    to {
+        transform: translate(0, 0);
+    }
+}
+
 @media screen and (max-width: 1300px) {
     .splash-features {
         padding: 0 3%;
     }
+
     .splash-feature-card {
         width: 29%;
     }
