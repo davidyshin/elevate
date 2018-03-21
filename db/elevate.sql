@@ -8,11 +8,11 @@ CASCADE;
 CREATE TABLE Users
 (
     id SERIAL UNIQUE,
-    first_name VARCHAR(13),
-    last_name VARCHAR(13),
+    first_name VARCHAR,
+    last_name VARCHAR,
     photo_url VARCHAR,
     password_digest VARCHAR NOT NULL,
-    username VARCHAR(57) UNIQUE,
+    username VARCHAR UNIQUE,
     phone_number VARCHAR (10) UNIQUE,
     email_notification VARCHAR(1),
     phone_notification VARCHAR(1),
