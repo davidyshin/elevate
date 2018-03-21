@@ -3,6 +3,9 @@
 import React, { Component } from 'react';
 import Autosuggest from 'react-autosuggest';
 import axios from 'axios';
+import ResumeUpload from './ResumeUpload.jsx';
+import CoverLetterUpload from './CoverLetterUpload.jsx';
+import AddInterview from './AddInterview.jsx';
 
 class AddJobForm extends Component {
   constructor() {
@@ -16,31 +19,96 @@ class AddJobForm extends Component {
       email: '',
       date: '',
       url: '',
+      applicationStage: 1,
+      job_id: '',
+      resume_url: '',
+      cover_url: ''
     };
   }
-  handleSubmit = e => {
+
+  handleFirstSubmit = e => {
     e.preventDefault();
-    let application = {
-      company: this.state.company,
-      companyLogo: this.state.companyLogo,
-      position: this.state.position,
-      phoneNumber: this.state.phoneNumber,
-      email: this.state.email,
-      date: this.state.date,
-      url: this.state.url
-    };
+    axios
+      .post('/users/createJobApp', {
+        company_name: this.state.company,
+        company_logo: this.state.companyLogo,
+        date_applied: this.state.date,
+        job_email: this.state.email,
+        job_phone_number: this.state.phoneNumber,
+        position_title: this.state.position,
+        job_posting_url: this.state.url
+      })
+      .then(data => {
+        this.setState({
+          job_id: data.data.returned.job_id,
+          applicationStage: 2
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  addMoreInterview = e => {
+    e.preventDefault();
+    let { applicationStage } = this.state;
+    applicationStage += 1;
     this.setState({
-      company: '',
-      companyInput: '',
-      suggestedCompanies: [],
-      companyLogo: '',
-      position: '',
-      phoneNumber: '',
-      email: '',
-      date: '',
-      url: ''
+      applicationStage
     });
-    console.log(application);
+  };
+
+  handleResumeInput = e => {
+    const { job_id } = this.state;
+    const resume_url = e.target.value;
+    e.preventDefault();
+    axios
+      .put('/users/updateResume', {
+        resume_url: resume_url,
+        job_id: job_id
+      })
+      .then(() => {
+        this.setState({
+          resume_url: resume_url
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({
+          message: 'Error updating resume'
+        });
+      });
+  };
+
+  handleCoverInput = e => {
+    const { job_id } = this.state;
+    const cover_url = e.target.value;
+    e.preventDefault();
+    axios
+      .put('/users/updateCoverLetter', {
+        cover_url: cover_url,
+        job_id: job_id
+      })
+      .then(() => {
+        this.setState({
+          cover_url: cover_url
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({
+          message: 'Error updating cover letter'
+        });
+      });
+  };
+
+  handleSecondSubmit = e => {
+    let { applicationStage } = this.state;
+    applicationStage = parseInt(e.target.id) + 1;
+    e.preventDefault();
+    this.setState({
+      applicationStage
+    });
   };
 
   getSuggestions = value => {
@@ -115,7 +183,11 @@ class AddJobForm extends Component {
       email,
       date,
       phoneNumber,
-      url
+      url,
+      resume_url,
+      cover_url,
+      job_id,
+      applicationStage
     } = this.state;
     const inputProps = {
       placeholder: 'Company',
@@ -133,7 +205,7 @@ class AddJobForm extends Component {
       <div className="add-job-form">
         <div className="add-job-info">
           <h3> Job Info</h3>
-          <form onSubmit={this.handleSubmit}>
+          <form id="1" onSubmit={this.handleFirstSubmit}>
             <p>Company:</p>
             <SelectedImage />
             <Autosuggest
@@ -186,53 +258,59 @@ class AddJobForm extends Component {
               name="email"
               type="email"
             />
-            <input disabled={!company || !position || !date} type="submit" value="Next" />
+            <input
+              disabled={!company || !position || !date}
+              type="submit"
+              value="Next"
+            />
           </form>
         </div>
-        <div style={{ display: 'none' }} className="add-job-resume">
-          <h3>Resume</h3>
-          <form>
-            <input type="file" />
-          </form>
+        <div
+          hidden={applicationStage > 1 ? false : true}
+          className="add-job-resume-container"
+        >
+          <ResumeUpload
+            handleResumeInput={this.handleResumeInput}
+            handleSecondSubmit={this.handleSecondSubmit}
+            resume_url={resume_url}
+          />
         </div>
-        <div style={{ display: 'none' }} className="add-job-coverletter">
-          <h3>Cover Letter</h3>
-          <form>
-            <input type="file" />
-          </form>
+        <div
+          hidden={applicationStage > 2 ? false : true}
+          className="add-job-coverletter-container"
+        >
+          <CoverLetterUpload
+            handleCoverInput={this.handleCoverInput}
+            handleSecondSubmit={this.handleSecondSubmit}
+            cover_url={cover_url}
+          />
         </div>
-        <div style={{ display: 'none' }} className="add-job-interview">
-          <h3>Interview 1</h3>
-          <form>
-            <p>Date</p>
-            <input type="date" />
-            <p>Time</p>
-            <input type="time" />
-            <p>Contact</p>
-            <input type="text" />
-          </form>
+        <div
+          hidden={applicationStage > 3 ? false : true}
+          className="add-job-interview-container"
+        >
+          <AddInterview
+            job_id={job_id}
+            addMoreInterview={this.addMoreInterview}
+          />
         </div>
-        <div style={{ display: 'none' }} className="add-job-interview">
-          <h3>Interview 2</h3>
-          <form>
-            <p>Date</p>
-            <input type="date" />
-            <p>Time</p>
-            <input type="time" />
-            <p>Contact</p>
-            <input type="text" />
-          </form>
+        <div
+          hidden={applicationStage > 4 ? false : true}
+          className="add-job-interview-container"
+        >
+          <AddInterview
+            job_id={job_id}
+            addMoreInterview={this.addMoreInterview}
+          />
         </div>
-        <div style={{ display: 'none' }} className="add-job-interview">
-          <h3>Interview 3</h3>
-          <form>
-            <p>Date</p>
-            <input type="date" />
-            <p>Time</p>
-            <input type="time" />
-            <p>Contact</p>
-            <input type="text" />
-          </form>
+        <div
+          hidden={applicationStage > 5 ? false : true}
+          className="add-job-interview-container"
+        >
+          <AddInterview
+            job_id={job_id}
+            addMoreInterview={this.addMoreInterview}
+          />
         </div>
       </div>
     );
