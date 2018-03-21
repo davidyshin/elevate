@@ -22,7 +22,11 @@
 
     .splash-top {
         background-color: rgba(255, 0, 0, 0.2);
-        text-align: center;
+        height: 92.4vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 
     .splash-top h1 {
@@ -41,32 +45,51 @@
         .splash-top button {
             outline: none;
             border: none;
-            background-color: rgba(255, 0, 255, 0.4);
-            border-radius: 50px;
-            height: 50px;
+            background-color: rgb(0, 149, 222);
+            color: #fefefe;
+            border-radius: 60px;
+            height: 60px;
             width: 200px;
             font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
             font-size: 1.6rem;
-            margin: 10px;
+            margin: 12px;
+            transition: 0.3s all;
+            cursor: pointer;
+        }
+
+        .splash-top button:hover {
+            background-color: rgb(23, 159, 228);
+        }
+
+        .splash-top button:last-child {
+            background-color: rgb(171, 0, 122);
+        }
+
+        .splash-top button:last-child:hover {
+            background-color: rgb(197, 17, 146);
         }
 
     .splash-features {
-        background-color: rgba(0, 255, 0, 0.2);
         display: flex;
         justify-content: space-between;
+        align-items: center;
         margin: 0 auto;
-        padding: 0 100px;
+        padding: 0 160px;
+        height: 500px;
         transition: 0.3s all;
     }
 
         .splash-feature-card {
-            height: 260px;
-            width: 240px;
+            height: 280px;
+            width: 280px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: rgba(0, 255, 0, 0.4);
+            background-color: #fefefe;
             text-align: center;
+            padding: 12px;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
             transition: 0.3s all;
         }
 
@@ -78,13 +101,21 @@
         }
 
         .splash-features img {
-            height: 120px;
-            width: 120px;
+            height: 140px;
+            width: 140px;
+        }
+
+        .splash-feature-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+            font-weight: 500;
+            color: rgba(0, 0, 0, 0.9);
         }
 
         .splash-feature-card p {
-            font-size: 1.8rem;
-            margin: 0 10px;
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: rgba(0, 0, 0, 0.5);
         }
 
     .splash-footer {
@@ -92,11 +123,8 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        height: 200px;
     }
-
-        .splash-footer.fab {
-            font-size: 20px;
-        }
 
         .splash-footer a,
         .splash-footer a:visited,
@@ -105,34 +133,33 @@
             text-decoration: none;
         }
 
-@media screen and (max-width: 992px) {
+
+@media screen and (max-width: 1300px) {
     .splash-features {
         padding: 0 3%;
     }
+    .splash-feature-card {
+        width: 29%;
+    }
 }
 
-@media screen and (max-width: 810px) {
+@media screen and (max-width: 720px) {
     .splash-features {
         flex-direction: column;
         align-items: center;
+        height: 1000px;
     }
 
     .splash-feature-card {
         width: 80%;
-        margin-bottom: 10px;
+        margin-bottom: 12px;
     }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 510px) {
     .splash-top-button-container {
         flex-direction: column;
         align-items: center;
-    }
-}
-
-@media screen and (max-width: 420px) {
-    .splash-feature-card {
-        width: 99%;
     }
 }
 
