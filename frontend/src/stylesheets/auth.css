@@ -2,6 +2,9 @@
 /*                Top Auth Page             */
 /*------------------------------------------*/
 
+/*
+AuthContainer.jsx 
+*/
 .auth-container {
     background-color: #f5f0f5;
     width: 100%;
@@ -16,12 +19,18 @@
     padding: 0;
 }
 
+/*
+Pushes the page below the navigation bar,
+which has a height of 60px.
+*/
 .splash-container {
     margin-top: 60px;
 }
 
+    /*
+    Content above the fold
+    */
     .splash-top {
-        /* background-color: rgba(255, 0, 0, 0.2); */
         height: 92.4vh;
         display: flex;
         flex-direction: column;
@@ -63,10 +72,16 @@
             cursor: pointer;
         }
 
+        /*
+        Button gets bigger on hover
+        */
         .splash-top button:hover {
             transform: scale(1.02);
         }
 
+    /*
+    Middle content, which holds a description of the app's features
+    */
     .splash-features {
         display: flex;
         justify-content: space-between;
@@ -77,6 +92,9 @@
         transition: 0.3s all;
     }
 
+        /*
+        Individual feature card 
+        */
         .splash-feature-card {
             height: 280px;
             width: 280px;
@@ -92,11 +110,17 @@
             animation-fill-mode: forwards;
         }
 
+            /*
+            Feature card shifts up on hover
+            */
             .splash-feature-card:hover {
                 animation: animate-on-hover .3s;
                 animation-fill-mode: forwards;
             }
 
+        /*
+        Holds the circular image on a feature card
+        */
         .splash-feature-card div {
             height: 65%;
             display: flex;
@@ -104,10 +128,10 @@
             justify-content: center;
         }
 
-        .splash-features img {
-            height: 140px;
-            width: 140px;
-        }
+            .splash-features img {
+                height: 140px;
+                width: 140px;
+            }
 
         .splash-feature-card h3 {
             font-size: 1.8rem;
@@ -122,6 +146,9 @@
             color: rgba(0, 0, 0, 0.5);
         }
 
+    /*
+    Footer content
+    */
     .splash-footer {
         background-color: #243b54;
         display: flex;
@@ -137,7 +164,9 @@
             text-decoration: none;
         }
 
-
+/*
+On hover, content shifts up
+*/
 @keyframes animate-on-hover {
     from {
         transform: translate(0, 0);
@@ -148,6 +177,9 @@
     }
 }
 
+/*
+On hover off, content shifts back to original place.
+*/
 @keyframes deanimate-on-hover {
     from {
         transform: translate(0, -5px);
@@ -158,6 +190,11 @@
     }
 }
 
+/*
+When screen is smaller than 1300px, 
+side padding becomes responsive,
+feature card width becomes responsive.
+*/
 @media screen and (max-width: 1300px) {
     .splash-features {
         padding: 0 3%;
@@ -168,6 +205,10 @@
     }
 }
 
+/*
+When screen is smaller than 720px,
+feature cards stack up vertically.
+*/
 @media screen and (max-width: 720px) {
     .splash-features {
         flex-direction: column;
@@ -181,6 +222,10 @@
     }
 }
 
+/*
+When screen is smaller than 510px,
+buttons stack up vertically.
+*/
 @media screen and (max-width: 510px) {
     .splash-top-button-container {
         flex-direction: column;
