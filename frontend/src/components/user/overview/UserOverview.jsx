@@ -27,7 +27,7 @@ class UserOverview extends Component {
 
   render() {
     return (
-      <div ClassName="user-overview-container">
+      <div className="user-overview-container">
         <this.renderUserProgress />
         <this.renderUserBadges />
         <this.renderUserActivity />
