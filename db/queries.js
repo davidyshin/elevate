@@ -220,8 +220,8 @@ const logoutUser = (req, res, next) => {
 
 const createJobApp = (req, res, next) => {
   db
-    .none(
-      'INSERT INTO jobs ( user_id, company_name, company_logo, date_applied, job_email, job_phone_number, position_title, job_posting_url, progress_in_search) VALUES ( ${user_id}, ${company_name}, ${company_logo}, ${date_applied}, ${job_email}, ${job_phone_number}, ${position_title}, ${job_posting_url}, ${progress_in_search})',
+    .one(
+      'INSERT INTO jobs ( user_id, company_name, company_logo, date_applied, job_email, job_phone_number, position_title, job_posting_url, progress_in_search) VALUES ( ${user_id}, ${company_name}, ${company_logo}, ${date_applied}, ${job_email}, ${job_phone_number}, ${position_title}, ${job_posting_url}, ${progress_in_search}) RETURNING job_id',
       {
         user_id: req.user.id,
         company_name: req.body.company_name,
@@ -234,9 +234,10 @@ const createJobApp = (req, res, next) => {
         progress_in_search: 'A'
       }
     )
-    .then(() => {
+    .then(returned => {
       res.status(200).json({
         status: 'success',
+        returned,
         message: 'Successfully created job appplication'
       });
     })
@@ -250,7 +251,7 @@ const createJobApp = (req, res, next) => {
 const createInterview = (req, res, next) => {
   db
     .none(
-      'INSERT INTO Interview (contact, note, interview_date, job_id}) VALUES (${contact}, ${note}, ${interview_date}, ${job_id})',
+      'INSERT INTO Interview (contact, note, interview_date, job_id) VALUES (${contact}, ${note}, ${interview_date}, ${job_id})',
       {
         contact: req.body.contact,
         note: req.body.note,
@@ -305,7 +306,7 @@ const registerUser = (req, res, next) => {
 /* ------------------------ PUT REQUESTS QUERIES ------------------------ */
 
 /* 12. */
-// PUT Route = /users/updateCoverLetter/:job
+// PUT Route = /users/updateCoverLetter/
 
 const updateCoverLetter = (req, res, next) => {
   db

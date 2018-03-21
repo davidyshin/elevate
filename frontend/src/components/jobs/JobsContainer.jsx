@@ -1,8 +1,8 @@
 // container to hold jobsummary and joblist
 
 import React, { Component } from 'react';
-import AddJobForm from './AddJobForm.jsx';
-import EditJobForm from './EditJobForm.jsx';
+import AddJobForm from './forms/AddJobForm.jsx';
+import EditJobForm from './forms/EditJobForm.jsx';
 import JobList from './JobList.jsx';
 import JobSummary from './JobSummary.jsx';
 
