@@ -3,12 +3,12 @@
 /*------------------------------------------*/
 
 /*
-AuthContainer.jsx 
+// AuthContainer.jsx 
 */
 .auth-container {
     background-color: #f5f0f5;
     width: 100%;
-    height: 100%;
+    height: 100vh;
 }
 
 /*------------------------------------------*/
@@ -20,15 +20,14 @@ AuthContainer.jsx
 }
 
 /*
-Pushes the page below the navigation bar,
-which has a height of 60px.
+// Pushes the page below the navigation bar, which has a height of 60px.
 */
 .splash-container {
-    margin-top: 60px;
+    padding-top: 60px;
 }
 
     /*
-    Content above the fold
+    // Content above the fold
     */
     .splash-top {
         height: 92.4vh;
@@ -55,6 +54,9 @@ which has a height of 60px.
             justify-content: center;
         }
 
+        /* 
+        // Demo and create an account button 
+        */
         .splash-top button {
             outline: none;
             border: none;
@@ -68,19 +70,22 @@ which has a height of 60px.
             font-weight: 300;
             font-size: 1.6rem;
             margin: 12px;
+            -moz-transition: 0.2s all;
+            -o-transition: 0.2s all;
+            -webkit-transition: 0.2s all;
             transition: 0.2s all;
             cursor: pointer;
         }
 
         /*
-        Button gets bigger on hover
+        // Button gets bigger on hover
         */
         .splash-top button:hover {
             transform: scale(1.02);
         }
 
     /*
-    Middle content, which holds a description of the app's features
+    // Middle content, which holds a description of the app's features
     */
     .splash-features {
         display: flex;
@@ -89,11 +94,12 @@ which has a height of 60px.
         margin: 0 auto;
         padding: 0 160px;
         height: 500px;
+        background-color: #f5f0f5;
         transition: 0.3s all;
     }
 
         /*
-        Individual feature card 
+        // Individual feature card 
         */
         .splash-feature-card {
             height: 280px;
@@ -104,6 +110,7 @@ which has a height of 60px.
             background-color: #fefefe;
             text-align: center;
             padding: 12px;
+            border-radius: 4px;
             box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
             transition: 0.3s all;
             animation: deanimate-on-hover .3s;
@@ -111,7 +118,7 @@ which has a height of 60px.
         }
 
             /*
-            Feature card shifts up on hover
+            // Feature card shifts up on hover
             */
             .splash-feature-card:hover {
                 animation: animate-on-hover .3s;
@@ -119,7 +126,7 @@ which has a height of 60px.
             }
 
         /*
-        Holds the circular image on a feature card
+        // Holds the circular image on a feature card
         */
         .splash-feature-card div {
             height: 65%;
@@ -147,7 +154,7 @@ which has a height of 60px.
         }
 
     /*
-    Footer content
+    // Footer content
     */
     .splash-footer {
         background-color: #243b54;
@@ -165,7 +172,7 @@ which has a height of 60px.
         }
 
 /*
-On hover, content shifts up
+// On hover, content shifts up
 */
 @keyframes animate-on-hover {
     from {
@@ -178,7 +185,7 @@ On hover, content shifts up
 }
 
 /*
-On hover off, content shifts back to original place.
+// On hover off, content shifts back to original place.
 */
 @keyframes deanimate-on-hover {
     from {
@@ -191,9 +198,9 @@ On hover off, content shifts back to original place.
 }
 
 /*
-When screen is smaller than 1300px, 
-side padding becomes responsive,
-feature card width becomes responsive.
+// When screen is smaller than 1300px, 
+// side padding becomes responsive,
+// feature card width becomes responsive.
 */
 @media screen and (max-width: 1300px) {
     .splash-features {
@@ -206,8 +213,8 @@ feature card width becomes responsive.
 }
 
 /*
-When screen is smaller than 720px,
-feature cards stack up vertically.
+// When screen is smaller than 720px,
+// feature cards stack up vertically.
 */
 @media screen and (max-width: 720px) {
     .splash-features {
@@ -223,8 +230,8 @@ feature cards stack up vertically.
 }
 
 /*
-When screen is smaller than 510px,
-buttons stack up vertically.
+// When screen is smaller than 510px,
+// buttons stack up vertically.
 */
 @media screen and (max-width: 510px) {
     .splash-top-button-container {
