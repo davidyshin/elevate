@@ -103,6 +103,17 @@
     }
 
     /*
+    // Welcome message on login
+    */
+    .login-form h3 {
+        font-size: 2rem;
+        font-weight: 400;
+        text-align: center;
+        color: rgba(40, 60, 83, 0.9);
+        margin: 36px auto;
+    }
+
+    /*
     // First and last name section on the same line 
     */ 
     .auth-form-input-horizontal {
