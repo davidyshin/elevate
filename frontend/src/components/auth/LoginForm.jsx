@@ -8,7 +8,8 @@ class LoginForm extends Component {
     super();
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      message: null
     };
   }
 
@@ -21,13 +22,13 @@ class LoginForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const { username, password } = this.state;
+
     axios
       .post('/users/login', {
         username: username,
         password: password
       })
       .then(res => {
-        console.log("handling submit" , res);
         this.props.setActiveUser(res.data);
       })
       .catch(err => {
@@ -35,18 +36,23 @@ class LoginForm extends Component {
         this.setState({
           username: '',
           password: '',
-          message: 'Username / Password Incorrect'
+          message: 'Incorrect username or password'
         });
       });
   };
 
   render() {
+    const { username, password, message } = this.state; 
+    const errorMessage = message ? <p>{message}</p> : null; 
+
     return (
       <div className="login-form auth-form-container">
         <form onSubmit={this.handleSubmit}>
+          {errorMessage}
           <input
             placeholder="Email"
             type="email"
+            value={username}
             name="username"
             onChange={this.handleInput}
             required
@@ -54,6 +60,7 @@ class LoginForm extends Component {
           <input
             placeholder="Password"
             type="password"
+            value={password}
             name="password"
             onChange={this.handleInput}
             required

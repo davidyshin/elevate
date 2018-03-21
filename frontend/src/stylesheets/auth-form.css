@@ -1,13 +1,138 @@
 /*------------------------------------------*/
 /*           User Signup and Login          */
 /*------------------------------------------*/
+
+/*
+// Pushes the page below the navigation bar, which has a height of 60px.
+*/
 .auth-form-container {
-    margin-top: 60px;
-    background-color: rgba(255, 0, 0, 0.4);
+    /* padding-top: 60px; */
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding-top: 140px;
+    padding-bottom: 20px;
+    background-color: #f5f0f5;
+    transition: 0.3s all;
 }
 
-
+/*
+// Login and Signup form
+*/
 .auth-form-container form {
+    background-color: #fefefe;
     display: flex;
     flex-direction: column;
+    width: 600px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
+    border-radius: 4px;
+    padding: 22px;
+    margin: 0 auto;
+}
+
+    /*
+    // Input boxes in login and signup 
+    */
+    .auth-form-container form input {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 500;
+        outline: none;
+        border: none;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 4px;
+        color: rgba(40, 60, 83, 0.8);
+        padding: 18px 22px;
+        margin: 14px;
+        font-size: 1.4rem;
+        -moz-transition: 0.3s all;
+        -o-transition: 0.3s all;
+        -webkit-transition: 0.3s all;
+        transition: 0.3s all;
+    }
+
+    /*
+    // Input text box placeholders 
+    */
+    .auth-form-container form input::placeholder {
+        color: rgba(0, 0, 0, 0.5);
+        font-weight: 400;
+    }
+
+    /*
+    // When user clicks on input box, border changes color 
+    */
+    .auth-form-container form input:focus {
+        border: 1px solid rgba(0, 149, 222, 0.6);
+    }
+
+    /*
+    // Login and Signup button
+    */
+    .auth-form-container form input[type='submit'] {
+        background: linear-gradient(to right, rgba(67, 42, 246, 1) 0%,rgba(0, 149, 222, 1) 100%); 
+        border-radius: 60px;
+        width: 200px;
+        margin: 36px auto 14px auto;
+        font-weight: 300;
+        color: #fefefe;
+        cursor: pointer;
+        -moz-transition: 0.2s all;
+        -o-transition: 0.2s all;
+        -webkit-transition: 0.2s all;
+        transition: 0.2s all;
+    }
+
+    /*
+    // Button gets bigger on hover
+    */
+    .auth-form-container form input[type='submit']:hover {
+        transform: scale(1.02);
+    }
+
+    /* 
+    // Error message during login and signup
+    */
+    .auth-form-container p {
+        padding: 22px;
+        margin: 12px;
+        border-radius: 4px;
+        font-size: 1.4rem;
+        color: rgb(146, 43, 33);
+        background-color: rgba(255, 0, 0, 0.2);
+    }
+
+    /*
+    // First and last name section on the same line 
+    */ 
+    .auth-form-input-horizontal {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .auth-form-input-horizontal input {
+        flex-grow: 1;
+    }
+
+/*
+// When the screen size is smaller than 720px, form width becomes responsive 
+*/ 
+@media screen and (max-width: 720px) {
+    .auth-form-container {
+        padding-top: 100px;
+    }
+
+    .auth-form-container form {
+        width: 80%;
+    }
+
+    .auth-form-input-horizontal {
+        display: flex;
+        flex-direction: column;
+        /* justify-content: space-between; */
+    }
+
+    .auth-form-input-horizontal input {
+        flex-grow: 1;
+    }
 }
