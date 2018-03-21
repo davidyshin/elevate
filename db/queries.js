@@ -8,7 +8,7 @@ const passport = require('../auth/local.js');
 ---------------------------------------
  1. getAllUserApps  // GET Route = /users/getAllUserApps
  2. getCoverLetter  // GET Route = /users/getCoverLetter/:job
- 3. getInterview // GET Route = /users/getbInterview/:job
+ 3. getInterview // GET Route = /users/getInterview/:job
  4. getRankedBadge  // GET Route = /users/getRankedBadge/:level
  5. getResume // GET Route = /users/getResume/:job
  6. getUser // GET Route = /users/getUser
@@ -20,15 +20,16 @@ const passport = require('../auth/local.js');
   POST Requests
 ---------------------------------------
  10. createJobApp // POST Route /users/createJobApp
- 11. registerUser // POST Route = /users/newuser
+ 11. createInterview // // POST Route /users/createInterview
+ 12. registerUser // POST Route = /users/newuser
 
  ---------------------------------------
   PUT Requests
 ---------------------------------------
- 12. updateCoverLetter // PUT Route = /users/updateCoverLetter
- 13. updateResume // PUT Route = /users/updateResume
- 14. updateInterview // PUT Route = /users/updateInterview
- 15. updateUserInfo // PUT Route = /users/updateInfo
+ 13. updateCoverLetter // PUT Route = /users/updateCoverLetter
+ 14. updateResume // PUT Route = /users/updateResume
+ 15. updateInterview // PUT Route = /users/updateInterview
+ 16. updateUserInfo // PUT Route = /users/updateInfo
 --------------------------------------- 
 */
 
@@ -244,6 +245,31 @@ const createJobApp = (req, res, next) => {
     });
 };
 
+/* 11 */
+// POST Route /users/createInterview
+const createInterview = (req, res, next) => {
+  db
+    .none(
+      'INSERT INTO Interview (contact, note, interview_date, job_id}) VALUES (${contact}, ${note}, ${interview_date}, ${job_id})',
+      {
+        contact: req.body.contact,
+        note: req.body.note,
+        job_id: req.body.job_id,
+        interview_date: req.body.interview_date
+      }
+    )
+    .then(function(data) {
+      res.status(200).json({
+        status: 'success',
+        message: 'Created job interview'
+      });
+    })
+    .catch(function(err) {
+      res.status(500).send(`Error creating job interview: ${err}`);
+    });
+};
+
+
 /* 11. */
 // POST Route = /users/newuser
 
@@ -256,8 +282,7 @@ const registerUser = (req, res, next) => {
         username: req.body.user.username,
         firstName: req.body.user.firstName,
         lastName: req.body.user.lastName,
-        photo_url:
-          'https://avatars3.githubusercontent.com/u/12574319?s=400&v=4',
+        photo_url: req.body.user.photo_url,
         password: hash,
         phoneNumber: req.body.user.phoneNumber,
         experience: 0
@@ -377,7 +402,7 @@ const updateUserInfo = (req, res, next) => {
 module.exports = {
   getAllUserApps,
   getCoverLetter,
-  getJobInterview,
+  getInterview,
   getRankedBadge,
   getResume,
   getUser,
@@ -385,6 +410,7 @@ module.exports = {
   getUserExp,
   logoutUser,
   createJobApp,
+  createInterview,
   registerUser,
   updateCoverLetter,
   updateResume,

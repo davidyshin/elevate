@@ -10,7 +10,8 @@ class SignUpForm extends Component {
       firstName: '',
       lastName: '',
       phoneNumber: '',
-      password: ''
+      password: '',
+      photo_url: ''
     };
   }
 
@@ -22,7 +23,7 @@ class SignUpForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const { username, firstName, lastName, phoneNumber, password } = this.state;
+    const { username, firstName, lastName, phoneNumber, password, photo_url } = this.state;
     axios
       .post('/users/newuser', {
         user: {
@@ -30,7 +31,8 @@ class SignUpForm extends Component {
           firstName: firstName,
           lastName: lastName,
           phoneNumber: phoneNumber,
-          password: password
+          password: password,
+          photo_url: photo_url
         }
       })
       .then(res => {
