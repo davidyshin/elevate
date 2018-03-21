@@ -35,7 +35,7 @@ const passport = require('../auth/local.js');
 /* ------------------------ GET REQUESTS QUERIES ------------------------ */
 
 /* 1. */
-// GET Route = /users/getAllUserApps/
+// GET Route = /users/getAllUserApps
 const getAllUserApps = (req, res, next) => {
   db
     .any('SELECT * FROM jobs WHERE user_id=${user_id}', {
@@ -49,8 +49,9 @@ const getAllUserApps = (req, res, next) => {
       });
     })
     .catch(err => {
-      res.status(500).send('error getting all job applications for user');
-      return next(err);
+      res
+        .status(500)
+        .send(`error getting all job applications for user:  ${err}`);
     });
 };
 
@@ -74,7 +75,7 @@ const getCoverLetter = (req, res, next) => {
       });
     })
     .catch(err => {
-      res.status(500).send('error getting job cover letter');
+      res.status(500).send(`error getting job cover letter: ${err}`);
     });
 };
 
@@ -90,7 +91,7 @@ const getJobInterview = (req, res, next) => {
       res.status(200).json({ interviews: data });
     })
     .catch(function(err) {
-      res.status(500).send('Error getting job interview');
+      res.status(500).send(`Error getting job interview: ${err}`);
     });
 };
 
@@ -111,7 +112,7 @@ const getRankedBadge = (req, res, next) => {
     })
     .catch(err => {
       console.log(err);
-      res.status(500).send('error getting ranked badge');
+      res.status(500).send(`error getting ranked badge: ${err}`);
     });
 };
 
@@ -124,7 +125,7 @@ const getResume = (req, res, next) => {
       'SELECT resume_url FROM jobs WHERE user_id = ${id} AND job_id = ${job}',
       {
         id: req.user.id,
-        job: req.params.id
+        job: req.params.job
       }
     )
     .then(data => {
@@ -135,7 +136,7 @@ const getResume = (req, res, next) => {
       });
     })
     .catch(err => {
-      res.status(500).send('error getting job resume');
+      res.status(500).send(`error getting job resume: ${err}`);
     });
 };
 
@@ -155,7 +156,7 @@ const getUser = (req, res, next) => {
       });
     })
     .catch(err => {
-      res.status(500).send('error getting user');
+      res.status(500).send(`error getting user: ${err}`);
       return next(err);
     });
 };
@@ -177,7 +178,7 @@ const getUserAchievementBadges = (req, res, next) => {
       });
     })
     .catch(err => {
-      res.status(500).send('error getting user achievement badges earned');
+      res.status(500).send(`error getting user achievement badges earned: ${err}`);
     });
 };
 
@@ -192,12 +193,12 @@ const getUserExp = (req, res, next) => {
     .then(data => {
       res.status(200).json({
         status: 'success',
-        exp: data,
+        data,
         message: 'Retrieved user experience'
       });
     })
-    .catch(function(err) {
-      res.status(500).send('Error getting user experience');
+    .catch(err => {
+      res.status(500).send(`Error getting user experience: ${err}`);
     });
 };
 
@@ -217,7 +218,7 @@ const logoutUser = (req, res, next) => {
 const createJobApp = (req, res, next) => {
   db
     .none(
-      'INSERT INTO jobs ( user_id, company_name, company_logo, date_applied, position_title, job_email, job_phone_number) VALUES (${user_id}, ${job_id}, ${cover_letter_url})',
+      'INSERT INTO jobs ( user_id, company_name, company_logo, date_applied, job_email, job_phone_number, position_title, job_posting_url, progress_in_search) VALUES ( ${user_id}, ${company_name}, ${company_logo}, ${date_applied}, ${job_email}, ${job_phone_number}, ${position_title}, ${job_posting_url}, ${progress_in_search})',
       {
         user_id: req.user.id,
         company_name: req.body.company_name,
@@ -226,7 +227,8 @@ const createJobApp = (req, res, next) => {
         job_email: req.body.job_email,
         job_phone_number: req.body.job_phone_number,
         position_title: req.body.position_title,
-        company_url: req.body.url
+        job_posting_url: req.body.job_posting_url,
+        progress_in_search: 'A'
       }
     )
     .then(() => {
@@ -236,8 +238,7 @@ const createJobApp = (req, res, next) => {
       });
     })
     .catch(err => {
-      console.log(err);
-      res.status(500).send('error creating job app');
+      res.status(500).send(`Error creating job app:  ${err}`);
     });
 };
 
@@ -269,7 +270,7 @@ const registerUser = (req, res, next) => {
     .catch(err => {
       console.log(`Registration`, err);
       res.status(500).json({
-        message: `Registration Failed   ${err} `,
+        message: `Registration Failed: ${err} `,
         err
       });
     });
@@ -293,8 +294,7 @@ const updateCoverLetter = (req, res, next) => {
       });
     })
     .catch(err => {
-      console.log(err);
-      res.status(500).send('error updating cover letter');
+      console.log(err)(`Error updating cover letter: ${err}`);
     });
 };
 
@@ -318,7 +318,7 @@ const updateResume = (req, res, next) => {
     })
     .catch(err => {
       console.log(err);
-      res.status(500).send('error updating resume');
+      res.status(500).send(`Error updating resume: ${err}`);
     });
 };
 
@@ -342,7 +342,7 @@ const updateJobInterview = (req, res, next) => {
       });
     })
     .catch(function(err) {
-      res.status(500).send('Error updating job interview');
+      res.status(500).send(`Error updating job interview: ${err}`);
     });
 };
 
@@ -366,7 +366,7 @@ const updateUserInfo = (req, res, next) => {
       });
     })
     .catch(function(err) {
-      res.status(500).send('error updating user information');
+      res.status(500).send(`Error updating user information: ${err}`);
       return next(err);
     });
 };
