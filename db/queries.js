@@ -221,12 +221,13 @@ const logoutUser = (req, res, next) => {
 const createJobApp = (req, res, next) => {
   db
     .one(
-      'INSERT INTO jobs ( user_id, company_name, company_logo, date_applied, job_email, job_phone_number, position_title, job_posting_url, progress_in_search) VALUES ( ${user_id}, ${company_name}, ${company_logo}, ${date_applied}, ${job_email}, ${job_phone_number}, ${position_title}, ${job_posting_url}, ${progress_in_search}) RETURNING job_id',
+      'INSERT INTO jobs ( user_id, company_name, company_logo, date_applied, date_logged, job_email, job_phone_number, position_title, job_posting_url, progress_in_search) VALUES ( ${user_id}, ${company_name}, ${company_logo}, ${date_applied}, ${date_logged}, ${job_email}, ${job_phone_number}, ${position_title}, ${job_posting_url}, ${progress_in_search}) RETURNING job_id',
       {
         user_id: req.user.id,
         company_name: req.body.company_name,
         company_logo: req.body.company_logo,
         date_applied: req.body.date_applied,
+        date_logged: req.body.date_logged,
         job_email: req.body.job_email,
         job_phone_number: req.body.job_phone_number,
         position_title: req.body.position_title,
