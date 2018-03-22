@@ -1,6 +1,5 @@
-// container for user profile, edit user, user settings components.
-
 import React, { Component } from 'react';
+import axios from 'axios';
 import UserOverview from './overview/UserOverview.jsx';
 import UserInfo from './account/UserInfo.jsx';
 import '../../stylesheets/user-main.css';
@@ -21,7 +20,7 @@ class UserContainer extends Component {
   }
 
   renderUserOverview = () => {
-    return <UserOverview activeUser={this.state.activeUser} />;
+    return <UserOverview activeUser={this.state.activeUser} />
   };
 
   renderUserInfo = () => {
@@ -46,12 +45,13 @@ class UserContainer extends Component {
   };
 
   render() {
-    const { activeUser, activeComponent } = this.state; 
-    console.log(activeUser)
+    const { activeUser, activeComponent } = this.state;
+    console.log(this.state);
 
     return (
       <div className="user-container">
         <div className="user-top">
+          <img src={activeUser.photo_url} alt={activeUser.first_name} />
           <h3>{activeUser.first_name}</h3>
         </div>
         <nav className="user-navigation">

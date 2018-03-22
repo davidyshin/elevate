@@ -7,10 +7,11 @@ import UserBadges from './UserBadges.jsx';
 class UserOverview extends Component {
   constructor() {
     super();
+    this.state = {}
   }
 
   renderUserProgress = () => {
-    return <UserProgress activeUser={this.props.activeUser} />;
+    return <UserProgress activeUser={this.props.activeUser} />
   };
 
   renderUserBadges = () => {

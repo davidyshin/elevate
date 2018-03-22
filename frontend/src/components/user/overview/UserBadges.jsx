@@ -1,21 +1,46 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class UserBadges extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      achievements: []
+    };
+  }
+
+  componentDidMount() {
+    this.getAchievementBadges();
+  }
+
+  getAchievementBadges = () => {
+    axios
+      .get('/users/getUserAchieves')
+      .then(data => {
+        let achievements = data.data.achieves;
+        this.setState({
+          achievements
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      })
   }
 
   render() {
+    const { achievements } = this.state;
+
+    const showBadges = achievements.map(achievement => (
+      <img src={achievement.badge_url} alt={achievement.badge_url} className="user-progress-badge" />
+    ))
+
     return (
-        <div className="user-badges-container" id="badges">
-            <div className="user-badge-image-container">
-                <img src="https://lh6.googleusercontent.com/lH8xOLbhbdwY4r2RXT3Ads3WeePO1GNiDepV31Ue3QlBc6KaP3BwEPXHczUMGnSQwgZaXFio8csxoSSL8qai=w1440-h780" alt="badge" class="user-progress-badge" />
-                <img src="https://lh6.googleusercontent.com/oHUjsOFPy7lGS9Cxelovl_ghw7wWNCOA1VXKVNB5SOQ36_rYx7MBv2OsYzsYnPMN5R85zG_Du2BAFdlNXkQu=w1440-h780" alt="badge" class="user-progress-badge" />
-                <img src="https://lh6.googleusercontent.com/zYexlUXp2lAIIJ-exYxSIQUbRCSbs_CQ09E9cWngx3rSDMgFyEwRJ-IuZYnfAkK6eV7jZSDAOl8YZZCOs0Hs=w1440-h780" alt="badge" class="user-progress-badge" />
-            </div>
-            <h3>More Badges</h3>
+      <div className="user-badges-container" id="badges">
+        <div className="user-badge-image-container">
+          {showBadges}
         </div>
+        <h3>More Badges</h3>
+      </div>
     )
   }
 }

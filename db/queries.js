@@ -101,7 +101,7 @@ const getInterview = (req, res, next) => {
 
 const getRankedBadge = (req, res, next) => {
   db
-    .one('SELECT badge_url FROM rank_badges WHERE badge_level = ${level}', {
+    .one('SELECT * FROM rank_badges WHERE badge_level = ${level}', {
       level: req.params.level
     })
     .then(data => {
