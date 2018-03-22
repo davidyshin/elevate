@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 
-class EditJobForm extends Component {
+class UpdateJobForm extends Component {
   constructor() {
     super();
     this.state = {};
@@ -12,4 +12,4 @@ class EditJobForm extends Component {
   }
 }
 
-export default EditJobForm;
+export default UpdateJobForm;

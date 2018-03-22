@@ -7,7 +7,8 @@ class AddInterview extends Component {
     this.state = {
       date: '',
       contact: '',
-      note: ''
+      note: '',
+      time: ''
     };
   }
 
@@ -24,7 +25,7 @@ class AddInterview extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const { date, contact, note } = this.state;
+    const { date, contact, note, time } = this.state;
     let job_id = this.props.job_id;
 
     axios
@@ -32,6 +33,7 @@ class AddInterview extends Component {
         contact: contact,
         note: note,
         interview_date: date,
+        interview_time: time,
         job_id: job_id
       })
       .then(() => {
@@ -45,7 +47,7 @@ class AddInterview extends Component {
   };
 
   render() {
-    const { date, contact, note, interviewSaved } = this.state;
+    const { date, contact, note, time, interviewSaved } = this.state;
     return (
       <div className="add-interview-form">
         <h3>Add Interview</h3>
@@ -57,6 +59,12 @@ class AddInterview extends Component {
             name="date"
             type="date"
           />
+          <input
+            value={time}
+            onChange={this.handleInput}
+            name="time"
+            type="time"
+          />
           <p>Contact</p>
           <input
             value={contact}
@@ -66,7 +74,11 @@ class AddInterview extends Component {
           />
           <p>Note</p>
           <textarea value={note} onChange={this.handleInput} name="note" />
-          <input disabled={interviewSaved || !date || !contact} type="submit" value="Save" />
+          <input
+            disabled={interviewSaved || !date || !contact}
+            type="submit"
+            value="Save"
+          />
         </form>
         <button
           disabled={!interviewSaved}

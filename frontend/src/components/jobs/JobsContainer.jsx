@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import AddJobForm from './forms/AddJobForm.jsx';
-import EditJobForm from './forms/EditJobForm.jsx';
+import UpdateJobForm from './forms/UpdateJobForm.jsx';
 import JobList from './JobList.jsx';
 import JobSummary from './JobSummary.jsx';
 
