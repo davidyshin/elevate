@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import JobItem from './JobItem.jsx';
+import JobInfo from './JobInfo.jsx'
 import UpdateJobForm from './forms/UpdateJobForm.jsx';
 
 class JobList extends Component {
@@ -28,14 +29,14 @@ class JobList extends Component {
 
   handleUpdate = e => {
     this.setState({
-      updating: e.target.id
+      expanded: e.target.id
     });
     console.log(e.target.id);
     console.log(this.state);
   };
 
   render() {
-    const { jobList, updating } = this.state;
+    const { jobList, expanded } = this.state;
     return (
       <div className="job-list">
         <h3>List of applied jobs</h3>
@@ -44,8 +45,8 @@ class JobList extends Component {
             return (
               <li>
                 <JobItem handleUpdate={this.handleUpdate} job={job} />
-                {parseInt(updating) === parseInt(job.job_id) ? (
-                  <UpdateJobForm job={job} />
+                {parseInt(expanded) === parseInt(job.job_id) ? (
+                  <JobInfo job={job} />
                 ) : (
                   <div />
                 )}
