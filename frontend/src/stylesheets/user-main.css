@@ -19,7 +19,8 @@
 // Holds profile image and first name 
 */
 .user-top {
-    background-color: rgba(255, 0, 0, 0.2);
+    /* background-color: rgba(255, 0, 0, 0.2); */
+    background-color: #fefefe;
     width: 800px;
     height: 250px;
     text-align: center;
@@ -55,6 +56,7 @@
 /*------------------------------------------*/
 /*         Main User Page Navigation        */
 /*------------------------------------------*/
+
 /*
 // Navigation bar below profile image 
 */
@@ -161,7 +163,6 @@
     background-color: #fefefe;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
     border-radius: 4px;
-    /* width: 800px; */
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -324,7 +325,6 @@
 */
 .user-badges-container {
     display: flex;
-    /* width: 800px; */
     width: 100%;
     height: 140px;
     margin: 52px auto 0 auto;
@@ -357,8 +357,6 @@
     .user-badges-container div:last-child {
         display: flex;
         width: 20%;
-        /* background-color: rgba(255, 0, 0, 0.6); */
-        /* background-color: #fefefe; */
         justify-content: center;
         align-items: center;
     }
@@ -366,6 +364,9 @@
     .user-badges-container h3 {
         font-size: 1.6rem;
         font-weight: 400;
+        -moz-transition: 0.3s color;
+        -o-transition: 0.3s color;
+        -webkit-transition: 0.3s color;
         transition: 0.3s color;
     }
 
@@ -454,3 +455,94 @@
 /*------------------------------------------*/
 /*          User Account & Settings         */
 /*------------------------------------------*/
+
+/*
+// Contains user and notification information 
+*/
+.user-account-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 800px;
+    background-color: rgb(245,240,245);
+}
+
+    /*
+    // Individual container for user and notification 
+    */
+    .user-info-container,
+    .user-settings-container {
+        background-color: #fefefe;
+        box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
+        border-radius: 4px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin: 52px auto 0 auto;
+    }
+
+    /*
+    // This is the last container of the page - add space to the bottom 
+    */
+    .user-settings-container {
+        margin-bottom: 52px;
+    }
+
+    /*
+    // Contains "User Information" and edit button 
+    // "Notification Settings" 
+    */
+    .user-info-header,
+    .user-settings-container h3 {
+        font-size: 1.8rem;
+        font-weight: 400;
+        padding: 22px 22px 6px 22px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    /*
+    // "User Information" 
+    */
+    .user-info-header h3 {
+        font-size: 1.8rem;
+        font-weight: 400;
+    }
+
+    /*
+    // Every line in user accounts page except headers 
+    */
+    .user-account-container p {
+        padding-bottom: 12px;
+    }
+
+    .user-info-container div:last-child,
+    .user-settings-container div {
+        padding: 22px;
+        font-size: 1.4rem;
+    }
+
+
+
+    /*
+    // "Edit" user link 
+    */
+    .user-info-edit {
+        cursor: pointer;
+        -moz-transition: 0.3s color;
+        -o-transition: 0.3s color;
+        -webkit-transition: 0.3s color;
+        transition: 0.3s color;
+    }
+
+    .user-info-edit:hover {
+        color: #3498db;
+    }
+
+
+@media screen and (max-width: 880px) {
+    .user-account-container {
+        width: 90%;
+    }
+}
