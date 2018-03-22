@@ -1,5 +1,3 @@
-// Edit User Page
-
 import React, { Component } from 'react';
 
 class EditUser extends Component {
@@ -7,16 +5,18 @@ class EditUser extends Component {
     super();
     this.state = {
       username: '',
-      email: '',
       phoneNumber: ''
     };
   }
+
   componentDidMount() {
     this.setState({
       username: this.props.activeUser.username,
       phoneNumber: this.props.activeUser.phone_number
     });
   }
+
+  // edit user information and settings => axios.put('/updateInfo')
 
   handleInput = e => {
     this.setState({
@@ -34,6 +34,9 @@ class EditUser extends Component {
   };
 
   render() {
+    const { username, email, phoneNumber } = this.state; 
+    console.log(this.state); 
+
     return (
       <div className="edit-user-modal">
         <h1>{this.props.activeUser.username} Edit User</h1>
@@ -43,7 +46,7 @@ class EditUser extends Component {
             onChange={this.handleInput}
             type="email"
             name="username"
-            value={this.state.username}
+            value={username}
           />
           <p>Phone Number</p>
           <input
@@ -51,7 +54,7 @@ class EditUser extends Component {
             type="text"
             name="phoneNumber"
             maxlength="10"
-            value={this.state.phoneNumber}
+            value={phoneNumber}
           />
           <input type="submit" value="Submit" />
         </form>
