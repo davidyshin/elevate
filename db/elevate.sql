@@ -1,8 +1,6 @@
 DROP DATABASE IF EXISTS elevate;
 CREATE DATABASE elevate;
-
 \c elevate;
-
 Drop TABLE Users
 CASCADE;
 CREATE TABLE Users
@@ -19,17 +17,12 @@ CREATE TABLE Users
     experience INTEGER,
     PRIMARY KEY (id)
 );
-
 INSERT INTO Users
     (first_name, last_name, photo_url, password_digest, username, phone_number, email_notification, phone_notification, experience)
 VALUES
-    ('Jerell', 'Davis', 'https://i.imgur.com/wuyr6CT.png', '$2a$10$brAZfSmByFeZmPZ/MH5zne9YDhugjW9CtsBGgXqGfix0g1tcooZWq', 'blah@gmail.com', '3412331093', 'N', 'N', 0),
+    ('DemoUser', 'DemoUser', 'https://i.imgur.com/wuyr6CT.png', '$2a$10$brAZfSmByFeZmPZ/MH5zne9YDhugjW9CtsBGgXqGfix0g1tcooZWq', 'demo@elevate.app', '3412331093', 'N', 'N', 0),
     ('Nick', 'Davis', 'https://i.imgur.com/ePbPHIY.png', '$2a$10$brAZfSmByFeZmPZ/MH5zne9YDhugjW9CtsBGgXqGfix0g1tcooZWq', 'blah@ghmail.com', '3022331093', 'N', 'N', 0),
     ('Bob', 'Davis', 'https://i.imgur.com/XsVmYKK.png', '$2a$10$brAZfSmByFeZmPZ/MH5zne9YDhugjW9CtsBGgXqGfix0g1tcooZWq', 'blahhh@gmail.com', '9422331093', 'N', 'N', 0);
-
-
-
-
 Drop TABLE Jobs
 CASCADE;
 CREATE TABLE Jobs
@@ -45,26 +38,24 @@ CREATE TABLE Jobs
     job_email VARCHAR,
     job_phone_number VARCHAR,
     date_applied DATE,
+    date_logged DATE,
     progress_in_search INTEGER,
     salary VARCHAR,
     PRIMARY KEY (job_id),
     FOREIGN KEY (user_id) REFERENCES Users(id)
 );
-
 INSERT INTO Jobs
-    (user_id, company_name, resume_url, cover_url, company_logo, job_posting_url, position_title, job_email, job_phone_number, date_applied, progress_in_search, salary)
+    (user_id, company_name, resume_url, cover_url, company_logo, job_posting_url, position_title, job_email, job_phone_number, date_applied, date_logged, progress_in_search, salary)
 VALUES
-    (1, 'Apple', 'RESUME URL', 'COVER URL', 'COMPANY LOGO', 'job posting url', 'Junior Developer', 'blurb@gmail', '3471218976', '2018-01-02', 1, '70,000'),
-    (1, 'Apple', 'RESUME URL', 'COVER URL', 'COMPANY LOGO', 'job posting url' , 'Junior Developer', 'blurnnb@gmail', '3471218976', '2018-01-02', 1, '70,000'),
-    (1, 'Apple', 'RESUME URL', 'COVER URL', 'COMPANY LOGO', 'job posting url' , 'Junior Developer', 'blurb@gmail', '3471218976', '2018-01-02', 1, '70,000'),
-    (1, 'Apple', 'RESUME URL', 'COVER URL', 'COMPANY LOGO', 'job posting url', 'Junior Developer', 'blurnnb@gmail', '3471218976', '2018-01-02', 1, '70,000'),
-    (1, 'Apple', 'RESUME URL', 'COVER URL', 'COMPANY LOGO', 'job posting url', 'Junior Developer', 'threeblurb@gmail', '3471218976', '2018-01-02', 1, '70,000'),
-    (1, 'Apple', 'RESUME URL', 'COVER URL', 'COMPANY LOGO', 'job posting url', 'Junior Developer', 'blurnnb@gmail', '3471218976', '2018-01-02', 1, '70,000');
-
-
+    (1, 'Apple', 'RESUME URL', 'COVER URL', 'https://logo.clearbit.com/apple.com', 'job posting url', 'Junior Developer', 'blurb@gmail', '3471218976', '2018-01-02', '2018-03-15', 1, '70,000'),
+    (1, 'Apple', 'RESUME URL', 'COVER URL', 'https://logo.clearbit.com/apple.com', 'job posting url' , 'Junior Developer', 'blurnnb@gmail', '3471218976', '2018-01-02', '2018-03-16', 1, '70,000'),
+    (1, 'Apple', 'RESUME URL', 'COVER URL', 'https://logo.clearbit.com/apple.com', 'job posting url' , 'Junior Developer', 'blurb@gmail', '3471218976', '2018-01-02', '2018-03-20', 1, '70,000'),
+    (1, 'Apple', 'RESUME URL', 'COVER URL', 'https://logo.clearbit.com/apple.com', 'job posting url', 'Junior Developer', 'blurnnb@gmail', '3471218976', '2018-01-02', '2018-03-19', 1, '70,000'),
+    (1, 'Apple', 'RESUME URL', 'COVER URL', 'https://logo.clearbit.com/apple.com', 'job posting url', 'Junior Developer', 'threeblurb@gmail', '3471218976', '2018-01-02', '2018-03-22', 1, '70,000'),
+    (1, 'Apple', 'RESUME URL', 'COVER URL', 'https://logo.clearbit.com/apple.com', 'job posting url', 'Junior Developer', 'blurnnb@gmail', '3471218976', '2018-01-02', '2018-03-22', 1, '70,000');
 -- Drop TABLE Resumes CASCADE;
 -- Drop TABLE Cover_Letters CASCADE;
-DROP TABLE Interview 
+DROP TABLE Interview
 CASCADE;
 CREATE TABLE Interview
 (
@@ -83,10 +74,6 @@ VALUES
     (3, 'Jerell Davis (Dunno his #)', '2018-03-28', '10:00:00', 'Forgot to print out my resume, must remember for next time.'),
     (4, 'Sami, dunno his email either..', '2018-03-28', '01:30:00', 'I definitely killed it'),
     (5, 'Reed', '2018-03-28', '03:00:00', 'Meet at C4Q');
-
-
-
-
 Drop TABLE Rank_Badges
 CASCADE;
 CREATE TABLE Rank_Badges
@@ -97,16 +84,11 @@ CREATE TABLE Rank_Badges
     badge_level VARCHAR,
     PRIMARY KEY (badge_id)
 );
-
 INSERT INTO Rank_Badges
     (badge_url, badge_name, badge_level)
 VALUES
     ('https://i.imgur.com/6xkiznp.png', 'novice', '1'),
     ('https://i.imgur.com/nWNDLWD.png', 'amateur', '2');
-
-
-
-
 Drop TABLE Achievement_Badges
 CASCADE;
 CREATE TABLE Achievement_Badges
@@ -116,7 +98,6 @@ CREATE TABLE Achievement_Badges
     badge_name VARCHAR,
     PRIMARY KEY (badge_id)
 );
-
 INSERT INTO Achievement_Badges
     (badge_url, badge_name)
 VALUES
@@ -126,10 +107,6 @@ VALUES
     ('https://i.imgur.com/1JU7iNE.png', '200-apps'),
     ('https://i.imgur.com/kEE766y.png', '300-apps'),
     ('https://i.imgur.com/yLOUrI6.png', '1st-rejection');
-
-
-
-
 DROP TABLE Achievement_Badges_Earned
 CASCADE;
 CREATE TABLE Achievement_Badges_Earned
@@ -139,7 +116,6 @@ CREATE TABLE Achievement_Badges_Earned
     FOREIGN KEY (user_id) REFERENCES Users(id),
     FOREIGN KEY (badge_id) REFERENCES Achievement_Badges(badge_id)
 );
-
 INSERT INTO Achievement_Badges_Earned
     (user_id, badge_id)
 VALUES
