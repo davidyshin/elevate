@@ -19,11 +19,28 @@ class UserInfo extends Component {
 
   render() {
     return (
-      <div className="user-info">
-        <h3 onClick={this.toggleModal}>Edit</h3>
-        <h2>Welcome {this.props.activeUser.first_name}</h2>
-        <h2>Email: {this.props.activeUser.username}</h2>
-        <h2>Phone Number: {this.props.activeUser.phone_number}</h2>
+      <div className="user-account-container" data-aos="fade-up">
+        <div className="user-info-container">
+
+          <div className="user-info-header">
+            <h3>User Information</h3>
+            <i onClick={this.toggleModal} className="far fa-edit user-info-edit"></i>
+          </div>
+          <div>
+            <p>Name: {this.props.activeUser.first_name}</p>
+            <p>Email: {this.props.activeUser.username}</p>
+            <p>Phone number: {this.props.activeUser.phone_number}</p>
+          </div>
+          
+        </div>
+
+        <div className="user-settings-container">
+          <h3>Notification Settings</h3>
+          <div>
+            <p>Send me an important reminder ______ before</p>
+            <p>Notify me on my phone / email</p>
+          </div>
+        </div>
 
         <Modal
           isOpen={this.state.modalOpen}
