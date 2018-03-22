@@ -27,7 +27,7 @@ class JobList extends Component {
       });
   }
 
-  handleUpdate = e => {
+  handleClick = e => {
     this.setState({
       expanded: e.target.id
     });
@@ -44,7 +44,7 @@ class JobList extends Component {
           {jobList.map(job => {
             return (
               <li>
-                <JobItem handleUpdate={this.handleUpdate} job={job} />
+                <JobItem editJob={this.props.editJob} handleClick={this.handleClick} job={job} />
                 {parseInt(expanded) === parseInt(job.job_id) ? (
                   <JobInfo job={job} />
                 ) : (
