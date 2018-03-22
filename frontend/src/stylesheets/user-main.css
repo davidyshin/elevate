@@ -330,16 +330,55 @@
     }
 
 
+/*------------------------------------------*/
+/*              User Activity               */
+/*------------------------------------------*/
+
 .user-activity-container {
-    background-color: orange;
+    /* background-color: orange; */
+    background-color: #fefefe;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
+    border-radius: 4px;
     width: 800px;
+    height: 400px;
+    margin: 52px auto 0 auto;
+}
+
+.user-activity-container h3 {
+    font-size: 1.8rem;
+    font-weight: 400;
+    padding: 22px 22px 6px 22px;
+}
+
+.user-activity-graph {
+    padding: 22px;
+    font-size: 1.4rem;
+}
+
+
+/*------------------------------------------*/
+/*             User Statistics              */
+/*------------------------------------------*/
+
+.user-stats-container {
+    /* background-color: orangered; */
+    background-color: #fefefe;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
+    border-radius: 4px;
+    width: 800px;
+    height: 320px;
     margin: 52px auto;
 }
 
-.user-stats-container {
-    background-color: orangered;
-    width: 800px;
-    margin: 52px auto;
+.user-stats-container h3 {
+    font-size: 1.8rem;
+    font-weight: 400;
+    padding: 22px 22px 6px 22px;
+}
+
+.user-stats-chart {
+    padding: 22px;
+    font-size: 1.4rem;
 }
 
 
