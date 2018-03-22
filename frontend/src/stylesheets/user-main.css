@@ -7,6 +7,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 .user-container h1, h2, h3, h4, h5, h6, p {
@@ -42,6 +43,14 @@
         font-weight: 300;
     }
 
+/*
+// When screen is smaller than 880px, the box containing profile image becomes responsive 
+*/
+@media screen and (max-width: 880px) {
+    .user-top {
+        width: 90%;
+    }
+}
 
 /*------------------------------------------*/
 /*         Main User Page Navigation        */
@@ -53,8 +62,18 @@
     background-color: rgba(255, 0, 0, 0.4);
     display: flex;
     align-items: center;
+    justify-content: center;
     width: 800px;
     border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+/*
+// When screen is smaller than 880x, navigation bar becomes responsive 
+*/
+@media screen and (max-width: 880px) {
+    .user-navigation {
+        width: 90%;
+    }
 }
 
     /*
@@ -118,9 +137,18 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 800px;
     background-color: rgb(245,240,245);
 }
 
+/*
+// When screen is smaller than 880px, overview container becomes responsive 
+*/
+@media screen and (max-width: 880px) {
+    .user-overview-container {
+        width: 90%;
+    }
+}
 
 /*------------------------------------------*/
 /*               User Progress              */
@@ -133,7 +161,8 @@
     background-color: #fefefe;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
     border-radius: 4px;
-    width: 800px;
+    /* width: 800px; */
+    width: 100%;
     display: flex;
     flex-direction: column;
     margin: 52px auto 0 auto;
@@ -271,6 +300,20 @@
                 height: 20%;
             }
 
+        
+/*
+// When screen is smaller than 510px, level name content disappears 
+*/
+@media screen and (max-width: 510px) {
+    .user-progress-left {
+        width: 100%;
+    }
+
+    .user-progress-right {
+        display: none;
+    }
+
+}
 
 /*------------------------------------------*/
 /*            Achievement Badges            */
@@ -281,7 +324,8 @@
 */
 .user-badges-container {
     display: flex;
-    width: 800px;
+    /* width: 800px; */
+    width: 100%;
     height: 140px;
     margin: 52px auto 0 auto;
     background-color: #fefefe;
@@ -329,6 +373,29 @@
         color: #3498db;
     }
 
+/*
+// When screen is smaller than 510px, the badges container becomes vertical 
+*/
+@media screen and (max-width: 510px) {
+    .user-badges-container {
+        flex-direction: column;
+        height: 100%;
+    }
+    
+    .user-badge-image-container {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .user-badge-image-container img {
+        height: 180px;
+    }
+
+    .user-badges-container div:last-child {
+        width: 100%;
+        padding: 22px 0;
+    }
+}
 
 /*------------------------------------------*/
 /*              User Activity               */
@@ -339,7 +406,8 @@
     background-color: #fefefe;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
     border-radius: 4px;
-    width: 800px;
+    /* width: 800px; */
+    width: 100%;
     height: 400px;
     margin: 52px auto 0 auto;
 }
@@ -365,7 +433,8 @@
     background-color: #fefefe;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
     border-radius: 4px;
-    width: 800px;
+    /* width: 800px; */
+    width: 100%;
     height: 320px;
     margin: 52px auto;
 }
