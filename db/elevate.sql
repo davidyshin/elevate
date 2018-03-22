@@ -131,7 +131,7 @@ VALUES
 
 
 DROP TABLE Achievement_Badges_Earned
-CASECADE;
+CASCADE;
 CREATE TABLE Achievement_Badges_Earned
 (
     user_id INTEGER,
