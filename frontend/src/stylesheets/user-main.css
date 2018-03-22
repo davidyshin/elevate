@@ -19,7 +19,6 @@
 // Holds profile image and first name 
 */
 .user-top {
-    /* background-color: rgba(255, 0, 0, 0.2); */
     background-color: #fefefe;
     width: 800px;
     height: 250px;
@@ -61,7 +60,8 @@
 // Navigation bar below profile image 
 */
 .user-navigation {
-    background-color: rgba(255, 0, 0, 0.4);
+    background-color: #283c53;
+    color: #fefefe;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -86,7 +86,7 @@
         position: relative;
         padding: 6px 22px;
         font-size: 1.8rem;
-        font-weight: 400;
+        font-weight: 300;
         margin: 0;
         cursor: pointer;
         border-top: 2px solid transparent;
@@ -523,8 +523,6 @@
         font-size: 1.4rem;
     }
 
-
-
     /*
     // "Edit" user link 
     */
@@ -536,9 +534,20 @@
         transition: 0.3s color;
     }
 
+    /*
+    // When user hovers over edit, color changes to blue 
+    */
     .user-info-edit:hover {
         color: #3498db;
     }
+
+
+/*
+// Checkbox labels  
+*/
+.user-settings-container label {
+    display: block;
+}
 
 
 @media screen and (max-width: 880px) {
