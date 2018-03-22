@@ -14,42 +14,74 @@
     padding: 0;
 }
 
+/*
+// Holds profile image and first name 
+*/
 .user-top {
     background-color: rgba(255, 0, 0, 0.2);
     width: 800px;
     height: 250px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.user-top h3 {
-    font-size: 2.6rem;
-}
+    /*
+    // Set profile image to 120 by 120 
+    */
+    .user-top img {
+        height: 120px;
+        width: auto;
+        margin-bottom: 22px;
+    }
+
+    .user-top h3 {
+        font-size: 2.6rem;
+        font-weight: 300;
+    }
 
 
 /*------------------------------------------*/
 /*         Main User Page Navigation        */
 /*------------------------------------------*/
+/*
+// Navigation bar below profile image 
+*/
 .user-navigation {
     background-color: rgba(255, 0, 0, 0.4);
     display: flex;
+    align-items: center;
     width: 800px;
     border-bottom: 2px solid rgba(0, 0, 0, 0.1);
 }
 
+    /*
+    // Navigation tabs: Overview, Account 
+    */
     .user-navigation h3 {
         display: inline-block;
         position: relative;
         padding: 6px 22px;
         font-size: 1.8rem;
+        font-weight: 400;
         margin: 0;
-        cursor: default;
+        cursor: pointer;
+        border-top: 2px solid transparent;
         border-bottom: 2px solid rgba(0, 0, 0, 0);
     }
 
+    /* 
+    // Active tab underlined red  
+    */
     .user-navigation.active {
         border-bottom: 2px solid red;
     }
 
+    /*
+    // Tab underline animation
+    */
     .user-navigation.overview::before,
     .user-navigation.account::before {
         content: '';
@@ -64,9 +96,11 @@
         transform-origin: right top;
         /* transition: width .5s ease; */
         transition: color 0.1s, transform 0.3s ease-out;
-
     }
     
+    /*
+    // Tab underline hover 
+    */
     .user-navigation.overview:hover::before,
     .user-navigation.account:hover::before {
         /* width: 100%; */
@@ -87,7 +121,9 @@
     background-color: rgb(245,240,245);
 }
 
-
+/*
+// The first card under user profile Overview 
+*/
 .user-progress-container {
     background-color: #fefefe;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
@@ -97,10 +133,9 @@
     margin: 52px auto;
 }
 
-    /* .user-progress-header {
-        background-color: rgba(0, 255, 0, 0.4);
-    } */
-
+    /*
+    // "Level Progress"
+    */
     .user-progress-header h3 {
         font-size: 1.8rem;
         padding: 22px 22px 6px 22px;
@@ -111,8 +146,10 @@
         height: 240px;
     }
 
+        /*
+        // Rank badges and experience bar
+        */
         .user-progress-left {
-            /* background-color: rgba(0, 255, 0, 0.2); */
             width: 70%;
             height: 100%;
         }
@@ -177,8 +214,10 @@
                         }
                     }
 
+        /*
+        // Level name and # of experience points left to go 
+        */
         .user-progress-right {
-            /* background-color: rgba(0, 255, 0, 0.6); */
             display: flex;
             flex-direction: column;
             width: 30%;
