@@ -1,6 +1,7 @@
 // Job item in list inside job container
 
 import React, { Component } from 'react';
+import UpdateJobForm from './forms/UpdateJobForm.jsx'
 
 class JobItem extends Component {
   constructor() {

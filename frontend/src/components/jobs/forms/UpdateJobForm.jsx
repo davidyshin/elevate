@@ -8,7 +8,7 @@ class UpdateJobForm extends Component {
     this.state = {};
   }
   render() {
-    return <h1>Edit Job Form </h1>;
+    return <h1>Update Job Form </h1>;
   }
 }
 
