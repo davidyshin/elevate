@@ -2,15 +2,23 @@
 /*            Main Jobs Container           */
 /*------------------------------------------*/
 
-
+.jobs-container {
+  background-color: cornflowerblue;
+}
 /*------------------------------------------*/
 /*                 Job List                 */
 /*------------------------------------------*/
 
-
+.job-list {
+  background-color: orange;
+}
+.job-item {
+  background-color: lightblue;
+  border: 1px solid yellow;
+}
 /*------------------------------------------*/
 /*               Jobs Summary               */
 /*------------------------------------------*/
-
-
-
+.job-summary {
+    background-color: lightcoral
+}
