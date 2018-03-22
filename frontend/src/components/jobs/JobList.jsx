@@ -2,12 +2,15 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import JobItem from './JobItem.jsx';
+import JobInfo from './JobInfo.jsx'
+import UpdateJobForm from './forms/UpdateJobForm.jsx';
 
 class JobList extends Component {
   constructor() {
     super();
     this.state = {
-      jobList: []
+      jobList: [],
+      updating: ''
     };
   }
 
@@ -24,14 +27,33 @@ class JobList extends Component {
       });
   }
 
+  handleUpdate = e => {
+    this.setState({
+      expanded: e.target.id
+    });
+    console.log(e.target.id);
+    console.log(this.state);
+  };
+
   render() {
-    const { jobList } = this.state;
+    const { jobList, expanded } = this.state;
     return (
       <div className="job-list">
         <h3>List of applied jobs</h3>
-        <ol>{jobList.map(job => {
-          return <li><JobItem job={job} /></li>;
-        })}</ol>
+        <ol>
+          {jobList.map(job => {
+            return (
+              <li>
+                <JobItem handleUpdate={this.handleUpdate} job={job} />
+                {parseInt(expanded) === parseInt(job.job_id) ? (
+                  <JobInfo job={job} />
+                ) : (
+                  <div />
+                )}
+              </li>
+            );
+          })}
+        </ol>
       </div>
     );
   }

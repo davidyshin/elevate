@@ -21,6 +21,8 @@ class JobItem extends Component {
         <p>{job.position_title}</p>
         <h3>Date Applied</h3>
         <p>{renderDate}</p>
+
+        <h1 onClick={this.props.handleUpdate} id={job.job_id}>Info</h1>
       </div>
     );
   }
