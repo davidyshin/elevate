@@ -8,7 +8,7 @@ class UserActivity extends Component {
 
   render() {
     return (
-      <div className="user-activity-container">
+      <div className="user-activity-container" data-aos="fade-up">
         <h3>User Activity</h3>
         <div className="user-activity-graph">
           <p>Charts!</p>

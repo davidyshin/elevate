@@ -8,7 +8,7 @@ class UserStats extends Component {
 
   render() {
     return (
-      <div className="user-stats-container">
+      <div className="user-stats-container" data-aos="fade-up">
         <h3>Weekly Stats</h3>
         <div className="user-stats-chart">
           <p>Bar graph or a line graph</p>

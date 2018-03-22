@@ -90,7 +90,7 @@ class UserProgress extends Component {
     }
 
     return (
-      <div className="user-progress-container">
+      <div className="user-progress-container" data-aos="fade-up">
 
         <div className="user-progress-header">
           <h3>Level Progress</h3>
