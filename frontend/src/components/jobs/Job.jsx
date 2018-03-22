@@ -7,11 +7,20 @@ class Job extends Component {
     super();
     this.state = {};
   }
-  
+
   render() {
+    const job = this.props.job;
+    const date = new Date(this.props.job.date_applied)
+    const renderDate = date.toDateString()
     return (
       <div className="job-item">
-        <h1>Job</h1>
+        <h3>Company</h3>
+        <img style={{ width: '25px', height: '25px' }} src={job.company_logo} />
+        <p>{job.company_name}</p>
+        <h3>Position</h3>
+        <p>{job.position_title}</p>
+        <h3>Date Applied</h3>
+        <p>{renderDate}</p>
       </div>
     );
   }
