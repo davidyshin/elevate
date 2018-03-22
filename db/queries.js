@@ -231,7 +231,7 @@ const createJobApp = (req, res, next) => {
         job_phone_number: req.body.job_phone_number,
         position_title: req.body.position_title,
         job_posting_url: req.body.job_posting_url,
-        progress_in_search: 'A'
+        progress_in_search: 1
       }
     )
     .then(returned => {
