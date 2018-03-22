@@ -19,18 +19,27 @@ class AuthContainer extends Component {
       case 'login':
         return <LoginForm setActiveUser={this.props.setActiveUser} />;
         break;
+      case 'demo':
+        return <LoginForm setActiveUser={this.props.setActiveUser} demo={true}/>;
+        break;
       case 'signup':
         return <SignUpForm setActiveUser={this.props.setActiveUser} />;
         break;
       case 'splash':
-        return <SplashContainer
-          setActiveUser={this.props.setActiveUser}
-          toggleActive={this.toggleActive} />;
+        return (
+          <SplashContainer
+            setActiveUser={this.props.setActiveUser}
+            toggleActive={this.toggleActive}
+          />
+        );
         break;
       default:
-        return <SplashContainer
-          setActiveUser={this.props.setActiveUser}
-          toggleActive={this.toggleActive} />;
+        return (
+          <SplashContainer
+            setActiveUser={this.props.setActiveUser}
+            toggleActive={this.toggleActive}
+          />
+        );
         break;
     }
   };
@@ -47,11 +56,20 @@ class AuthContainer extends Component {
       <div className="auth-container">
         <nav className="top-navigation">
           <div className="top-navigation-left">
-            <img onClick={this.toggleActive} id="splash" src="https://i.imgur.com/JdYm85w.png" alt="elevate" />
+            <img
+              onClick={this.toggleActive}
+              id="splash"
+              src="https://i.imgur.com/JdYm85w.png"
+              alt="elevate"
+            />
           </div>
           <div className="top-navigation-right">
-            <h3 onClick={this.toggleActive} id="login">LOGIN</h3>
-            <h3 onClick={this.toggleActive} id="signup">SIGN UP</h3>
+            <h3 onClick={this.toggleActive} id="login">
+              LOGIN
+            </h3>
+            <h3 onClick={this.toggleActive} id="signup">
+              SIGN UP
+            </h3>
           </div>
         </nav>
         <this.activeComponent activeForm={activeForm} />
