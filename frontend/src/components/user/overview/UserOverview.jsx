@@ -7,25 +7,8 @@ import UserBadges from './UserBadges.jsx';
 class UserOverview extends Component {
   constructor() {
     super();
-    this.state = {
-      // userExperience: 10,
-      // rankBadge: ''
-    }
+    this.state = {}
   }
-
-  // componentDidMount() {
-  //   this.setState({
-  //     userExperience: this.props.userExperience,
-  //     rankBadge: this.props.rankBadge
-  //   })
-  // }
-
-  // renderUserProgress = () => {
-  //   return this.state.rankBadge ?
-  //     <UserProgress activeUser={this.props.activeUser} userExperience={this.state.userExperience} rankBadge={this.state.rankBadge} />
-  //     :
-  //     <div />;
-  // };
 
   renderUserProgress = () => {
     return <UserProgress activeUser={this.props.activeUser} />
@@ -44,9 +27,6 @@ class UserOverview extends Component {
   };
 
   render() {
-    // console.log(this.state);
-    // console.log(this.state.rankBadge);
-
     return (
       <div className="user-overview-container">
         <this.renderUserProgress />
