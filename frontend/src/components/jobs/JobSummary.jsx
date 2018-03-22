@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import Plot from 'react-plotly.js';
 import axios from 'axios';
-import { ENGINE_METHOD_PKEY_ASN1_METHS } from 'constants';
 
 // DATE FUNCTIONS
 var curr = new Date(); // get current date
