@@ -121,16 +121,22 @@
     background-color: rgb(245,240,245);
 }
 
+
+/*------------------------------------------*/
+/*               User Progress              */
+/*------------------------------------------*/
+
 /*
 // The first card under user profile Overview 
 */
 .user-progress-container {
     background-color: #fefefe;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
+    border-radius: 4px;
     width: 800px;
     display: flex;
     flex-direction: column;
-    margin: 52px auto;
+    margin: 52px auto 0 auto;
 }
 
     /*
@@ -138,6 +144,7 @@
     */
     .user-progress-header h3 {
         font-size: 1.8rem;
+        font-weight: 400;
         padding: 22px 22px 6px 22px;
     }
 
@@ -150,7 +157,7 @@
         // Rank badges and experience bar
         */
         .user-progress-left {
-            width: 70%;
+            width: 65%;
             height: 100%;
         }
 
@@ -158,13 +165,14 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: flex-end;
-                height: 70%;
+                height: 65%;
             }
 
-                .user-progress-badge {
+                .user-rank-badge {
                     width: auto;
-                    height: 100px;
-                    margin: 22px;
+                    height: 110px;
+                    margin: 32px 22px 0 22px;
+                    /* margin: 22px; */
                 }
 
                 .badge-inactive {
@@ -177,7 +185,7 @@
                 }
             
             .user-progress-bar-container {
-                height: 30%;
+                height: 35%;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -185,10 +193,10 @@
             }
 
                 .user-progress-bar-container p {
-                    font-size: 1.6rem;
+                    font-size: 1.4rem;
                     width: 100%;
                     position: relative;
-                    text-align: center;
+                    text-align: left;
                 }
 
                 .user-progress-bar-total {
@@ -220,7 +228,7 @@
         .user-progress-right {
             display: flex;
             flex-direction: column;
-            width: 30%;
+            width: 35%;
             height: 100%;
         }
 
@@ -254,39 +262,71 @@
 
             .user-progress-current,
             .user-progress-next {
-                /* background-color: rgba(0, 0, 0, 0.2); */
                 height: 30%;
                 border-left: 2px solid rgba(0, 0, 0, 0.1);
             }
 
             .user-progress-message {
-                /* background-color: rgba(255, 0, 255, 0.2); */
                 justify-content: center;
                 height: 20%;
             }
 
 
+/*------------------------------------------*/
+/*            Achievement Badges            */
+/*------------------------------------------*/
+
+/*
+// User achievement badges container
+*/
 .user-badges-container {
     display: flex;
     width: 800px;
-    margin: 52px auto;
-    background-color: rgba(255, 255, 0, 0.6);
+    height: 140px;
+    margin: 52px auto 0 auto;
+    background-color: #fefefe;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
+    border-radius: 4px;
 }
 
+    /*
+    // Contains single achievement badge 
+    */
     .user-badge-image-container {
         display: flex;
+        align-items: center;
         width: 80%;
     }
 
+        /*
+        // Achievement badge image 
+        */
         .user-badge-image-container img {
             width: auto;
-            height: 100px;
-            margin-right: 22px;
+            height: 80px;
+            margin: 22px;
         }
 
-    .user-badges-container h3 {
+    /*
+    // "More Badges" 
+    */
+    .user-badges-container div:last-child {
+        display: flex;
         width: 20%;
-        background-color: rgba(0, 0, 0, 0.4);
+        /* background-color: rgba(255, 0, 0, 0.6); */
+        /* background-color: #fefefe; */
+        justify-content: center;
+        align-items: center;
+    }
+
+    .user-badges-container h3 {
+        font-size: 1.6rem;
+        font-weight: 400;
+        transition: 0.3s color;
+    }
+
+    .user-badges-container h3:hover {
+        color: #3498db;
     }
 
 
@@ -301,7 +341,6 @@
     width: 800px;
     margin: 52px auto;
 }
-
 
 
 /*------------------------------------------*/

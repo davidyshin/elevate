@@ -42,7 +42,7 @@ class UserProgress extends Component {
         this.setState({
           userExperience: exp,
           experienceToNextLevel: levelExperience,
-          rankBadge: rankBadge 
+          rankBadge: rankBadge
         });
       })
       .catch(err => {
@@ -101,8 +101,8 @@ class UserProgress extends Component {
           <div className="user-progress-left">
 
             <div className="user-progress-badge-container">
-              <img src={rankBadge.badge_url} alt={rankBadge.badge_name} class="user-progress-badge" />
-              <img src={lockedBadgeUrl} alt="badge" class="user-progress-badge badge-inactive" />
+              <img src={rankBadge.badge_url} alt={rankBadge.badge_name} className="user-rank-badge" />
+              <img src={lockedBadgeUrl} alt="badge" className="user-rank-badge badge-inactive" />
             </div>
 
             <div className="user-progress-bar-container">
