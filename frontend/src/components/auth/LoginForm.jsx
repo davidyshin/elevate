@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import '../../stylesheets/auth-form.css';
 
-
 class LoginForm extends Component {
   constructor() {
     super();
@@ -18,6 +17,30 @@ class LoginForm extends Component {
       [e.target.name]: e.target.value
     });
   };
+  componentDidMount() {
+    if (this.props.demo) {
+      let username = 'demouser@elevate.app';
+      let password = '123456';
+      let i = 0;
+      let j = 0;
+      let demoUser = '';
+      let demoPassword = '';
+
+      setInterval(() => {
+        if (i < username.length) {
+          demoUser += username[i];
+          this.setState({ username: demoUser });
+          i++;
+        } else if (j < password.length) {
+          demoPassword += password[j];
+          this.setState({ password: demoPassword });
+          j++;
+        } else {
+          return
+        }
+      }, 100);
+    }
+  }
 
   handleSubmit = e => {
     e.preventDefault();
@@ -42,8 +65,8 @@ class LoginForm extends Component {
   };
 
   render() {
-    const { username, password, message } = this.state; 
-    const errorMessage = message ? <p>{message}</p> : null; 
+    const { username, password, message } = this.state;
+    const errorMessage = message ? <p>{message}</p> : null;
 
     return (
       <div className="login-form auth-form-container" data-aos="fade-up">

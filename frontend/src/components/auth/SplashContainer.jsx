@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import '../../stylesheets/auth.css';
 
-
 class SplashContainer extends Component {
   constructor() {
     super();
@@ -17,18 +16,18 @@ class SplashContainer extends Component {
   render() {
     return (
       <div className="splash-container" data-aos="fade-up">
-
         <div className="splash-top">
           <h1>Elevate</h1>
           <p>Elevate your job search experience.</p>
           <div className="splash-top-button-container">
-            <button>Demo</button>
-            <button id="signup" onClick={this.props.toggleActive}>Create an account</button>
+            <button id="demo" onClick={this.props.toggleActive}>Demo</button>
+            <button id="signup" onClick={this.props.toggleActive}>
+              Create an account
+            </button>
           </div>
         </div>
 
         <div className="splash-features">
-
           <div className="splash-feature-card">
             <div>
               <img src="https://i.imgur.com/u7NyCxx.png" alt="feature-1" />
@@ -55,9 +54,10 @@ class SplashContainer extends Component {
         </div>
 
         <div className="splash-footer">
-          <a href="https://github.com/davidyshin/elevate" target="_blank"><i className="fab fa-github fa-5x"></i></a>
+          <a href="https://github.com/davidyshin/elevate" target="_blank">
+            <i className="fab fa-github fa-5x" />
+          </a>
         </div>
-
       </div>
     );
   }
