@@ -30,6 +30,7 @@ const passport = require('../auth/local.js');
  14. updateResume // PUT Route = /users/updateResume
  15. updateInterview // PUT Route = /users/updateInterview
  16. updateUserInfo // PUT Route = /users/updateInfo
+ 17. updateJobProgress // PUT Route = /users/updateJobProgress 
 --------------------------------------- 
 */
 
@@ -232,7 +233,7 @@ const createJobApp = (req, res, next) => {
         job_phone_number: req.body.job_phone_number,
         position_title: req.body.position_title,
         job_posting_url: req.body.job_posting_url,
-        progress_in_search: 1
+        progress_in_search: req.body.progress_in_search
       }
     )
     .then(returned => {
@@ -402,6 +403,30 @@ const updateUserInfo = (req, res, next) => {
     });
 };
 
+/* 17 */
+
+// users/updateJobProgress
+const updateJobProgress = (req, res, next) => {
+  db
+    .none(
+      'UPDATE jobs SET progress_in_search = ${progress_in_search} WHERE job_id = ${job_id}',
+      {
+        progress_in_search: req.body.progress_in_search,
+        job_id: req.body.job_id
+      }
+    )
+    .then(function(data) {
+      res.status(200).json({
+        status: 'success',
+        message: 'updated job progress'
+      });
+    })
+    .catch(function(err) {
+      res.status(500).send(`Error updating job progress: ${err}`);
+      return next(err);
+    });
+};
+
 module.exports = {
   getAllUserApps,
   getCoverLetter,
@@ -418,5 +443,6 @@ module.exports = {
   updateCoverLetter,
   updateResume,
   updateInterview,
-  updateUserInfo
+  updateUserInfo,
+  updateJobProgress
 };
