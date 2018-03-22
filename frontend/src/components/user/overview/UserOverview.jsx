@@ -10,11 +10,11 @@ class UserOverview extends Component {
   }
 
   renderUserProgress = () => {
-    return <UserProgress activeUser={this.props.activeUser} />;
+    return <UserProgress activeUser={this.props.activeUser} userExperience={this.props.userExperience} rankBadgeImageUrl={this.props.rankBadgeImageUrl} />;
   };
 
   renderUserBadges = () => {
-    return <UserBadges activeUser={this.props.activeUser} />;
+    return <UserBadges activeUser={this.props.activeUser} achievements={this.props.achievements} />;
   }
 
   renderUserActivity = () => {

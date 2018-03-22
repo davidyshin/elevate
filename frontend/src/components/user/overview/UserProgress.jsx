@@ -4,14 +4,24 @@ class UserProgress extends Component {
   constructor() {
     super();
     this.state = {
-      earned: 1600,
-      nextLevel: 2000
+      experienceEarned: 0,
+      experienceNeededForNextLevel: 0,
+      rankBadgeImageUrl: ''
     };
   }
 
+  componentDidMount() {
+    this.setState({
+      experienceEarned: this.props.userExperience,
+      experienceNeededForNextLevel: 2000,
+      rankBadgeImageUrl: this.props.rankBadgeImageUrl
+    });
+  }
+
   render() { 
-    const { earned, nextLevel } = this.state; 
-    const progressPercentage = (earned / nextLevel) * 100; 
+    const { experienceEarned, experienceNeededForNextLevel, rankBadgeImageUrl } = this.state; 
+    const progressPercentage = (experienceEarned / experienceNeededForNextLevel) * 100; 
+    console.log(this.state);
 
     var progressStyle = {
       width: `${progressPercentage}%`
@@ -29,14 +39,14 @@ class UserProgress extends Component {
           <div className="user-progress-left">
 
             <div className="user-progress-badge-container">
-              <img src="https://lh3.googleusercontent.com/1GmLSLTSH4LmI-xD5ZAYIG3DkJ4GVhAF15UbwzuPm2UgM0MvHR05_attKfkyOzJmS6kNfEXqO0wWzIzRP-FJ=w1438-h780" alt="badge" class="user-progress-badge" />
+              <img src="rankBadgeImageUrl" alt="badge" class="user-progress-badge" />
               <img src="https://lh3.googleusercontent.com/1GmLSLTSH4LmI-xD5ZAYIG3DkJ4GVhAF15UbwzuPm2UgM0MvHR05_attKfkyOzJmS6kNfEXqO0wWzIzRP-FJ=w1438-h780" alt="badge" class="user-progress-badge badge-inactive" />
             </div>
 
             <div className="user-progress-bar-container">
               <div className="user-progress-bar-total">
                 <div className="user-progress-bar-earned" style={progressStyle} />
-                <p>1600/2000</p>
+                <p>{experienceEarned}/{experienceNeededForNextLevel}</p>
               </div>
             </div>
           </div>
