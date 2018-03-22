@@ -251,7 +251,7 @@ const createJobApp = (req, res, next) => {
 const createInterview = (req, res, next) => {
   db
     .none(
-      'INSERT INTO Interview (contact, note, interview_date, interview_time job_id) VALUES (${contact}, ${note}, ${interview_date}, ${interview_time}, ${job_id})',
+      'INSERT INTO Interview (contact, note, interview_date, interview_time, job_id) VALUES (${contact}, ${note}, ${interview_date}, ${interview_time}, ${job_id})',
       {
         contact: req.body.contact,
         note: req.body.note,
