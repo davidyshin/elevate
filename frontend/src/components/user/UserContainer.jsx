@@ -11,7 +11,8 @@ class UserContainer extends Component {
       activeUser: '',
       activeComponent: 'overview',
       userExperience: 0,
-      achievements: []
+      achievements: [],
+      rankBadgeImageUrl: ''
     };
   }
 
@@ -24,7 +25,6 @@ class UserContainer extends Component {
   }
 
   getUserExperience = () => {
-    // Get user experience => axios.get('/getUserExp')
     axios
       .get('/users/getUserExp')
       .then(data => {
@@ -62,9 +62,9 @@ class UserContainer extends Component {
     axios
       .get(`/users/getRankedBadge/${level}`)
       .then(data => {
-        let badgeUrl = data.data.badge.badge_url;
+        let rankBadge = data.data.badge;
         this.setState({
-          rankBadgeImageUrl: badgeUrl
+          rankBadgeImageUrl: rankBadge
         });
       })
       .catch(err => {
@@ -96,18 +96,16 @@ class UserContainer extends Component {
         return '6';
         break;
     }
-    // Experience         Level 
-    // 0 ~ 999            1 
-    // 1000 ~ 1999        2
-    // 2000 ~ 2999        3
-    // 3000 ~ 4999        4
-    // 5000 ~ 6999        5
-    // 7000 ~ 9999        6
-    // 10000 ~ ... 
   }
 
   renderUserOverview = () => {
-    return <UserOverview activeUser={this.state.activeUser} />;
+    const { activeUser, userExperience, achievements, rankBadgeImageUrl } = this.state;
+
+    return <UserOverview
+      activeUser={activeUser}
+      userExperience={userExperience}
+      achievements={achievements}
+      rankBadgeImageUrl={rankBadgeImageUrl} />;
   };
 
   renderUserInfo = () => {
