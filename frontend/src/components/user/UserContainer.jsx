@@ -9,10 +9,7 @@ class UserContainer extends Component {
     super();
     this.state = {
       activeUser: '',
-      activeComponent: 'overview',
-      userExperience: 10,
-      achievements: [],
-      rankBadge: ''
+      activeComponent: 'overview'
     };
   }
 
@@ -20,87 +17,10 @@ class UserContainer extends Component {
     this.setState({
       activeUser: this.props.activeUser
     });
-    this.getUserExperience();
-    this.getBadges();
-  }
-
-  getUserExperience = () => {
-    axios
-      .get('/users/getUserExp')
-      .then(data => {
-        let exp = data.data.data.experience;
-        this.setState({
-          userExperience: exp
-        });
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }
-
-  getBadges = () => {
-    axios
-      .get('/users/getUserAchieves')
-      .then(data => {
-        let achievements = data.data.achieves;
-        return achievements
-      })
-      .then(achievements => {
-        let level = this.convertExperienceToLevel(this.state.userExperience);
-
-        axios
-          .get(`/users/getRankedBadge/${level}`)
-          .then(data => {
-            let rankBadge = data.data.badge;
-            this.setState({
-              achievements,
-              rankBadge
-            });
-          })
-          .catch(err => {
-            console.log(err);
-          });
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }
-
-  convertExperienceToLevel = exp => {
-    switch (true) {
-      case (exp < 1000):
-        return '1';
-        break;
-      case (exp < 2000):
-        return '2';
-        break;
-      case (exp < 3000):
-        return '3';
-        break;
-      case (exp < 5000):
-        return '4';
-        break;
-      case (exp < 7000):
-        return '5';
-        break;
-      case (exp < 10000):
-        return '5';
-        break;
-      default:
-        return '6';
-        break;
-    }
   }
 
   renderUserOverview = () => {
-    return this.state.rankBadge ?
-      <UserOverview
-        activeUser={this.state.activeUser}
-        userExperience={this.state.userExperience}
-        achievements={this.state.achievements}
-        rankBadge={this.state.rankBadge} />
-      :
-      <div />;
+    return <UserOverview activeUser={this.state.activeUser} />
   };
 
   renderUserInfo = () => {
