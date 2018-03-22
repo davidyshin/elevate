@@ -1,7 +1,6 @@
 // Job item in list inside job container
 
 import React, { Component } from 'react';
-import UpdateJobForm from './forms/UpdateJobForm.jsx'
 
 class JobItem extends Component {
   constructor() {
@@ -22,6 +21,8 @@ class JobItem extends Component {
         <p>{job.position_title}</p>
         <h3>Date Applied</h3>
         <p>{renderDate}</p>
+
+        <h1 onClick={this.props.handleUpdate} id={job.job_id}>UPDATE</h1>
       </div>
     );
   }

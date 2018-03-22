@@ -31,6 +31,8 @@ const passport = require('../auth/local');
  14. updateResume // PUT Route = /users/updateResume
  15. updateInterview // PUT Route = /users/updateInterview
  16. updateUserInfo // PUT Route = /users/updateInfo
+ 17. updateJobProgress // PUT Route = /users/updateJobProgress
+ 
 --------------------------------------- 
 */
 
@@ -93,6 +95,9 @@ router.put('/updateInterview', loginRequired, db.updateInterview);
 
 /* 16. updateUserInfo // PUT Route = /users/updateUserInfo */
 router.put('/updateUserInfo', loginRequired, db.updateUserInfo);
+
+/* 17. updateJobProgress // PUT Route = /users/updateJobProgress */
+router.put('/updateJobProgress', loginRequired, db.updateJobProgress)
 
 
 module.exports = router;
