@@ -4,9 +4,9 @@ class UserProgress extends Component {
   constructor() {
     super();
     this.state = {
-      experienceEarned: 0,
+      experienceEarned: 10,
       experienceNeededForNextLevel: 0,
-      rankBadge: '',
+      rankBadge: 'nothing',
       lockedBadgeUrl: 'https://i.imgur.com/aVEGmKm.png'
     };
   }
@@ -14,10 +14,25 @@ class UserProgress extends Component {
   componentDidMount() {
     this.setState({
       experienceEarned: this.props.userExperience,
-      experienceNeededForNextLevel: 2000,
       rankBadge: this.props.rankBadge
-    });
+    })
   }
+
+  componentWillReceiveProps() {
+    console.log('progress receiving props');
+    this.setState({
+      experienceEarned: this.props.userExperience,
+      rankBadge: this.props.rankBadge
+    })
+  }
+
+  // componentDidMount() {
+  //   this.setState({
+  //     experienceEarned: this.props.userExperience,
+  //     experienceNeededForNextLevel: 2000,
+  //     rankBadge: this.props.rankBadge
+  //   });
+  // }
 
   render() { 
     const { experienceEarned, experienceNeededForNextLevel, rankBadge, lockedBadgeUrl } = this.state; 
