@@ -1,17 +1,89 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class UserProgress extends Component {
   constructor() {
     super();
     this.state = {
-      earned: 1600,
-      nextLevel: 2000
+      userExperience: 0,
+      experienceToNextLevel: 0,
+      rankBadge: '',
+      lockedBadgeUrl: 'https://i.imgur.com/aVEGmKm.png'
     };
   }
 
-  render() { 
-    const { earned, nextLevel } = this.state; 
-    const progressPercentage = (earned / nextLevel) * 100; 
+  componentDidMount() {
+    this.getUserExperience();
+  }
+
+  getUserExperience = () => {
+    axios
+      .get('/users/getUserExp')
+      .then(data => {
+        let exp = data.data.data.experience;
+        return exp;
+      })
+      .then(exp => {
+        this.getRankBadge(exp);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  getRankBadge = exp => {
+    let level = this.convertExperienceToLevel(exp);
+    let levelExperience = this.getExperienceToNextLevel(level);
+
+    axios
+      .get(`/users/getRankedBadge/${level}`)
+      .then(data => {
+        let rankBadge = data.data.badge;
+        this.setState({
+          userExperience: exp,
+          experienceToNextLevel: levelExperience,
+          rankBadge: rankBadge 
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+
+  convertExperienceToLevel = exp => {
+    switch (true) {
+      case (exp < 1000):
+        return '1';
+        break;
+      case (exp < 2000):
+        return '2';
+        break;
+      case (exp < 3000):
+        return '3';
+        break;
+      case (exp < 4000):
+        return '4';
+        break;
+      case (exp < 5000):
+        return '5';
+        break;
+      case (exp < 60000):
+        return '5';
+        break;
+      default:
+        return '6';
+        break;
+    }
+  }
+
+  getExperienceToNextLevel = level => {
+    return parseInt(level) * 1000;
+  }
+
+  render() {
+    const { userExperience, experienceToNextLevel, rankBadge, lockedBadgeUrl } = this.state;
+    const progressPercentage = (userExperience / experienceToNextLevel) * 100;
+    console.log(this.state);
 
     var progressStyle = {
       width: `${progressPercentage}%`
@@ -29,14 +101,14 @@ class UserProgress extends Component {
           <div className="user-progress-left">
 
             <div className="user-progress-badge-container">
-              <img src="https://lh3.googleusercontent.com/1GmLSLTSH4LmI-xD5ZAYIG3DkJ4GVhAF15UbwzuPm2UgM0MvHR05_attKfkyOzJmS6kNfEXqO0wWzIzRP-FJ=w1438-h780" alt="badge" class="user-progress-badge" />
-              <img src="https://lh3.googleusercontent.com/1GmLSLTSH4LmI-xD5ZAYIG3DkJ4GVhAF15UbwzuPm2UgM0MvHR05_attKfkyOzJmS6kNfEXqO0wWzIzRP-FJ=w1438-h780" alt="badge" class="user-progress-badge badge-inactive" />
+              <img src={rankBadge.badge_url} alt={rankBadge.badge_name} class="user-progress-badge" />
+              <img src={lockedBadgeUrl} alt="badge" class="user-progress-badge badge-inactive" />
             </div>
 
             <div className="user-progress-bar-container">
               <div className="user-progress-bar-total">
                 <div className="user-progress-bar-earned" style={progressStyle} />
-                <p>1600/2000</p>
+                <p>{userExperience}/{experienceToNextLevel}</p>
               </div>
             </div>
           </div>
@@ -52,7 +124,7 @@ class UserProgress extends Component {
               <h4>Amateur</h4>
             </div>
             <div className="user-progress-message">
-              <p>400 points more to next level!</p>
+              <p>{experienceToNextLevel - userExperience} points more to next level!</p>
             </div>
           </div>
 

@@ -1,5 +1,3 @@
-// Edit User Page
-
 import React, { Component } from 'react';
 import Modal from 'react-modal';
 import EditUser from './EditUser.jsx';
@@ -11,6 +9,7 @@ class UserInfo extends Component {
       modalOpen: false
     };
   }
+
   toggleModal = () => {
     let { modalOpen } = this.state;
     this.setState({
@@ -25,9 +24,10 @@ class UserInfo extends Component {
         <h2>Welcome {this.props.activeUser.first_name}</h2>
         <h2>Email: {this.props.activeUser.username}</h2>
         <h2>Phone Number: {this.props.activeUser.phone_number}</h2>
-        
+
         <Modal
           isOpen={this.state.modalOpen}
+          onRequestClose={this.toggleModal}
           contentLabel="edit-user-modal"
           className="edit-user-modal"
         >
