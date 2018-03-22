@@ -1,5 +1,3 @@
-// container for user profile, edit user, user settings components.
-
 import React, { Component } from 'react';
 import UserOverview from './overview/UserOverview.jsx';
 import UserInfo from './account/UserInfo.jsx';
@@ -19,6 +17,10 @@ class UserContainer extends Component {
       activeUser: this.props.activeUser
     });
   }
+
+  // Get user experience => axios.get('/getUserExp')
+  // Get user rank badge => axios.get('/getRankedBadge/:level')
+  // Get user achievement badges => axios.get('/getUserAchieves')
 
   renderUserOverview = () => {
     return <UserOverview activeUser={this.state.activeUser} />;
@@ -46,12 +48,13 @@ class UserContainer extends Component {
   };
 
   render() {
-    const { activeUser, activeComponent } = this.state; 
-    console.log(activeUser)
+    const { activeUser, activeComponent } = this.state;
+    console.log(this.state); 
 
     return (
       <div className="user-container">
         <div className="user-top">
+          <img src={activeUser.photo_url} alt={activeUser.first_name} />
           <h3>{activeUser.first_name}</h3>
         </div>
         <nav className="user-navigation">
