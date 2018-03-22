@@ -35,7 +35,7 @@ class UserBadges extends Component {
     ))
 
     return (
-      <div className="user-badges-container" id="badges">
+      <div className="user-badges-container" id="badges" data-aos="fade-up">
         <div className="user-badge-image-container">
           {showBadges}
         </div>
