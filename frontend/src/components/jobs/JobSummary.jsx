@@ -8,7 +8,12 @@ class JobSummary extends Component {
     this.state = {};
   }
   render() {
-      return (<h1>{this.props.activeUser.username} Job Summary </h1>)
+    return (
+      <div className="job-summary">
+        {' '}
+        <h1>{this.props.activeUser.first_name}'s' Job Summary </h1>{' '}
+      </div>
+    );
   }
 }
 
