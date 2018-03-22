@@ -5,6 +5,7 @@ import AddJobForm from './forms/AddJobForm.jsx';
 import UpdateJobForm from './forms/UpdateJobForm.jsx';
 import JobList from './JobList.jsx';
 import JobSummary from './JobSummary.jsx';
+import '../../stylesheets/jobs-main.css'
 
 class JobsContainer extends Component {
   constructor() {
@@ -14,7 +15,7 @@ class JobsContainer extends Component {
 
   render() {
     return (
-      <div style={{background:'white'}}className="JobsContainer">
+      <div className="jobs-container">
         <JobSummary activeUser={this.props.activeUser} />
         <JobList activeUser={this.props.activeUser} />
       </div>
