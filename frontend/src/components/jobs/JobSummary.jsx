@@ -53,12 +53,11 @@ class JobSummary extends Component {
             {
               x: x,
               y: y,
-              type: 'line',
+              type: 'line+markers',
               marker: {
                 color: 'rgba(58,200,225,.5)',
                 line: {
-                  color: 'rbg(8,48,107)',
-                  width: 1
+                  color: 'rbg(8,48,107)'
                 }
               },
               name: 'Job Applications Logged'
@@ -66,9 +65,10 @@ class JobSummary extends Component {
           ]}
           layout={{
             width: 800,
-            height: 240,
+            height: 250,
             title: `${this.props.activeUser.first_name}'s Weekly Summary`,
-            yaxis: { range: [0, (Math.max(...y) || 3)] },
+            yaxis: { range: [0, Math.max(...y)+1 || 3] },
+            xaxis: { zeroline: true },
             showlegend: true
           }}
         />
