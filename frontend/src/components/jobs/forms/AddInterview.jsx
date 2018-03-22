@@ -74,7 +74,11 @@ class AddInterview extends Component {
           />
           <p>Note</p>
           <textarea value={note} onChange={this.handleInput} name="note" />
-          <input disabled={interviewSaved || !date || !contact} type="submit" value="Save" />
+          <input
+            disabled={interviewSaved || !date || !contact}
+            type="submit"
+            value="Save"
+          />
         </form>
         <button
           disabled={!interviewSaved}
