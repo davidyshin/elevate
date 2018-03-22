@@ -251,12 +251,13 @@ const createJobApp = (req, res, next) => {
 const createInterview = (req, res, next) => {
   db
     .none(
-      'INSERT INTO Interview (contact, note, interview_date, job_id) VALUES (${contact}, ${note}, ${interview_date}, ${job_id})',
+      'INSERT INTO Interview (contact, note, interview_date, interview_time job_id) VALUES (${contact}, ${note}, ${interview_date}, ${interview_time}, ${job_id})',
       {
         contact: req.body.contact,
         note: req.body.note,
         job_id: req.body.job_id,
-        interview_date: req.body.interview_date
+        interview_date: req.body.interview_date,
+        interview_time: req.body.interview_time
       }
     )
     .then(function(data) {
@@ -355,11 +356,12 @@ const updateResume = (req, res, next) => {
 const updateInterview = (req, res, next) => {
   db
     .none(
-      'UPDATE Interview SET contact = ${contact}, note = ${note}, interview_date = ${interview_date} WHERE job_id = ${job_id}',
+      'UPDATE Interview SET contact = ${contact}, note = ${note}, interview_date = ${interview_date} interview_time = ${interview_time} WHERE job_id = ${job_id}',
       {
         contact: req.body.contact,
         note: req.body.note,
         job_id: req.body.job_id,
+        interview_time: req.body.interview_time,
         interview_date: req.body.interview_date
       }
     )
