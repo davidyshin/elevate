@@ -25,8 +25,6 @@ class UserContainer extends Component {
   }
 
   getUserExperience = () => {
-    console.log('getting user exp');
-
     axios
       .get('/users/getUserExp')
       .then(data => {
@@ -41,8 +39,6 @@ class UserContainer extends Component {
   }
 
   getBadges = () => {
-    console.log('getting badges');
-
     axios
       .get('/users/getUserAchieves')
       .then(data => {
@@ -97,13 +93,14 @@ class UserContainer extends Component {
   }
 
   renderUserOverview = () => {
-    const { activeUser, userExperience, achievements, rankBadge } = this.state;
-
-    return <UserOverview
-      activeUser={activeUser}
-      userExperience={userExperience}
-      achievements={achievements}
-      rankBadge={rankBadge} />;
+    return this.state.rankBadge ?
+      <UserOverview
+        activeUser={this.state.activeUser}
+        userExperience={this.state.userExperience}
+        achievements={this.state.achievements}
+        rankBadge={this.state.rankBadge} />
+      :
+      <div />;
   };
 
   renderUserInfo = () => {
