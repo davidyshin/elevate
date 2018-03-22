@@ -17,7 +17,7 @@ class AddJobForm extends Component {
       position: '',
       phoneNumber: '',
       email: '',
-      date: '',
+      date_applied: '',
       url: '',
       applicationStage: 1,
       job_id: '',
@@ -29,14 +29,18 @@ class AddJobForm extends Component {
 
   handleFirstSubmit = e => {
     e.preventDefault();
+    const date = new Date();
+    const dateStr = date.toISOString().substring(0, 10);
     axios
       .post('/users/createJobApp', {
         company_name: this.state.company,
         company_logo: this.state.companyLogo,
-        date_applied: this.state.date,
+        date_applied: this.state.date_applied,
+        date_logged: dateStr,
         job_email: this.state.email,
         job_phone_number: this.state.phoneNumber,
         position_title: this.state.position,
+        progress_in_search: this.state.applicationStage,
         job_posting_url: this.state.url
       })
       .then(data => {
@@ -52,17 +56,25 @@ class AddJobForm extends Component {
 
   addMoreInterview = e => {
     e.preventDefault();
-    let { applicationStage } = this.state;
+    let { applicationStage, job_id } = this.state;
     applicationStage += 1;
     this.setState({
       applicationStage
     });
+    this.updateJobProgress(job_id, applicationStage);
   };
 
+  updateJobProgress = (job_id, progress_in_search) => {
+    axios.put('/users/updateJobProgress', {
+      job_id: job_id,
+      progress_in_search: progress_in_search
+    });
+  };
   handleResumeInput = e => {
-    const { job_id } = this.state;
+    let { job_id, applicationStage } = this.state;
     const resume_url = e.target.value;
     e.preventDefault();
+    applicationStage;
     axios
       .put('/users/updateResume', {
         resume_url: resume_url,
@@ -79,10 +91,11 @@ class AddJobForm extends Component {
           message: 'Error updating resume'
         });
       });
+    this.updateJobProgress(job_id, applicationStage);
   };
 
   handleCoverInput = e => {
-    const { job_id } = this.state;
+    let { job_id, applicationStage } = this.state;
     const cover_url = e.target.value;
     e.preventDefault();
     axios
@@ -101,6 +114,7 @@ class AddJobForm extends Component {
           message: 'Error updating cover letter'
         });
       });
+    this.updateJobProgress(job_id, applicationStage);
   };
 
   handleSecondSubmit = e => {
@@ -173,7 +187,7 @@ class AddJobForm extends Component {
   };
 
   handleDate = e => {
-    this.setState({ date: e.target.value });
+    this.setState({ date_applied: e.target.value });
   };
 
   render() {
@@ -184,7 +198,7 @@ class AddJobForm extends Component {
       selectedCompany,
       position,
       email,
-      date,
+      date_applied,
       phoneNumber,
       url,
       resume_url,
@@ -233,8 +247,8 @@ class AddJobForm extends Component {
             <p>Date Applied:</p>
             <input
               onChange={this.handleDate}
-              value={date}
-              name="date"
+              value={date_applied}
+              name="date_applied"
               type="date"
             />
             <p>Job Posting Url:</p>
@@ -263,7 +277,7 @@ class AddJobForm extends Component {
               type="email"
             />
             <input
-              disabled={saved || !company || !position || !date}
+              disabled={saved || !company || !position || !date_applied}
               type="submit"
               value="Save"
             />
