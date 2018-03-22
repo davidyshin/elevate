@@ -10,7 +10,7 @@ class UserContainer extends Component {
     this.state = {
       activeUser: '',
       activeComponent: 'overview',
-      userExperience: 0,
+      userExperience: 10,
       achievements: [],
       rankBadge: ''
     };
@@ -19,12 +19,14 @@ class UserContainer extends Component {
   componentDidMount() {
     this.setState({
       activeUser: this.props.activeUser
-    }, () => {
-      this.getUserExperience();
     });
+    this.getUserExperience();
+    this.getBadges();
   }
 
   getUserExperience = () => {
+    console.log('getting user exp');
+
     axios
       .get('/users/getUserExp')
       .then(data => {
@@ -33,39 +35,35 @@ class UserContainer extends Component {
           userExperience: exp
         });
       })
-      .then(() => {
-        this.getAchievementBadges();
-        this.getRankBadge();
-      })
       .catch(err => {
         console.log(err);
       });
   }
 
-  getAchievementBadges = () => {
+  getBadges = () => {
+    console.log('getting badges');
+
     axios
       .get('/users/getUserAchieves')
       .then(data => {
-        let achieves = data.data.achieves;
-        this.setState({
-          achievements: achieves
-        });
+        let achievements = data.data.achieves;
+        return achievements
       })
-      .catch(err => {
-        console.log(err);
-      });
-  }
+      .then(achievements => {
+        let level = this.convertExperienceToLevel(this.state.userExperience);
 
-  getRankBadge = () => {
-    let level = this.convertExperienceToLevel(this.state.userExperience);
-
-    axios
-      .get(`/users/getRankedBadge/${level}`)
-      .then(data => {
-        let rankBadge = data.data.badge;
-        this.setState({
-          rankBadge: rankBadge
-        });
+        axios
+          .get(`/users/getRankedBadge/${level}`)
+          .then(data => {
+            let rankBadge = data.data.badge;
+            this.setState({
+              achievements,
+              rankBadge
+            });
+          })
+          .catch(err => {
+            console.log(err);
+          });
       })
       .catch(err => {
         console.log(err);
