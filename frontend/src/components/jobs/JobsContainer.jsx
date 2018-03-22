@@ -14,8 +14,7 @@ class JobsContainer extends Component {
 
   render() {
     return (
-      <div className="JobsContainer">
-        <h1>{this.props.activeUser.username} Jobs Container </h1>
+      <div style={{background:'white'}}className="JobsContainer">
         <JobSummary activeUser={this.props.activeUser} />
         <JobList activeUser={this.props.activeUser} />
       </div>
