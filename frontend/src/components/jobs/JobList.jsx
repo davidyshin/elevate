@@ -1,7 +1,7 @@
 // list of all jobs user has applied to
 import React, { Component } from 'react';
 import axios from 'axios';
-import Job from './Job.jsx';
+import JobItem from './JobItem.jsx';
 
 class JobList extends Component {
   constructor() {
@@ -29,8 +29,8 @@ class JobList extends Component {
     return (
       <div className="job-list">
         <h3>List of applied jobs</h3>
-        <ol>{jobList.map(jobItem => {
-          return <li><Job job={jobItem} /></li>;
+        <ol>{jobList.map(job => {
+          return <li><JobItem job={job} /></li>;
         })}</ol>
       </div>
     );

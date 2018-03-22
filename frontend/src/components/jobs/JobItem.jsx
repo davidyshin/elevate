@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 
-class Job extends Component {
+class JobItem extends Component {
   constructor() {
     super();
     this.state = {};
@@ -26,4 +26,4 @@ class Job extends Component {
   }
 }
 
-export default Job;
+export default JobItem;
