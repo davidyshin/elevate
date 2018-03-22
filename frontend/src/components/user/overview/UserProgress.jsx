@@ -6,7 +6,8 @@ class UserProgress extends Component {
     this.state = {
       experienceEarned: 0,
       experienceNeededForNextLevel: 0,
-      rankBadgeImageUrl: ''
+      rankBadge: '',
+      lockedBadgeUrl: 'https://i.imgur.com/aVEGmKm.png'
     };
   }
 
@@ -14,12 +15,12 @@ class UserProgress extends Component {
     this.setState({
       experienceEarned: this.props.userExperience,
       experienceNeededForNextLevel: 2000,
-      rankBadgeImageUrl: this.props.rankBadgeImageUrl
+      rankBadge: this.props.rankBadge
     });
   }
 
   render() { 
-    const { experienceEarned, experienceNeededForNextLevel, rankBadgeImageUrl } = this.state; 
+    const { experienceEarned, experienceNeededForNextLevel, rankBadge, lockedBadgeUrl } = this.state; 
     const progressPercentage = (experienceEarned / experienceNeededForNextLevel) * 100; 
     console.log(this.state);
 
@@ -39,8 +40,8 @@ class UserProgress extends Component {
           <div className="user-progress-left">
 
             <div className="user-progress-badge-container">
-              <img src="rankBadgeImageUrl" alt="badge" class="user-progress-badge" />
-              <img src="https://lh3.googleusercontent.com/1GmLSLTSH4LmI-xD5ZAYIG3DkJ4GVhAF15UbwzuPm2UgM0MvHR05_attKfkyOzJmS6kNfEXqO0wWzIzRP-FJ=w1438-h780" alt="badge" class="user-progress-badge badge-inactive" />
+              <img src={rankBadge.badge_url} alt={rankBadge.badge_name} class="user-progress-badge" />
+              <img src={lockedBadgeUrl} alt="badge" class="user-progress-badge badge-inactive" />
             </div>
 
             <div className="user-progress-bar-container">
@@ -62,7 +63,7 @@ class UserProgress extends Component {
               <h4>Amateur</h4>
             </div>
             <div className="user-progress-message">
-              <p>400 points more to next level!</p>
+              <p>{experienceNeededForNextLevel - experienceEarned} points more to next level!</p>
             </div>
           </div>
 

@@ -12,7 +12,7 @@ class UserContainer extends Component {
       activeComponent: 'overview',
       userExperience: 0,
       achievements: [],
-      rankBadgeImageUrl: ''
+      rankBadge: ''
     };
   }
 
@@ -64,7 +64,7 @@ class UserContainer extends Component {
       .then(data => {
         let rankBadge = data.data.badge;
         this.setState({
-          rankBadgeImageUrl: rankBadge
+          rankBadge: rankBadge
         });
       })
       .catch(err => {
@@ -99,13 +99,13 @@ class UserContainer extends Component {
   }
 
   renderUserOverview = () => {
-    const { activeUser, userExperience, achievements, rankBadgeImageUrl } = this.state;
+    const { activeUser, userExperience, achievements, rankBadge } = this.state;
 
     return <UserOverview
       activeUser={activeUser}
       userExperience={userExperience}
       achievements={achievements}
-      rankBadgeImageUrl={rankBadgeImageUrl} />;
+      rankBadge={rankBadge} />;
   };
 
   renderUserInfo = () => {
