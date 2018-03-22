@@ -104,12 +104,14 @@ class AddJobForm extends Component {
   };
 
   handleSecondSubmit = e => {
-    let { applicationStage } = this.state;
-    applicationStage = parseInt(e.target.id) + 1;
     e.preventDefault();
-    this.setState({
-      applicationStage
-    });
+    let { applicationStage } = this.state;
+    if (parseInt(e.target.id) + 1 > applicationStage) {
+      applicationStage = parseInt(e.target.id) + 1;
+      this.setState({
+        applicationStage
+      });
+    }
   };
 
   getSuggestions = value => {
