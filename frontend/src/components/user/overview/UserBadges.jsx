@@ -31,15 +31,17 @@ class UserBadges extends Component {
     const { achievements } = this.state;
 
     const showBadges = achievements.map(achievement => (
-      <img src={achievement.badge_url} alt={achievement.badge_url} className="user-progress-badge" />
+      <img src={achievement.badge_url} alt={achievement.badge_url} className="user-achievement-badge" />
     ))
 
     return (
-      <div className="user-badges-container" id="badges">
+      <div className="user-badges-container" id="badges" data-aos="fade-up">
         <div className="user-badge-image-container">
           {showBadges}
         </div>
-        <h3>More Badges</h3>
+        <div>
+          <h3>More Badges</h3>
+        </div>
       </div>
     )
   }
