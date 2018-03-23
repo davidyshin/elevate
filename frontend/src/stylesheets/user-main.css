@@ -7,6 +7,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 .user-container h1, h2, h3, h4, h5, h6, p {
@@ -14,42 +15,94 @@
     padding: 0;
 }
 
+/*
+// Holds profile image and first name 
+*/
 .user-top {
-    background-color: rgba(255, 0, 0, 0.2);
+    background-color: #fefefe;
     width: 800px;
     height: 250px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.user-top h3 {
-    font-size: 2.6rem;
-}
+    /*
+    // Set profile image to 120 by 120 
+    */
+    .user-top img {
+        height: 120px;
+        width: auto;
+        margin-bottom: 22px;
+    }
 
+    .user-top h3 {
+        font-size: 2.6rem;
+        font-weight: 300;
+    }
+
+/*
+// When screen is smaller than 880px, the box containing profile image becomes responsive 
+*/
+@media screen and (max-width: 880px) {
+    .user-top {
+        width: 90%;
+    }
+}
 
 /*------------------------------------------*/
 /*         Main User Page Navigation        */
 /*------------------------------------------*/
+
+/*
+// Navigation bar below profile image 
+*/
 .user-navigation {
-    background-color: rgba(255, 0, 0, 0.4);
+    background-color: #283c53;
+    color: #fefefe;
     display: flex;
+    align-items: center;
+    justify-content: center;
     width: 800px;
     border-bottom: 2px solid rgba(0, 0, 0, 0.1);
 }
 
+/*
+// When screen is smaller than 880x, navigation bar becomes responsive 
+*/
+@media screen and (max-width: 880px) {
+    .user-navigation {
+        width: 90%;
+    }
+}
+
+    /*
+    // Navigation tabs: Overview, Account 
+    */
     .user-navigation h3 {
         display: inline-block;
         position: relative;
         padding: 6px 22px;
         font-size: 1.8rem;
+        font-weight: 300;
         margin: 0;
-        cursor: default;
+        cursor: pointer;
+        border-top: 2px solid transparent;
         border-bottom: 2px solid rgba(0, 0, 0, 0);
     }
 
+    /* 
+    // Active tab underlined red  
+    */
     .user-navigation.active {
         border-bottom: 2px solid red;
     }
 
+    /*
+    // Tab underline animation
+    */
     .user-navigation.overview::before,
     .user-navigation.account::before {
         content: '';
@@ -64,9 +117,11 @@
         transform-origin: right top;
         /* transition: width .5s ease; */
         transition: color 0.1s, transform 0.3s ease-out;
-
     }
     
+    /*
+    // Tab underline hover 
+    */
     .user-navigation.overview:hover::before,
     .user-navigation.account:hover::before {
         /* width: 100%; */
@@ -84,25 +139,42 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 800px;
     background-color: rgb(245,240,245);
 }
 
-
-.user-progress-container {
-    background-color: #fefefe;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
-    width: 800px;
-    display: flex;
-    flex-direction: column;
-    margin: 52px auto;
+/*
+// When screen is smaller than 880px, overview container becomes responsive 
+*/
+@media screen and (max-width: 880px) {
+    .user-overview-container {
+        width: 90%;
+    }
 }
 
-    /* .user-progress-header {
-        background-color: rgba(0, 255, 0, 0.4);
-    } */
+/*------------------------------------------*/
+/*               User Progress              */
+/*------------------------------------------*/
 
+/*
+// The first card under user profile Overview 
+*/
+.user-progress-container {
+    background-color: #fefefe;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
+    border-radius: 4px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 52px auto 0 auto;
+}
+
+    /*
+    // "Level Progress"
+    */
     .user-progress-header h3 {
         font-size: 1.8rem;
+        font-weight: 400;
         padding: 22px 22px 6px 22px;
     }
 
@@ -111,9 +183,11 @@
         height: 240px;
     }
 
+        /*
+        // Rank badges and experience bar
+        */
         .user-progress-left {
-            /* background-color: rgba(0, 255, 0, 0.2); */
-            width: 70%;
+            width: 65%;
             height: 100%;
         }
 
@@ -121,13 +195,14 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: flex-end;
-                height: 70%;
+                height: 65%;
             }
 
-                .user-progress-badge {
+                .user-rank-badge {
                     width: auto;
-                    height: 100px;
-                    margin: 22px;
+                    height: 110px;
+                    margin: 32px 22px 0 22px;
+                    /* margin: 22px; */
                 }
 
                 .badge-inactive {
@@ -140,7 +215,7 @@
                 }
             
             .user-progress-bar-container {
-                height: 30%;
+                height: 35%;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -148,10 +223,10 @@
             }
 
                 .user-progress-bar-container p {
-                    font-size: 1.6rem;
+                    font-size: 1.4rem;
                     width: 100%;
                     position: relative;
-                    text-align: center;
+                    text-align: left;
                 }
 
                 .user-progress-bar-total {
@@ -177,11 +252,13 @@
                         }
                     }
 
+        /*
+        // Level name and # of experience points left to go 
+        */
         .user-progress-right {
-            /* background-color: rgba(0, 255, 0, 0.6); */
             display: flex;
             flex-direction: column;
-            width: 30%;
+            width: 35%;
             height: 100%;
         }
 
@@ -215,56 +292,266 @@
 
             .user-progress-current,
             .user-progress-next {
-                /* background-color: rgba(0, 0, 0, 0.2); */
                 height: 30%;
                 border-left: 2px solid rgba(0, 0, 0, 0.1);
             }
 
             .user-progress-message {
-                /* background-color: rgba(255, 0, 255, 0.2); */
                 justify-content: center;
                 height: 20%;
             }
 
+        
+/*
+// When screen is smaller than 510px, level name content disappears 
+*/
+@media screen and (max-width: 510px) {
+    .user-progress-left {
+        width: 100%;
+    }
 
-.user-badges-container {
-    display: flex;
-    width: 800px;
-    margin: 52px auto;
-    background-color: rgba(255, 255, 0, 0.6);
+    .user-progress-right {
+        display: none;
+    }
+
 }
 
+/*------------------------------------------*/
+/*            Achievement Badges            */
+/*------------------------------------------*/
+
+/*
+// User achievement badges container
+*/
+.user-badges-container {
+    display: flex;
+    width: 100%;
+    height: 140px;
+    margin: 52px auto 0 auto;
+    background-color: #fefefe;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
+    border-radius: 4px;
+}
+
+    /*
+    // Contains single achievement badge 
+    */
     .user-badge-image-container {
         display: flex;
+        align-items: center;
         width: 80%;
     }
 
+        /*
+        // Achievement badge image 
+        */
         .user-badge-image-container img {
             width: auto;
-            height: 100px;
-            margin-right: 22px;
+            height: 80px;
+            margin: 22px;
         }
 
-    .user-badges-container h3 {
+    /*
+    // "More Badges" 
+    */
+    .user-badges-container div:last-child {
+        display: flex;
         width: 20%;
-        background-color: rgba(0, 0, 0, 0.4);
+        justify-content: center;
+        align-items: center;
     }
 
+    .user-badges-container h3 {
+        font-size: 1.6rem;
+        font-weight: 400;
+        -moz-transition: 0.3s color;
+        -o-transition: 0.3s color;
+        -webkit-transition: 0.3s color;
+        transition: 0.3s color;
+    }
+
+    .user-badges-container h3:hover {
+        color: #3498db;
+    }
+
+/*
+// When screen is smaller than 510px, the badges container becomes vertical 
+*/
+@media screen and (max-width: 510px) {
+    .user-badges-container {
+        flex-direction: column;
+        height: 100%;
+    }
+    
+    .user-badge-image-container {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .user-badge-image-container img {
+        height: 180px;
+    }
+
+    .user-badges-container div:last-child {
+        width: 100%;
+        padding: 22px 0;
+    }
+}
+
+/*------------------------------------------*/
+/*              User Activity               */
+/*------------------------------------------*/
 
 .user-activity-container {
-    background-color: orange;
-    width: 800px;
-    margin: 52px auto;
+    /* background-color: orange; */
+    background-color: #fefefe;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
+    border-radius: 4px;
+    /* width: 800px; */
+    width: 100%;
+    height: 400px;
+    margin: 52px auto 0 auto;
 }
+
+.user-activity-container h3 {
+    font-size: 1.8rem;
+    font-weight: 400;
+    padding: 22px 22px 6px 22px;
+}
+
+.user-activity-graph {
+    padding: 22px;
+    font-size: 1.4rem;
+}
+
+
+/*------------------------------------------*/
+/*             User Statistics              */
+/*------------------------------------------*/
 
 .user-stats-container {
-    background-color: orangered;
-    width: 800px;
+    /* background-color: orangered; */
+    background-color: #fefefe;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
+    border-radius: 4px;
+    /* width: 800px; */
+    width: 100%;
+    height: 320px;
     margin: 52px auto;
 }
 
+.user-stats-container h3 {
+    font-size: 1.8rem;
+    font-weight: 400;
+    padding: 22px 22px 6px 22px;
+}
+
+.user-stats-chart {
+    padding: 22px;
+    font-size: 1.4rem;
+}
 
 
 /*------------------------------------------*/
 /*          User Account & Settings         */
 /*------------------------------------------*/
+
+/*
+// Contains user and notification information 
+*/
+.user-account-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 800px;
+    background-color: rgb(245,240,245);
+}
+
+    /*
+    // Individual container for user and notification 
+    */
+    .user-info-container,
+    .user-settings-container {
+        background-color: #fefefe;
+        box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
+        border-radius: 4px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin: 52px auto 0 auto;
+    }
+
+    /*
+    // This is the last container of the page - add space to the bottom 
+    */
+    .user-settings-container {
+        margin-bottom: 52px;
+    }
+
+    /*
+    // Contains "User Information" and edit button 
+    // "Notification Settings" 
+    */
+    .user-info-header,
+    .user-settings-container h3 {
+        font-size: 1.8rem;
+        font-weight: 400;
+        padding: 22px 22px 6px 22px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    /*
+    // "User Information" 
+    */
+    .user-info-header h3 {
+        font-size: 1.8rem;
+        font-weight: 400;
+    }
+
+    /*
+    // Every line in user accounts page except headers 
+    */
+    .user-account-container p {
+        padding-bottom: 12px;
+    }
+
+    .user-info-container div:last-child,
+    .user-settings-container div {
+        padding: 22px;
+        font-size: 1.4rem;
+    }
+
+    /*
+    // "Edit" user link 
+    */
+    .user-info-edit {
+        cursor: pointer;
+        -moz-transition: 0.3s color;
+        -o-transition: 0.3s color;
+        -webkit-transition: 0.3s color;
+        transition: 0.3s color;
+    }
+
+    /*
+    // When user hovers over edit, color changes to blue 
+    */
+    .user-info-edit:hover {
+        color: #3498db;
+    }
+
+
+/*
+// Checkbox labels  
+*/
+.user-settings-container label {
+    display: block;
+}
+
+
+@media screen and (max-width: 880px) {
+    .user-account-container {
+        width: 90%;
+    }
+}
