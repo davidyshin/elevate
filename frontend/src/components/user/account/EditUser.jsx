@@ -1,16 +1,26 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class EditUser extends Component {
   constructor() {
     super();
     this.state = {
+      firstName: '',
+      lastName: '',
       username: '',
-      phoneNumber: ''
+      phoneNumber: '',
+      newFirstName: '',
+      newLastName: '',
+      newUsername: '',
+      newPhoneNumber: '',
+      message: null
     };
   }
 
   componentDidMount() {
     this.setState({
+      firstName: this.props.activeUser.first_name,
+      lastName: this.props.activeUser.last_name,
       username: this.props.activeUser.username,
       phoneNumber: this.props.activeUser.phone_number
     });
@@ -27,38 +37,81 @@ class EditUser extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const editedInfo = {
-      username: this.state.username,
-      phoneNumber: this.state.phoneNumber
+      firstName: this.state.newFirstName || this.state.firstName,
+      lastName: this.state.newLastName || this.state.lastName,
+      username: this.state.newUsername || this.state.username,
+      phoneNumber: this.state.newPhoneNumber || this.state.phoneNumber
     };
-    console.log(editedInfo);
+
+    axios
+      .put('/users/updateUserInfo', {
+        firstName: editedInfo.firstName,
+        lastName: editedInfo.lastName,
+        username: editedInfo.username,
+        phoneNumber: editedInfo.phoneNumber
+      })
+      .then(res => {
+        console.log(res);
+        this.setState({
+          message: 'Saved'
+        })
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({
+          message: 'Error saving'
+        })
+      });
+
+    console.log(editedInfo.firstName);
   };
 
   render() {
-    const { username, email, phoneNumber } = this.state; 
-    console.log(this.state); 
+    const { firstName, lastName, username, phoneNumber, newFirstName, newLastName, newUsername, newPhoneNumber, message } = this.state;
+    const statusMessage = message ? <p>{message}</p> : null;
 
     return (
       <div className="edit-user-modal">
-        <h1>{this.props.activeUser.username} Edit User</h1>
+        <h1>Edit</h1>
         <form onSubmit={this.handleSubmit}>
+          <p>First name</p>
+          <input
+            onChange={this.handleInput}
+            type="text"
+            name="newFirstName"
+            value={newFirstName}
+            placeholder={firstName}
+          />
+          <p>Last name</p>
+          <input
+            onChange={this.handleInput}
+            type="text"
+            name="newLastName"
+            value={newLastName}
+            placeholder={lastName}
+          />
           <p>Email</p>
           <input
             onChange={this.handleInput}
             type="email"
-            name="username"
-            value={username}
+            name="newUsername"
+            value={newUsername}
+            placeholder={username}
           />
           <p>Phone Number</p>
           <input
             onChange={this.handleInput}
             type="text"
-            name="phoneNumber"
+            name="newPhoneNumber"
             maxlength="10"
-            value={phoneNumber}
+            value={newPhoneNumber}
+            placeholder={phoneNumber}
           />
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Save" />
+          <input type="button" value="Cancel" onClick={this.props.toggleModal} />
         </form>
-        <h1 onClick={this.props.toggleModal}> Cancel </h1>
+        {statusMessage}
+        {/* <h1 onClick={this.props.toggleModal}>Cancel</h1> */}
       </div>
     );
   }
