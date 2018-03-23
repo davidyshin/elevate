@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import LoginForm from './LoginForm.jsx';
 import SignUpForm from './SignUpForm.jsx';
 import SplashContainer from './SplashContainer.jsx';
-import '../../stylesheets/home-nav-bar.css';
+import '../../stylesheets/top-nav.css';
 
 class AuthContainer extends Component {
   constructor() {
