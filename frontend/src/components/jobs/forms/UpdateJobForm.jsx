@@ -7,13 +7,11 @@ import ResumeUpload from './ResumeUpload.jsx';
 import CoverLetterUpload from './CoverLetterUpload.jsx';
 import UpdateInterview from './UpdateInterview.jsx';
 
-
 class UpdateJobForm extends Component {
   constructor() {
     super();
     this.state = {
       editingJob: '',
-      applicationStage: 0,
       company: '',
       companyLogo: '',
       position: '',
@@ -60,9 +58,12 @@ class UpdateJobForm extends Component {
       url: editingJob.job_posting_url,
       date_applied: date_applied
     });
-    axios.get(`/users/getInterviews/${editingJob.job_id}`, {}).then(data => {
-      this.setState({ interviews: data.data.interviews });
-    });
+    axios
+      .get(`/users/getInterviews/${editingJob.job_id}`, {})
+      .then(data => {
+        this.setState({ interviews: data.data.interviews });
+      })
+      .catch(err => console.log(err));
   }
 
   handleInput = e => {
@@ -154,7 +155,7 @@ class UpdateJobForm extends Component {
           </form>
         </div>
         {interviews.map(interview => {
-          return <UpdateInterview interview={interview} />
+          return <UpdateInterview interview={interview} />;
         })}
       </div>
     );
