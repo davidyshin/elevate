@@ -39,7 +39,7 @@ class UserInfo extends Component {
             <i onClick={this.toggleModal} className="far fa-edit user-info-edit"></i>
           </div>
           <div>
-            <p>Name: {this.props.activeUser.first_name}</p>
+            <p>Name: {this.props.activeUser.first_name} {this.props.activeUser.last_name}</p>
             <p>Email: {this.props.activeUser.username}</p>
             <p>Phone number: {this.props.activeUser.phone_number}</p>
           </div>

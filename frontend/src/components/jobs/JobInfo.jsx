@@ -38,12 +38,12 @@ class JobInfo extends Component {
           <a href={job_posting_url}>Job Posting URL</a>
         </h3>
         <h3>
-          <a href={resume_url}>Resume</a>
+          {resume_url ? <a href={resume_url}>Resume</a> : "You do not have a resume added, add one now!"}
         </h3>
         <h3>
-          <a href={cover_url}>Cover Letter</a>
+          {cover_url ? <a href={cover_url}>Cover Letter</a> : "You do not have a cover letter added, add one now!"}
         </h3>
-        <h1 id={job_id} onClick={this.handleEditClick}> Edit </h1>
+        <h1 id={job_id} onClick={this.handleEditClick}> Update </h1>
       </div>
     );
   }
