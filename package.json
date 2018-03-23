@@ -5,7 +5,6 @@
   "scripts": {
     "start": "node ./bin/www",
     "heroku-postbuild": "cd frontend && npm install --only=dev && npm install && npm run build",
-    "postdeploy": "cd db && psql -f elevate.sql"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
