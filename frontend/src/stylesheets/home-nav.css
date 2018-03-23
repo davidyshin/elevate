@@ -23,24 +23,74 @@
     z-index: 9;
     justify-content: space-between;
     font-family: 'Montserrat', sans-serif;
+    font-size: 1.4rem;
     color: rgb(0, 149, 222);
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
 }
 
 /*
-// "Jobs" and "Add Job"
+// Left section of the navigation bar 
 */
 .home-nav-left {
     display: flex;
-    width: 50%;
-    justify-content: flex-start;
+    align-items: center;
+    margin-left: 160px;
 }
 
+    /*
+    // "Jobs" and "Add Job"
+    */
+    .home-nav-left h3 {
+        font-size: 1.4rem;
+        margin-right: 22px;
+    }
+
+    /*
+    // Elevate logo on the top left 
+    */
+    .home-nav-left img {
+        width: auto;
+        height: 50px;
+        margin-right: 22px;
+        cursor: pointer;
+    }
+
 /*
-// "Profile" and "Logout" 
+// Right section of the navigation bar
 */
 .home-nav-right {
     display: flex;
-    width: 50%;
-    justify-content: flex-end;
+    align-items: center;
+    margin-right: 160px;
+}
+
+    /*
+    // "Profile" and "Logout" 
+    */
+    .home-nav-right h3 {
+        font-size: 1.4rem;
+        margin-left: 22px;
+        cursor: pointer;
+    }
+
+/*
+// Every text on the nav bar 
+*/
+.home-nav-bar a,
+.home-nav-bar a:visited {
+    text-decoration: none;
+    color: rgb(0, 149, 222);
+}
+
+/*
+// When screen width is smaller than 1300px, left and right margins become responsive 
+*/
+@media screen and (max-width: 1300px) {
+    .home-nav-left {
+        margin-left: 3%;
+    }
+
+    .home-nav-right {
+        margin-right: 3%;
+    }
 }
