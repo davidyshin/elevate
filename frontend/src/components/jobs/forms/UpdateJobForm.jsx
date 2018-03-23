@@ -5,172 +5,67 @@ import Autosuggest from 'react-autosuggest';
 import axios from 'axios';
 import ResumeUpload from './ResumeUpload.jsx';
 import CoverLetterUpload from './CoverLetterUpload.jsx';
-import AddInterview from './AddInterview.jsx';
+import UpdateInterview from './UpdateInterview.jsx';
 
 class UpdateJobForm extends Component {
   constructor() {
     super();
     this.state = {
+      editingJob: '',
       company: '',
-      suggestedCompanies: [],
       companyLogo: '',
       position: '',
-      phoneNumber: '',
-      email: '',
+      job_phone_number: '',
+      job_email: '',
       date_applied: '',
       url: '',
       applicationStage: 1,
       job_id: '',
       resume_url: '',
       cover_url: '',
-      saved: false
+      interviews: []
     };
   }
 
-  handleFirstSubmit = e => {
+  // 'UPDATE jobs SET date_applied = ${date_applied}, job_email = ${job_email}, job_phone_number = ${job_phone_number}, position_title = ${position_title}, job_posting_url = ${job_posting_url}, progress_in_search = ${progress_in_search} WHERE job_id = ${job_id} AND user_id = ${user_id}',
+
+  handleSave = e => {
     e.preventDefault();
-    const date = new Date();
-    const dateStr = date.toISOString().substring(0, 10)
+    axios.put('/users/updateJobInfo', {
+      job_id: this.state.job_id,
+      date_applied: this.state.date_applied,
+      job_email: this.state.job_email,
+      job_phone_number: this.state.job_phone_number,
+      position_title: this.state.position,
+      job_posting_url: this.state.url,
+      progress_in_search: this.state.applicationStage
+    });
+  };
+
+  componentDidMount() {
+    const { editingJob } = this.props;
+    const date = new Date(editingJob.date_applied);
+    const date_applied = date.toISOString().substring(0, 10);
+    this.setState({
+      job_id: editingJob.job_id,
+      applicationStage: editingJob.progress_in_search,
+      editingJob: editingJob,
+      company: editingJob.company_name,
+      companyLogo: editingJob.company_logo,
+      position: editingJob.position_title,
+      job_phone_number: editingJob.job_phone_number,
+      job_email: editingJob.job_email,
+      url: editingJob.job_posting_url,
+      date_applied: date_applied
+    });
     axios
-      .post('/users/createJobApp', {
-        company_name: this.state.company,
-        company_logo: this.state.companyLogo,
-        date_applied: this.state.date_applied,
-        date_logged: dateStr,
-        job_email: this.state.email,
-        job_phone_number: this.state.phoneNumber,
-        position_title: this.state.position,
-        job_posting_url: this.state.url
-      })
+      .get(`/users/getInterviews/${editingJob.job_id}`, {})
       .then(data => {
-        this.setState({
-          job_id: data.data.returned.job_id,
-          saved: true
-        });
+        this.setState({ interviews: data.data.interviews });
       })
-      .catch(err => {
-        console.log(err);
-      });
-  };
+      .catch(err => console.log(err));
+  }
 
-  addMoreInterview = e => {
-    e.preventDefault();
-    let { applicationStage } = this.state;
-    applicationStage += 1;
-    this.setState({
-      applicationStage
-    });
-  };
-
-  handleResumeInput = e => {
-    const { job_id } = this.state;
-    const resume_url = e.target.value;
-    e.preventDefault();
-    axios
-      .put('/users/updateResume', {
-        resume_url: resume_url,
-        job_id: job_id
-      })
-      .then(() => {
-        this.setState({
-          resume_url: resume_url
-        });
-      })
-      .catch(err => {
-        console.log(err);
-        this.setState({
-          message: 'Error updating resume'
-        });
-      });
-  };
-
-  handleCoverInput = e => {
-    const { job_id } = this.state;
-    const cover_url = e.target.value;
-    e.preventDefault();
-    axios
-      .put('/users/updateCoverLetter', {
-        cover_url: cover_url,
-        job_id: job_id
-      })
-      .then(() => {
-        this.setState({
-          cover_url: cover_url
-        });
-      })
-      .catch(err => {
-        console.log(err);
-        this.setState({
-          message: 'Error updating cover letter'
-        });
-      });
-  };
-
-  handleSecondSubmit = e => {
-    e.preventDefault();
-    let { applicationStage } = this.state;
-    if (parseInt(e.target.id) + 1 > applicationStage) {
-      applicationStage = parseInt(e.target.id) + 1;
-      this.setState({
-        applicationStage
-      });
-    }
-  };
-
-  getSuggestions = value => {
-    if (value.length > 2) {
-      axios
-        .get(
-          `https://autocomplete.clearbit.com/v1/companies/suggest?query=${value}`
-        )
-        .then(res => this.setState({ suggestedCompanies: res.data }))
-        .catch(err => {
-          console.log('Error fetching suggestions for dropdown, message:', err);
-        });
-    }
-  };
-
-  renderSuggestion = suggestion => (
-    <div name={suggestion.name} className="suggestion-container">
-      <img
-        style={{ width: '25px', height: '25px' }}
-        className="suggestion-logo"
-        src={suggestion.logo}
-      />
-      <p className="suggestion-name">{suggestion.name}</p>
-    </div>
-  );
-
-  getSuggestionValue = suggestion => suggestion.name;
-
-  handleCompanyInput = e => {
-    this.setState({ company: e.target.value });
-    if (this.state.company.length < 2) {
-      this.setState({
-        selectedCompany: '',
-        companyLogo: ''
-      });
-    }
-  };
-  onSuggestionsFetchRequested = ({ value }) => {
-    this.setState({
-      companySuggestions: this.getSuggestions(value)
-    });
-  };
-  // Autosuggest will call this function every time you need to clear suggestions.
-  onSuggestionsClearRequested = () => {
-    this.setState({
-      companySuggestions: []
-    });
-  };
-
-  onSuggestionSelected = (event, { suggestion, suggestionValue }) => {
-    this.setState({
-      company: suggestionValue,
-      companyLogo: suggestion.logo
-    });
-    this.onSuggestionsClearRequested();
-  };
   handleInput = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -183,24 +78,19 @@ class UpdateJobForm extends Component {
     const {
       company,
       companyLogo,
-      suggestedCompanies,
-      selectedCompany,
       position,
-      email,
+      job_email,
       date_applied,
-      phoneNumber,
+      job_phone_number,
       url,
       resume_url,
       cover_url,
       job_id,
       saved,
-      applicationStage
+      applicationStage,
+      interviews
     } = this.state;
-    const inputProps = {
-      placeholder: 'Company',
-      value: company,
-      onChange: this.handleCompanyInput
-    };
+
     const SelectedImage = e => {
       return companyLogo ? (
         <img style={{ width: '25px', height: '25px' }} src={companyLogo} />
@@ -208,23 +98,15 @@ class UpdateJobForm extends Component {
         ''
       );
     };
+
     return (
-      <div className="add-job-form">
-        <div className="add-job-info">
+      <div className="update-job-form">
+        <div className="update-job-info">
           <h3> Job Info</h3>
-          <form onSubmit={this.handleFirstSubmit}>
+          <form onSubmit={this.handleSave}>
             <p>Company:</p>
             <SelectedImage />
-            <Autosuggest
-              theme={{ suggestionsList: { listStyle: 'none' } }}
-              suggestions={suggestedCompanies}
-              onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-              onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-              getSuggestionValue={this.getSuggestionValue}
-              onSuggestionSelected={this.onSuggestionSelected}
-              renderSuggestion={this.renderSuggestion}
-              inputProps={inputProps}
-            />
+            <input type="text" value={company} disable={true} />
             <p>Position applied to:</p>
             <input
               onChange={this.handleInput}
@@ -248,21 +130,21 @@ class UpdateJobForm extends Component {
               name="url"
               type="text"
             />
-            <p> Phone Number:</p>
+            <p>Job Contact Phone Number:</p>
             <input
               onChange={this.handleInput}
-              value={phoneNumber}
+              value={job_phone_number}
               placeholder="ex: 3478030075"
-              name="phoneNumber"
+              name="job_phone_number"
               maxLength="10"
               type="text"
             />
-            <p> Email:</p>
+            <p>Job Contact Email:</p>
             <input
               onChange={this.handleInput}
-              value={email}
+              value={job_email}
               placeholder="Email Address"
-              name="email"
+              name="job_email"
               type="email"
             />
             <input
@@ -271,57 +153,10 @@ class UpdateJobForm extends Component {
               value="Save"
             />
           </form>
-          <button id="1" disabled={!saved} onClick={this.handleSecondSubmit}>
-            Next{' '}
-          </button>
         </div>
-        <div
-          hidden={applicationStage > 1 ? false : true}
-          className="add-job-resume-container"
-        >
-          <ResumeUpload
-            handleResumeInput={this.handleResumeInput}
-            handleSecondSubmit={this.handleSecondSubmit}
-            resume_url={resume_url}
-          />
-        </div>
-        <div
-          hidden={applicationStage > 2 ? false : true}
-          className="add-job-coverletter-container"
-        >
-          <CoverLetterUpload
-            handleCoverInput={this.handleCoverInput}
-            handleSecondSubmit={this.handleSecondSubmit}
-            cover_url={cover_url}
-          />
-        </div>
-        <div
-          hidden={applicationStage > 3 ? false : true}
-          className="add-job-interview-container"
-        >
-          <AddInterview
-            job_id={job_id}
-            addMoreInterview={this.addMoreInterview}
-          />
-        </div>
-        <div
-          hidden={applicationStage > 4 ? false : true}
-          className="add-job-interview-container"
-        >
-          <AddInterview
-            job_id={job_id}
-            addMoreInterview={this.addMoreInterview}
-          />
-        </div>
-        <div
-          hidden={applicationStage > 5 ? false : true}
-          className="add-job-interview-container"
-        >
-          <AddInterview
-            job_id={job_id}
-            addMoreInterview={this.addMoreInterview}
-          />
-        </div>
+        {interviews.map(interview => {
+          return <UpdateInterview interview={interview} />;
+        })}
       </div>
     );
   }
