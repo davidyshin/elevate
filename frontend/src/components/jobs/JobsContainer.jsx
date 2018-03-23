@@ -19,7 +19,11 @@ class JobsContainer extends Component {
       editingJob: job
     })
   }
-  
+  handleBack = () => {
+    this.setState({
+      editingJob: ''
+    })
+  }
 
   render() {
     const {editingJob} = this.state
@@ -31,7 +35,7 @@ class JobsContainer extends Component {
             <JobList editJob={this.editJob} activeUser={this.props.activeUser} />
           </div>
         ) : (
-          <UpdateJobForm editingJob={editingJob} />
+          <UpdateJobForm handleBack={this.handleBack} editingJob={editingJob} />
         )}
       </div>
     );

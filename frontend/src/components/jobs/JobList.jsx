@@ -44,9 +44,9 @@ class JobList extends Component {
           {jobList.map(job => {
             return (
               <li>
-                <JobItem editJob={this.props.editJob} handleClick={this.handleClick} job={job} />
+                <JobItem  handleClick={this.handleClick} job={job} />
                 {parseInt(expanded) === parseInt(job.job_id) ? (
-                  <JobInfo job={job} />
+                  <JobInfo job={job} editJob={this.props.editJob}/>
                 ) : (
                   <div />
                 )}
