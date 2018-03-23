@@ -48,26 +48,29 @@ class AddJobForm extends Component {
         job_email: this.state.email,
         job_phone_number: this.state.phoneNumber,
         position_title: this.state.position,
-        progress_in_search: this.state.applicationStage,
+        progress_in_search: 2,
         job_posting_url: this.state.url
       })
       .then(data => {
         this.setState({
           job_id: data.data.returned.job_id,
-          saved: true
+          saved: true,
+          applicationStage: 2
         });
       })
       .catch(err => {
         console.log(err);
       });
+
+    const { job_id } = this.state;
     this.updateExperience(100);
   };
 
   addMoreInterview = e => {
     e.preventDefault();
     let { interviews } = this.state;
-    interviews.push("interview")
-    this.setState({interviews})
+    interviews.push('interview');
+    this.setState({ interviews });
   };
 
   updateJobProgress = (job_id, progress_in_search) => {
@@ -96,10 +99,9 @@ class AddJobForm extends Component {
       });
   };
   handleResumeInput = e => {
-    let { job_id, applicationStage } = this.state;
+    let { job_id } = this.state;
     const resume_url = e.target.value;
     e.preventDefault();
-    applicationStage;
     axios
       .put('/users/updateResume', {
         resume_url: resume_url,
@@ -116,12 +118,12 @@ class AddJobForm extends Component {
           message: 'Error updating resume'
         });
       });
-    this.updateJobProgress(job_id, applicationStage);
+    this.updateJobProgress(job_id, 3);
     this.updateExperience(50);
   };
 
   handleCoverInput = e => {
-    let { job_id, applicationStage } = this.state;
+    let { job_id } = this.state;
     const cover_url = e.target.value;
     e.preventDefault();
     axios
@@ -140,7 +142,7 @@ class AddJobForm extends Component {
           message: 'Error updating cover letter'
         });
       });
-    this.updateJobProgress(job_id, applicationStage);
+    this.updateJobProgress(job_id, 4);
     this.updateExperience(50);
   };
 
@@ -316,7 +318,7 @@ class AddJobForm extends Component {
           </button>
         </div>
         <div
-          hidden={applicationStage > 1 ? false : true}
+          hidden={applicationStage === 2 ? false : true}
           className="add-job-resume-container"
         >
           <ResumeUpload
@@ -326,7 +328,7 @@ class AddJobForm extends Component {
           />
         </div>
         <div
-          hidden={applicationStage > 2 ? false : true}
+          hidden={applicationStage === 3 ? false : true}
           className="add-job-coverletter-container"
         >
           <CoverLetterUpload

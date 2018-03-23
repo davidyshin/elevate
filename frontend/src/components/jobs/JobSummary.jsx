@@ -21,7 +21,6 @@ class JobSummary extends Component {
   componentDidMount() {
     axios.get('/users/getAllUserApps').then(data => {
       let weekobj = {};
-      let x = [];
       let y = [];
       for (var i = 0; i < 8; i++) {
         var next = new Date(curr.getTime());
@@ -36,8 +35,14 @@ class JobSummary extends Component {
           weekobj[dateString] += 1;
         }
       });
+      let keys = Object.keys(weekobj).reverse()
+      let x = keys.map(date => {
+        date = `${date.split(" ")[1]} ${date.split(" ")[2]}`
+        return date
+      })
+
       this.setState({
-        x: Object.keys(weekobj).reverse(),
+        x: x,
         y: Object.values(weekobj).reverse()
       });
     });
