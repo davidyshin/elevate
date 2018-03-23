@@ -6,7 +6,7 @@ import axios from 'axios';
 import ResumeUpload from './ResumeUpload.jsx';
 import CoverLetterUpload from './CoverLetterUpload.jsx';
 import UpdateInterview from './UpdateInterview.jsx';
-
+import AddInterview from './AddInterview.jsx';
 
 class UpdateJobForm extends Component {
   constructor() {
@@ -25,7 +25,9 @@ class UpdateJobForm extends Component {
       job_id: '',
       resume_url: '',
       cover_url: '',
-      interviews: []
+      interviews: [],
+      addedInterviews: [],
+      experience: 0
     };
   }
 
@@ -40,7 +42,7 @@ class UpdateJobForm extends Component {
       job_phone_number: this.state.job_phone_number,
       position_title: this.state.position,
       job_posting_url: this.state.url,
-      progress_in_search: this.state.applicationStage
+      progress_in_search: this.state.applicationStage,
     });
   };
 
@@ -58,7 +60,8 @@ class UpdateJobForm extends Component {
       job_phone_number: editingJob.job_phone_number,
       job_email: editingJob.job_email,
       url: editingJob.job_posting_url,
-      date_applied: date_applied
+      date_applied: date_applied,
+      experience: this.props.activeUser.experience
     });
     axios.get(`/users/getInterviews/${editingJob.job_id}`, {}).then(data => {
       this.setState({ interviews: data.data.interviews });
@@ -71,6 +74,28 @@ class UpdateJobForm extends Component {
 
   handleDate = e => {
     this.setState({ date_applied: e.target.value });
+  };
+
+  addMoreInterview = e => {
+    e.preventDefault();
+    let { addedInterviews } = this.state;
+    addedInterviews.push('Interview');
+    this.setState({ addedInterviews: addedInterviews });
+  };
+
+  updateExperience = exp => {
+    let { experience } = this.state;
+    experience += exp;
+    this.setState({
+      experience
+    });
+    axios
+      .put('/users/updateExperience', {
+        experience: experience
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   render() {
@@ -87,7 +112,8 @@ class UpdateJobForm extends Component {
       job_id,
       saved,
       applicationStage,
-      interviews
+      interviews,
+      addedInterviews
     } = this.state;
 
     const SelectedImage = e => {
@@ -153,9 +179,28 @@ class UpdateJobForm extends Component {
             />
           </form>
         </div>
-        {interviews.map(interview => {
-          return <UpdateInterview interview={interview} />
+        <div>
+          {interviews.map(interview => {
+            return (
+              <div className="interview-form-container">
+                <UpdateInterview interview={interview} />
+              </div>
+            );
+          })}
+          <button onClick={this.addMoreInterview}>Add a Interview</button>
+        </div>
+        {addedInterviews.map(interview => {
+          return (
+            <div className="add-interview-form-container">
+              <AddInterview
+                job_id={job_id}
+                addMoreInterview={this.addMoreInterview}
+                updateExperience={this.updateExperience}
+              />
+            </div>
+          );
         })}
+        <h1 onClick={this.props.handleBack}> Back </h1>
       </div>
     );
   }

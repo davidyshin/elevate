@@ -23,8 +23,16 @@ class AddJobForm extends Component {
       job_id: '',
       resume_url: '',
       cover_url: '',
-      saved: false
+      experience: 0,
+      saved: false,
+      interviews: []
     };
+  }
+
+  componentDidMount() {
+    this.setState({
+      experience: this.props.activeUser.experience
+    });
   }
 
   handleFirstSubmit = e => {
@@ -52,23 +60,40 @@ class AddJobForm extends Component {
       .catch(err => {
         console.log(err);
       });
+    this.updateExperience(100);
   };
 
   addMoreInterview = e => {
     e.preventDefault();
-    let { applicationStage, job_id } = this.state;
-    applicationStage += 1;
-    this.setState({
-      applicationStage
-    });
-    this.updateJobProgress(job_id, applicationStage);
+    let { interviews } = this.state;
+    interviews.push("interview")
+    this.setState({interviews})
   };
 
   updateJobProgress = (job_id, progress_in_search) => {
-    axios.put('/users/updateJobProgress', {
-      job_id: job_id,
-      progress_in_search: progress_in_search
+    axios
+      .put('/users/updateJobProgress', {
+        job_id: job_id,
+        progress_in_search: progress_in_search
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  updateExperience = exp => {
+    let { experience } = this.state;
+    experience += exp;
+    this.setState({
+      experience
     });
+    axios
+      .put('/users/updateExperience', {
+        experience: experience
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
   handleResumeInput = e => {
     let { job_id, applicationStage } = this.state;
@@ -92,6 +117,7 @@ class AddJobForm extends Component {
         });
       });
     this.updateJobProgress(job_id, applicationStage);
+    this.updateExperience(50);
   };
 
   handleCoverInput = e => {
@@ -115,6 +141,7 @@ class AddJobForm extends Component {
         });
       });
     this.updateJobProgress(job_id, applicationStage);
+    this.updateExperience(50);
   };
 
   handleSecondSubmit = e => {
@@ -205,7 +232,8 @@ class AddJobForm extends Component {
       cover_url,
       job_id,
       saved,
-      applicationStage
+      applicationStage,
+      interviews
     } = this.state;
     const inputProps = {
       placeholder: 'Company',
@@ -219,6 +247,7 @@ class AddJobForm extends Component {
         ''
       );
     };
+    console.log(this.state);
     return (
       <div className="add-job-form">
         <div className="add-job-info">
@@ -306,33 +335,17 @@ class AddJobForm extends Component {
             cover_url={cover_url}
           />
         </div>
-        <div
-          hidden={applicationStage > 3 ? false : true}
-          className="add-job-interview-container"
-        >
-          <AddInterview
-            job_id={job_id}
-            addMoreInterview={this.addMoreInterview}
-          />
-        </div>
-        <div
-          hidden={applicationStage > 4 ? false : true}
-          className="add-job-interview-container"
-        >
-          <AddInterview
-            job_id={job_id}
-            addMoreInterview={this.addMoreInterview}
-          />
-        </div>
-        <div
-          hidden={applicationStage > 5 ? false : true}
-          className="add-job-interview-container"
-        >
-          <AddInterview
-            job_id={job_id}
-            addMoreInterview={this.addMoreInterview}
-          />
-        </div>
+        {interviews.map(interview => {
+          return (
+            <div className="add-job-interview-container">
+              <AddInterview
+                job_id={job_id}
+                updateExperience={this.updateExperience}
+                addMoreInterview={this.addMoreInterview}
+              />
+            </div>
+          );
+        })}
       </div>
     );
   }
