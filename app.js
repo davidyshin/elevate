@@ -6,12 +6,14 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const passport = require('passport');
+const dotenv = require('dotenv')
 
 const index = require('./routes/index');
 const users = require('./routes/users');
 
 const app = express();
-
+dotenv.load();
+console.log(process.env.NODE_ENV)
 // view engine setup
 // app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -28,7 +30,7 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'frontend/build')));
 
 app.use('/', index);
 app.use('/users', users);
