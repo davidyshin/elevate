@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import { Link, Switch, Route } from 'react-router-dom';
+import '../../stylesheets/home-nav.css';
 
 class HomeNavBar extends Component {
   constructor() {
@@ -15,9 +16,7 @@ class HomeNavBar extends Component {
         <h1>Home Nav Bar</h1>
         <Link to="/">Jobs</Link>
         <Link to="/addjob">Add Job</Link>
-        {/* profile link will be on top right side of the page, replaced by an icon(?) most likely*/}
         <Link to="/profile">Profile</Link>
-        
         <h1 onClick={this.props.logOut}>Logout</h1>
       </div>
     );
