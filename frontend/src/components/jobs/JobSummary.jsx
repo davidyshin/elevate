@@ -51,7 +51,6 @@ class JobSummary extends Component {
     const { x, y } = this.state;
     return (
       <div className="job-summary">
-        {' '}
         <Plot
           data={[
             {
@@ -68,7 +67,7 @@ class JobSummary extends Component {
             }
           ]}
           layout={{
-            width: 800,
+            width: 1200,
             height: 250,
             title: `${this.props.activeUser.first_name}'s Weekly Summary`,
             yaxis: { range: [0, Math.max(...y)+1 || 3] },

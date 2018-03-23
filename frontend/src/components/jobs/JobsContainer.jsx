@@ -18,7 +18,7 @@ class JobsContainer extends Component {
       editingJob: job
     });
   };
-  
+
   handleBack = () => {
     this.setState({
       editingJob: ''
