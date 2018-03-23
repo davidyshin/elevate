@@ -49,6 +49,8 @@ class JobSummary extends Component {
   }
   render() {
     const { x, y } = this.state;
+    // var WIDTH_IN_PERCENT_OF_PARENT = 100
+
     return (
       <div className="job-summary">
         <Plot
