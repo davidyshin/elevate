@@ -10,8 +10,8 @@ class JobItem extends Component {
 
   render() {
     const job = this.props.job;
-    const date = new Date(this.props.job.date_applied)
-    const renderDate = date.toDateString()
+    const date = new Date(this.props.job.date_applied);
+    const renderDate = date.toDateString();
     return (
       <div className="job-item">
         <h3>Company</h3>
@@ -22,7 +22,9 @@ class JobItem extends Component {
         <h3>Date Applied</h3>
         <p>{renderDate}</p>
 
-        <h1 onClick={this.props.handleUpdate} id={job.job_id}>Info</h1>
+        <h1 onClick={this.props.handleClick} id={job.job_id}>
+          Info
+        </h1>
       </div>
     );
   }

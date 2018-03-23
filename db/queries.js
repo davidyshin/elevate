@@ -8,7 +8,7 @@ const passport = require('../auth/local.js');
 ---------------------------------------
  1. getAllUserApps  // GET Route = /users/getAllUserApps
  2. getCoverLetter  // GET Route = /users/getCoverLetter/:job
- 3. getInterview // GET Route = /users/getInterview/:job
+ 3. getInterviews // GET Route = /users/getInterviews/:job
  4. getRankedBadge  // GET Route = /users/getRankedBadge/:level
  5. getResume // GET Route = /users/getResume/:job
  6. getUser // GET Route = /users/getUser
@@ -31,6 +31,7 @@ const passport = require('../auth/local.js');
  15. updateInterview // PUT Route = /users/updateInterview
  16. updateUserInfo // PUT Route = /users/updateInfo
  17. updateJobProgress // PUT Route = /users/updateJobProgress 
+ 18. updateJobInfo // PUT Route = /users/updateJobInfo/
 --------------------------------------- 
 */
 
@@ -82,12 +83,12 @@ const getCoverLetter = (req, res, next) => {
 };
 
 /* 3. */
-// GET Route = /users/getInterview/:job
+// GET Route = /users/getInterviews/:job
 
-const getInterview = (req, res, next) => {
+const getInterviews = (req, res, next) => {
   db
-    .any('SELECT * FROM Interview WHERE job_id=${job}', {
-      job: req.params.job
+    .any('SELECT * FROM interview WHERE job_id = ${job_id}', {
+      job_id: req.params.job
     })
     .then(data => {
       res.status(200).json({ interviews: data });
@@ -358,7 +359,7 @@ const updateResume = (req, res, next) => {
 const updateInterview = (req, res, next) => {
   db
     .none(
-      'UPDATE Interview SET contact = ${contact}, note = ${note}, interview_date = ${interview_date} interview_time = ${interview_time} WHERE job_id = ${job_id}',
+      'UPDATE Interview SET contact = ${contact}, note = ${note}, interview_date = ${interview_date}, interview_time = ${interview_time} WHERE job_id = ${job_id}',
       {
         contact: req.body.contact,
         note: req.body.note,
@@ -406,7 +407,7 @@ const updateUserInfo = (req, res, next) => {
 
 /* 17 */
 
-// users/updateJobProgress
+// PUT Route =  /users/updateJobProgress
 const updateJobProgress = (req, res, next) => {
   db
     .none(
@@ -428,10 +429,39 @@ const updateJobProgress = (req, res, next) => {
     });
 };
 
+/* 18. */
+// PUT Route = users/updateJobInfo
+const updateJobInfo = (req, res, next) => {
+  db
+    .none(
+      'UPDATE jobs SET date_applied = ${date_applied}, job_email = ${job_email}, job_phone_number = ${job_phone_number}, position_title = ${position_title}, job_posting_url = ${job_posting_url}, progress_in_search = ${progress_in_search} WHERE job_id = ${job_id} AND user_id = ${user_id}',
+      {
+        user_id: req.user.id,
+        job_id: req.body.job_id,
+        date_applied: req.body.date_applied,
+        job_email: req.body.job_email,
+        job_phone_number: req.body.job_phone_number,
+        position_title: req.body.position_title,
+        job_posting_url: req.body.job_posting_url,
+        progress_in_search: req.body.progress_in_search
+      }
+    )
+    .then(function(data) {
+      res.status(200).json({
+        status: 'success',
+        message: 'updated job info'
+      });
+    })
+    .catch(function(err) {
+      res.status(500).send(`Error updating job info: ${err}`);
+      return next(err);
+    });
+};
+
 module.exports = {
   getAllUserApps,
   getCoverLetter,
-  getInterview,
+  getInterviews,
   getRankedBadge,
   getResume,
   getUser,
@@ -445,5 +475,6 @@ module.exports = {
   updateResume,
   updateInterview,
   updateUserInfo,
-  updateJobProgress
+  updateJobProgress,
+  updateJobInfo
 };
