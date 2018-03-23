@@ -1,5 +1,3 @@
-// container to hold jobsummary and joblist
-
 import React, { Component } from 'react';
 import AddJobForm from './forms/AddJobForm.jsx';
 import UpdateJobForm from './forms/UpdateJobForm.jsx';
@@ -14,11 +12,13 @@ class JobsContainer extends Component {
       editingJob: ''
     };
   }
+
   editJob = job => {
     this.setState({
       editingJob: job
     });
   };
+  
   handleBack = () => {
     this.setState({
       editingJob: ''
