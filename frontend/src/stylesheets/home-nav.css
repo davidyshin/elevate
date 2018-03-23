@@ -35,6 +35,10 @@
     display: flex;
     align-items: center;
     margin-left: 160px;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    transition: 0.5s all;
 }
 
     /*
@@ -50,7 +54,7 @@
     */
     .home-nav-left img {
         width: auto;
-        height: 50px;
+        height: 25px;
         margin-right: 22px;
         cursor: pointer;
     }
@@ -62,6 +66,10 @@
     display: flex;
     align-items: center;
     margin-right: 160px;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    transition: 0.5s all;
 }
 
     /*
@@ -80,6 +88,14 @@
 .home-nav-bar a:visited {
     text-decoration: none;
     color: rgb(0, 149, 222);
+    -moz-transition: 0.5s color;
+    -o-transition: 0.5s color;
+    -webkit-transition: 0.5s color;
+    transition: 0.5s color;
+}
+
+.home-nav-bar a:hover {
+    color: rgb(24, 70, 97);
 }
 
 /*
