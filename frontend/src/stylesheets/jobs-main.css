@@ -2,9 +2,14 @@
 /*            Main Jobs Container           */
 /*------------------------------------------*/
 
+/*
+// The homapage after user logs in  
+*/
 .jobs-container {
   background-color: cornflowerblue;
+  padding-top: 60px;
 }
+
 /*------------------------------------------*/
 /*                 Job List                 */
 /*------------------------------------------*/
