@@ -42,7 +42,7 @@ class UpdateJobForm extends Component {
       job_phone_number: this.state.job_phone_number,
       position_title: this.state.position,
       job_posting_url: this.state.url,
-      progress_in_search: this.state.applicationStage,
+      progress_in_search: this.state.applicationStage
     });
   };
 
@@ -60,6 +60,8 @@ class UpdateJobForm extends Component {
       job_phone_number: editingJob.job_phone_number,
       job_email: editingJob.job_email,
       url: editingJob.job_posting_url,
+      resume_url: editingJob.resume_url,
+      cover_url: editingJob.cover_url,
       date_applied: date_applied,
       experience: this.props.activeUser.experience
     });
@@ -81,6 +83,76 @@ class UpdateJobForm extends Component {
     let { addedInterviews } = this.state;
     addedInterviews.push('Interview');
     this.setState({ addedInterviews: addedInterviews });
+  };
+
+  handleResumeInput = e => {
+    let { job_id } = this.state;
+    const resume_url = e.target.value;
+    e.preventDefault();
+    axios
+      .put('/users/updateResume', {
+        resume_url: resume_url,
+        job_id: job_id
+      })
+      .then(() => {
+        this.setState({
+          resume_url: resume_url
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({
+          message: 'Error updating resume'
+        });
+      });
+    this.updateJobProgress(job_id, 3);
+    this.updateExperience(50);
+  };
+
+  updateJobProgress = (job_id, progress_in_search) => {
+    axios
+      .put('/users/updateJobProgress', {
+        job_id: job_id,
+        progress_in_search: progress_in_search
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  handleCoverInput = e => {
+    let { job_id } = this.state;
+    const cover_url = e.target.value;
+    e.preventDefault();
+    axios
+      .put('/users/updateCoverLetter', {
+        cover_url: cover_url,
+        job_id: job_id
+      })
+      .then(() => {
+        this.setState({
+          cover_url: cover_url
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({
+          message: 'Error updating cover letter'
+        });
+      });
+    this.updateJobProgress(job_id, 4);
+    this.updateExperience(50);
+  };
+
+  handleSecondSubmit = e => {
+    e.preventDefault();
+    let { applicationStage } = this.state;
+    if (parseInt(e.target.id) + 1 > applicationStage) {
+      applicationStage = parseInt(e.target.id) + 1;
+      this.setState({
+        applicationStage
+      });
+    }
   };
 
   updateExperience = exp => {
@@ -178,6 +250,36 @@ class UpdateJobForm extends Component {
               value="Save"
             />
           </form>
+        </div>
+        <div className="resume-input-container">
+          <h4>Resume: </h4>{' '}
+          {resume_url ? (
+         <h4> {resume_url} </h4>
+        ) : (
+          <div>
+            <p> You haven't added a resume, add one now </p>
+            <ResumeUpload
+              handleResumeInput={this.handleResumeInput}
+              handleSecondSubmit={this.handleSecondSubmit}
+              resume_url={resume_url}
+            />
+          </div>
+        )}
+        </div>
+        <div className="cover-input-container">
+        <h4>Cover Letter: </h4>{' '}
+        {cover_url ? (
+          <h4> {cover_url} </h4>
+        ) : (
+          <div>
+            <p> You haven't added a Cover Letter, add one now </p>
+            <CoverLetterUpload
+              handleCoverInput={this.handleCoverInput}
+              handleSecondSubmit={this.handleSecondSubmit}
+              cover_url={cover_url}
+            />
+          </div>
+        )}
         </div>
         <div>
           {interviews.map(interview => {
