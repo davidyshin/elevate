@@ -13,7 +13,6 @@ class UpdateJobForm extends Component {
     super();
     this.state = {
       editingJob: '',
-      applicationStage: 0,
       company: '',
       companyLogo: '',
       position: '',
@@ -65,9 +64,12 @@ class UpdateJobForm extends Component {
       date_applied: date_applied,
       experience: this.props.activeUser.experience
     });
-    axios.get(`/users/getInterviews/${editingJob.job_id}`, {}).then(data => {
-      this.setState({ interviews: data.data.interviews });
-    });
+    axios
+      .get(`/users/getInterviews/${editingJob.job_id}`, {})
+      .then(data => {
+        this.setState({ interviews: data.data.interviews });
+      })
+      .catch(err => console.log(err));
   }
 
   handleInput = e => {
