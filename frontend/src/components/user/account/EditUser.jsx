@@ -26,20 +26,19 @@ class EditUser extends Component {
     });
   }
 
-  // edit user information and settings => axios.put('/updateInfo')
-
   handleInput = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
   };
 
+  // When user clicks exit, must reload the page to repopulate updated information 
+ 
   handleSubmit = e => {
     e.preventDefault();
     const editedInfo = {
       firstName: this.state.newFirstName || this.state.firstName,
       lastName: this.state.newLastName || this.state.lastName,
-      username: this.state.newUsername || this.state.username,
       phoneNumber: this.state.newPhoneNumber || this.state.phoneNumber
     };
 
@@ -47,7 +46,6 @@ class EditUser extends Component {
       .put('/users/updateUserInfo', {
         firstName: editedInfo.firstName,
         lastName: editedInfo.lastName,
-        username: editedInfo.username,
         phoneNumber: editedInfo.phoneNumber
       })
       .then(res => {
@@ -62,17 +60,16 @@ class EditUser extends Component {
           message: 'Error saving'
         })
       });
-
-    console.log(editedInfo.firstName);
   };
 
   render() {
-    const { firstName, lastName, username, phoneNumber, newFirstName, newLastName, newUsername, newPhoneNumber, message } = this.state;
+    const { firstName, lastName, phoneNumber, newFirstName, newLastName, newPhoneNumber, message } = this.state;
     const statusMessage = message ? <p>{message}</p> : null;
 
     return (
       <div className="edit-user-modal">
         <h1>Edit</h1>
+        <i onClick={this.props.toggleModal} className="far fa-times-circle"></i>
         <form onSubmit={this.handleSubmit}>
           <p>First name</p>
           <input
@@ -90,14 +87,6 @@ class EditUser extends Component {
             value={newLastName}
             placeholder={lastName}
           />
-          <p>Email</p>
-          <input
-            onChange={this.handleInput}
-            type="email"
-            name="newUsername"
-            value={newUsername}
-            placeholder={username}
-          />
           <p>Phone Number</p>
           <input
             onChange={this.handleInput}
@@ -107,11 +96,12 @@ class EditUser extends Component {
             value={newPhoneNumber}
             placeholder={phoneNumber}
           />
-          <input type="submit" value="Save" />
-          <input type="button" value="Cancel" onClick={this.props.toggleModal} />
+          <div>
+            <input type="submit" value="Save" />
+            <input type="button" value="Cancel" onClick={this.props.toggleModal} />
+          </div>
         </form>
         {statusMessage}
-        {/* <h1 onClick={this.props.toggleModal}>Cancel</h1> */}
       </div>
     );
   }

@@ -384,11 +384,10 @@ const updateInterview = (req, res, next) => {
 const updateUserInfo = (req, res, next) => {
   db
     .none(
-      'UPDATE users SET first_name = ${first_name}, last_name = ${last_name}, username = ${username}, phone_number = ${phone_number} WHERE id = ${id}',
+      'UPDATE users SET first_name = ${first_name}, last_name = ${last_name}, phone_number = ${phone_number} WHERE id = ${id}',
       {
         first_name: req.body.firstName,
         last_name: req.body.lastName,
-        username: req.body.username,
         phone_number: req.body.phoneNumber,
         id: req.user.id
       }
