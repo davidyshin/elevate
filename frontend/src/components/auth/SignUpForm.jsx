@@ -81,7 +81,7 @@ class SignUpForm extends Component {
   };
 
   chooseRandomImage = () => {
-    let randomIndex = Math.floor(Math.random() * this.profileImages.length);
+    let randomIndex = Math.floor(Math.random() * this.state.profileImages.length);
     return this.state.profileImages[randomIndex];
   }
 
