@@ -1,5 +1,3 @@
-// Add Job Form
-
 import React, { Component } from 'react';
 
 class UserActivity extends Component {
@@ -7,12 +5,16 @@ class UserActivity extends Component {
     super();
     this.state = {};
   }
-  
+
   render() {
     return (
-      <div className="user-activity-container">
+      <div className="user-activity-container" data-aos="fade-up">
         <h3>User Activity</h3>
-        <p>Some charts and shizz goes here</p>
+        <div className="user-activity-graph">
+          <p>Charts!</p>
+          <p>Legends!</p>
+          <p>John Legend!</p>
+        </div>
       </div>
     )
   }
