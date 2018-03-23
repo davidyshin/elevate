@@ -322,6 +322,7 @@ class UpdateJobForm extends Component {
             addMoreInterview={this.addMoreInterview}
           />
         </div>
+        <h1 onClick={this.props.handleBack}>Back</h1>
       </div>
     );
   }
