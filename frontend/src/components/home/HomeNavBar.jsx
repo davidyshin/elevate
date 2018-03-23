@@ -1,7 +1,7 @@
 // Global nav bar for home after user has logged in
 
 import React, { Component } from 'react';
-import { Link,  } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import '../../stylesheets/home-nav.css';
 
 class HomeNavBar extends Component {
