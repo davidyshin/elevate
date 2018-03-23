@@ -1,4 +1,4 @@
-// Global nav bar for Home AFTER user has logged in
+// Global nav bar for home after user has logged in
 
 import React, { Component } from 'react';
 import { Link, Switch, Route } from 'react-router-dom';
@@ -9,15 +9,19 @@ class HomeNavBar extends Component {
     super();
     this.state = {};
   }
-  
+
   render() {
     return (
       <div className="home-nav-bar">
-        <h1>Home Nav Bar</h1>
-        <Link to="/">Jobs</Link>
-        <Link to="/addjob">Add Job</Link>
-        <Link to="/profile">Profile</Link>
-        <h1 onClick={this.props.logOut}>Logout</h1>
+        <div className="home-nav-left">
+          <Link to="/">Jobs</Link>
+          <Link to="/addjob">Add Job</Link>
+        </div>
+        <div className="home-nav-right">
+          <Link to="/profile"><i className="far fa-user-circle"></i></Link>
+          <h3 onClick={this.props.logOut}>Logout</h3>
+        </div>
+        {/* <i onClick={this.props.logOut} className="fas fa-sign-out-alt"></i> */}
       </div>
     );
   }

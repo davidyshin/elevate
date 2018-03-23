@@ -1,4 +1,46 @@
+/*------------------------------------------*/
+/*            Home Navigation Bar           */
+/*------------------------------------------*/
 
+/*
+// Set all text tags' padding and margin to 0 
+*/
+.home-nav-bar h1, h2, h3, h4, h5, h6, p {
+    padding: 0;
+    margin: 0;
+}
+
+/*
+// Navigation bar that appears after user logs in 
+*/
 .home-nav-bar {
-    
+    background-color: #fefefe;
+    height: 60px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    display: flex;
+    z-index: 9;
+    justify-content: space-between;
+    font-family: 'Montserrat', sans-serif;
+    color: rgb(0, 149, 222);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
+}
+
+/*
+// "Jobs" and "Add Job"
+*/
+.home-nav-left {
+    display: flex;
+    width: 50%;
+    justify-content: flex-start;
+}
+
+/*
+// "Profile" and "Logout" 
+*/
+.home-nav-right {
+    display: flex;
+    width: 50%;
+    justify-content: flex-end;
 }
