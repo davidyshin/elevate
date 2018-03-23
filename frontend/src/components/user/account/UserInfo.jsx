@@ -6,9 +6,15 @@ class UserInfo extends Component {
   constructor() {
     super();
     this.state = {
-      modalOpen: false
+      modalOpen: false,
+      phoneNotification: '', 
+      emailNotification: ''
     };
   }
+
+  // Set notification settings by getting the data from backend 
+  // On checkbox, set state 
+  // On checkbox, update database with Y/N for notification settings 
 
   toggleModal = () => {
     let { modalOpen } = this.state;
@@ -17,13 +23,44 @@ class UserInfo extends Component {
     });
   };
 
+  handleInput = e => {
+    console.log(e.target.name);
+  }
+
   render() {
+    console.log(this.state); 
+
     return (
-      <div className="user-info">
-        <h3 onClick={this.toggleModal}>Edit</h3>
-        <h2>Welcome {this.props.activeUser.first_name}</h2>
-        <h2>Email: {this.props.activeUser.username}</h2>
-        <h2>Phone Number: {this.props.activeUser.phone_number}</h2>
+      <div className="user-account-container" data-aos="fade-up">
+        <div className="user-info-container">
+
+          <div className="user-info-header">
+            <h3>Account Information</h3>
+            <i onClick={this.toggleModal} className="far fa-edit user-info-edit"></i>
+          </div>
+          <div>
+            <p>Name: {this.props.activeUser.first_name}</p>
+            <p>Email: {this.props.activeUser.username}</p>
+            <p>Phone number: {this.props.activeUser.phone_number}</p>
+          </div>
+
+        </div>
+
+        <div className="user-settings-container">
+          <h3>Notification Settings</h3>
+          <div>
+            <p>Send me an important reminder ______ before the event.</p>
+            <p>Notify me on my:</p>
+            <label>
+              <input type="checkbox" name="phone" onChange={this.handleInput} />
+              Phone
+            </label>
+            <label>
+              <input type="checkbox" name="email" onChange={this.handleInput} />
+              Email
+            </label>
+          </div>
+        </div>
 
         <Modal
           isOpen={this.state.modalOpen}
