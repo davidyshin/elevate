@@ -7,7 +7,6 @@ class EditUser extends Component {
     this.state = {
       firstName: '',
       lastName: '',
-      username: '',
       phoneNumber: '',
       newFirstName: '',
       newLastName: '',
@@ -21,7 +20,6 @@ class EditUser extends Component {
     this.setState({
       firstName: this.props.activeUser.first_name,
       lastName: this.props.activeUser.last_name,
-      username: this.props.activeUser.username,
       phoneNumber: this.props.activeUser.phone_number
     });
   }
