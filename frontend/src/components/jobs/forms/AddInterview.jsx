@@ -40,6 +40,7 @@ class AddInterview extends Component {
         this.setState({
           interviewSaved: true
         });
+        this.props.updateExperience(50)
       })
       .catch(err => {
         console.log(err);

@@ -38,7 +38,7 @@ class JobsContainer extends Component {
             />
           </div>
         ) : (
-          <UpdateJobForm handleBack={this.handleBack} editingJob={editingJob} />
+          <UpdateJobForm activeUser={this.props.activeUser} handleBack={this.handleBack} editingJob={editingJob} />
         )}
       </div>
     );

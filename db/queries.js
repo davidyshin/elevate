@@ -32,6 +32,7 @@ const passport = require('../auth/local.js');
  16. updateUserInfo // PUT Route = /users/updateInfo
  17. updateJobProgress // PUT Route = /users/updateJobProgress 
  18. updateJobInfo // PUT Route = /users/updateJobInfo/
+ 19. updateExperience // PUT Route = /users/updateExperience 
 --------------------------------------- 
 */
 
@@ -457,6 +458,27 @@ const updateJobInfo = (req, res, next) => {
     });
 };
 
+const updateExperience = (req, res, next) => {
+  db
+    .none(
+      'UPDATE users SET experience = ${experience} WHERE id = ${id}',
+      {
+        experience: req.body.experience,
+        id: req.user.id
+      }
+    )
+    .then(function(data) {
+      res.status(200).json({
+        status: 'success',
+        message: 'updated user experience'
+      });
+    })
+    .catch(function(err) {
+      res.status(500).send(`Error updating job info: ${err}`);
+      return next(err);
+    });
+};
+
 module.exports = {
   getAllUserApps,
   getCoverLetter,
@@ -475,5 +497,6 @@ module.exports = {
   updateInterview,
   updateUserInfo,
   updateJobProgress,
-  updateJobInfo
+  updateJobInfo,
+  updateExperience
 };
