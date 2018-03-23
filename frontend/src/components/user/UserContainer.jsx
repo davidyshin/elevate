@@ -52,7 +52,7 @@ class UserContainer extends Component {
       <div className="user-container">
         <div className="user-top">
           <img src={activeUser.photo_url} alt={activeUser.first_name} />
-          <h3>{activeUser.first_name}</h3>
+          <h3>{activeUser.first_name} {activeUser.last_name}</h3>
         </div>
         <nav className="user-navigation">
           <h3 className={`overview ${activeComponent === 'overview' ? 'active' : null}`} onClick={this.toggleActive} id="overview">Overview</h3>

@@ -6,6 +6,7 @@ import axios from 'axios';
 import ResumeUpload from './ResumeUpload.jsx';
 import CoverLetterUpload from './CoverLetterUpload.jsx';
 import UpdateInterview from './UpdateInterview.jsx';
+import AddInterview from './AddInterview.jsx';
 
 class UpdateJobForm extends Component {
   constructor() {
@@ -23,7 +24,9 @@ class UpdateJobForm extends Component {
       job_id: '',
       resume_url: '',
       cover_url: '',
-      interviews: []
+      interviews: [],
+      addedInterviews: [],
+      experience: 0
     };
   }
 
@@ -56,7 +59,10 @@ class UpdateJobForm extends Component {
       job_phone_number: editingJob.job_phone_number,
       job_email: editingJob.job_email,
       url: editingJob.job_posting_url,
-      date_applied: date_applied
+      resume_url: editingJob.resume_url,
+      cover_url: editingJob.cover_url,
+      date_applied: date_applied,
+      experience: this.props.activeUser.experience
     });
     axios
       .get(`/users/getInterviews/${editingJob.job_id}`, {})
@@ -74,6 +80,98 @@ class UpdateJobForm extends Component {
     this.setState({ date_applied: e.target.value });
   };
 
+  addMoreInterview = e => {
+    e.preventDefault();
+    let { addedInterviews } = this.state;
+    addedInterviews.push('Interview');
+    this.setState({ addedInterviews: addedInterviews });
+  };
+
+  handleResumeInput = e => {
+    let { job_id } = this.state;
+    const resume_url = e.target.value;
+    e.preventDefault();
+    axios
+      .put('/users/updateResume', {
+        resume_url: resume_url,
+        job_id: job_id
+      })
+      .then(() => {
+        this.setState({
+          resume_url: resume_url
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({
+          message: 'Error updating resume'
+        });
+      });
+    this.updateJobProgress(job_id, 3);
+    this.updateExperience(50);
+  };
+
+  updateJobProgress = (job_id, progress_in_search) => {
+    axios
+      .put('/users/updateJobProgress', {
+        job_id: job_id,
+        progress_in_search: progress_in_search
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  handleCoverInput = e => {
+    let { job_id } = this.state;
+    const cover_url = e.target.value;
+    e.preventDefault();
+    axios
+      .put('/users/updateCoverLetter', {
+        cover_url: cover_url,
+        job_id: job_id
+      })
+      .then(() => {
+        this.setState({
+          cover_url: cover_url
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({
+          message: 'Error updating cover letter'
+        });
+      });
+    this.updateJobProgress(job_id, 4);
+    this.updateExperience(50);
+  };
+
+  handleSecondSubmit = e => {
+    e.preventDefault();
+    let { applicationStage } = this.state;
+    if (parseInt(e.target.id) + 1 > applicationStage) {
+      applicationStage = parseInt(e.target.id) + 1;
+      this.setState({
+        applicationStage
+      });
+    }
+  };
+
+  updateExperience = exp => {
+    let { experience } = this.state;
+    experience += exp;
+    this.setState({
+      experience
+    });
+    axios
+      .put('/users/updateExperience', {
+        experience: experience
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   render() {
     const {
       company,
@@ -88,7 +186,8 @@ class UpdateJobForm extends Component {
       job_id,
       saved,
       applicationStage,
-      interviews
+      interviews,
+      addedInterviews
     } = this.state;
 
     const SelectedImage = e => {
@@ -154,9 +253,58 @@ class UpdateJobForm extends Component {
             />
           </form>
         </div>
-        {interviews.map(interview => {
-          return <UpdateInterview interview={interview} />;
+        <div className="resume-input-container">
+          <h4>Resume: </h4>{' '}
+          {resume_url ? (
+         <h4> {resume_url} </h4>
+        ) : (
+          <div>
+            <p> You haven't added a resume, add one now </p>
+            <ResumeUpload
+              handleResumeInput={this.handleResumeInput}
+              handleSecondSubmit={this.handleSecondSubmit}
+              resume_url={resume_url}
+            />
+          </div>
+        )}
+        </div>
+        <div className="cover-input-container">
+        <h4>Cover Letter: </h4>{' '}
+        {cover_url ? (
+          <h4> {cover_url} </h4>
+        ) : (
+          <div>
+            <p> You haven't added a Cover Letter, add one now </p>
+            <CoverLetterUpload
+              handleCoverInput={this.handleCoverInput}
+              handleSecondSubmit={this.handleSecondSubmit}
+              cover_url={cover_url}
+            />
+          </div>
+        )}
+        </div>
+        <div>
+          {interviews.map(interview => {
+            return (
+              <div className="interview-form-container">
+                <UpdateInterview interview={interview} />
+              </div>
+            );
+          })}
+          <button onClick={this.addMoreInterview}>Add a Interview</button>
+        </div>
+        {addedInterviews.map(interview => {
+          return (
+            <div className="add-interview-form-container">
+              <AddInterview
+                job_id={job_id}
+                addMoreInterview={this.addMoreInterview}
+                updateExperience={this.updateExperience}
+              />
+            </div>
+          );
         })}
+        <h1 onClick={this.props.handleBack}> Back </h1>
       </div>
     );
   }
