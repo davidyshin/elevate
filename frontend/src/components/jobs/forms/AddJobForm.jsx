@@ -6,6 +6,7 @@ import axios from 'axios';
 import ResumeUpload from './ResumeUpload.jsx';
 import CoverLetterUpload from './CoverLetterUpload.jsx';
 import AddInterview from './AddInterview.jsx';
+// import '../../../stylesheets/jobs-add.css'
 
 class AddJobForm extends Component {
   constructor() {
@@ -251,7 +252,7 @@ class AddJobForm extends Component {
     };
     console.log(this.state);
     return (
-      <div className="add-job-form">
+      <div className="add-job-form-container">
         <div className="add-job-info">
           <h3> Job Info</h3>
           <form onSubmit={this.handleFirstSubmit}>
@@ -318,7 +319,7 @@ class AddJobForm extends Component {
           </button>
         </div>
         <div
-          hidden={applicationStage === 2 ? false : true}
+          hidden={applicationStage >= 2 ? false : true}
           className="add-job-resume-container"
         >
           <ResumeUpload
@@ -328,7 +329,7 @@ class AddJobForm extends Component {
           />
         </div>
         <div
-          hidden={applicationStage === 3 ? false : true}
+          hidden={applicationStage >= 3 ? false : true}
           className="add-job-coverletter-container"
         >
           <CoverLetterUpload
