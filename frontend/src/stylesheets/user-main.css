@@ -1,6 +1,10 @@
 /*------------------------------------------*/
 /*              Main User Page              */
 /*------------------------------------------*/
+
+/*
+// The user profile page when user clicks on "profile" icon 
+*/
 .user-container {
     background-color: rgb(245, 240, 245);
     display: flex;
@@ -8,6 +12,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+    padding-top: 60px;
 }
 
 .user-container h1, h2, h3, h4, h5, h6, p {
