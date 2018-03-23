@@ -1,0 +1,112 @@
+/*------------------------------------------*/
+/*            Home Navigation Bar           */
+/*------------------------------------------*/
+
+/*
+// Set all text tags' padding and margin to 0 
+*/
+.home-nav-bar h1, h2, h3, h4, h5, h6, p {
+    padding: 0;
+    margin: 0;
+}
+
+/*
+// Navigation bar that appears after user logs in 
+*/
+.home-nav-bar {
+    background-color: #fefefe;
+    height: 60px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    display: flex;
+    z-index: 9;
+    justify-content: space-between;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.4rem;
+    color: rgb(0, 149, 222);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
+}
+
+/*
+// Left section of the navigation bar 
+*/
+.home-nav-left {
+    display: flex;
+    align-items: center;
+    margin-left: 160px;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    transition: 0.5s all;
+}
+
+    /*
+    // "Jobs" and "Add Job"
+    */
+    .home-nav-left h3 {
+        font-size: 1.4rem;
+        margin-right: 22px;
+    }
+
+    /*
+    // Elevate logo on the top left 
+    */
+    .home-nav-left img {
+        width: auto;
+        height: 25px;
+        margin-right: 22px;
+        cursor: pointer;
+    }
+
+/*
+// Right section of the navigation bar
+*/
+.home-nav-right {
+    display: flex;
+    align-items: center;
+    margin-right: 160px;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    transition: 0.5s all;
+}
+
+    /*
+    // "Profile" and "Logout" 
+    */
+    .home-nav-right h3 {
+        font-size: 1.4rem;
+        margin-left: 22px;
+        cursor: pointer;
+    }
+
+/*
+// Every text on the nav bar 
+*/
+.home-nav-bar a,
+.home-nav-bar a:visited {
+    text-decoration: none;
+    color: rgb(0, 149, 222);
+    -moz-transition: 0.5s color;
+    -o-transition: 0.5s color;
+    -webkit-transition: 0.5s color;
+    transition: 0.5s color;
+}
+
+.home-nav-bar a:hover {
+    color: rgb(24, 70, 97);
+}
+
+/*
+// When screen width is smaller than 1300px, left and right margins become responsive 
+*/
+@media screen and (max-width: 1300px) {
+    .home-nav-left {
+        margin-left: 3%;
+    }
+
+    .home-nav-right {
+        margin-right: 3%;
+    }
+}
