@@ -31,8 +31,6 @@ class JobList extends Component {
     this.setState({
       expanded: e.target.id
     });
-    console.log(e.target.id);
-    console.log(this.state);
   };
 
   render() {

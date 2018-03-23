@@ -10,7 +10,7 @@ const passport = require('../auth/local');
 ---------------------------------------
  1. getAllUserApps  // GET Route = /users/getAllUserApps
  2. getCoverLetter  // GET Route = /users/getCoverLetter/:job
- 3. getInterview // GET Route = /users/getInterview/:job
+ 3. getInterviews // GET Route = /users/getInterviews/:job
  4. getRankedBadge  // GET Route = /users/getRankedBadge/:level
  5. getResume // GET Route = /users/getResume/:job
  6. getUser // GET Route = /users/getUser
@@ -32,7 +32,7 @@ const passport = require('../auth/local');
  15. updateInterview // PUT Route = /users/updateInterview
  16. updateUserInfo // PUT Route = /users/updateInfo
  17. updateJobProgress // PUT Route = /users/updateJobProgress
- 
+ 18. updateJobInfo // PUT Route = /users/updateJobInfo/ 
 --------------------------------------- 
 */
 
@@ -44,8 +44,8 @@ router.get('/getAllUserApps', loginRequired, db.getAllUserApps);
 /* 2. getCoverLetter  // GET Route = /users/getCoverLetter/:job */
 router.get('/getCoverLetter/:job', loginRequired, db.getCoverLetter);
 
-/* 3. getInterview // GET Route = /users/getInterview/:job */
-router.get('/getInterview/:job', loginRequired, db.getInterview);
+/* 3. getInterviews // GET Route = /users/getInterviews/:job */
+router.get('/getInterviews/:job', loginRequired, db.getInterviews);
 
 /* 4. getRankedBadge  // GET Route = /users/getRankedBadge/:level */
 router.get('/getRankedBadge/:level', loginRequired, db.getRankedBadge);
@@ -99,4 +99,6 @@ router.put('/updateUserInfo', loginRequired, db.updateUserInfo);
 /* 17. updateJobProgress // PUT Route = /users/updateJobProgress */
 router.put('/updateJobProgress', loginRequired, db.updateJobProgress);
 
+/* 18. updateJobInfo // PUT Route = users/updateJobInfo */
+router.put('/updateJobInfo', loginRequired, db.updateJobInfo)
 module.exports = router;
