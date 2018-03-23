@@ -13,7 +13,13 @@ class SignUpForm extends Component {
       password: '',
       retypePassword: '',
       message: null,
-      photo_url: ''
+      profileImages: [
+        'https://i.imgur.com/fczP2wH.png',
+        'https://i.imgur.com/0UJFSqK.png',
+        'https://i.imgur.com/XsVmYKK.png',
+        'https://i.imgur.com/ePbPHIY.png',
+        'https://i.imgur.com/wuyr6CT.png'
+      ]
     };
   }
 
@@ -25,15 +31,7 @@ class SignUpForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const {
-      username,
-      firstName,
-      lastName,
-      phoneNumber,
-      password,
-      photo_url,
-      retypePassword
-    } = this.state;
+    const { username, firstName, lastName, phoneNumber, password, retypePassword } = this.state;
 
     if (password.length < 6) {
       this.setState({
@@ -44,6 +42,8 @@ class SignUpForm extends Component {
         message: 'Passwords do not match'
       });
     } else {
+      let photoUrl = this.chooseRandomImage();
+
       axios
         .post('/users/newuser', {
           username: username,
@@ -51,7 +51,7 @@ class SignUpForm extends Component {
           lastName: lastName,
           phoneNumber: phoneNumber,
           password: password,
-          photo_url: photo_url
+          photo_url: photoUrl
         })
         .then(() => {
           axios
@@ -80,16 +80,13 @@ class SignUpForm extends Component {
     }
   };
 
+  chooseRandomImage = () => {
+    let randomIndex = Math.floor(Math.random() * this.state.profileImages.length);
+    return this.state.profileImages[randomIndex];
+  }
+
   render() {
-    const {
-      username,
-      firstName,
-      lastName,
-      phoneNumber,
-      password,
-      retypePassword,
-      message
-    } = this.state;
+    const { username, firstName, lastName, phoneNumber, password, retypePassword, message } = this.state;
     const errorMessage = message ? <p>{message}</p> : null;
 
     return (
