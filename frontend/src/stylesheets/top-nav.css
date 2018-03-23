@@ -3,9 +3,8 @@
 /*------------------------------------------*/
 
 /*
-Found in AuthContainer.jsx 
-Holds the global navigation bar 
-Usage: <nav className="top-navigation">
+// Found in AuthContainer.jsx 
+// Holds the global navigation bar 
 */
 .top-navigation {
     background-color: #fefefe;
@@ -22,8 +21,7 @@ Usage: <nav className="top-navigation">
 }
 
 /*
-Contains logo on the left side of the navigation bar 
-Usage: <div className="top-navigation-left">
+// Contains logo on the left side of the navigation bar 
 */
 .top-navigation-left {
     display: flex;
@@ -42,8 +40,7 @@ Usage: <div className="top-navigation-left">
     }
 
 /*
-Contains login and signup text on the right side of navigation bar 
-Usage: <div className="top-navigation-right"> 
+// Contains login and signup text on the right side of navigation bar 
 */
 .top-navigation-right {
     display: flex;
@@ -71,8 +68,7 @@ Usage: <div className="top-navigation-right">
     }
 
 /*
-When screen width is smaller than 1300px,
-left and right margins become responsive 
+// When screen width is smaller than 1300px, left and right margins become responsive 
 */
 @media screen and (max-width: 1300px) {
     .top-navigation-left {
