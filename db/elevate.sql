@@ -48,11 +48,11 @@ INSERT INTO Jobs
     (user_id, company_name, resume_url, cover_url, company_logo, job_posting_url, position_title, job_email, job_phone_number, date_applied, date_logged, progress_in_search, salary)
 VALUES
     (1, 'Apple', 'RESUME URL', 'COVER URL', 'https://logo.clearbit.com/apple.com', 'job posting url', 'Junior Developer', 'blurb@gmail', '3471218976', '2018-01-02', '2018-03-15', 1, '70,000'),
-    (1, 'Apple', 'RESUME URL', 'COVER URL', 'https://logo.clearbit.com/apple.com', 'job posting url' , 'Junior Developer', 'blurnnb@gmail', '3471218976', '2018-01-02', '2018-03-16', 1, '70,000'),
-    (1, 'Apple', 'RESUME URL', 'COVER URL', 'https://logo.clearbit.com/apple.com', 'job posting url' , 'Junior Developer', 'blurb@gmail', '3471218976', '2018-01-02', '2018-03-20', 1, '70,000'),
-    (1, 'Apple', 'RESUME URL', 'COVER URL', 'https://logo.clearbit.com/apple.com', 'job posting url', 'Junior Developer', 'blurnnb@gmail', '3471218976', '2018-01-02', '2018-03-19', 1, '70,000'),
-    (1, 'Apple', 'RESUME URL', 'COVER URL', 'https://logo.clearbit.com/apple.com', 'job posting url', 'Junior Developer', 'threeblurb@gmail', '3471218976', '2018-01-02', '2018-03-22', 1, '70,000'),
-    (1, 'Apple', 'RESUME URL', 'COVER URL', 'https://logo.clearbit.com/apple.com', 'job posting url', 'Junior Developer', 'blurnnb@gmail', '3471218976', '2018-01-02', '2018-03-22', 1, '70,000');
+    (1, 'Apple', 'RESUME URL', 'COVER URL', 'https://logo.clearbit.com/apple.com', 'job posting url' , 'Junior Developer', 'blurnnb@gmail', '3471218976', '2018-01-02', '2018-03-16', 3, '70,000'),
+    (1, 'Apple', 'RESUME URL', 'COVER URL', 'https://logo.clearbit.com/apple.com', 'job posting url' , 'Junior Developer', 'blurb@gmail', '3471218976', '2018-01-02', '2018-03-20', 3, '70,000'),
+    (1, 'Apple', 'RESUME URL', 'COVER URL', 'https://logo.clearbit.com/apple.com', 'job posting url', 'Junior Developer', 'blurnnb@gmail', '3471218976', '2018-01-02', '2018-03-19', 3, '70,000'),
+    (1, 'Apple', 'RESUME URL', 'COVER URL', 'https://logo.clearbit.com/apple.com', 'job posting url', 'Junior Developer', 'threeblurb@gmail', '3471218976', '2018-01-02', '2018-03-22', 3, '70,000'),
+    (1, 'Apple', 'RESUME URL', 'COVER URL', 'https://logo.clearbit.com/apple.com', 'job posting url', 'Junior Developer', 'blurnnb@gmail', '3471218976', '2018-01-02', '2018-03-22', 4, '70,000');
 -- Drop TABLE Resumes CASCADE;
 -- Drop TABLE Cover_Letters CASCADE;
 DROP TABLE Interview

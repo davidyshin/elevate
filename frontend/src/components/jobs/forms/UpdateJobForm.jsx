@@ -11,61 +11,22 @@ class UpdateJobForm extends Component {
   constructor() {
     super();
     this.state = {
-      company: '',
-      suggestedCompanies: [],
-      companyLogo: '',
-      position: '',
-      phoneNumber: '',
-      email: '',
-      date_applied: '',
-      url: '',
-      applicationStage: 1,
-      job_id: '',
-      resume_url: '',
-      cover_url: '',
-      saved: false
+      editingJob: '',
+      applicationStage: 0
     };
   }
-
-  handleFirstSubmit = e => {
-    e.preventDefault();
-    const date = new Date();
-    const dateStr = date.toISOString().substring(0, 10)
-    axios
-      .post('/users/createJobApp', {
-        company_name: this.state.company,
-        company_logo: this.state.companyLogo,
-        date_applied: this.state.date_applied,
-        date_logged: dateStr,
-        job_email: this.state.email,
-        job_phone_number: this.state.phoneNumber,
-        position_title: this.state.position,
-        job_posting_url: this.state.url
-      })
-      .then(data => {
-        this.setState({
-          job_id: data.data.returned.job_id,
-          saved: true
-        });
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-
-  addMoreInterview = e => {
-    e.preventDefault();
-    let { applicationStage } = this.state;
-    applicationStage += 1;
+  componentDidMount() {
     this.setState({
-      applicationStage
+      applicationStage: this.props.editingJob.progress_in_search,
+      editingJob: this.props.editingJob
     });
-  };
+  }
 
   handleResumeInput = e => {
-    const { job_id } = this.state;
+    let { job_id, applicationStage } = this.state;
     const resume_url = e.target.value;
     e.preventDefault();
+    applicationStage;
     axios
       .put('/users/updateResume', {
         resume_url: resume_url,
@@ -82,10 +43,11 @@ class UpdateJobForm extends Component {
           message: 'Error updating resume'
         });
       });
+    this.updateJobProgress(job_id, applicationStage);
   };
 
   handleCoverInput = e => {
-    const { job_id } = this.state;
+    let { job_id, applicationStage } = this.state;
     const cover_url = e.target.value;
     e.preventDefault();
     axios
@@ -104,6 +66,7 @@ class UpdateJobForm extends Component {
           message: 'Error updating cover letter'
         });
       });
+    this.updateJobProgress(job_id, applicationStage);
   };
 
   handleSecondSubmit = e => {
@@ -322,7 +285,6 @@ class UpdateJobForm extends Component {
             addMoreInterview={this.addMoreInterview}
           />
         </div>
-        <h1 onClick={this.props.handleBack}>Back</h1>
       </div>
     );
   }
