@@ -10,14 +10,36 @@ import '../../stylesheets/jobs-main.css';
 class JobsContainer extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      editingJob: ''
+    };
   }
+  editJob = job => {
+    this.setState({
+      editingJob: job
+    });
+  };
+  handleBack = () => {
+    this.setState({
+      editingJob: ''
+    });
+  };
 
   render() {
+    const { editingJob } = this.state;
     return (
       <div className="jobs-container">
-        <JobSummary activeUser={this.props.activeUser} />
-        <JobList activeUser={this.props.activeUser} />
+        {!editingJob ? (
+          <div className="active-jobs-container">
+            <JobSummary activeUser={this.props.activeUser} />
+            <JobList
+              editJob={this.editJob}
+              activeUser={this.props.activeUser}
+            />
+          </div>
+        ) : (
+          <UpdateJobForm handleBack={this.handleBack} editingJob={editingJob} />
+        )}
       </div>
     );
   }
