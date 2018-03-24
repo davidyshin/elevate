@@ -8,7 +8,8 @@ class AddInterview extends Component {
       date: '',
       contact: '',
       note: '',
-      time: ''
+      time: '',
+      interviewSaved: false
     };
   }
 
@@ -51,8 +52,8 @@ class AddInterview extends Component {
     const { date, contact, note, time, interviewSaved } = this.state;
     return (
       <div className="add-interview-form">
-        <h3>Add Interview</h3>
         <form onSubmit={this.handleSubmit}>
+        <h1>Add Interview</h1>
           <p>Date</p>
           <input
             value={date}
@@ -80,13 +81,15 @@ class AddInterview extends Component {
             type="submit"
             value="Save"
           />
-        </form>
-        <button
+          <button
+          className="add-interview-button"
           disabled={!interviewSaved}
           onClick={this.props.addMoreInterview}
         >
           Add Another
         </button>
+        </form>
+
       </div>
     );
   }

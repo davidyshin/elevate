@@ -1,0 +1,233 @@
+/*------------------------------------------*/
+/*              Edit Job Form Page          */
+/*------------------------------------------*/
+
+.update-job-form-container {
+  /* padding-top: 60px; */
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  padding-top: 100px;
+  padding-bottom: 20px;
+  background-color: #f5f0f5;
+  transition: 0.3s all;
+}
+
+/*
+  // Update Job form
+  */
+.update-job-form-container form,
+.resume-url-container,
+.cover-url-container {
+  background-color: #fefefe;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 450px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
+  border-radius: 4px;
+  padding: 22px;
+  margin: 0 auto;
+}
+
+.update-job-applied-company {
+  background-color: #fefefe;
+}
+
+.update-job-form-input-title {
+  width: 396px;
+  display: flex;
+  justify-content: flex-start;
+}
+.update-job-form-container p {
+  font-size: 15px;
+  font-weight: 300;
+}
+
+/*
+  // Each stage of the application has it's own form and box, separated by 50px
+  */
+
+.resume-form,
+.cover-letter-form,
+.add-interview-form,
+.resume-input-container,
+.cover-input-container,
+.interview-form-container {
+  padding-top: 50px;
+}
+.cover-url, .resume-url {
+  font-size: 15px;
+}
+/*
+  // Input boxes in the forms, and the textarea === note section
+  */
+
+.update-job-form-container form input,
+textarea {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  outline: none;
+  border: none;
+  width: 350px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  color: rgba(40, 60, 83, 0.8);
+  padding: 18px 22px;
+  margin: 4px;
+  font-size: 1.2rem;
+  -moz-transition: 0.3s all;
+  -o-transition: 0.3s all;
+  -webkit-transition: 0.3s all;
+  transition: 0.3s all;
+}
+
+textarea {
+  font-size: 16px;
+  height: 200px;
+  resize: none;
+}
+/*
+  // Input text box placeholders and fonts
+  */
+
+.update-job-form-container form input::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 400;
+  font-size: 13px;
+}
+.update-job-form-container form input[type='text'],
+.update-job-form-container form input[type='email'],
+.update-job-form-container form input[type='date'] {
+  font-size: 20px;
+}
+
+.update-job-form-container form input[type='date'],
+.update-job-form-container form input[type='time'] {
+  font-size: 16px;
+}
+
+.update-job-form-container form input:focus,
+button:focus {
+  border: 1px solid rgba(0, 149, 222, 0.6);
+}
+
+/*
+  // Button stylings
+  */
+
+.update-job-form-container form input[type='submit'] {
+  background: linear-gradient(
+    to right,
+    rgba(67, 42, 246, 1) 0%,
+    rgba(0, 149, 222, 1) 100%
+  );
+  border-radius: 60px;
+  width: 200px;
+  font-weight: 300;
+  color: #fefefe;
+  margin-top: 30px;
+  cursor: pointer;
+  -moz-transition: 0.2s all;
+  -o-transition: 0.2s all;
+  -webkit-transition: 0.2s all;
+  transition: 0.2s all;
+  font-size: 15px;
+}
+
+.add-interview-button {
+  background: linear-gradient(
+    to right,
+    rgba(67, 42, 246, 1) 0%,
+    rgba(0, 149, 222, 1) 100%
+  );
+  border-radius: 60px;
+  width: 200px;
+  padding: 22px 18px 22px 18px;
+  color: #fefefe;
+  font-size: 15px;
+}
+.add-interview-button:disabled,
+.update-job-form-container form input[type='submit']:disabled {
+  background: rgb(255, 255, 255);
+}
+/*
+  // Button gets bigger on hover
+  */
+.update-job-form-container form input[type='submit']:hover,
+button:hover {
+  transform: scale(1.02);
+}
+
+/*  hard coding font awesome icons to the right sides of the add job form input */
+.magnifying-glass,
+.brief-case {
+  position: relative;
+  z-index: 90;
+  left: 350px;
+  color: rgba(0, 0, 0, 0.2);
+  bottom: 44px;
+}
+
+/* hard codoing font awesome pencil to the right hand top corner of the notes area */
+
+.pencil-icon {
+  position: relative;
+  z-index: 90;
+  left: 355px;
+  color: rgba(0, 0, 0, 0.2);
+  bottom: 223px;
+}
+
+.company-input {
+  height: 70px;
+}
+.company-image {
+  z-index: 90;
+  position: relative;
+  width: 40px;
+  left: 335px;
+  bottom: 55px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.suggestion-container {
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 5px;
+  height: 50px;
+  width: 394px;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+}
+
+.suggestion-container:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.suggestion-container img {
+  border-radius: 50%;
+  width: 50px;
+  padding-left: 5px;
+  height: 50px;
+}
+.suggestion-container p {
+  padding-left: 5px;
+}
+
+/*
+  // When the screen size is smaller than 720px, form width becomes responsive 
+  */
+@media screen and (max-width: 720px) {
+  .update-job-form-container {
+    padding-top: 100px;
+  }
+
+  .update-job-form-container form {
+    width: 80%;
+  }
+}
