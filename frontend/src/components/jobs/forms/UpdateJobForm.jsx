@@ -7,6 +7,7 @@ import ResumeUpload from './ResumeUpload.jsx';
 import CoverLetterUpload from './CoverLetterUpload.jsx';
 import UpdateInterview from './UpdateInterview.jsx';
 import AddInterview from './AddInterview.jsx';
+import '../../../stylesheets/jobs-update.css';
 
 class UpdateJobForm extends Component {
   constructor() {
@@ -190,22 +191,30 @@ class UpdateJobForm extends Component {
       addedInterviews
     } = this.state;
 
-    const SelectedImage = e => {
-      return companyLogo ? (
-        <img style={{ width: '25px', height: '25px' }} src={companyLogo} />
-      ) : (
-        ''
-      );
-    };
-
     return (
-      <div className="update-job-form">
+      <div className="update-job-form-container">
         <div className="update-job-info">
-          <h3> Job Info</h3>
           <form onSubmit={this.handleSave}>
+            <h1> Job Info</h1>
             <p>Company:</p>
-            <SelectedImage />
-            <input type="text" value={company} disable={true} />
+            <div className="company-input">
+              <div>
+                <input
+                  className="update-job-applied-company"
+                  type="text"
+                  value={company}
+                  disable={true}
+                  readOnly
+                />
+              </div>
+              <span>
+                {companyLogo ? (
+                  <img className="company-image" src={companyLogo} />
+                ) : (
+                  <i class="fas fa-building fa-2x" />
+                )}{' '}
+              </span>
+            </div>
             <p>Position applied to:</p>
             <input
               onChange={this.handleInput}
@@ -254,44 +263,50 @@ class UpdateJobForm extends Component {
           </form>
         </div>
         <div className="resume-input-container">
-          <h4>Resume: </h4>{' '}
           {resume_url ? (
-         <h4> {resume_url} </h4>
-        ) : (
-          <div>
-            <p> You haven't added a resume, add one now </p>
-            <ResumeUpload
-              handleResumeInput={this.handleResumeInput}
-              handleSecondSubmit={this.handleSecondSubmit}
-              resume_url={resume_url}
-            />
-          </div>
-        )}
+            <div className="resume-url-container">
+              <h1> Resume: </h1>
+              <a className="resume-url" href={resume_url}>Your uploaded resume</a>
+            </div>
+          ) : (
+            <div>
+              <h1> Resume: </h1>
+              <p> You haven't added a resume, add one now </p>
+              <ResumeUpload
+                handleResumeInput={this.handleResumeInput}
+                handleSecondSubmit={this.handleSecondSubmit}
+                resume_url={resume_url}
+              />
+            </div>
+          )}
         </div>
         <div className="cover-input-container">
-        <h4>Cover Letter: </h4>{' '}
-        {cover_url ? (
-          <h4> {cover_url} </h4>
-        ) : (
-          <div>
-            <p> You haven't added a Cover Letter, add one now </p>
-            <CoverLetterUpload
-              handleCoverInput={this.handleCoverInput}
-              handleSecondSubmit={this.handleSecondSubmit}
-              cover_url={cover_url}
-            />
-          </div>
-        )}
+          {cover_url ? (
+            <div className="cover-url-container">
+              <h1>Cover Letter: </h1>
+              <a className="cover-url" href={cover_url}>Your uploaded cover letter</a>
+            </div>
+          ) : (
+            <div>
+              <h1>Cover Letter: </h1>
+              <p> You haven't added a Cover Letter, add one now </p>
+              <CoverLetterUpload
+                handleCoverInput={this.handleCoverInput}
+                handleSecondSubmit={this.handleSecondSubmit}
+                cover_url={cover_url}
+              />
+            </div>
+          )}
         </div>
         <div>
           {interviews.map(interview => {
             return (
               <div className="interview-form-container">
-                <UpdateInterview interview={interview} />
+                <UpdateInterview interview={interview} addMoreInterview={this.addMoreInterview} />
               </div>
             );
           })}
-          <button onClick={this.addMoreInterview}>Add a Interview</button>
+       
         </div>
         {addedInterviews.map(interview => {
           return (

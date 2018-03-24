@@ -56,8 +56,8 @@ class UpdateInterview extends Component {
     const { date, contact, note, time } = this.state;
     return (
       <div className="update-interview-form">
-        <h3>Update Interview</h3>
         <form onSubmit={this.handleSubmit}>
+          <h1>Update Interview</h1>
           <p>Date</p>
           <input
             value={date}
@@ -85,6 +85,7 @@ class UpdateInterview extends Component {
             type="submit"
             value="Save"
           />
+          <button className="add-interview-button" onClick={this.props.addMoreInterview}>Add an Interview</button>
         </form>
       </div>
     );
