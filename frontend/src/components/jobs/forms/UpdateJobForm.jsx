@@ -98,8 +98,11 @@ class UpdateJobForm extends Component {
         job_id: job_id
       })
       .then(() => {
+        let {applicationStage} = this.state
+        applicationStage = 3 ? 4 : 3
         this.setState({
-          resume_url: resume_url
+          resume_url: resume_url,
+          applicationStage
         });
       })
       .catch(err => {
@@ -133,6 +136,8 @@ class UpdateJobForm extends Component {
         job_id: job_id
       })
       .then(() => {
+        let {applicationStage} = this.state
+        applicationStage = 3 ? 4 : 3
         this.setState({
           cover_url: cover_url
         });
@@ -145,17 +150,6 @@ class UpdateJobForm extends Component {
       });
     this.updateJobProgress(job_id, 4);
     this.updateExperience(50);
-  };
-
-  handleSecondSubmit = e => {
-    e.preventDefault();
-    let { applicationStage } = this.state;
-    if (parseInt(e.target.id) + 1 > applicationStage) {
-      applicationStage = parseInt(e.target.id) + 1;
-      this.setState({
-        applicationStage
-      });
-    }
   };
 
   updateExperience = exp => {
@@ -207,13 +201,16 @@ class UpdateJobForm extends Component {
                   readOnly
                 />
               </div>
-              <span>
-                {companyLogo ? (
-                  <img className="company-image" src={companyLogo} />
-                ) : (
-                  <i class="fas fa-building fa-2x" />
-                )}{' '}
-              </span>
+              {companyLogo ? (
+                <img
+                  className="company-image"
+                  src={companyLogo}
+                />
+              ) : (
+                <span className="building-icon">
+                <i class="fas fa-building fa-2x"></i>
+                </span>
+              )}
             </div>
             <p>Position applied to:</p>
             <input

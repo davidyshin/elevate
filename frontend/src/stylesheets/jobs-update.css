@@ -163,8 +163,7 @@ button:hover {
 }
 
 /*  hard coding font awesome icons to the right sides of the add job form input */
-.magnifying-glass,
-.brief-case {
+.building-icon {
   position: relative;
   z-index: 90;
   left: 350px;
@@ -185,11 +184,12 @@ button:hover {
 .company-input {
   height: 70px;
 }
+
 .company-image {
   z-index: 90;
   position: relative;
   width: 40px;
-  left: 335px;
+  left: 340px;
   bottom: 55px;
   height: 40px;
   border-radius: 50%;
