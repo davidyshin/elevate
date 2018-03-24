@@ -41,7 +41,7 @@ class AddInterview extends Component {
         this.setState({
           interviewSaved: true
         });
-        this.props.updateExperience(50)
+        this.props.updateExperience(50);
       })
       .catch(err => {
         console.log(err);
@@ -61,6 +61,7 @@ class AddInterview extends Component {
             name="date"
             type="date"
           />
+          <p>Interview Time</p>
           <input
             value={time}
             onChange={this.handleInput}
@@ -75,7 +76,17 @@ class AddInterview extends Component {
             type="text"
           />
           <p>Note</p>
-          <textarea value={note} onChange={this.handleInput} name="note" />
+          <div className="interview-note-area">
+            <div>
+              <textarea
+                value={note}
+                placeholder="Note"
+                onChange={this.handleInput}
+                name="note"
+              />
+            </div>
+            <span className="pencil-icon"><i class="fas fa-pencil-alt fa-2x"></i></span>
+          </div>
           <input
             disabled={interviewSaved || !date || !contact}
             type="submit"

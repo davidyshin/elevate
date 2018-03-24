@@ -6,7 +6,12 @@ import axios from 'axios';
 import ResumeUpload from './ResumeUpload.jsx';
 import CoverLetterUpload from './CoverLetterUpload.jsx';
 import AddInterview from './AddInterview.jsx';
-// import '../../../stylesheets/jobs-add.css'
+import theme from '../../../stylesheets/jobs-add.css';
+
+const AutoSuggestStyling = {
+  suggestionsList: { listStyle: 'none' }
+  // suggestion: { display: 'flex', width: '400px', flexDirection: 'row', justifyContent: 'space-between'}
+};
 
 class AddJobForm extends Component {
   constructor() {
@@ -110,7 +115,8 @@ class AddJobForm extends Component {
       })
       .then(() => {
         this.setState({
-          resume_url: resume_url
+          resume_url: resume_url,
+          applicationStage: 3
         });
       })
       .catch(err => {
@@ -134,7 +140,8 @@ class AddJobForm extends Component {
       })
       .then(() => {
         this.setState({
-          cover_url: cover_url
+          cover_url: cover_url,
+          applicationStage: 4
         });
       })
       .catch(err => {
@@ -145,17 +152,7 @@ class AddJobForm extends Component {
       });
     this.updateJobProgress(job_id, 4);
     this.updateExperience(50);
-  };
-
-  handleSecondSubmit = e => {
-    e.preventDefault();
-    let { applicationStage } = this.state;
-    if (parseInt(e.target.id) + 1 > applicationStage) {
-      applicationStage = parseInt(e.target.id) + 1;
-      this.setState({
-        applicationStage
-      });
-    }
+    this.addMoreInterview(e);
   };
 
   getSuggestions = value => {
@@ -239,51 +236,77 @@ class AddJobForm extends Component {
       interviews
     } = this.state;
     const inputProps = {
-      placeholder: 'Company',
+      placeholder: `Company Name`,
       value: company,
       onChange: this.handleCompanyInput
     };
-    const SelectedImage = e => {
-      return companyLogo ? (
-        <img style={{ width: '25px', height: '25px' }} src={companyLogo} />
-      ) : (
-        ''
-      );
-    };
-    console.log(this.state);
     return (
       <div className="add-job-form-container">
         <div className="add-job-info">
-          <h3> Job Info</h3>
           <form onSubmit={this.handleFirstSubmit}>
-            <p>Company:</p>
-            <SelectedImage />
-            <Autosuggest
-              theme={{ suggestionsList: { listStyle: 'none' } }}
-              suggestions={suggestedCompanies}
-              onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-              onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-              getSuggestionValue={this.getSuggestionValue}
-              onSuggestionSelected={this.onSuggestionSelected}
-              renderSuggestion={this.renderSuggestion}
-              inputProps={inputProps}
-            />
-            <p>Position applied to:</p>
-            <input
-              onChange={this.handleInput}
-              value={position}
-              placeholder="Position"
-              name="position"
-              type="text"
-            />
-            <p>Date Applied:</p>
+            <h1> Job Info</h1>
+            <div className="add-job-form-input-title">
+              <p>Company applied to:</p>
+            </div>
+            <div className="company-search-input">
+              <Autosuggest
+                className="add-job-form-input-company"
+                theme={AutoSuggestStyling}
+                suggestions={suggestedCompanies}
+                onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+                onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                getSuggestionValue={this.getSuggestionValue}
+                onSuggestionSelected={this.onSuggestionSelected}
+                renderSuggestion={this.renderSuggestion}
+                inputProps={inputProps}
+              />
+              {companyLogo ? (
+                <img
+                  className="company-image"
+                  src={companyLogo}
+                />
+              ) : (
+                <span className="magnifying-glass">
+                  <i className="fas fa-search fa-2x" />
+                </span>
+              )}
+            </div>
+            <div className="add-job-form-input-title">
+              {' '}
+              <p>Position applied to:</p>
+            </div>
+            <div className="position-search-input">
+              <div>
+                <input
+                  onChange={this.handleInput}
+                  value={position}
+                  placeholder="Position"
+                  name="position"
+                  type="text"
+                />
+              </div>
+              <span className="brief-case">
+                <i class="fas fa-briefcase fa-2x" />
+              </span>
+            </div>
+            <div className="add-job-form-input-title">
+              {' '}
+              <p>Date applied:</p>{' '}
+            </div>
+            <div className="date-applied-input">
             <input
               onChange={this.handleDate}
               value={date_applied}
+              placeholder="Date"
               name="date_applied"
               type="date"
             />
-            <p>Job Posting Url:</p>
+            
+            </div>
+            <div className="add-job-form-input-title">
+              {' '}
+              <p>Job posting url: </p>
+            </div>
             <input
               onChange={this.handleInput}
               value={url}
@@ -291,40 +314,43 @@ class AddJobForm extends Component {
               name="url"
               type="text"
             />
-            <p> Phone Number:</p>
+            <div className="add-job-form-input-title">
+              <p>Job contact phone number: </p>
+            </div>
             <input
               onChange={this.handleInput}
               value={phoneNumber}
-              placeholder="ex: 3478030075"
+              placeholder="ex: 3470000000"
               name="phoneNumber"
               maxLength="10"
               type="text"
             />
-            <p> Email:</p>
+            <div className="add-job-form-input-title">
+              <p>Job contact email:</p>
+            </div>
             <input
               onChange={this.handleInput}
               value={email}
-              placeholder="Email Address"
+              placeholder="Job Contact Email Address"
               name="email"
               type="email"
             />
-            <input
-              disabled={saved || !company || !position || !date_applied}
-              type="submit"
-              value="Save"
-            />
+            <div className="add-job-buttons">
+              <input
+                disabled={saved || !company || !position || !date_applied}
+                type="submit"
+                value="Save"
+              />
+            </div>
           </form>
-          <button id="1" disabled={!saved} onClick={this.handleSecondSubmit}>
-            Next{' '}
-          </button>
         </div>
         <div
+          className="add-job-resume-container"
           hidden={applicationStage >= 2 ? false : true}
           className="add-job-resume-container"
         >
           <ResumeUpload
             handleResumeInput={this.handleResumeInput}
-            handleSecondSubmit={this.handleSecondSubmit}
             resume_url={resume_url}
           />
         </div>
@@ -334,7 +360,6 @@ class AddJobForm extends Component {
         >
           <CoverLetterUpload
             handleCoverInput={this.handleCoverInput}
-            handleSecondSubmit={this.handleSecondSubmit}
             cover_url={cover_url}
           />
         </div>
