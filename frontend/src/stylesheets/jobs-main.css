@@ -7,9 +7,13 @@
 */
 .jobs-container {
   background-color: cornflowerblue;
-  /* padding-top: 60px; */
   width: 100%;
   height: 100vh;
+}
+
+.jobs-container h1, h2, h3, h4, h5, h6, p {
+  padding: 0;
+  margin: 0;
 }
 
   /*
@@ -54,13 +58,27 @@
   height: 100%;
   margin-bottom: 52px;
 }
+
   /*
   // Navigation above job list
   // "Applied" "Rejected" "Offered" "Archived" 
   */
   .job-list-nav {
     display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+    height: 60px;
+    color: rgb(51, 156, 197);
     background-color: rgba(255, 0, 0, 0.6);
+  }
+
+  /*
+  // Ordered list that defines the job lists
+  */
+  .job-list ol {
+    padding: 0;
+    padding-left: 12px;
+    margin: 0;
   }
 
 /*
@@ -68,7 +86,33 @@
 */
 .job-item-top-row {
   display: flex;
+  height: 60px;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.6rem;
+  background-color: rgba(0, 255, 0, 0.6);
 }
+
+  .job-item-top-row .job-number {
+    width: 10%;
+    background-color: rgba(0, 0, 255, 0.2);
+  }
+
+  .job-item-top-row .job-company {
+    width: 35%;
+    background-color: rgba(0, 0, 255, 0.4);
+  }
+
+  .job-item-top-row .job-position {
+    width: 35%;
+    background-color: rgba(0, 0, 255, 0.6);
+  }
+
+  .job-item-top-row .job-date {
+    width: 20%;
+    background-color: rgba(0, 0, 255, 0.8);
+  }
 
 
 .job-item {
@@ -76,4 +120,13 @@
   border: 1px solid yellow;
   display: flex;
   flex-direction: row;
+}
+
+/*
+// When screen is smaller than 1300px wide, the entire jobs page becomes responsive 
+*/
+@media screen and (max-width: 1300px) {
+  .active-jobs-container {
+    width: 80%;
+  }
 }

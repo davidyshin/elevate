@@ -45,10 +45,10 @@ class JobList extends Component {
         </nav>
         {/* <h3>List of applied jobs</h3> */}
         <div className="job-item-top-row">
-          <p>#</p>
-          <p>Company</p>
-          <p>Position</p>
-          <p>Application Date</p>
+          <p className="job-number">#</p>
+          <p className="job-company">Company</p>
+          <p className="job-position">Position</p>
+          <p className="job-date">Application Date</p>
         </div>
         <ol>
           {jobList.map(job => {
