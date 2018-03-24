@@ -14,10 +14,12 @@ class JobItem extends Component {
     const renderDate = date.toDateString();
     return (
       <div className="job-item">
-        <img style={{ width: '25px', height: '25px' }} src={job.company_logo} />
-        <p>{job.company_name}</p>
-        <p>{job.position_title}</p>
-        <p>{renderDate}</p>
+        <div className="job-item-company">
+          <img src={job.company_logo} alt={job.company_name} />
+          <p>{job.company_name}</p>
+        </div>
+        <p className="job-item-position">{job.position_title}</p>
+        <p className="job-item-date">{renderDate}</p>
 
         <h3 onClick={this.props.handleClick} id={job.job_id}>
           Info

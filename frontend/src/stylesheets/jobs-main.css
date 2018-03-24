@@ -82,7 +82,7 @@
   }
 
 /*
-// Top of the job list chart 
+// Top row of the job list chart 
 */
 .job-item-top-row {
   display: flex;
@@ -94,33 +94,80 @@
   background-color: rgba(0, 255, 0, 0.6);
 }
 
+  /*
+  // Top row - # 
+  */
   .job-item-top-row .job-number {
     width: 10%;
     background-color: rgba(0, 0, 255, 0.2);
   }
 
+  /*
+  // Top row - Company
+  */
   .job-item-top-row .job-company {
     width: 35%;
     background-color: rgba(0, 0, 255, 0.4);
   }
 
+  /* 
+  // Top row - Position 
+  */
   .job-item-top-row .job-position {
     width: 35%;
     background-color: rgba(0, 0, 255, 0.6);
   }
 
+  /*
+  // Top row - Application Date
+  */
   .job-item-top-row .job-date {
     width: 20%;
     background-color: rgba(0, 0, 255, 0.8);
   }
 
 
+/*
+// Single job ordered item
+*/
 .job-item {
   background-color: lightblue;
   border: 1px solid yellow;
   display: flex;
+  justify-content: space-between;
   flex-direction: row;
 }
+
+  /*
+  // Company logo and name 
+  */
+  .job-item-company {
+    display: flex;
+    background-color: greenyellow;
+  }
+
+    /*
+    // Company logo
+    */ 
+    .job-item img {
+      width: auto;
+      height: 25px;
+      border-radius: 100%;
+    }
+
+  /*
+  // Position applied for 
+  */ 
+  .job-item-position {
+    background-color: mediumvioletred;
+  }
+
+  /*
+  // Application date 
+  */
+  .job-item-date {
+    background-color: lightcoral;
+  }
 
 /*
 // When screen is smaller than 1300px wide, the entire jobs page becomes responsive 
