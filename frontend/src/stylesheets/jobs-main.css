@@ -72,6 +72,10 @@
     background-color: rgba(255, 0, 0, 0.6);
   }
 
+    .job-list-nav h3 {
+      margin-right: 22px;
+    }
+
   /*
   // Ordered list that defines the job lists
   */
@@ -79,7 +83,12 @@
     padding: 0;
     padding-left: 10%;
     margin: 0;
+    font-size: 1.4rem;
   }
+
+  /* .job-list li {
+    height: 60px;
+  } */
 
 /*
 // Top row of the job list chart 
@@ -99,6 +108,7 @@
   */
   .job-item-top-row .job-number {
     width: 10%;
+    text-align: center;
     background-color: rgba(0, 0, 255, 0.2);
   }
 
@@ -132,7 +142,6 @@
 */
 .job-item {
   background-color: lightblue;
-  /* border: 1px solid yellow; */
   display: flex;
   justify-content: space-between;
   flex-direction: row;
@@ -144,6 +153,7 @@
   .job-item-company {
     display: flex;
     width: 39%;
+    font-size: 1.4rem;
     background-color: greenyellow;
   }
 
@@ -161,6 +171,7 @@
   */ 
   .job-item-position {
     width: 39%;
+    font-size: 1.4rem;
     background-color: mediumvioletred;
   }
 
@@ -169,6 +180,7 @@
   */
   .job-item-date {
     width: 22%;
+    font-size: 1.4rem;
     background-color: lightcoral;
   }
 
