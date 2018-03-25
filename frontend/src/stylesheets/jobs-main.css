@@ -143,6 +143,7 @@
   */
   .job-item-company {
     display: flex;
+    width: 39%;
     background-color: greenyellow;
   }
 
@@ -159,6 +160,7 @@
   // Position applied for 
   */ 
   .job-item-position {
+    width: 39%;
     background-color: mediumvioletred;
   }
 
@@ -166,6 +168,7 @@
   // Application date 
   */
   .job-item-date {
+    width: 22%;
     background-color: lightcoral;
   }
 
