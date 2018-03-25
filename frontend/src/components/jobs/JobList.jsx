@@ -50,7 +50,13 @@ class JobList extends Component {
           <p className="job-position">Position</p>
           <p className="job-date">Application Date</p>
         </div>
-        <ol>
+        {jobList.map((job, index) => (
+          <div>
+            <JobItem job={job} index={index} />
+            <JobInfo job={job} />
+          </div>
+        ))}
+        {/* <ol>
           {jobList.map(job => (
             <li>
               <JobItem handleClick={this.handleClick} job={job} />
@@ -61,7 +67,7 @@ class JobList extends Component {
               }
             </li>
           ))}
-        </ol>
+        </ol> */}
       </div>
     );
   }

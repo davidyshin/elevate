@@ -14,6 +14,7 @@ class JobItem extends Component {
     const renderDate = date.toDateString();
     return (
       <div className="job-item">
+        <p className="job-item-index">{this.props.index + 1}</p>
         <div className="job-item-company">
           <img src={job.company_logo} alt={job.company_name} />
           <p onClick={this.props.handleClick} id={job.job_id}>{job.company_name}</p>
