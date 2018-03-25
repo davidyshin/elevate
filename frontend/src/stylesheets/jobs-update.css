@@ -165,7 +165,7 @@ button:hover {
 /*  hard coding font awesome icons to the right sides of the add job form input */
 .building-icon {
   position: relative;
-  z-index: 90;
+  z-index: 9;
   left: 350px;
   color: rgba(0, 0, 0, 0.2);
   bottom: 44px;
@@ -175,7 +175,7 @@ button:hover {
 
 .pencil-icon {
   position: relative;
-  z-index: 90;
+  z-index: 9;
   left: 355px;
   color: rgba(0, 0, 0, 0.2);
   bottom: 223px;
@@ -186,7 +186,7 @@ button:hover {
 }
 
 .company-image {
-  z-index: 90;
+  z-index: 9;
   position: relative;
   width: 40px;
   left: 340px;

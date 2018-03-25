@@ -154,7 +154,7 @@ button:hover {
 
 #react-autowhatever-1 {
   overflow: scroll;
-  z-index: 100;
+  z-index: 10;
   margin: 4px;
   position: absolute;
   background-color: white;
@@ -169,7 +169,7 @@ button:hover {
 .magnifying-glass,
 .brief-case {
   position: relative;
-  z-index: 90;
+  z-index: 9;
   left: 350px;
   color: rgba(0, 0, 0, 0.2);
   bottom: 44px;
@@ -179,7 +179,7 @@ button:hover {
 
 .pencil-icon {
   position: relative;
-  z-index: 90;
+  z-index: 9;
   left: 355px;
   color: rgba(0, 0, 0, 0.2);
   bottom: 223px;
@@ -190,7 +190,7 @@ button:hover {
   height: 70px;
 }
 .company-image {
-  z-index: 90;
+  z-index: 9;
   position: relative;
   width: 40px;
   left: 335px;
