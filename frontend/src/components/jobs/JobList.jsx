@@ -35,6 +35,7 @@ class JobList extends Component {
 
   render() {
     const { jobList, expanded } = this.state;
+
     return (
       <div className="job-list">
         <nav className="job-list-nav">
@@ -43,7 +44,6 @@ class JobList extends Component {
           <h3>OFFERED</h3>
           <h3>ARCHIVED</h3>
         </nav>
-        {/* <h3>List of applied jobs</h3> */}
         <div className="job-item-top-row">
           <p className="job-number">#</p>
           <p className="job-company">Company</p>
@@ -51,18 +51,16 @@ class JobList extends Component {
           <p className="job-date">Application Date</p>
         </div>
         <ol>
-          {jobList.map(job => {
-            return (
-              <li>
-                <JobItem handleClick={this.handleClick} job={job} />
-                {parseInt(expanded) === parseInt(job.job_id) ? (
-                  <JobInfo job={job} editJob={this.props.editJob} />
-                ) : (
-                    <div />
-                  )}
-              </li>
-            );
-          })}
+          {jobList.map(job => (
+            <li>
+              <JobItem handleClick={this.handleClick} job={job} />
+              {parseInt(expanded) === parseInt(job.job_id) ?
+                <JobInfo job={job} editJob={this.props.editJob} />
+                :
+                null
+              }
+            </li>
+          ))}
         </ol>
       </div>
     );
