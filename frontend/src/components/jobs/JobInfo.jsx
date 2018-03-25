@@ -7,7 +7,8 @@ class JobInfo extends Component {
 
   handleEditClick = () => {
     this.props.editJob(this.props.job)
-}
+  }
+
   render() {
     const date_logged = new Date(this.props.job.date_logged).toDateString();
 
@@ -24,26 +25,21 @@ class JobInfo extends Component {
     } = this.props.job;
 
     return (
-      <div>
+      <div className="job-info-container">
         <h3>Date Logged: {date_logged} </h3>
         <h3>Date Applied: {date_applied} </h3>{' '}
-        {job_phone_number ? (
-          <h3>Contact Number: {job_phone_number} </h3>
-        ) : (
-          <div />
-        )}
-        {job_email ? <h3>Contact Email: {job_email} </h3> : <div />}
+        {job_phone_number ? <h3>Contact Number: {job_phone_number} </h3> : null}
+        {job_email ? <h3>Contact Email: {job_email} </h3> : null}
         <h3>Progress In Search: {progress_in_search}/5</h3>
-        <h3>
-          <a href={job_posting_url}>Job Posting URL</a>
-        </h3>
+        <h3><a href={job_posting_url}>Job Posting URL</a></h3>
         <h3>
           {resume_url ? <a href={resume_url}>Resume</a> : "You do not have a resume added, add one now!"}
         </h3>
         <h3>
           {cover_url ? <a href={cover_url}>Cover Letter</a> : "You do not have a cover letter added, add one now!"}
         </h3>
-        <h1 id={job_id} onClick={this.handleEditClick}> Update </h1>
+        <button id={job_id} onClick={this.handleEditClick}>Update</button>
+        {/* <h1 id={job_id} onClick={this.handleEditClick}>Update</h1> */}
       </div>
     );
   }

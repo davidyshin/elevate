@@ -6,26 +6,204 @@
 // The homapage after user logs in  
 */
 .jobs-container {
-  background-color: cornflowerblue;
-  padding-top: 60px;
+  /* background-color: cornflowerblue; */
+  background-color: #f5f0f5;
+  width: 100%;
+  height: 100vh;
+}
+
+.jobs-container h1, h2, h3, h4, h5, h6, p {
+  padding: 0;
+  margin: 0;
+}
+
+  /*
+  // This holds the weekly summary graph and job lists 
+  // Contained inside .jobs-container 
+  */
+  .active-jobs-container {
+    padding-top: 80px;
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    align-items: center;
+    width: 1200px;
+  }
+
+/*------------------------------------------*/
+/*               Jobs Summary               */
+/*------------------------------------------*/
+
+/*
+// This holds the line graph 
+*/ 
+.job-summary {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fefefe;
 }
 
 /*------------------------------------------*/
 /*                 Job List                 */
 /*------------------------------------------*/
 
+/*
+// This holds the list of jobs under the weekly summary graph
+*/
 .job-list {
-  background-color: orange;
+  background-color: #f5f0f5;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 52px;
 }
-.job-item {
-  background-color: lightblue;
-  border: 1px solid yellow;
+
+  /*
+  // Navigation above job list
+  // "Applied" "Rejected" "Offered" "Archived" 
+  */
+  .job-list-nav {
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+    height: 60px;
+    color: rgb(51, 156, 197);
+    background-color: rgba(255, 0, 0, 0.6);
+  }
+
+    .job-list-nav h3 {
+      margin-right: 22px;
+    }
+
+  /*
+  // Ordered list that defines the job lists
+  */
+  /* .job-list ol {
+    padding: 0;
+    padding-left: 10%;
+    margin: 0;
+    font-size: 1.4rem;
+  } */
+
+  /* .job-list li {
+    height: 60px;
+  } */
+
+/*
+// Top row of the job list chart 
+*/
+.job-item-top-row {
   display: flex;
-  flex-direction: row;
+  height: 60px;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.6rem;
+  background-color: rgba(0, 255, 0, 0.6);
 }
-/*------------------------------------------*/
-/*               Jobs Summary               */
-/*------------------------------------------*/
-.job-summary {
-  background-color: lightcoral;
+
+  /*
+  // Top row - # 
+  */
+  .job-item-top-row .job-number {
+    width: 10%;
+    text-align: center;
+    background-color: rgba(0, 0, 255, 0.2);
+  }
+
+  /*
+  // Top row - Company
+  */
+  .job-item-top-row .job-company {
+    width: 35%;
+    background-color: rgba(0, 0, 255, 0.4);
+  }
+
+  /* 
+  // Top row - Position 
+  */
+  .job-item-top-row .job-position {
+    width: 35%;
+    background-color: rgba(0, 0, 255, 0.6);
+  }
+
+  /*
+  // Top row - Application Date
+  */
+  .job-item-top-row .job-date {
+    width: 20%;
+    background-color: rgba(0, 0, 255, 0.8);
+  }
+
+
+/*
+// Single job ordered item
+*/
+.job-item {
+  /* background-color: lightblue; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  font-size: 1.6rem;
+  height: 60px;
+  cursor: pointer;
+}
+
+  /*
+  // Odd items have light background 
+  */
+  .job-item-light {
+    background-color: #fefefe;
+  }
+
+  /* 
+  // Even items have dark background
+  */
+  .job-item-dark {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  /*
+  // Job item index (1, 2, 3, ...) 
+  */ 
+  .job-item-index {
+    /* background-color: red; */
+    width: 10%;
+    text-align: center;
+  }
+
+  /*
+  // Company logo and name 
+  */
+  .job-item-company {
+    width: 35%;
+    /* background-color: greenyellow; */
+  }
+
+  /*
+  // Position applied for 
+  */ 
+  .job-item-position {
+    width: 35%;
+    /* background-color: mediumvioletred; */
+  }
+
+  /*
+  // Application date 
+  */
+  .job-item-date {
+    width: 20%;
+    /* background-color: lightcoral; */
+  }
+
+/*
+// When screen is smaller than 1300px wide, the entire jobs page becomes responsive 
+*/
+@media screen and (max-width: 1300px) {
+  .active-jobs-container {
+    width: 80%;
+  }
 }

@@ -12,19 +12,22 @@ class JobItem extends Component {
     const job = this.props.job;
     const date = new Date(this.props.job.date_applied);
     const renderDate = date.toDateString();
-    return (
-      <div className="job-item">
-        <h3>Company</h3>
-        <img style={{ width: '25px', height: '25px' }} src={job.company_logo} />
-        <p>{job.company_name}</p>
-        <h3>Position</h3>
-        <p>{job.position_title}</p>
-        <h3>Date Applied</h3>
-        <p>{renderDate}</p>
+    const alternateBg = (this.props.index + 1) % 2 === 1 ? 'job-item-light' : 'job-item-dark';
 
-        <h1 onClick={this.props.handleClick} id={job.job_id}>
-          Info
-        </h1>
+    return (
+      <div className={`job-item ${alternateBg}`}>
+        <p className="job-item-index">{this.props.index + 1}</p>
+
+        <p className="job-item-company" onClick={this.props.handleClick} id={job.job_id}>{job.company_name}</p>
+
+        {/* <div className="job-item-company">
+          <img src={job.company_logo} alt={job.company_name} />
+          <p onClick={this.props.handleClick} id={job.job_id}>{job.company_name}</p>
+        </div> */}
+
+        <p className="job-item-position">{job.position_title}</p>
+        <p className="job-item-date">{renderDate}</p>
+
       </div>
     );
   }

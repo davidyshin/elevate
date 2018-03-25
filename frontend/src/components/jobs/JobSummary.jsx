@@ -49,9 +49,10 @@ class JobSummary extends Component {
   }
   render() {
     const { x, y } = this.state;
+    // var WIDTH_IN_PERCENT_OF_PARENT = 100
+
     return (
       <div className="job-summary">
-        {' '}
         <Plot
           data={[
             {
@@ -68,7 +69,7 @@ class JobSummary extends Component {
             }
           ]}
           layout={{
-            width: 800,
+            width: 1200,
             height: 250,
             title: `${this.props.activeUser.first_name}'s Weekly Summary`,
             yaxis: { range: [0, Math.max(...y)+1 || 3] },
