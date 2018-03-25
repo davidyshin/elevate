@@ -79,12 +79,12 @@
   /*
   // Ordered list that defines the job lists
   */
-  .job-list ol {
+  /* .job-list ol {
     padding: 0;
     padding-left: 10%;
     margin: 0;
     font-size: 1.4rem;
-  }
+  } */
 
   /* .job-list li {
     height: 60px;
@@ -148,11 +148,19 @@
 }
 
   /*
+  // Job item index
+  */ 
+  .job-item-index {
+    background-color: red;
+    width: 10%;
+  }
+
+  /*
   // Company logo and name 
   */
   .job-item-company {
     display: flex;
-    width: 39%;
+    width: 35%;
     font-size: 1.4rem;
     background-color: greenyellow;
   }
@@ -170,7 +178,7 @@
   // Position applied for 
   */ 
   .job-item-position {
-    width: 39%;
+    width: 35%;
     font-size: 1.4rem;
     background-color: mediumvioletred;
   }
@@ -179,7 +187,7 @@
   // Application date 
   */
   .job-item-date {
-    width: 22%;
+    width: 20%;
     font-size: 1.4rem;
     background-color: lightcoral;
   }
