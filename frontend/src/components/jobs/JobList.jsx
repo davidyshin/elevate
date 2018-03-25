@@ -35,23 +35,39 @@ class JobList extends Component {
 
   render() {
     const { jobList, expanded } = this.state;
+
     return (
       <div className="job-list">
-        <h3>List of applied jobs</h3>
-        <ol>
-          {jobList.map(job => {
-            return (
-              <li>
-                <JobItem  handleClick={this.handleClick} job={job} />
-                {parseInt(expanded) === parseInt(job.job_id) ? (
-                  <JobInfo job={job} editJob={this.props.editJob}/>
-                ) : (
-                  <div />
-                )}
-              </li>
-            );
-          })}
-        </ol>
+        <nav className="job-list-nav">
+          <h3>APPLIED</h3>
+          <h3>REJECTED</h3>
+          <h3>OFFERED</h3>
+          <h3>ARCHIVED</h3>
+        </nav>
+        <div className="job-item-top-row">
+          <p className="job-number">#</p>
+          <p className="job-company">Company</p>
+          <p className="job-position">Position</p>
+          <p className="job-date">Application Date</p>
+        </div>
+        {jobList.map((job, index) => (
+          <div>
+            <JobItem job={job} index={index} />
+            <JobInfo job={job} />
+          </div>
+        ))}
+        {/* <ol>
+          {jobList.map(job => (
+            <li>
+              <JobItem handleClick={this.handleClick} job={job} />
+              {parseInt(expanded) === parseInt(job.job_id) ?
+                <JobInfo job={job} editJob={this.props.editJob} />
+                :
+                null
+              }
+            </li>
+          ))}
+        </ol> */}
       </div>
     );
   }
