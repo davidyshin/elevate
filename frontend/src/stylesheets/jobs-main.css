@@ -144,42 +144,47 @@
   background-color: lightblue;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   flex-direction: row;
+  font-size: 1.6rem;
+  height: 60px;
 }
 
   /*
-  // Job item index
+  // Job item index (1, 2, 3, ...) 
   */ 
   .job-item-index {
     background-color: red;
     width: 10%;
+    text-align: center;
   }
 
   /*
   // Company logo and name 
   */
   .job-item-company {
-    display: flex;
+    /* display: flex; */
     width: 35%;
-    font-size: 1.4rem;
+    /* font-size: 1.4rem; */
+    /* align-items: center; */
     background-color: greenyellow;
   }
 
     /*
     // Company logo
     */ 
-    .job-item img {
+    /* .job-item img {
       width: auto;
       height: 25px;
       border-radius: 100%;
-    }
+    } */
 
   /*
   // Position applied for 
   */ 
   .job-item-position {
     width: 35%;
-    font-size: 1.4rem;
+    /* font-size: 1.4rem; */
     background-color: mediumvioletred;
   }
 
@@ -188,7 +193,7 @@
   */
   .job-item-date {
     width: 20%;
-    font-size: 1.4rem;
+    /* font-size: 1.4rem; */
     background-color: lightcoral;
   }
 

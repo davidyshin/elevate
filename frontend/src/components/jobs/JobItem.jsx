@@ -15,10 +15,14 @@ class JobItem extends Component {
     return (
       <div className="job-item">
         <p className="job-item-index">{this.props.index + 1}</p>
-        <div className="job-item-company">
+
+        <p className="job-item-company" onClick={this.props.handleClick} id={job.job_id}>{job.company_name}</p>
+
+        {/* <div className="job-item-company">
           <img src={job.company_logo} alt={job.company_name} />
           <p onClick={this.props.handleClick} id={job.job_id}>{job.company_name}</p>
-        </div>
+        </div> */}
+
         <p className="job-item-position">{job.position_title}</p>
         <p className="job-item-date">{renderDate}</p>
 
