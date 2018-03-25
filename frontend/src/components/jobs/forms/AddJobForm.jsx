@@ -6,11 +6,10 @@ import axios from 'axios';
 import ResumeUpload from './ResumeUpload.jsx';
 import CoverLetterUpload from './CoverLetterUpload.jsx';
 import AddInterview from './AddInterview.jsx';
-import theme from '../../../stylesheets/jobs-add.css';
+import '../../../stylesheets/jobs-add.css';
 
 const AutoSuggestStyling = {
   suggestionsList: { listStyle: 'none' }
-  // suggestion: { display: 'flex', width: '400px', flexDirection: 'row', justifyContent: 'space-between'}
 };
 
 class AddJobForm extends Component {
