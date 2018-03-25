@@ -16,14 +16,14 @@ class JobItem extends Component {
       <div className="job-item">
         <div className="job-item-company">
           <img src={job.company_logo} alt={job.company_name} />
-          <p>{job.company_name}</p>
+          <p onClick={this.props.handleClick} id={job.job_id}>{job.company_name}</p>
         </div>
         <p className="job-item-position">{job.position_title}</p>
         <p className="job-item-date">{renderDate}</p>
 
-        <h3 onClick={this.props.handleClick} id={job.job_id}>
+        {/* <h3 onClick={this.props.handleClick} id={job.job_id}>
           Info
-        </h3>
+        </h3> */}
       </div>
     );
   }
