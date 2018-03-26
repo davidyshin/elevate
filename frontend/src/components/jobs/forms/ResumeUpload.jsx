@@ -11,16 +11,21 @@ class ResumeUpload extends Component {
   }
 
 handleFiles = (event) => {
-  let file = event.target.files[0];
-  // console.log('CHECK IF FILE EXISTS: ', file)
-  console.log(file.name);
-  let data = new FormData();
-  data.append('file', file);
-  data.append('filename', file.name);
-  data.append('job_id', this.props.job_id);
-  axios.post('/users/uploadResume', {
-    data: data
-  })
+  const file = event.target.files[0];
+  console.log(event.target.files[0])  
+  console.log('MY TARGET FILE',file);
+  const data = new FormData();
+  data.append('file', file.name);
+  console.log('MY TARGET FILE',data);
+  // data.append('filename', file.name);
+  // data.append('job_id', this.props.job_id);
+  // let temp = data
+  // console.log('BEFORE I SEND THE DATA', file.name)
+  // console.log('BEFORE I SEND THE DATA', data )
+  // var formData = new FormData();
+  // formData.append('username', 'Chris');
+  // console.log('BEFORE I SEND THE DATA', formData )
+  axios.post('/users/uploadResume',  file)
       .then(res => {
           console.log('FRONT RES',res)
           this.props.handleResumeInput(res)
