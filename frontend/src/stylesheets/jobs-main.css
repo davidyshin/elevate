@@ -139,7 +139,7 @@
 
 
 /*
-// Single job ordered item
+// Single job item (single row) 
 */
 .job-item {
   /* background-color: lightblue; */
@@ -198,6 +198,28 @@
     width: 20%;
     /* background-color: lightcoral; */
   }
+
+
+/*
+// Contains job information that expands on click 
+*/ 
+.job-info-container {
+  background-color: rgba(0, 255, 0, 0.4);
+  width: 100%;
+  height: 0;
+  visibility: hidden;
+  opacity: 0;
+  overflow: hidden;
+  /* display: none; */
+  transition: all 0.3s ease;
+}
+
+.job-info-container-expand {
+  /* display: block; */
+  visibility: visible;
+  opacity: 1;
+  height: 200px;
+}
 
 /*
 // When screen is smaller than 1300px wide, the entire jobs page becomes responsive 
