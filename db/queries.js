@@ -1,29 +1,27 @@
 const db = require('./index');
 const authHelpers = require('../auth/helpers.js');
 const passport = require('../auth/local.js');
-const dotenv = require('dotenv')
-dotenv.load()
-const multer  = require('multer'),
-    multerS3 = require('multer-s3'),
-    fs = require('fs'),
-    AWS = require('aws-sdk');
+const dotenv = require('dotenv');
+dotenv.load();
+const multer = require('multer'),
+  multerS3 = require('multer-s3'),
+  fs = require('fs'),
+  AWS = require('aws-sdk');
 
-    const awsKeys = { accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-      region: process.env.AWS_DEFAULT_REGION }
-
-// AWS.config.loadFromPath({ accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-//       secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-//       region: process.env.AWS_DEFAULT_REGION });
-var s3 = new AWS.S3({ accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+const awsKeys = {
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  region: process.env.AWS_DEFAULT_REGION });
+  region: process.env.AWS_DEFAULT_REGION
+};
+
+var s3 = new AWS.S3(awsKeys);
+
 /* List of queries/routes for reference
 ---------------------------------------
   GET Requests
 ---------------------------------------
  1. getAllUserApps  // GET Route = /users/getAllUserApps
- 2. getCoverLetter  // GET Route = /users/getCoverLetter/:job
+ 2. getCover  // GET Route = /users/getCover/:job
  3. getInterviews // GET Route = /users/getInterviews/:job
  4. getRankedBadge  // GET Route = /users/getRankedBadge/:level
  5. getResume // GET Route = /users/getResume/:job
@@ -38,12 +36,14 @@ var s3 = new AWS.S3({ accessKeyId: process.env.AWS_ACCESS_KEY_ID,
  10. createJobApp // POST Route /users/createJobApp
  11. createInterview // // POST Route /users/createInterview
  12. registerUser // POST Route = /users/newuser
+ 13. uploadCover AWS // POST Route = /users/uploadCover
+ 14. uploadResume AWS // POST Route = /users/uploadResume
 
  ---------------------------------------
   PUT Requests
 ---------------------------------------
- 13. updateCoverLetter // PUT Route = /users/updateCoverLetter
- 14. updateResumeAws // PUT Route = /users/updateResumeAws
+ 13. updateCover // PUT Route = /users/updateCoverLetter
+ 14. updateResume // PUT Route = /users/updateResumeAws
  15. updateInterview // PUT Route = /users/updateInterview
  16. updateUserInfo // PUT Route = /users/updateInfo
  17. updateJobProgress // PUT Route = /users/updateJobProgress 
@@ -77,9 +77,9 @@ const getAllUserApps = (req, res, next) => {
 };
 
 /* 2. */
-// GET Route = /users/getCoverLetter/:job
+// GET Route = /users/getCover/:job
 
-const getCoverLetter = (req, res, next) => {
+const getCover = (req, res, next) => {
   db
     .one(
       'SELECT cover_url FROM jobs WHERE user_id=${user_id} AND job_id = ${job}',
@@ -233,31 +233,26 @@ const logoutUser = (req, res, next) => {
   res.status(200).send('log out success');
 };
 
-
-
 const getCoverLetterAWS = (req, res, next) => {
   db
-    .one(
-      'SELECT cover_url FROM jobs WHERE  job_id = ${job_id}',
-      {
-        job_id: req.body.job_id
-      }
-    )
+    .one('SELECT cover_url FROM jobs WHERE  job_id = ${job_id}', {
+      job_id: req.body.job_id
+    })
     .then(data => {
-      let value = data.cover_url
+      let value = data.cover_url;
       var params = {
-        Bucket: "elevatecovers", 
-        Key: value,
-       };
-       console.log(params)
-       s3.getObject(params, function(err, data) {
-         if (err){
-           console.log(err, err.stack); // an error occurred
-         } else {
-          console.log(data)
-         }     
-       });
-       console.log('Second TEST')
+        Bucket: 'elevatecovers',
+        Key: value
+      };
+      console.log(params);
+      s3.getObject(params, function(err, data) {
+        if (err) {
+          console.log(err, err.stack); // an error occurred
+        } else {
+          console.log(data);
+        }
+      });
+      console.log('Second TEST');
       res.status(200).json({
         status: 'success',
         cover_url: value,
@@ -329,7 +324,7 @@ const createInterview = (req, res, next) => {
     });
 };
 
-/* 11. */
+/* 12. */
 // POST Route = /users/newuser
 
 const registerUser = (req, res, next) => {
@@ -362,12 +357,56 @@ const registerUser = (req, res, next) => {
     });
 };
 
+// UPLOADING RESUME, COVERLETTER TO AWS
+/* 13. */
+const uploadResume = (req, res, next) => {
+  if (!req.file) {
+    return res.status(400).send('No files were uploaded.');
+  }
+  const file = req.file;
+  var bucketName = 'elevateresumes';
+  var params = {
+    Bucket: bucketName,
+    Key: 'resume-'+ req.body.id +'-'+ file.originalname ,
+    Body: file.buffer
+  };
+  s3.putObject(params, function(err, data) {
+    if (err) console.log(err);
+    else data
+
+    console.log('Successfully uploaded file');
+  })
+  res.status(200).send({url: params.Key});
+};
+
+/* 14. */
+
+const uploadCover = (req, res, next) => {
+  if (!req.file) {
+    return res.status(400).send('No files were uploaded.');
+  }
+  const file = req.file;
+  var bucketName = 'elevatecovers';
+  var params = {
+    Bucket: bucketName,
+    Key: 'cover-' + req.body.id +'-'+ file.originalname,
+    Body: file.buffer
+  };
+  s3.putObject(params, function(err, data) {
+    if (err) console.log(err);
+    else data;
+
+    console.log('Successfully uploaded file');
+  });
+  res.status(200).send({url: params.Key});
+};
+
 /* ------------------------ PUT REQUESTS QUERIES ------------------------ */
 
-/* 12. */
+/* 15. */
 // PUT Route = /users/updateCoverLetter/
 
-const updateCoverLetter = (req, res, next) => {
+const updateCover = (req, res, next) => {
   db
     .none('UPDATE jobs SET cover_url = ${cover_url} WHERE job_id = ${job_id}', {
       cover_url: req.body.cover_url,
@@ -384,10 +423,10 @@ const updateCoverLetter = (req, res, next) => {
     });
 };
 
-/* 13. */
+/* 16. */
 // PUT Route = /users/updateResume
 
-const updateResumeAws = (req, res, next) => {
+const updateResume = (req, res, next) => {
   db
     .none(
       'UPDATE jobs SET resume_url = ${resume_url} WHERE job_id = ${job_id}',
@@ -408,7 +447,7 @@ const updateResumeAws = (req, res, next) => {
     });
 };
 
-/* 14. */
+/* 17. */
 // PUT Route = /users/updateInterview
 
 const updateInterview = (req, res, next) => {
@@ -434,7 +473,7 @@ const updateInterview = (req, res, next) => {
     });
 };
 
-/* 15. */
+/* 18. */
 // PUT Route = /users/updateUserInfo
 
 const updateUserInfo = (req, res, next) => {
@@ -460,7 +499,7 @@ const updateUserInfo = (req, res, next) => {
     });
 };
 
-/* 17 */
+/* 19 */
 
 // PUT Route =  /users/updateJobProgress
 const updateJobProgress = (req, res, next) => {
@@ -484,7 +523,7 @@ const updateJobProgress = (req, res, next) => {
     });
 };
 
-/* 18. */
+/* 20. */
 // PUT Route = users/updateJobInfo
 const updateJobInfo = (req, res, next) => {
   db
@@ -513,7 +552,7 @@ const updateJobInfo = (req, res, next) => {
     });
 };
 
-/* 19. */
+/* 21. */
 // PUT Route = users/updateExperience
 const updateExperience = (req, res, next) => {
   db
@@ -533,7 +572,7 @@ const updateExperience = (req, res, next) => {
     });
 };
 
-/* 20. */
+/* 22. */
 // PUT Route = users/updateJobStatus
 const updateJobStatus = (req, res, next) => {
   db
@@ -553,39 +592,9 @@ const updateJobStatus = (req, res, next) => {
     });
 };
 
-const updateCoverAws = (req, res, next) => {
-  console.log('REQ',req.body.filename)
-  console.log('REQ JOB ID PLEASE',req.body)
-  let cover_url = req.body.filename
-  let job_id = req.body.job_id
-  cover_url = cover_url
-  // .replace(/ /g, '+')
-  var bucketName = 'elevatecovers'
-  let tt = cover_url
-  console.log('THIS IS TT',tt)
-  const temp = 'https://s3.amazonaws.com/' + bucketName + "/" + cover_url
-  let nameSplit = cover_url.split(' ')
-  console.log('COVER L value',cover_url.replace(/ /g, '+'))
-  db
-    .none('UPDATE jobs SET cover_url = ${cover_url} WHERE job_id = ${job_id}', {
-      cover_url: cover_url,
-      job_id: job_id
-    })
-    .then(() => {
-      res.status(200).json({
-        status: 'success',
-        message: 'Updated cover letter'
-      });
-    })
-    .catch(err => {
-      console.log(err)(`Error updating cover letter: ${err}`);
-    });
-};
-
-
 module.exports = {
   getAllUserApps,
-  getCoverLetter,
+  getCover,
   getInterviews,
   getRankedBadge,
   getResume,
@@ -596,13 +605,14 @@ module.exports = {
   createJobApp,
   createInterview,
   registerUser,
-  updateCoverLetter,
-  updateResumeAws,
+  updateCover,
+  updateResume,
   updateInterview,
   updateUserInfo,
   updateJobProgress,
   updateJobInfo,
   updateExperience,
   updateJobStatus,
-  updateCoverAws,
+  uploadResume,
+  uploadCover
 };

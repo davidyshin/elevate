@@ -46,17 +46,19 @@ var s3 = new AWS.S3({
  10. createJobApp // POST Route /users/createJobApp
  11. createInterview // // POST Route /users/createInterview
  12. registerUser // POST Route = /users/newuser
+ 13. uploadCover AWS // POST Route = /users/uploadCover
+ 14. uploadResume AWS // POST Route = /users/uploadResume
  ---------------------------------------
   PUT Requests
 ---------------------------------------
- 13. updateCoverLetter // PUT Route = /users/updateCoverLetter
- 14. updateResume // PUT Route = /users/updateResume
- 15. updateInterview // PUT Route = /users/updateInterview
- 16. updateUserInfo // PUT Route = /users/updateInfo
- 17. updateJobProgress // PUT Route = /users/updateJobProgress
- 18. updateJobInfo // PUT Route = /users/updateJobInfo/
- 19. updateExperience // PUT Route = /users/updateExperience
- 20. updateJobStatus // PUT Route = /users/updateJobStatus
+ 15. updateCover // PUT Route = /users/updateCover
+ 16. updateResume // PUT Route = /users/updateResume
+ 17. updateInterview // PUT Route = /users/updateInterview
+ 18. updateUserInfo // PUT Route = /users/updateInfo
+ 19. updateJobProgress // PUT Route = /users/updateJobProgress
+ 20. updateJobInfo // PUT Route = /users/updateJobInfo/
+ 21. updateExperience // PUT Route = /users/updateExperience
+ 22. updateJobStatus // PUT Route = /users/updateJobStatus
 --------------------------------------- 
 */
 
@@ -107,71 +109,39 @@ router.post('/login', passport.authenticate('local'), (req, res) => {
   res.json(req.user);
 });
 
+
+/* 13. uploadCover AWS // POST Route = /users/uploadCover */
+router.post('/uploadCover', upload.single('cover'), db.uploadCover)
+
+/* 15. uploadResume AWS // PUT Route = /users/uploadResume */
+router.post('/uploadResume', upload.single('resume'), db.uploadResume)
+
 /* ----------------------- PUT Requests. ----------------------- */
 
-/* 13. Upload Cover AWS // POST Route = /users/UploadCovers */
-// Router.post
-router.post('/uploadCovers', function (req, res, next) {
-  console.log("files: ", req.files)
-  if (!req.files) {
-    return res.status(400).send('No files were uploaded.');
-  }
-  const file = req.files.file;
-  var bucketName = 'elevatecovers'
-  var params = { Bucket: bucketName, Key: file.name, Body: file.data };
-  var hold = file.data
-  s3.putObject(params, function (err, data) {
-    if (err)
-      console.log(err)
-    else
-      console.log("Successfully uploaded data to " + bucketName + "/" + file.name);
-  });
-  next()
-},
-  db.updateCoverAws
-)
 
-/* 14. Upload Resume AWS // PUT Route = /users/updateResume */
-router.post('/uploadResume', upload.single('resume'), function (req, res, next) {
-  console.log("data: ", req.file)
-  console.log("BODY: ", req.body)
-  if (!req.file) {
-    return res.status(400).send('No files were uploaded.');
-  }
-  const file = req.file;
-  var bucketName = 'elevateresumes'
-  var params = { Bucket: bucketName, Key: req.body.id + file.originalname , Body: file.data };
-  s3.putObject(params, function (err, data) {
-    if (err)
-      console.log(err)
-    else (data)
-    console.log(data)
-    // console.log("Successfully uploaded data to " + bucketName + "/" + file);
-    return data
-  });
-}
-)
+/* 16. updateResume URL on POSTGRES // PUT Route = /users/updateResume */
+router.put('/updateResume', loginRequired, db.updateResume)
 
-// /* 13. updateCoverLetter // PUT Route = /users/updateCoverLetter */
-// router.put('/updateCoverLetter', loginRequired, db.updateCoverLetter);
+/* 17. updateCover URL on POSTGRES // PUT Route = /users/updatecover */
+router.put('/updateCover', loginRequired, db.updateCover)
 
-// router.put('/updateResume', loginRequired, db.updateResume);
 
-/* 15. updateInterview // PUT Route = /users/updateInterview */
+/* 18. updateInterview // PUT Route = /users/updateInterview */
 router.put('/updateInterview', loginRequired, db.updateInterview);
 
-/* 16. updateUserInfo // PUT Route = /users/updateUserInfo */
+/* 19. updateUserInfo // PUT Route = /users/updateUserInfo */
 router.put('/updateUserInfo', loginRequired, db.updateUserInfo);
 
-/* 17. updateJobProgress // PUT Route = /users/updateJobProgress */
+/* 20. updateJobProgress // PUT Route = /users/updateJobProgress */
 router.put('/updateJobProgress', loginRequired, db.updateJobProgress);
 
-/* 18. updateJobInfo // PUT Route = /users/updateJobInfo */
+/* 21. updateJobInfo // PUT Route = /users/updateJobInfo */
 router.put('/updateJobInfo', loginRequired, db.updateJobInfo)
 
-/* 19. updateExperience // PUT Route = /users/updateExperience */
+/* 22. updateExperience // PUT Route = /users/updateExperience */
 router.put('/updateExperience', loginRequired, db.updateExperience)
 
-/* 20. updateJobStatus // PUT Route = /users/updateJobStatus */
+/* 21. updateJobStatus // PUT Route = /users/updateJobStatus */
 router.put('/updateJobStatus', loginRequired, db.updateJobStatus)
+
 module.exports = router;
