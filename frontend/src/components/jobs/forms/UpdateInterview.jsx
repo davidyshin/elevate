@@ -58,20 +58,21 @@ class UpdateInterview extends Component {
       <div className="update-interview-form">
         <form onSubmit={this.handleSubmit}>
           <h1>Update Interview</h1>
-          <p>Date</p>
+          <p>Interview Date</p>
           <input
             value={date}
             onChange={this.handleInput}
             name="date"
             type="date"
           />
+          <p>Interview Time </p>
           <input
             value={time}
             onChange={this.handleInput}
             name="time"
             type="time"
           />
-          <p>Contact</p>
+          <p>Interview Contact</p>
           <input
             value={contact}
             onChange={this.handleInput}
