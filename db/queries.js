@@ -364,8 +364,6 @@ const uploadCover = (req, res, next) => {
   };
   s3.putObject(params, function(err, data) {
     if (err) console.log(err);
-    console.log('THIS IS THE DATA: ',data);
-
     console.log('Successfully uploaded file');
   });
   res.status(200).send({url: params.Key});
