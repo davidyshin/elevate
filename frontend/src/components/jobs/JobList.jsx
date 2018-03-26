@@ -80,7 +80,7 @@ class JobList extends Component {
           <div>
             <JobItem job={job} index={index} handleClick={this.handleClick} />
             {parseInt(expandId) === parseInt(job.job_id) ?
-              <JobInfo job={job} editJob={this.props.editJob} expandClass={expandClass} />
+              <JobInfo job={job} index={index} editJob={this.props.editJob} expandClass={expandClass} />
               :
               <JobInfo job={job} editJob={this.props.editJob} />
             }

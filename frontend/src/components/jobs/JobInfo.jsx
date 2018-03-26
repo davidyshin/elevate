@@ -33,14 +33,16 @@ class JobInfo extends Component {
 
     const progressPercentage = (parseInt(progress_in_search) / 5) * 100;
 
-    var progressStyle = {
+    const progressStyle = {
       width: `${progressPercentage}%`
     }
+
+    const alternateBg = (this.props.index) % 2 === 0 ? 'job-info-light' : 'job-info-dark';
 
     console.log(this.props.job);
 
     return (
-      <div className={`job-info-container ${expand}`}>
+      <div className={`job-info-container ${expand} ${alternateBg}`}>
 
         <div className="job-info-top">
           <div className="job-info-logo-container">
@@ -75,7 +77,6 @@ class JobInfo extends Component {
           <div className="job-info-search-progress-total">
             <div className={initiateProgressEarned} style={progressStyle} />
           </div>
-          <p>{progress_in_search} / 5</p>
         </div>
 
       </div>

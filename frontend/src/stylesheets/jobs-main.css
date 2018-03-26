@@ -219,14 +219,39 @@
 }
 
   /*
+  // Odd info boxes have light background 
+  */
+  .job-info-light {
+    background-color: #fefefe;
+  }
+
+  /* 
+  // Even info boxes have dark background
+  */
+  .job-info-dark {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  /*
   // Contains: company logo, posting url, phone, email, log date, resume, cover letter
   */
   .job-info-top {
     width: 100%;
     height: 60%;
     display: flex;
-    background-color: rgba(255, 0, 0, 0.4);
+    /* background-color: rgba(255, 0, 0, 0.4); */
   }
+
+    .job-info-top a,
+    .job-info-top a:visited {
+      text-decoration: none;
+      color: rgb(51, 156, 197);
+      transition: 0.5s color;
+    }
+
+    .job-info-top a:hover {
+      color: rgb(42, 70, 97);
+    }
   
     /*
     // Single div holding the company logo
@@ -236,7 +261,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: rgba(255, 0, 0, 0.2);
+      /* background-color: rgba(255, 0, 0, 0.2); */
     }
 
       /*
@@ -252,11 +277,11 @@
     // Contains: job posting, phone number, email 
     */
     .job-info-company-container {
-      width: 45%;
+      width: 35%;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      background-color: rgba(255, 0, 0, 0.4);
+      /* background-color: rgba(255, 0, 0, 0.4); */
     }
 
       .job-info-company-container p {
@@ -267,11 +292,11 @@
     // Contains: logged on, resume, cover letter 
     */
     .job-info-user-container {
-      width: 45%;
+      width: 55%;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      background-color: rgba(255, 0, 0, 0.6);
+      /* background-color: rgba(255, 0, 0, 0.6); */
     }
 
       .job-info-user-container p {
@@ -290,6 +315,16 @@
     background-color: rgba(0, 255, 0, 0.4);
   }
 
+    /*
+    // Contains: status: awaiting response 
+    */ 
+    .job-info-mid p {
+      margin-left: 22px;
+    }
+
+    /*
+    // Update Job button
+    */
     .job-info-mid button {
       outline: none;
       border: none;
