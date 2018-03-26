@@ -28,7 +28,7 @@ class UpdateJobForm extends Component {
       interviews: [],
       addedInterviews: [],
       experience: 0,
-      statusChecked: 'awaiting'
+      job_status: 'awaiting'
     };
   }
 
@@ -64,6 +64,7 @@ class UpdateJobForm extends Component {
       resume_url: editingJob.resume_url,
       cover_url: editingJob.cover_url,
       date_applied: date_applied,
+      job_status: editingJob.job_status,
       experience: this.props.activeUser.experience
     });
     axios
@@ -83,19 +84,19 @@ class UpdateJobForm extends Component {
   };
 
   handleStatusChange = e => {
-    this.setState({ statusChecked: e.target.name });
+    const job_status = e.target.name;
+
     const { job_id } = this.state;
-    switch (e.target.name) {
-      case 'offered':
-        console.log('jobstage accepted:', 6, 'job_id:', job_id);
-        break;
-      case 'awaiting':
-        console.log('jobstage awaiting:', 4, 'job_id:', job_id);
-        break;
-      case 'rejected':
-        console.log('jobstage rejected:', 5, 'job_id:', job_id);
-        break;
-    }
+    console.log('job_status:', job_status, 'job id:', job_id);
+    axios
+      .put('/users/updateJobStatus', {
+        job_id: job_id,
+        job_status: job_status
+      })
+      .then(() => {
+        this.setState({ job_status });
+      })
+      .catch(err => console.log(err));
   };
 
   addMoreInterview = e => {
@@ -346,7 +347,7 @@ class UpdateJobForm extends Component {
                 id="offered"
                 name="offered"
                 class="status-switch-offered"
-                checked={this.state.statusChecked === 'offered'}
+                checked={this.state.job_status === 'offered'}
               />
               <label for="offered">Offered</label>
               <input
@@ -355,7 +356,7 @@ class UpdateJobForm extends Component {
                 id="awaiting"
                 name="awaiting"
                 class="status-switch-awaiting"
-                checked={this.state.statusChecked === 'awaiting'}
+                checked={this.state.job_status === 'awaiting'}
               />
               <label for="awaiting">Awaiting</label>
               <input
@@ -364,7 +365,7 @@ class UpdateJobForm extends Component {
                 id="rejected"
                 name="rejected"
                 class="status-switch-rejected"
-                checked={this.state.statusChecked === 'rejected'}
+                checked={this.state.job_status === 'rejected'}
               />
               <label for="rejected">Rejected</label>
             </div>

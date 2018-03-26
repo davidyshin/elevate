@@ -266,7 +266,7 @@ button:hover {
   }
   
   .job-status-switch-field .status-switch-offered:checked + label {
-    background-color: #33a6b8;
+    background-color: #1DBB9C;
     -webkit-box-shadow: none;
     box-shadow: none;
     color: #fff;

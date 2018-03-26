@@ -85,7 +85,7 @@ class AddInterview extends Component {
                 name="note"
               />
             </div>
-            <span className="pencil-icon"><i class="fas fa-pencil-alt fa-2x"></i></span>
+            <span className="pencil-icon"><i className="fas fa-pencil-alt fa-2x"></i></span>
           </div>
           <input
             disabled={interviewSaved || !date || !contact}
