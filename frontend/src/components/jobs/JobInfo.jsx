@@ -10,7 +10,7 @@ class JobInfo extends Component {
   }
 
   convertToPhone = phone => {
-    let first = phone.slice(0, 3); 
+    let first = phone.slice(0, 3);
     let second = phone.slice(3, 6);
     let third = phone.slice(6, 10);
     let converted = `(${first}) ${second} ${third}`;
@@ -27,7 +27,15 @@ class JobInfo extends Component {
 
     const expand = this.props.expandClass ? this.props.expandClass : null;
 
-    const statusMessage = job_status === 'awaiting' ? 'Awaiting response' : job_status === 'offered' ? `Offered $___` : 'Rejected';
+    const initiateProgressEarned = this.props.expandClass ? "job-info-search-progress-earned" : null;
+
+    const statusMessage = job_status === 'awaiting' ? 'awaiting response' : job_status === 'offered' ? `offered $___` : 'rejected';
+
+    const progressPercentage = (parseInt(progress_in_search) / 5) * 100;
+
+    var progressStyle = {
+      width: `${progressPercentage}%`
+    }
 
     console.log(this.props.job);
 
@@ -64,7 +72,10 @@ class JobInfo extends Component {
         </div>
 
         <div className="job-info-bottom">
-          <p>Progress: {progress_in_search} / 5</p>
+          <div className="job-info-search-progress-total">
+            <div className={initiateProgressEarned} style={progressStyle} />
+          </div>
+          <p>{progress_in_search} / 5</p>
         </div>
 
       </div>

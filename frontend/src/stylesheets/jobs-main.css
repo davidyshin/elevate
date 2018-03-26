@@ -259,10 +259,12 @@
       background-color: rgba(255, 0, 0, 0.4);
     }
 
-
+      .job-info-company-container p {
+        margin: 6px 0;
+      }
 
     /*
-    // Contains: logged on ... , resume, cover letter 
+    // Contains: logged on, resume, cover letter 
     */
     .job-info-user-container {
       width: 45%;
@@ -271,6 +273,10 @@
       justify-content: center;
       background-color: rgba(255, 0, 0, 0.6);
     }
+
+      .job-info-user-container p {
+        margin: 6px 0;
+      }
 
   /*
   // Contains: job status, update button
@@ -288,6 +294,7 @@
       outline: none;
       border: none;
       width: 200px;
+      background-color: blueviolet;
     }
 
   /*
@@ -298,6 +305,39 @@
     height: 10%;
     background-color: rgba(0, 0, 255, 0.4);
   }
+
+    /*
+    // Total bar 
+    */
+    .job-info-search-progress-total {
+      background-color: skyblue;
+      width: 100%;
+      height: 100%;
+      animation: progress-shrink 0.5s;
+    }
+
+    /*
+    // Progress in search bar
+    */
+    .job-info-search-progress-earned {
+      background-color: rgb(51, 156, 197);
+      height: 100%;
+      transform-origin: top left;
+      animation: progress-grow 0.5s;
+    }
+
+    /*
+    // Ensures that the progress bar doesn't shrink back when job info folds back in 
+    */
+    @keyframes progress-shrink {
+      0% {
+        transform: scale(1, 1);
+      }
+
+      100% {
+        transform: scale(1, 1);
+      }
+    }
 
 /*
 // When screen is smaller than 1300px wide, the entire jobs page becomes responsive 
