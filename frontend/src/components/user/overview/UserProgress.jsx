@@ -8,7 +8,7 @@ class UserProgress extends Component {
       userExperience: 0,
       experienceToNextLevel: 0,
       rankBadge: '',
-      lockedBadgeUrl: 'https://i.imgur.com/aVEGmKm.png'
+      lockedBadgeUrl: 'https://i.imgur.com/HxuzkQX.png'
     };
   }
 
