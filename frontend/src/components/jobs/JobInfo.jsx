@@ -24,10 +24,12 @@ class JobInfo extends Component {
       job_id
     } = this.props.job;
 
+    const expand = this.props.expandClass ? this.props.expandClass : null;
+
     return (
-      <div className="job-info-container">
+      <div className={`job-info-container ${expand}`}>
         <h3>Date Logged: {date_logged} </h3>
-        <h3>Date Applied: {date_applied} </h3>{' '}
+        <h3>Date Applied: {date_applied} </h3>
         {job_phone_number ? <h3>Contact Number: {job_phone_number} </h3> : null}
         {job_email ? <h3>Contact Email: {job_email} </h3> : null}
         <h3>Progress In Search: {progress_in_search}/5</h3>
@@ -39,7 +41,6 @@ class JobInfo extends Component {
           {cover_url ? <a href={cover_url}>Cover Letter</a> : "You do not have a cover letter added, add one now!"}
         </h3>
         <button id={job_id} onClick={this.handleEditClick}>Update</button>
-        {/* <h1 id={job_id} onClick={this.handleEditClick}>Update</h1> */}
       </div>
     );
   }
