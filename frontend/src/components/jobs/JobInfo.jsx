@@ -66,11 +66,14 @@ class JobInfo extends Component {
               {cover_url ? <a href={cover_url} target="_blank">Cover Letter</a> : "No cover letter on file. Add one now."}
             </p>
           </div>
+
+          <div className="job-info-button-container">
+            <button id={job_id} onClick={this.handleEditClick}>Update Job</button>
+          </div>
         </div>
 
         <div className="job-info-mid">
           <p>Status: {statusMessage}</p>
-          <button id={job_id} onClick={this.handleEditClick}>Update</button>
         </div>
 
         <div className="job-info-bottom">
