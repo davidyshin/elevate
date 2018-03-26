@@ -111,46 +111,10 @@ router.post('/login', passport.authenticate('local'), (req, res) => {
 
 /* 13. Upload Cover AWS // POST Route = /users/UploadCovers */
 // Router.post
-router.post('/uploadCovers', function (req, res, next) {
-  console.log("files: ", req.files)
-  if (!req.files) {
-    return res.status(400).send('No files were uploaded.');
-  }
-  const file = req.files.file;
-  var bucketName = 'elevatecovers'
-  var params = { Bucket: bucketName, Key: file.name, Body: file.data };
-  var hold = file.data
-  s3.putObject(params, function (err, data) {
-    if (err)
-      console.log(err)
-    else
-      console.log("Successfully uploaded data to " + bucketName + "/" + file.name);
-  });
-  next()
-},
-  db.updateCoverAws
-)
 
 /* 14. Upload Resume AWS // PUT Route = /users/updateResume */
-router.post('/uploadResume', upload.single('resume'), function (req, res, next) {
-  console.log("data: ", req.file)
-  console.log("BODY: ", req.body)
-  if (!req.file) {
-    return res.status(400).send('No files were uploaded.');
-  }
-  const file = req.file;
-  var bucketName = 'elevateresumes'
-  var params = { Bucket: bucketName, Key: req.body.id + file.originalname , Body: file.data };
-  s3.putObject(params, function (err, data) {
-    if (err)
-      console.log(err)
-    else (data)
-    console.log(data)
-    // console.log("Successfully uploaded data to " + bucketName + "/" + file);
-    return data
-  });
-}
-)
+router.post('/uploadResume', upload.single('resume'), db.uploadResume)
+
 
 // /* 13. updateCoverLetter // PUT Route = /users/updateCoverLetter */
 // router.put('/updateCoverLetter', loginRequired, db.updateCoverLetter);
