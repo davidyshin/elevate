@@ -21,7 +21,7 @@ var s3 = new AWS.S3(awsKeys);
   GET Requests
 ---------------------------------------
  1. getAllUserApps  // GET Route = /users/getAllUserApps
- 2. getCoverLetter  // GET Route = /users/getCoverLetter/:job
+ 2. getCover  // GET Route = /users/getCover/:job
  3. getInterviews // GET Route = /users/getInterviews/:job
  4. getRankedBadge  // GET Route = /users/getRankedBadge/:level
  5. getResume // GET Route = /users/getResume/:job
@@ -77,9 +77,9 @@ const getAllUserApps = (req, res, next) => {
 };
 
 /* 2. */
-// GET Route = /users/getCoverLetter/:job
+// GET Route = /users/getCover/:job
 
-const getCoverLetter = (req, res, next) => {
+const getCover = (req, res, next) => {
   db
     .one(
       'SELECT cover_url FROM jobs WHERE user_id=${user_id} AND job_id = ${job}',
@@ -594,7 +594,7 @@ const updateJobStatus = (req, res, next) => {
 
 module.exports = {
   getAllUserApps,
-  getCoverLetter,
+  getCover,
   getInterviews,
   getRankedBadge,
   getResume,
