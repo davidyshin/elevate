@@ -132,13 +132,13 @@ router.post('/uploadCovers', function (req, res, next) {
 /* 14. Upload Resume AWS // PUT Route = /users/updateResume */
 
 router.post('/uploadResume', function (req, res, next) {
-  console.log("data: ", req.body.data)
+  console.log("data: ", req.body)
   if (!req.body.data) {
     return res.status(400).send('No files were uploaded.');
   }
   const file = req.body.data;
   var bucketName = 'elevateresumes'
-  var params = { Bucket: bucketName, Key: 'lol', Body: file.data };
+  var params = { Bucket: bucketName, Key: 'lo50l', Body: file.data };
   // var hold = file.data
   s3.putObject(params, function (err, data) {
     if (err)
