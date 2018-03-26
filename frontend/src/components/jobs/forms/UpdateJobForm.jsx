@@ -84,17 +84,17 @@ class UpdateJobForm extends Component {
 
   handleStatusChange = e => {
     this.setState({ statusChecked: e.target.name });
-    const {job_id} = this.state
+    const { job_id } = this.state;
     switch (e.target.name) {
-      case "offered":
-      console.log('6', job_id)
-      break;
-      case "awaiting":
-      console.log('4', job_id)
-      break;
-      case "rejected":
-      console.log('5', job_id)
-      break;
+      case 'offered':
+        console.log('jobstage accepted:', 6, 'job_id:', job_id);
+        break;
+      case 'awaiting':
+        console.log('jobstage awaiting:', 4, 'job_id:', job_id);
+        break;
+      case 'rejected':
+        console.log('jobstage rejected:', 5, 'job_id:', job_id);
+        break;
     }
   };
 
