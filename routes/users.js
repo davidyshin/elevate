@@ -5,10 +5,12 @@ const { loginRequired } = require('../auth/helpers');
 const passport = require('../auth/local');
 const dotenv = require('dotenv')
 dotenv.load()
-const multer = require('multer'),
-  multerS3 = require('multer-s3'),
-  fs = require('fs'),
-  AWS = require('aws-sdk');
+const multer = require('multer')
+const upload = multer()
+
+const multerS3 = require('multer-s3')
+const fs = require('fs');
+const AWS = require('aws-sdk');
 const awsKeys = {
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
@@ -130,16 +132,15 @@ router.post('/uploadCovers', function (req, res, next) {
 )
 
 /* 14. Upload Resume AWS // PUT Route = /users/updateResume */
-
-router.post('/uploadResume', function (req, res, next) {
-  console.log("data: ", req.body)
-  if (!req.body.data) {
+router.post('/uploadResume', upload.single('resume'), function (req, res, next) {
+  console.log("data: ", req.file)
+  console.log("BODY: ", req.body)
+  if (!req.file) {
     return res.status(400).send('No files were uploaded.');
   }
-  const file = req.body.data;
+  const file = req.file;
   var bucketName = 'elevateresumes'
-  var params = { Bucket: bucketName, Key: 'lo50l', Body: file.data };
-  // var hold = file.data
+  var params = { Bucket: bucketName, Key: req.body.id + file.originalname , Body: file.data };
   s3.putObject(params, function (err, data) {
     if (err)
       console.log(err)
