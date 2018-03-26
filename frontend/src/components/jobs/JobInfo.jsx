@@ -6,7 +6,16 @@ class JobInfo extends Component {
   }
 
   handleEditClick = () => {
-    this.props.editJob(this.props.job)
+    this.props.editJob(this.props.job);
+  }
+
+  convertToPhone = phone => {
+    let first = phone.slice(0, 3);
+    let second = phone.slice(3, 6);
+    let third = phone.slice(6, 10);
+    let converted = `(${first}) ${second} ${third}`;
+
+    return converted;
   }
 
   render() {
@@ -14,33 +23,65 @@ class JobInfo extends Component {
 
     const date_applied = new Date(this.props.job.date_applied).toDateString();
 
-    const {
-      progress_in_search,
-      job_posting_url,
-      cover_url,
-      resume_url,
-      job_phone_number,
-      job_email,
-      job_id
-    } = this.props.job;
+    const { progress_in_search, job_status, job_posting_url, cover_url, resume_url, job_phone_number, job_email, job_id, company_logo, company_name } = this.props.job;
 
     const expand = this.props.expandClass ? this.props.expandClass : null;
 
+    const initiateProgressEarned = this.props.expandClass ? "job-info-search-progress-earned" : null;
+
+    const statusMessage = job_status === 'awaiting' ? 'awaiting response' : job_status === 'offered' ? `offered $___` : 'rejected';
+
+    const progressPercentage = (parseInt(progress_in_search) / 5) * 100;
+
+    const progressStyle = {
+      width: `${progressPercentage}%`
+    }
+
+    const alternateBg = (this.props.index) % 2 === 0 ? 'job-info-light' : 'job-info-dark';
+
+    console.log(this.props.job);
+
     return (
-      <div className={`job-info-container ${expand}`}>
-        <h3>Date Logged: {date_logged} </h3>
-        <h3>Date Applied: {date_applied} </h3>
-        {job_phone_number ? <h3>Contact Number: {job_phone_number} </h3> : null}
-        {job_email ? <h3>Contact Email: {job_email} </h3> : null}
-        <h3>Progress In Search: {progress_in_search}/5</h3>
-        <h3><a href={job_posting_url}>Job Posting URL</a></h3>
-        <h3>
-          {resume_url ? <a href={resume_url}>Resume</a> : "You do not have a resume added, add one now!"}
-        </h3>
-        <h3>
-          {cover_url ? <a href={cover_url}>Cover Letter</a> : "You do not have a cover letter added, add one now!"}
-        </h3>
-        <button id={job_id} onClick={this.handleEditClick}>Update</button>
+      <div className={`job-info-container ${expand} ${alternateBg}`}>
+
+        <div className="job-info-top">
+          <div className="job-info-logo-container">
+            <img src={company_logo} alt={company_name} />
+          </div>
+
+          <div className="job-info-company-container">
+            <p>Phone number: {job_phone_number ? this.convertToPhone(job_phone_number) : 'not available'}</p>
+            <p>Contact email: {job_email ? job_email : 'not available'}</p>
+            <p>
+              {job_posting_url ? <a href={job_posting_url} target="_blank">Go to job posting</a> : null}
+            </p>
+          </div>
+
+          <div className="job-info-user-container">
+            <p>Logged on: {date_logged}</p>
+            <p>
+              {resume_url ? <a href={resume_url} target="_blank">Resume</a> : "No resume on file. Add one now."}
+            </p>
+            <p>
+              {cover_url ? <a href={cover_url} target="_blank">Cover Letter</a> : "No cover letter on file. Add one now."}
+            </p>
+          </div>
+
+          <div className="job-info-button-container">
+            <button id={job_id} onClick={this.handleEditClick}>Update Job</button>
+          </div>
+        </div>
+
+        <div className="job-info-mid">
+          <p>Status: {statusMessage}</p>
+        </div>
+
+        <div className="job-info-bottom">
+          <div className="job-info-search-progress-total">
+            <div className={initiateProgressEarned} style={progressStyle} />
+          </div>
+        </div>
+
       </div>
     );
   }

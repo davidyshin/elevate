@@ -6,7 +6,6 @@
 // The homapage after user logs in  
 */
 .jobs-container {
-  /* background-color: cornflowerblue; */
   background-color: #f5f0f5;
   width: 100%;
   height: 100vh;
@@ -77,20 +76,6 @@
       margin-right: 22px;
     }
 
-  /*
-  // Ordered list that defines the job lists
-  */
-  /* .job-list ol {
-    padding: 0;
-    padding-left: 10%;
-    margin: 0;
-    font-size: 1.4rem;
-  } */
-
-  /* .job-list li {
-    height: 60px;
-  } */
-
 /*
 // Top row of the job list chart 
 */
@@ -101,7 +86,8 @@
   align-items: center;
   justify-content: space-between;
   font-size: 1.6rem;
-  background-color: rgba(0, 255, 0, 0.6);
+  font-weight: 500;
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
   /*
@@ -110,7 +96,6 @@
   .job-item-top-row .job-number {
     width: 10%;
     text-align: center;
-    background-color: rgba(0, 0, 255, 0.2);
   }
 
   /*
@@ -118,7 +103,6 @@
   */
   .job-item-top-row .job-company {
     width: 35%;
-    background-color: rgba(0, 0, 255, 0.4);
   }
 
   /* 
@@ -126,7 +110,6 @@
   */
   .job-item-top-row .job-position {
     width: 35%;
-    background-color: rgba(0, 0, 255, 0.6);
   }
 
   /*
@@ -134,7 +117,6 @@
   */
   .job-item-top-row .job-date {
     width: 20%;
-    background-color: rgba(0, 0, 255, 0.8);
   }
 
 
@@ -142,7 +124,6 @@
 // Single job item (single row) 
 */
 .job-item {
-  /* background-color: lightblue; */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -170,7 +151,6 @@
   // Job item index (1, 2, 3, ...) 
   */ 
   .job-item-index {
-    /* background-color: red; */
     width: 10%;
     text-align: center;
   }
@@ -180,7 +160,6 @@
   */
   .job-item-company {
     width: 35%;
-    /* background-color: greenyellow; */
   }
 
   /*
@@ -188,7 +167,6 @@
   */ 
   .job-item-position {
     width: 35%;
-    /* background-color: mediumvioletred; */
   }
 
   /*
@@ -196,7 +174,6 @@
   */
   .job-item-date {
     width: 20%;
-    /* background-color: lightcoral; */
   }
 
 
@@ -204,22 +181,194 @@
 // Contains job information that expands on click 
 */ 
 .job-info-container {
-  background-color: rgba(0, 255, 0, 0.4);
   width: 100%;
   height: 0;
   visibility: hidden;
   opacity: 0;
   overflow: hidden;
-  /* display: none; */
+  font-size: 1.6rem;
+  -moz-transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
 
+/*
+// Job information expanded 
+*/
 .job-info-container-expand {
-  /* display: block; */
   visibility: visible;
   opacity: 1;
   height: 200px;
 }
+
+  /*
+  // Odd info boxes have light background 
+  */
+  .job-info-light {
+    background-color: #fefefe;
+  }
+
+  /* 
+  // Even info boxes have dark background
+  */
+  .job-info-dark {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  /*
+  // Contains: company logo, posting url, phone, email, log date, resume, cover letter
+  */
+  .job-info-top {
+    width: 100%;
+    height: 60%;
+    display: flex;
+  }
+
+    .job-info-top a,
+    .job-info-top a:visited {
+      text-decoration: none;
+      color: rgb(51, 156, 197);
+      transition: 0.5s color;
+    }
+
+    .job-info-top a:hover {
+      color: rgb(42, 70, 97);
+    }
+  
+    /*
+    // Single div holding the company logo
+    */
+    .job-info-logo-container {
+      width: 10%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+      /*
+      // Contains: company logo on the left
+      */
+      .job-info-logo-container img {
+        height: 80px;
+        width: auto;
+        border-radius: 100%;
+      }
+
+    /*
+    // Contains: job posting, phone number, email 
+    */
+    .job-info-company-container {
+      width: 35%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+      .job-info-company-container p,
+      .job-info-user-container p {
+        margin: 6px 0;
+      }
+
+    /*
+    // Contains: logged on, resume, cover letter 
+    */
+    .job-info-user-container {
+      width: 35%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /*
+    //
+    */
+    .job-info-button-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 20%;
+    }
+
+      /*
+      // Update Job button
+      */
+      .job-info-button-container button {
+        outline: none;
+        border: none;
+        width: 100%;
+        padding: 22px;
+        margin: 6px;
+        border-radius: 60px;
+        font-size: 1.4rem;
+        font-weight: 300;
+        font-family: 'Montserrat', sans-serif;
+        background-color: rgba(67, 42, 246, 1);
+        background: linear-gradient(to right, rgba(67, 42, 246, 1) 0%,rgba(0, 149, 222, 1) 100%);
+        color: #fefefe;
+        cursor: pointer;
+        transition: 0.2s all;
+      }
+
+  /*
+  // Contains: job status, update button
+  */
+  .job-info-mid {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+    /*
+    // Contains: status: awaiting response 
+    */ 
+    .job-info-mid p {
+      margin-left: 22px;
+    }
+
+  /*
+  // Contains the progress bar 
+  */
+  .job-info-bottom {
+    width: 100%;
+    height: 10%;
+    /* background-color: rgba(0, 0, 255, 0.4); */
+  }
+
+    /*
+    // Total bar 
+    */
+    .job-info-search-progress-total {
+      background-color: skyblue;
+      width: 100%;
+      height: 100%;
+      animation: progress-shrink 0.5s;
+    }
+
+    /*
+    // Progress in search bar
+    */
+    .job-info-search-progress-earned {
+      background-color: rgb(51, 156, 197);
+      height: 100%;
+      transform-origin: top left;
+      animation: progress-grow 0.5s;
+    }
+
+    /*
+    // Ensures that the progress bar doesn't shrink back when job info folds back in 
+    */
+    @keyframes progress-shrink {
+      0% {
+        transform: scale(1, 1);
+      }
+
+      100% {
+        transform: scale(1, 1);
+      }
+    }
 
 /*
 // When screen is smaller than 1300px wide, the entire jobs page becomes responsive 
