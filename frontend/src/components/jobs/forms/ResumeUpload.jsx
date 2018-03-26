@@ -18,7 +18,6 @@ class ResumeUpload extends Component {
   
     axios.post('/users/uploadResume', data)
       .then(res => {
-        // this.props.handleResumeInput(res)
         console.log(res)
       })
       .catch(err => {
@@ -31,7 +30,7 @@ class ResumeUpload extends Component {
     return (
       <div className="resume-form">
         <form id="2">
-          <h1>Resume</h1>
+          <h1>Resume:</h1>
           <input
             type="file"
             name="resume"

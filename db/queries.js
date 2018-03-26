@@ -16,7 +16,6 @@ const awsKeys = {
 
 var s3 = new AWS.S3(awsKeys);
 
-
 /* List of queries/routes for reference
 ---------------------------------------
   GET Requests
@@ -37,12 +36,14 @@ var s3 = new AWS.S3(awsKeys);
  10. createJobApp // POST Route /users/createJobApp
  11. createInterview // // POST Route /users/createInterview
  12. registerUser // POST Route = /users/newuser
+ 13. uploadCover AWS // POST Route = /users/uploadCover
+ 14. uploadResume AWS // POST Route = /users/uploadResume
 
  ---------------------------------------
   PUT Requests
 ---------------------------------------
- 13. updateCoverLetter // PUT Route = /users/updateCoverLetter
- 14. updateResumeAws // PUT Route = /users/updateResumeAws
+ 13. updateCover // PUT Route = /users/updateCoverLetter
+ 14. updateResume // PUT Route = /users/updateResumeAws
  15. updateInterview // PUT Route = /users/updateInterview
  16. updateUserInfo // PUT Route = /users/updateInfo
  17. updateJobProgress // PUT Route = /users/updateJobProgress 
@@ -323,7 +324,7 @@ const createInterview = (req, res, next) => {
     });
 };
 
-/* 11. */
+/* 12. */
 // POST Route = /users/newuser
 
 const registerUser = (req, res, next) => {
@@ -356,9 +357,51 @@ const registerUser = (req, res, next) => {
     });
 };
 
+// UPLOADING RESUME, COVERLETTER TO AWS
+/* 13. */
+const uploadResume = (req, res, next) => {
+  if (!req.file) {
+    return res.status(400).send('No files were uploaded.');
+  }
+  const file = req.file;
+  var bucketName = 'elevateresumes';
+  var params = {
+    Bucket: bucketName,
+    Key: req.body.id + file.originalname + '-resume',
+    Body: file.buffer
+  };
+  s3.putObject(params, function(err, data) {
+    if (err) console.log(err);
+    else data;
+
+    console.log('Successfully uploaded file');
+  });
+};
+
+/* 14. */
+
+const uploadCover = (req, res, next) => {
+  if (!req.file) {
+    return res.status(400).send('No files were uploaded.');
+  }
+  const file = req.file;
+  var bucketName = 'elevatecovers';
+  var params = {
+    Bucket: bucketName,
+    Key: req.body.id + file.originalname + '-cover',
+    Body: file.buffer
+  };
+  s3.putObject(params, function(err, data) {
+    if (err) console.log(err);
+    else data;
+
+    console.log('Successfully uploaded file');
+  });
+};
+
 /* ------------------------ PUT REQUESTS QUERIES ------------------------ */
 
-/* 12. */
+/* 15. */
 // PUT Route = /users/updateCoverLetter/
 
 const updateCoverLetter = (req, res, next) => {
@@ -378,7 +421,7 @@ const updateCoverLetter = (req, res, next) => {
     });
 };
 
-/* 13. */
+/* 16. */
 // PUT Route = /users/updateResume
 
 const updateResumeAws = (req, res, next) => {
@@ -402,7 +445,7 @@ const updateResumeAws = (req, res, next) => {
     });
 };
 
-/* 14. */
+/* 17. */
 // PUT Route = /users/updateInterview
 
 const updateInterview = (req, res, next) => {
@@ -428,7 +471,7 @@ const updateInterview = (req, res, next) => {
     });
 };
 
-/* 15. */
+/* 18. */
 // PUT Route = /users/updateUserInfo
 
 const updateUserInfo = (req, res, next) => {
@@ -454,7 +497,7 @@ const updateUserInfo = (req, res, next) => {
     });
 };
 
-/* 17 */
+/* 19 */
 
 // PUT Route =  /users/updateJobProgress
 const updateJobProgress = (req, res, next) => {
@@ -478,7 +521,7 @@ const updateJobProgress = (req, res, next) => {
     });
 };
 
-/* 18. */
+/* 20. */
 // PUT Route = users/updateJobInfo
 const updateJobInfo = (req, res, next) => {
   db
@@ -507,7 +550,7 @@ const updateJobInfo = (req, res, next) => {
     });
 };
 
-/* 19. */
+/* 21. */
 // PUT Route = users/updateExperience
 const updateExperience = (req, res, next) => {
   db
@@ -527,7 +570,7 @@ const updateExperience = (req, res, next) => {
     });
 };
 
-/* 20. */
+/* 22. */
 // PUT Route = users/updateJobStatus
 const updateJobStatus = (req, res, next) => {
   db
@@ -547,23 +590,6 @@ const updateJobStatus = (req, res, next) => {
     });
 };
 
-const uploadResume = (req, res, next) => {
-    if (!req.file) {
-      return res.status(400).send('No files were uploaded.');
-    }
-    const file = req.file;
-    var bucketName = 'elevateresumes'
-    var params = { Bucket: bucketName, Key: req.body.id + file.originalname , Body: file.data };
-    s3.putObject(params, function (err, data) {
-      if (err)
-        console.log(err)
-      else (data)
-      console.log("Successfully uploaded file");
-      return data
-    });
-}
-
-
 module.exports = {
   getAllUserApps,
   getCoverLetter,
@@ -577,13 +603,14 @@ module.exports = {
   createJobApp,
   createInterview,
   registerUser,
-  updateCoverLetter,
-  updateResumeAws,
+  updateCover,
+  updateResume,
   updateInterview,
   updateUserInfo,
   updateJobProgress,
   updateJobInfo,
   updateExperience,
   updateJobStatus,
-  uploadResume
+  uploadResume,
+  uploadCover
 };

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios'
 
 
-class ResumeUpload extends Component {
+class CoverLetterUpload extends Component {
   constructor() {
     super();
     this.state = {
@@ -20,7 +20,6 @@ class ResumeUpload extends Component {
       .then(res => {
         console.log(res)
       })
-
       .catch(err => {
         console.log(err)
       })
@@ -31,7 +30,7 @@ class ResumeUpload extends Component {
     return (
       <div className="cover-form">
         <form id="2">
-          <h1>Resume</h1>
+          <h1>Cover Letter:</h1>
           <input
             type="file"
             name="cover"
@@ -44,4 +43,4 @@ class ResumeUpload extends Component {
   }
 }
 
-export default ResumeUpload;
+export default CoverLetterUpload;
