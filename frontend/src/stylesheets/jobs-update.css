@@ -1,8 +1,8 @@
 /*------------------------------------------*/
-/*              Add Job Form Page           */
+/*              Edit Job Form Page          */
 /*------------------------------------------*/
 
-.add-job-form-container {
+.update-job-form-container {
   /* padding-top: 60px; */
   font-family: 'Montserrat', sans-serif;
   display: flex;
@@ -17,9 +17,11 @@
 }
 
 /*
-// Add Job form
-*/
-.add-job-form-container form {
+  // Update Job form
+  */
+.update-job-form-container form,
+.resume-url-container,
+.cover-url-container {
   background-color: #fefefe;
   display: flex;
   flex-direction: column;
@@ -31,30 +33,40 @@
   margin: 0 auto;
 }
 
-.add-job-form-input-title {
+.update-job-applied-company {
+  background-color: #fefefe;
+}
+
+.update-job-form-input-title {
   width: 396px;
   display: flex;
   justify-content: flex-start;
 }
-.add-job-form-container p {
+.update-job-form-container p {
   font-size: 15px;
   font-weight: 300;
 }
 
 /*
-// Each stage of the application has it's own form and box, separated by 50px
-*/
+  // Each stage of the application has it's own form and box, separated by 50px
+  */
 
 .resume-form,
 .cover-letter-form,
-.add-interview-form {
+.add-interview-form,
+.resume-input-container,
+.cover-input-container,
+.interview-form-container {
   padding-top: 50px;
 }
+.cover-url, .resume-url {
+  font-size: 15px;
+}
 /*
-// Input boxes in the forms, and the textarea === note section
-*/
+  // Input boxes in the forms, and the textarea === note section
+  */
 
-.add-job-form-container form input,
+.update-job-form-container form input,
 textarea {
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
@@ -79,35 +91,35 @@ textarea {
   resize: none;
 }
 /*
-// Input text box placeholders and fonts
-*/
+  // Input text box placeholders and fonts
+  */
 
-.add-job-form-container form input::placeholder {
+.update-job-form-container form input::placeholder {
   color: rgba(0, 0, 0, 0.5);
   font-weight: 400;
   font-size: 13px;
 }
-.add-job-form-container form input[type='text'],
-.add-job-form-container form input[type='email'],
-.add-job-form-container form input[type='date'] {
+.update-job-form-container form input[type='text'],
+.update-job-form-container form input[type='email'],
+.update-job-form-container form input[type='date'] {
   font-size: 20px;
 }
 
-.add-job-form-container form input[type='date'],
-.add-job-form-container form input[type='time'] {
+.update-job-form-container form input[type='date'],
+.update-job-form-container form input[type='time'] {
   font-size: 16px;
 }
 
-.add-job-form-container form input:focus,
+.update-job-form-container form input:focus,
 button:focus {
   border: 1px solid rgba(0, 149, 222, 0.6);
 }
 
 /*
-// Button stylings
-*/
+  // Button stylings
+  */
 
-.add-job-form-container form input[type='submit'] {
+.update-job-form-container form input[type='submit'] {
   background: linear-gradient(
     to right,
     rgba(67, 42, 246, 1) 0%,
@@ -126,7 +138,7 @@ button:focus {
   font-size: 15px;
 }
 
-.interview-button {
+.add-interview-button {
   background: linear-gradient(
     to right,
     rgba(67, 42, 246, 1) 0%,
@@ -138,36 +150,20 @@ button:focus {
   color: #fefefe;
   font-size: 15px;
 }
-.interview-button:disabled,
-.add-job-form-container form input[type='submit']:disabled {
+.add-interview-button:disabled,
+.update-job-form-container form input[type='submit']:disabled {
   background: rgb(255, 255, 255);
 }
 /*
-// Button gets bigger on hover
-*/
-.add-job-form-container form input[type='submit']:hover,
+  // Button gets bigger on hover
+  */
+.update-job-form-container form input[type='submit']:hover,
 button:hover {
   transform: scale(1.02);
 }
 
-/* Suggestions that render a drop down below Company list type */
-
-#react-autowhatever-1 {
-  overflow: scroll;
-  z-index: 10;
-  margin: 4px;
-  position: absolute;
-  background-color: white;
-}
-#react-autowhatever-1 ul {
-  padding: 0px;
-  margin: 0px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-}
-
 /*  hard coding font awesome icons to the right sides of the add job form input */
-.magnifying-glass,
-.brief-case {
+.building-icon {
   position: relative;
   z-index: 9;
   left: 350px;
@@ -185,15 +181,15 @@ button:hover {
   bottom: 223px;
 }
 
-.company-search-input,
-.position-search-input {
+.company-input {
   height: 70px;
 }
+
 .company-image {
   z-index: 9;
   position: relative;
   width: 40px;
-  left: 335px;
+  left: 340px;
   bottom: 55px;
   height: 40px;
   border-radius: 50%;
@@ -224,14 +220,14 @@ button:hover {
 }
 
 /*
-// When the screen size is smaller than 720px, form width becomes responsive 
-*/
+  // When the screen size is smaller than 720px, form width becomes responsive 
+  */
 @media screen and (max-width: 720px) {
-  .add-job-form-container {
+  .update-job-form-container {
     padding-top: 100px;
   }
 
-  .add-job-form-container form {
+  .update-job-form-container form {
     width: 80%;
   }
 }

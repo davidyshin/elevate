@@ -7,10 +7,9 @@ class CoverLetterUpload extends Component {
   render() {
     return (
       <div className="cover-letter-form">
-        <h3>Cover Letter</h3>
-        <form id="3" onSubmit={this.props.handleSecondSubmit}>
+        <form id="3">
+          <h1>Cover Letter</h1>
           <input onChange={this.props.handleCoverInput} type="file" />
-          <input disabled={!this.props.cover_url} type="submit" value="Next" />
         </form>
       </div>
     );
