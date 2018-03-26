@@ -18,7 +18,7 @@ class ResumeUpload extends Component {
   
     axios.post('/users/uploadResume', data)
       .then(res => {
-        console.log(res)
+        this.props.handleResumeInput(res.data.url)
       })
       .catch(err => {
         console.log(err)

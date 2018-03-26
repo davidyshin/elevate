@@ -367,15 +367,16 @@ const uploadResume = (req, res, next) => {
   var bucketName = 'elevateresumes';
   var params = {
     Bucket: bucketName,
-    Key: req.body.id + file.originalname + '-resume',
+    Key: 'resume-'+ req.body.id + file.originalname ,
     Body: file.buffer
   };
   s3.putObject(params, function(err, data) {
     if (err) console.log(err);
-    else data;
+    else data
 
     console.log('Successfully uploaded file');
-  });
+  })
+  res.status(200).send({url: params.Key});
 };
 
 /* 14. */
@@ -388,7 +389,7 @@ const uploadCover = (req, res, next) => {
   var bucketName = 'elevatecovers';
   var params = {
     Bucket: bucketName,
-    Key: req.body.id + file.originalname + '-cover',
+    Key: 'cover-'+req.body.id + file.originalname,
     Body: file.buffer
   };
   s3.putObject(params, function(err, data) {
@@ -397,6 +398,7 @@ const uploadCover = (req, res, next) => {
 
     console.log('Successfully uploaded file');
   });
+  res.status(200).send({url: params.Key});
 };
 
 /* ------------------------ PUT REQUESTS QUERIES ------------------------ */
@@ -404,7 +406,7 @@ const uploadCover = (req, res, next) => {
 /* 15. */
 // PUT Route = /users/updateCoverLetter/
 
-const updateCoverLetter = (req, res, next) => {
+const updateCover = (req, res, next) => {
   db
     .none('UPDATE jobs SET cover_url = ${cover_url} WHERE job_id = ${job_id}', {
       cover_url: req.body.cover_url,
@@ -424,7 +426,7 @@ const updateCoverLetter = (req, res, next) => {
 /* 16. */
 // PUT Route = /users/updateResume
 
-const updateResumeAws = (req, res, next) => {
+const updateResume = (req, res, next) => {
   db
     .none(
       'UPDATE jobs SET resume_url = ${resume_url} WHERE job_id = ${job_id}',

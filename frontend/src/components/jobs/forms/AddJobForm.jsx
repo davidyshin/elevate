@@ -127,19 +127,18 @@ class AddJobForm extends Component {
     this.updateExperience(50);
   };
 
-  handleCoverInput = e => {
+  handleCoverInput = (res) => {
     let { job_id } = this.state;
-    const cover_url = e.target.value;
-    e.preventDefault();
     axios
-      .put('/users/updateCoverLetter', {
-        cover_url: cover_url,
+      .put('/users/updateCover', {
+        cover_url: res,
         job_id: job_id
       })
       .then(() => {
         this.setState({
-          cover_url: cover_url,
-          applicationStage: 4
+          cover_url: res,
+          applicationStage: 4,
+          interviews: ['firstInterview']
         });
       })
       .catch(err => {
@@ -150,7 +149,6 @@ class AddJobForm extends Component {
       });
     this.updateJobProgress(job_id, 4);
     this.updateExperience(50);
-    this.addMoreInterview(e);
   };
 
   getSuggestions = value => {
