@@ -6,7 +6,6 @@
 // The homapage after user logs in  
 */
 .jobs-container {
-  /* background-color: cornflowerblue; */
   background-color: #f5f0f5;
   width: 100%;
   height: 100vh;
@@ -76,20 +75,6 @@
     .job-list-nav h3 {
       margin-right: 22px;
     }
-
-  /*
-  // Ordered list that defines the job lists
-  */
-  /* .job-list ol {
-    padding: 0;
-    padding-left: 10%;
-    margin: 0;
-    font-size: 1.4rem;
-  } */
-
-  /* .job-list li {
-    height: 60px;
-  } */
 
 /*
 // Top row of the job list chart 
@@ -196,7 +181,6 @@
 // Contains job information that expands on click 
 */ 
 .job-info-container {
-  /* background-color: rgba(0, 255, 0, 0.4); */
   width: 100%;
   height: 0;
   visibility: hidden;
@@ -239,7 +223,6 @@
     width: 100%;
     height: 60%;
     display: flex;
-    /* background-color: rgba(255, 0, 0, 0.4); */
   }
 
     .job-info-top a,
@@ -261,7 +244,6 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      /* background-color: rgba(255, 0, 0, 0.2); */
     }
 
       /*
@@ -281,10 +263,10 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      /* background-color: rgba(255, 0, 0, 0.4); */
     }
 
-      .job-info-company-container p {
+      .job-info-company-container p,
+      .job-info-user-container p {
         margin: 6px 0;
       }
 
@@ -292,15 +274,40 @@
     // Contains: logged on, resume, cover letter 
     */
     .job-info-user-container {
-      width: 55%;
+      width: 35%;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      /* background-color: rgba(255, 0, 0, 0.6); */
     }
 
-      .job-info-user-container p {
-        margin: 6px 0;
+    /*
+    //
+    */
+    .job-info-button-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 20%;
+    }
+
+      /*
+      // Update Job button
+      */
+      .job-info-button-container button {
+        outline: none;
+        border: none;
+        width: 100%;
+        padding: 22px;
+        margin: 6px;
+        border-radius: 60px;
+        font-size: 1.4rem;
+        font-weight: 300;
+        font-family: 'Montserrat', sans-serif;
+        background-color: rgba(67, 42, 246, 1);
+        background: linear-gradient(to right, rgba(67, 42, 246, 1) 0%,rgba(0, 149, 222, 1) 100%);
+        color: #fefefe;
+        cursor: pointer;
+        transition: 0.2s all;
       }
 
   /*
@@ -312,7 +319,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: rgba(0, 255, 0, 0.4);
   }
 
     /*
@@ -322,23 +328,13 @@
       margin-left: 22px;
     }
 
-    /*
-    // Update Job button
-    */
-    .job-info-mid button {
-      outline: none;
-      border: none;
-      width: 200px;
-      background-color: blueviolet;
-    }
-
   /*
   // Contains the progress bar 
   */
   .job-info-bottom {
     width: 100%;
     height: 10%;
-    background-color: rgba(0, 0, 255, 0.4);
+    /* background-color: rgba(0, 0, 255, 0.4); */
   }
 
     /*
