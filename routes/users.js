@@ -31,7 +31,7 @@ var s3 = new AWS.S3({
   GET Requests
 ---------------------------------------
  1. getAllUserApps  // GET Route = /users/getAllUserApps
- 2. getCoverLetter  // GET Route = /users/getCoverLetter/:job
+ 2. getCover  // GET Route = /users/getCover/:job
  3. getInterviews // GET Route = /users/getInterviews/:job
  4. getRankedBadge  // GET Route = /users/getRankedBadge/:level
  5. getResume // GET Route = /users/getResume/:job
@@ -68,8 +68,8 @@ var s3 = new AWS.S3({
 /*  1. getAllUserApps  // GET Route = /users/getAllUserApps */
 router.get('/getAllUserApps', loginRequired, db.getAllUserApps);
 
-/* 2. getCoverLetter  // GET Route = /users/getCoverLetter/:job */
-router.get('/getCoverLetter/:job', loginRequired, db.getCoverLetter);
+/* 2. getCover // GET Route = /users/getCoverLetter/:job */
+router.get('/getCover/:job', loginRequired, db.getCover);
 
 /* 3. getInterviews // GET Route = /users/getInterviews/:job */
 router.get('/getInterviews/:job', loginRequired, db.getInterviews);
@@ -141,7 +141,6 @@ router.put('/updateJobInfo', loginRequired, db.updateJobInfo)
 /* 22. updateExperience // PUT Route = /users/updateExperience */
 router.put('/updateExperience', loginRequired, db.updateExperience)
 
-/* 21. updateJobStatus // PUT Route = /users/updateJobStatus */
+/* 23. updateJobStatus // PUT Route = /users/updateJobStatus */
 router.put('/updateJobStatus', loginRequired, db.updateJobStatus)
-
 module.exports = router;
