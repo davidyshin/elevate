@@ -1,7 +1,23 @@
 const db = require('./index');
 const authHelpers = require('../auth/helpers.js');
 const passport = require('../auth/local.js');
+const dotenv = require('dotenv')
+dotenv.load()
+const multer  = require('multer'),
+    multerS3 = require('multer-s3'),
+    fs = require('fs'),
+    AWS = require('aws-sdk');
 
+    const awsKeys = { accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+      region: process.env.AWS_DEFAULT_REGION }
+
+// AWS.config.loadFromPath({ accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+//       secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+//       region: process.env.AWS_DEFAULT_REGION });
+var s3 = new AWS.S3({ accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  region: process.env.AWS_DEFAULT_REGION });
 /* List of queries/routes for reference
 ---------------------------------------
   GET Requests
@@ -27,7 +43,7 @@ const passport = require('../auth/local.js');
   PUT Requests
 ---------------------------------------
  13. updateCoverLetter // PUT Route = /users/updateCoverLetter
- 14. updateResume // PUT Route = /users/updateResume
+ 14. updateResumeAws // PUT Route = /users/updateResumeAws
  15. updateInterview // PUT Route = /users/updateInterview
  16. updateUserInfo // PUT Route = /users/updateInfo
  17. updateJobProgress // PUT Route = /users/updateJobProgress 
@@ -217,6 +233,42 @@ const logoutUser = (req, res, next) => {
   res.status(200).send('log out success');
 };
 
+
+
+const getCoverLetterAWS = (req, res, next) => {
+  db
+    .one(
+      'SELECT cover_url FROM jobs WHERE  job_id = ${job_id}',
+      {
+        job_id: req.body.job_id
+      }
+    )
+    .then(data => {
+      let value = data.cover_url
+      var params = {
+        Bucket: "elevatecovers", 
+        Key: value,
+       };
+       console.log(params)
+       s3.getObject(params, function(err, data) {
+         if (err){
+           console.log(err, err.stack); // an error occurred
+         } else {
+          console.log(data)
+         }     
+       });
+       console.log('Second TEST')
+      res.status(200).json({
+        status: 'success',
+        cover_url: value,
+        message: 'Retrieved job cover letter'
+      });
+    })
+    .catch(err => {
+      res.status(500).send(`error getting job cover letter: ${err}`);
+    });
+};
+
 /* ------------------------ POST REQUESTS QUERIES ------------------------ */
 
 /* 10. */
@@ -335,7 +387,7 @@ const updateCoverLetter = (req, res, next) => {
 /* 13. */
 // PUT Route = /users/updateResume
 
-const updateResume = (req, res, next) => {
+const updateResumeAws = (req, res, next) => {
   db
     .none(
       'UPDATE jobs SET resume_url = ${resume_url} WHERE job_id = ${job_id}',
@@ -501,6 +553,36 @@ const updateJobStatus = (req, res, next) => {
     });
 };
 
+const updateCoverAws = (req, res, next) => {
+  console.log('REQ',req.body.filename)
+  console.log('REQ JOB ID PLEASE',req.body)
+  let cover_url = req.body.filename
+  let job_id = req.body.job_id
+  cover_url = cover_url
+  // .replace(/ /g, '+')
+  var bucketName = 'elevatecovers'
+  let tt = cover_url
+  console.log('THIS IS TT',tt)
+  const temp = 'https://s3.amazonaws.com/' + bucketName + "/" + cover_url
+  let nameSplit = cover_url.split(' ')
+  console.log('COVER L value',cover_url.replace(/ /g, '+'))
+  db
+    .none('UPDATE jobs SET cover_url = ${cover_url} WHERE job_id = ${job_id}', {
+      cover_url: cover_url,
+      job_id: job_id
+    })
+    .then(() => {
+      res.status(200).json({
+        status: 'success',
+        message: 'Updated cover letter'
+      });
+    })
+    .catch(err => {
+      console.log(err)(`Error updating cover letter: ${err}`);
+    });
+};
+
+
 module.exports = {
   getAllUserApps,
   getCoverLetter,
@@ -515,11 +597,12 @@ module.exports = {
   createInterview,
   registerUser,
   updateCoverLetter,
-  updateResume,
+  updateResumeAws,
   updateInterview,
   updateUserInfo,
   updateJobProgress,
   updateJobInfo,
   updateExperience,
-  updateJobStatus
+  updateJobStatus,
+  updateCoverAws,
 };
