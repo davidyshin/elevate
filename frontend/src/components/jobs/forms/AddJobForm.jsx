@@ -54,6 +54,7 @@ class AddJobForm extends Component {
         job_phone_number: this.state.phoneNumber,
         position_title: this.state.position,
         progress_in_search: 2,
+        job_status: 'awaiting',
         job_posting_url: this.state.url
       })
       .then(data => {
@@ -260,10 +261,7 @@ class AddJobForm extends Component {
                 inputProps={inputProps}
               />
               {companyLogo ? (
-                <img
-                  className="company-image"
-                  src={companyLogo}
-                />
+                <img className="company-image" src={companyLogo} />
               ) : (
                 <span className="magnifying-glass">
                   <i className="fas fa-search fa-2x" />
@@ -285,7 +283,7 @@ class AddJobForm extends Component {
                 />
               </div>
               <span className="brief-case">
-                <i class="fas fa-briefcase fa-2x" />
+                <i className="fas fa-briefcase fa-2x" />
               </span>
             </div>
             <div className="add-job-form-input-title">
@@ -293,14 +291,13 @@ class AddJobForm extends Component {
               <p>Date applied:</p>{' '}
             </div>
             <div className="date-applied-input">
-            <input
-              onChange={this.handleDate}
-              value={date_applied}
-              placeholder="Date"
-              name="date_applied"
-              type="date"
-            />
-            
+              <input
+                onChange={this.handleDate}
+                value={date_applied}
+                placeholder="Date"
+                name="date_applied"
+                type="date"
+              />
             </div>
             <div className="add-job-form-input-title">
               {' '}

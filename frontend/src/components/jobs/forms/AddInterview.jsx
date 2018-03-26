@@ -54,7 +54,7 @@ class AddInterview extends Component {
       <div className="add-interview-form">
         <form onSubmit={this.handleSubmit}>
         <h1>Add Interview</h1>
-          <p>Date</p>
+          <p>Interview Date</p>
           <input
             value={date}
             onChange={this.handleInput}
@@ -68,7 +68,7 @@ class AddInterview extends Component {
             name="time"
             type="time"
           />
-          <p>Contact</p>
+          <p>Interview Contact</p>
           <input
             value={contact}
             onChange={this.handleInput}
@@ -85,7 +85,7 @@ class AddInterview extends Component {
                 name="note"
               />
             </div>
-            <span className="pencil-icon"><i class="fas fa-pencil-alt fa-2x"></i></span>
+            <span className="pencil-icon"><i className="fas fa-pencil-alt fa-2x"></i></span>
           </div>
           <input
             disabled={interviewSaved || !date || !contact}

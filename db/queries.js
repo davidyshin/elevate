@@ -33,6 +33,7 @@ const passport = require('../auth/local.js');
  17. updateJobProgress // PUT Route = /users/updateJobProgress 
  18. updateJobInfo // PUT Route = /users/updateJobInfo/
  19. updateExperience // PUT Route = /users/updateExperience 
+ 20. updateJobStatus // PUT Route = /users/updateJobStatus
 --------------------------------------- 
 */
 
@@ -224,7 +225,7 @@ const logoutUser = (req, res, next) => {
 const createJobApp = (req, res, next) => {
   db
     .one(
-      'INSERT INTO jobs ( user_id, company_name, company_logo, date_applied, date_logged, job_email, job_phone_number, position_title, job_posting_url, progress_in_search) VALUES ( ${user_id}, ${company_name}, ${company_logo}, ${date_applied}, ${date_logged}, ${job_email}, ${job_phone_number}, ${position_title}, ${job_posting_url}, ${progress_in_search}) RETURNING job_id',
+      'INSERT INTO jobs ( user_id, company_name, company_logo, date_applied, date_logged, job_email, job_phone_number, position_title, job_posting_url, progress_in_search, job_status) VALUES ( ${user_id}, ${company_name}, ${company_logo}, ${date_applied}, ${date_logged}, ${job_email}, ${job_phone_number}, ${position_title}, ${job_posting_url}, ${progress_in_search}, ${job_status}) RETURNING job_id',
       {
         user_id: req.user.id,
         company_name: req.body.company_name,
@@ -235,7 +236,8 @@ const createJobApp = (req, res, next) => {
         job_phone_number: req.body.job_phone_number,
         position_title: req.body.position_title,
         job_posting_url: req.body.job_posting_url,
-        progress_in_search: req.body.progress_in_search
+        progress_in_search: req.body.progress_in_search,
+        job_status: req.body.job_status
       }
     )
     .then(returned => {
@@ -459,14 +461,33 @@ const updateJobInfo = (req, res, next) => {
     });
 };
 
+/* 19. */
+// PUT Route = users/updateExperience
 const updateExperience = (req, res, next) => {
   db
+    .none('UPDATE users SET experience = ${experience} WHERE id = ${id}', {
+      experience: req.body.experience,
+      id: req.user.id
+    })
+    .then(function(data) {
+      res.status(200).json({
+        status: 'success',
+        message: 'updated user experience'
+      });
+    })
+    .catch(function(err) {
+      res.status(500).send(`Error updating job info: ${err}`);
+      return next(err);
+    });
+};
+
+/* 20. */
+// PUT Route = users/updateJobStatus
+const updateJobStatus = (req, res, next) => {
+  db
     .none(
-      'UPDATE users SET experience = ${experience} WHERE id = ${id}',
-      {
-        experience: req.body.experience,
-        id: req.user.id
-      }
+      'UPDATE jobs SET job_status = ${job_status} WHERE job_id = ${job_id}',
+      { job_status: req.body.job_status, job_id: req.body.job_id }
     )
     .then(function(data) {
       res.status(200).json({
@@ -499,5 +520,6 @@ module.exports = {
   updateUserInfo,
   updateJobProgress,
   updateJobInfo,
-  updateExperience
+  updateExperience,
+  updateJobStatus
 };
