@@ -205,11 +205,19 @@
 */ 
 .job-info-container {
   background-color: rgba(0, 255, 0, 0.4);
-  display: none;
+  width: 100%;
+  height: 0;
+  visibility: hidden;
+  opacity: 0;
+  overflow: hidden;
+  /* display: none; */
+  transition: all 0.3s ease;
 }
 
 .job-info-container-expand {
-  display: inline-block;
+  /* display: block; */
+  visibility: visible;
+  opacity: 1;
   height: 200px;
 }
 
