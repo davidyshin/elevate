@@ -233,36 +233,6 @@ const logoutUser = (req, res, next) => {
   res.status(200).send('log out success');
 };
 
-const getCoverLetterAWS = (req, res, next) => {
-  db
-    .one('SELECT cover_url FROM jobs WHERE  job_id = ${job_id}', {
-      job_id: req.body.job_id
-    })
-    .then(data => {
-      let value = data.cover_url;
-      var params = {
-        Bucket: 'elevatecovers',
-        Key: value
-      };
-      console.log(params);
-      s3.getObject(params, function(err, data) {
-        if (err) {
-          console.log(err, err.stack); // an error occurred
-        } else {
-          console.log(data);
-        }
-      });
-      console.log('Second TEST');
-      res.status(200).json({
-        status: 'success',
-        cover_url: value,
-        message: 'Retrieved job cover letter'
-      });
-    })
-    .catch(err => {
-      res.status(500).send(`error getting job cover letter: ${err}`);
-    });
-};
 
 /* ------------------------ POST REQUESTS QUERIES ------------------------ */
 
@@ -394,7 +364,7 @@ const uploadCover = (req, res, next) => {
   };
   s3.putObject(params, function(err, data) {
     if (err) console.log(err);
-    else data;
+    console.log('THIS IS THE DATA: ',data);
 
     console.log('Successfully uploaded file');
   });
