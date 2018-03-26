@@ -60,10 +60,10 @@ class JobInfo extends Component {
           <div className="job-info-user-container">
             <p>Logged on: {date_logged}</p>
             <p>
-              {resume_url ? <a href={resume_url} target="_blank">Resume</a> : "No resume on file. Add one now."}
+              {resume_url ? <a href={`https://s3.amazonaws.com/elevateresumes/${resume_url}`} target="_blank">Resume</a> : "No resume on file. Add one now."}
             </p>
             <p>
-              {cover_url ? <a href={cover_url} target="_blank">Cover Letter</a> : "No cover letter on file. Add one now."}
+              {cover_url ? <a href={`https://s3.amazonaws.com/elevatecovers/${cover_url}`} target="_blank">Cover Letter</a> : "No cover letter on file. Add one now."}
             </p>
           </div>
 
