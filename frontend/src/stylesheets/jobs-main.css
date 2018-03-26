@@ -101,7 +101,8 @@
   align-items: center;
   justify-content: space-between;
   font-size: 1.6rem;
-  background-color: rgba(0, 255, 0, 0.6);
+  font-weight: 500;
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
   /*
@@ -110,7 +111,6 @@
   .job-item-top-row .job-number {
     width: 10%;
     text-align: center;
-    background-color: rgba(0, 0, 255, 0.2);
   }
 
   /*
@@ -118,7 +118,6 @@
   */
   .job-item-top-row .job-company {
     width: 35%;
-    background-color: rgba(0, 0, 255, 0.4);
   }
 
   /* 
@@ -126,7 +125,6 @@
   */
   .job-item-top-row .job-position {
     width: 35%;
-    background-color: rgba(0, 0, 255, 0.6);
   }
 
   /*
@@ -134,7 +132,6 @@
   */
   .job-item-top-row .job-date {
     width: 20%;
-    background-color: rgba(0, 0, 255, 0.8);
   }
 
 
@@ -142,7 +139,6 @@
 // Single job item (single row) 
 */
 .job-item {
-  /* background-color: lightblue; */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -170,7 +166,6 @@
   // Job item index (1, 2, 3, ...) 
   */ 
   .job-item-index {
-    /* background-color: red; */
     width: 10%;
     text-align: center;
   }
@@ -180,7 +175,6 @@
   */
   .job-item-company {
     width: 35%;
-    /* background-color: greenyellow; */
   }
 
   /*
@@ -188,7 +182,6 @@
   */ 
   .job-item-position {
     width: 35%;
-    /* background-color: mediumvioletred; */
   }
 
   /*
@@ -196,7 +189,6 @@
   */
   .job-item-date {
     width: 20%;
-    /* background-color: lightcoral; */
   }
 
 
@@ -210,6 +202,10 @@
   visibility: hidden;
   opacity: 0;
   overflow: hidden;
+  font-size: 1.4rem;
+  -moz-transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
 
@@ -223,11 +219,11 @@
 }
 
   /*
-  // Contains company logo, posting url, phone, email, log date, resume, cover letter
+  // Contains: company logo, posting url, phone, email, log date, resume, cover letter
   */
   .job-info-top {
     width: 100%;
-    height: 50%;
+    height: 60%;
     display: flex;
     background-color: rgba(255, 0, 0, 0.4);
   }
@@ -279,12 +275,18 @@
     background-color: rgba(0, 255, 0, 0.4);
   }
 
+    .job-info-mid button {
+      outline: none;
+      border: none;
+      width: 200px;
+    }
+
   /*
   // Contains the progress bar 
   */
   .job-info-bottom {
     width: 100%;
-    height: 20%;
+    height: 10%;
     background-color: rgba(0, 0, 255, 0.4);
   }
 
