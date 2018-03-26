@@ -87,8 +87,15 @@ CREATE TABLE Rank_Badges
 INSERT INTO Rank_Badges
     (badge_url, badge_name, badge_level)
 VALUES
-    ('https://i.imgur.com/6xkiznp.png', 'novice', '1'),
-    ('https://i.imgur.com/nWNDLWD.png', 'amateur', '2');
+    ('https://i.imgur.com/oXc6QpZ.png', 'aries', '1'),
+    ('https://i.imgur.com/kgCWbNC.png', 'taurus', '2'),
+    ('https://i.imgur.com/UEK9qaU.png', 'gemini', '3'),
+    ('https://i.imgur.com/fHUUSnY.png', 'cancer', '4'),
+    ('https://i.imgur.com/Iyb6DwP.png', 'leo', '5'),
+    ('https://i.imgur.com/3fAyRfg.png', 'virgo', '6'),
+    ('https://i.imgur.com/C1PuhC7.png', 'libra', '7'),
+    ('https://i.imgur.com/ne9xFjt.png', 'scorpio', '8'),
+    ('https://i.imgur.com/HNSG7UF.png', 'sagittarius', '9');
 Drop TABLE Achievement_Badges
 CASCADE;
 CREATE TABLE Achievement_Badges
