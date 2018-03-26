@@ -27,7 +27,8 @@ class UpdateJobForm extends Component {
       cover_url: '',
       interviews: [],
       addedInterviews: [],
-      experience: 0
+      experience: 0,
+      statusChecked: 'awaiting'
     };
   }
 
@@ -81,6 +82,22 @@ class UpdateJobForm extends Component {
     this.setState({ date_applied: e.target.value });
   };
 
+  handleStatusChange = e => {
+    this.setState({ statusChecked: e.target.name });
+    const {job_id} = this.state
+    switch (e.target.name) {
+      case "offered":
+      console.log('6', job_id)
+      break;
+      case "awaiting":
+      console.log('4', job_id)
+      break;
+      case "rejected":
+      console.log('5', job_id)
+      break;
+    }
+  };
+
   addMoreInterview = e => {
     e.preventDefault();
     let { addedInterviews } = this.state;
@@ -98,8 +115,8 @@ class UpdateJobForm extends Component {
         job_id: job_id
       })
       .then(() => {
-        let {applicationStage} = this.state
-        applicationStage = 3 ? 4 : 3
+        let { applicationStage } = this.state;
+        applicationStage = 3 ? 4 : 3;
         this.setState({
           resume_url: resume_url,
           applicationStage
@@ -136,8 +153,8 @@ class UpdateJobForm extends Component {
         job_id: job_id
       })
       .then(() => {
-        let {applicationStage} = this.state
-        applicationStage = 3 ? 4 : 3
+        let { applicationStage } = this.state;
+        applicationStage = 3 ? 4 : 3;
         this.setState({
           cover_url: cover_url
         });
@@ -202,13 +219,10 @@ class UpdateJobForm extends Component {
                 />
               </div>
               {companyLogo ? (
-                <img
-                  className="company-image"
-                  src={companyLogo}
-                />
+                <img className="company-image" src={companyLogo} />
               ) : (
                 <span className="building-icon">
-                <i class="fas fa-building fa-2x"></i>
+                  <i class="fas fa-building fa-2x" />
                 </span>
               )}
             </div>
@@ -263,7 +277,9 @@ class UpdateJobForm extends Component {
           {resume_url ? (
             <div className="resume-url-container">
               <h1> Resume: </h1>
-              <a className="resume-url" href={resume_url}>Your uploaded resume</a>
+              <a className="resume-url" href={resume_url}>
+                Your uploaded resume
+              </a>
             </div>
           ) : (
             <div>
@@ -281,7 +297,9 @@ class UpdateJobForm extends Component {
           {cover_url ? (
             <div className="cover-url-container">
               <h1>Cover Letter: </h1>
-              <a className="cover-url" href={cover_url}>Your uploaded cover letter</a>
+              <a className="cover-url" href={cover_url}>
+                Your uploaded cover letter
+              </a>
             </div>
           ) : (
             <div>
@@ -299,11 +317,13 @@ class UpdateJobForm extends Component {
           {interviews.map(interview => {
             return (
               <div className="interview-form-container">
-                <UpdateInterview interview={interview} addMoreInterview={this.addMoreInterview} />
+                <UpdateInterview
+                  interview={interview}
+                  addMoreInterview={this.addMoreInterview}
+                />
               </div>
             );
           })}
-       
         </div>
         {addedInterviews.map(interview => {
           return (
@@ -316,6 +336,40 @@ class UpdateJobForm extends Component {
             </div>
           );
         })}
+        <div className="update-job-status-container">
+          <div className="update-job-status">
+            <h1> Update Job Application Status </h1>
+            <div class="job-status-switch-field">
+              <input
+                onChange={this.handleStatusChange}
+                type="radio"
+                id="offered"
+                name="offered"
+                class="status-switch-offered"
+                checked={this.state.statusChecked === 'offered'}
+              />
+              <label for="offered">Offered</label>
+              <input
+                onChange={this.handleStatusChange}
+                type="radio"
+                id="awaiting"
+                name="awaiting"
+                class="status-switch-awaiting"
+                checked={this.state.statusChecked === 'awaiting'}
+              />
+              <label for="awaiting">Awaiting</label>
+              <input
+                onChange={this.handleStatusChange}
+                type="radio"
+                id="rejected"
+                name="rejected"
+                class="status-switch-rejected"
+                checked={this.state.statusChecked === 'rejected'}
+              />
+              <label for="rejected">Rejected</label>
+            </div>
+          </div>
+        </div>
         <h1 onClick={this.props.handleBack}> Back </h1>
       </div>
     );
