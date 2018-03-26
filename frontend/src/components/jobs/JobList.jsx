@@ -10,7 +10,8 @@ class JobList extends Component {
     super();
     this.state = {
       jobList: [],
-      expandId: ''
+      expandId: '',
+      renderJobList: []
     };
   }
 
@@ -19,7 +20,8 @@ class JobList extends Component {
       .get('/users/getAllUserApps')
       .then(data => {
         this.setState({
-          jobList: data.data.apps
+          jobList: data.data.apps,
+          renderJobList: data.data.apps
         });
       })
       .catch(err => {
@@ -37,19 +39,36 @@ class JobList extends Component {
         expandId: e.target.id
       });
   };
+  handleFilter = e => {
+    let {jobList} = this.state
+    if (e.target.id !== 'applied') {
+    let filteredJobList = jobList.filter(job => {
+      return job.job_status === e.target.id
+    })
+    this.setState({
+      renderJobList: filteredJobList
+    })
+  } else {
+    this.setState({
+      renderJobList: jobList
+    })
+  }
+
+
+  }
 
   render() {
-    const { jobList, expandId } = this.state;
+    const { expandId, renderJobList } = this.state;
 
     const expandClass = 'job-info-container-expand';
 
     return (
       <div className="job-list">
         <nav className="job-list-nav">
-          <h3>APPLIED</h3>
-          <h3>REJECTED</h3>
-          <h3>OFFERED</h3>
-          <h3>ARCHIVED</h3>
+          <h3 id="applied" onClick={this.handleFilter}>APPLIED</h3>
+          <h3 id="awaiting" onClick={this.handleFilter}>AWAITING</h3>
+          <h3 id="rejected" onClick={this.handleFilter}>REJECTED</h3>
+          <h3 id="offered" onClick={this.handleFilter}>OFFERED</h3>
         </nav>
         <div className="job-item-top-row">
           <p className="job-number">#</p>
@@ -57,7 +76,7 @@ class JobList extends Component {
           <p className="job-position">Position</p>
           <p className="job-date">Application Date</p>
         </div>
-        {jobList.map((job, index) => (
+        {renderJobList.map((job, index) => (
           <div>
             <JobItem job={job} index={index} handleClick={this.handleClick} />
             {parseInt(expandId) === parseInt(job.job_id) ?
