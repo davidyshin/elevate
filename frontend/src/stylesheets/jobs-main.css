@@ -204,22 +204,89 @@
 // Contains job information that expands on click 
 */ 
 .job-info-container {
-  background-color: rgba(0, 255, 0, 0.4);
+  /* background-color: rgba(0, 255, 0, 0.4); */
   width: 100%;
   height: 0;
   visibility: hidden;
   opacity: 0;
   overflow: hidden;
-  /* display: none; */
   transition: all 0.3s ease;
 }
 
+/*
+// Job information expanded 
+*/
 .job-info-container-expand {
-  /* display: block; */
   visibility: visible;
   opacity: 1;
   height: 200px;
 }
+
+  /*
+  // Contains company logo, posting url, phone, email, log date, resume, cover letter
+  */
+  .job-info-top {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    background-color: rgba(255, 0, 0, 0.4);
+  }
+  
+    /*
+    // Single div holding the company logo
+    */
+    .job-info-logo-container {
+      width: 10%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(255, 0, 0, 0.2);
+    }
+
+      /*
+      // Contains: company logo on the left
+      */
+      .job-info-logo-container img {
+        height: 80px;
+        width: auto;
+        border-radius: 100%;
+      }
+
+    /*
+    // Contains: job posting, phone number, email 
+    */
+    .job-info-company-container {
+      width: 45%;
+      background-color: rgba(255, 0, 0, 0.4);
+    }
+
+    /*
+    // Contains: logged on ... , resume, cover letter 
+    */
+    .job-info-user-container {
+      width: 45%;
+      background-color: rgba(255, 0, 0, 0.6);
+    }
+
+  /*
+  // Contains: job status, update button
+  */
+  .job-info-mid {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(0, 255, 0, 0.4);
+  }
+
+  /*
+  // Contains the progress bar 
+  */
+  .job-info-bottom {
+    width: 100%;
+    height: 20%;
+    background-color: rgba(0, 0, 255, 0.4);
+  }
 
 /*
 // When screen is smaller than 1300px wide, the entire jobs page becomes responsive 

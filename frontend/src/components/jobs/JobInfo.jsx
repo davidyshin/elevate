@@ -14,23 +14,41 @@ class JobInfo extends Component {
 
     const date_applied = new Date(this.props.job.date_applied).toDateString();
 
-    const { progress_in_search, job_posting_url, cover_url, resume_url, job_phone_number, job_email, job_id } = this.props.job;
+    const { progress_in_search, job_posting_url, cover_url, resume_url, job_phone_number, job_email, job_id, company_logo } = this.props.job;
 
     const expand = this.props.expandClass ? this.props.expandClass : null;
 
+    console.log(this.props.job);
+
     return (
       <div className={`job-info-container ${expand}`}>
-        <div>
-          <div></div>
-          <div></div>
-          <div></div>
+      
+        <div className="job-info-top">
+          <div className="job-info-logo-container">
+            <img src={company_logo} />
+          </div>
+
+          <div className="job-info-company-container">
+            <p>Go to job posting</p>
+            <p>Phone number</p>
+            <p>Contact email</p>
+          </div>
+
+          <div className="job-info-user-container">
+            <p>Logged on</p>
+            <p>Resume</p>
+            <p>Cover letter</p>
+          </div>
         </div>
 
-        <div>
-          <div></div>
-          <div></div>
+        <div className="job-info-mid">
+          <p>Status</p>
+          <button>Update</button>
         </div>
-        
+
+        <div className="job-info-bottom">
+        </div>
+
         {/* <h3>Date Logged: {date_logged} </h3>
         <h3>Date Applied: {date_applied} </h3>
         {job_phone_number ? <h3>Contact Number: {job_phone_number} </h3> : null}
