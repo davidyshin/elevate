@@ -6,7 +6,16 @@ class JobInfo extends Component {
   }
 
   handleEditClick = () => {
-    this.props.editJob(this.props.job)
+    this.props.editJob(this.props.job);
+  }
+
+  convertToPhone = phone => {
+    let first = phone.slice(0, 3); 
+    let second = phone.slice(3, 6);
+    let third = phone.slice(6, 10);
+    let converted = `(${first}) ${second} ${third}`;
+
+    return converted;
   }
 
   render() {
@@ -31,7 +40,7 @@ class JobInfo extends Component {
           </div>
 
           <div className="job-info-company-container">
-            <p>Phone number: {job_phone_number ? job_phone_number : 'not available'}</p>
+            <p>Phone number: {job_phone_number ? this.convertToPhone(job_phone_number) : 'not available'}</p>
             <p>Contact email: {job_email ? job_email : 'not available'}</p>
             <p>
               {job_posting_url ? <a href={job_posting_url} target="_blank">Go to job posting</a> : null}
@@ -39,7 +48,7 @@ class JobInfo extends Component {
           </div>
 
           <div className="job-info-user-container">
-            <p>Logged on {date_logged}</p>
+            <p>Logged on: {date_logged}</p>
             <p>
               {resume_url ? <a href={resume_url} target="_blank">Resume</a> : "No resume on file. Add one now."}
             </p>
