@@ -18,7 +18,7 @@ class CoverLetterUpload extends Component {
   
     axios.post('/users/uploadCover', data)
       .then(res => {
-        console.log(res)
+        this.props.handleCoverInput(res.data.url)
       })
       .catch(err => {
         console.log(err)
