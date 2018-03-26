@@ -104,18 +104,16 @@ class AddJobForm extends Component {
         console.log(err);
       });
   };
-  handleResumeInput = e => {
+  handleResumeInput = res => {
     let { job_id } = this.state;
-    const resume_url = e.target.value;
-    e.preventDefault();
     axios
       .put('/users/updateResume', {
-        resume_url: resume_url,
+        resume_url: res,
         job_id: job_id
       })
       .then(() => {
         this.setState({
-          resume_url: resume_url,
+          resume_url: res,
           applicationStage: 3
         });
       })
@@ -347,7 +345,7 @@ class AddJobForm extends Component {
         >
           <ResumeUpload
             handleResumeInput={this.handleResumeInput}
-            resume_url={resume_url}
+            job_id={job_id}
           />
         </div>
         <div

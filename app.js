@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const passport = require('passport');
 const dotenv = require('dotenv')
+const fileUpload = require('express-fileupload');
 
 const index = require('./routes/index');
 const users = require('./routes/users');
@@ -34,7 +35,7 @@ app.use(express.static(path.join(__dirname, 'frontend/build')));
 
 app.use('/', index);
 app.use('/users', users);
-
+app.use(fileUpload());
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
