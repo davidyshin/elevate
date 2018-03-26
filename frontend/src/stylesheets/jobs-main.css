@@ -202,7 +202,7 @@
   visibility: hidden;
   opacity: 0;
   overflow: hidden;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   -moz-transition: all 0.3s ease;
   -webkit-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
@@ -253,14 +253,22 @@
     */
     .job-info-company-container {
       width: 45%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       background-color: rgba(255, 0, 0, 0.4);
     }
+
+
 
     /*
     // Contains: logged on ... , resume, cover letter 
     */
     .job-info-user-container {
       width: 45%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       background-color: rgba(255, 0, 0, 0.6);
     }
 
@@ -271,6 +279,7 @@
     width: 100%;
     height: 30%;
     display: flex;
+    align-items: center;
     justify-content: space-between;
     background-color: rgba(0, 255, 0, 0.4);
   }
