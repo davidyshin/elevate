@@ -389,7 +389,7 @@ const uploadCover = (req, res, next) => {
   var bucketName = 'elevatecovers';
   var params = {
     Bucket: bucketName,
-    Key: 'cover-'+req.body.id + file.originalname,
+    Key: 'cover-' + req.body.id + file.originalname,
     Body: file.buffer
   };
   s3.putObject(params, function(err, data) {

@@ -352,7 +352,7 @@ class AddJobForm extends Component {
         >
           <CoverLetterUpload
             handleCoverInput={this.handleCoverInput}
-            cover_url={cover_url}
+            job_id={job_id}
           />
         </div>
         {interviews.map(interview => {
