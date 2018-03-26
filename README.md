@@ -31,8 +31,9 @@ ELEVATE was built using ReactJS, HTML/CSS, and the following APIs and Packages:
 
 ## Acknowledgements 
 * [Reed Gaines](https://github.com/crymall)
+* [Lev Izraelit](https://github.com/lizraeli)
+* [Matthew Palmer](https://github.com/MattSPalmer)
 
 ## Future Features 
 * Community Forums
 * User Leaderboards
-* Visual Data Analytics
