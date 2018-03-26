@@ -10,7 +10,7 @@ class JobList extends Component {
     super();
     this.state = {
       jobList: [],
-      updating: ''
+      expandId: ''
     };
   }
 
@@ -28,13 +28,20 @@ class JobList extends Component {
   }
 
   handleClick = e => {
-    this.setState({
-      expanded: e.target.id
-    });
+    return this.state.expandId === e.target.id ?
+      this.setState({
+        expandId: ''
+      })
+      :
+      this.setState({
+        expandId: e.target.id
+      });
   };
 
   render() {
-    const { jobList, expanded } = this.state;
+    const { jobList, expandId } = this.state;
+
+    const expandClass = 'job-info-container-expand';
 
     return (
       <div className="job-list">
@@ -52,22 +59,14 @@ class JobList extends Component {
         </div>
         {jobList.map((job, index) => (
           <div>
-            <JobItem job={job} index={index} />
-            <JobInfo job={job} />
+            <JobItem job={job} index={index} handleClick={this.handleClick} />
+            {parseInt(expandId) === parseInt(job.job_id) ?
+              <JobInfo job={job} editJob={this.props.editJob} expandClass={expandClass} />
+              :
+              <JobInfo job={job} editJob={this.props.editJob} />
+            }
           </div>
         ))}
-        {/* <ol>
-          {jobList.map(job => (
-            <li>
-              <JobItem handleClick={this.handleClick} job={job} />
-              {parseInt(expanded) === parseInt(job.job_id) ?
-                <JobInfo job={job} editJob={this.props.editJob} />
-                :
-                null
-              }
-            </li>
-          ))}
-        </ol> */}
       </div>
     );
   }
