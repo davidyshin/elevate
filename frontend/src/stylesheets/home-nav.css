@@ -73,7 +73,47 @@
 }
 
     /*
-    // "Profile" and "Logout" 
+    // Experience points
+    */
+    .home-nav-exp-container {
+        background-color: #f5f0f5;
+        border-radius: 50px;
+        margin-right: 22px;
+        padding: 6px 8px;
+        width: 150px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-family: 'Rubik', sans-serif;
+        font-size: 1.6rem;
+        letter-spacing: 1.4px;
+        cursor: default;
+        transition: 0.2s all;
+    }
+
+        /*
+        // Coin image 
+        */
+        .home-nav-exp-container img {
+            height: 24px;
+            width: auto;
+        }
+
+        /*
+        // Experience points
+        */
+        .home-nav-exp-container p {
+            /* color: rgb(24, 70, 97); */
+            color: rgb(0, 149, 222);
+        }
+
+        .home-nav-exp-container:hover {
+            background-color: #eeeaee;
+            /* background-color: #e0dee0; */
+        }
+
+    /*
+    // "Profile" 
     */
     .home-nav-right h3 {
         font-size: 1.4rem;

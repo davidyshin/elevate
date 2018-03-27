@@ -7,10 +7,22 @@ import '../../stylesheets/home-nav.css';
 class HomeNavBar extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      activeUser: ''
+    };
   }
 
+  componentDidMount() {
+    this.setState({
+      activeUser: this.props.activeUser
+    });
+  }
+
+  
+
   render() {
+    console.log(this.state); 
+
     return (
       <div className="home-nav-bar">
         <div className="home-nav-left">
@@ -24,8 +36,11 @@ class HomeNavBar extends Component {
           <h3><Link to="/addjob">ADD JOB</Link></h3>
         </div>
         <div className="home-nav-right">
+          <div className="home-nav-exp-container">
+            <img src="https://i.imgur.com/oudBkRW.png" alt="exp" />
+            <p>{this.state.activeUser.experience}</p>
+          </div>
           <Link to="/profile"><i className="far fa-user-circle fa-2x"></i></Link>
-          {/* <h3 onClick={this.props.logOut}>LOGOUT</h3> */}
         </div>
       </div>
     );

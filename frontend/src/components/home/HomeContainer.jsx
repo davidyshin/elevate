@@ -29,7 +29,7 @@ class HomeContainer extends Component {
     return (
       <div className="home-container">
         {/* <h1>{this.state.activeUser.username}</h1> */}
-        <HomeNavBar logOut={this.props.logOut} />
+        <HomeNavBar activeUser={this.props.activeUser} />
         <Route exact path="/" component={this.renderJobsContainer} />
         <Route exact path="/profile/" component={this.renderUserContainer} />
         <Route exact path="/addjob/" component={this.renderAddJobForm} />

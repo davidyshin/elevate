@@ -39,7 +39,7 @@ class JobInfo extends Component {
 
     const alternateBg = (this.props.index) % 2 === 0 ? 'job-info-light' : 'job-info-dark';
 
-    console.log(this.props.job);
+    // console.log(this.props.job);
 
     return (
       <div className={`job-info-container ${expand} ${alternateBg}`}>
