@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import HomeNavBar from './HomeNavBar.jsx';
 import JobsContainer from '../jobs/JobsContainer.jsx';
 import AddJobForm from '../jobs/forms/AddJobForm.jsx'
+import UpdateJobForm from '../jobs/forms/UpdateJobForm.jsx'
 import UserContainer from '../user/UserContainer.jsx';
 import UserInfo from '../user/account/UserInfo.jsx';
 import { Route, Link, Switch, Redirect } from 'react-router-dom';
@@ -52,6 +53,10 @@ class HomeContainer extends Component {
     return <AddJobForm activeUser={this.props.activeUser} updateExperience={this.updateExperience} />;
   };
 
+  renderUpdateJobForm = (props) => {
+    return <UpdateJobForm activeUser={this.props.activeUser} job_id={props.match.params.job_id} updateExperience={this.updateExperience} />;
+  };
+
 
   render() {
     console.log(this.state);
@@ -61,6 +66,7 @@ class HomeContainer extends Component {
         <Route exact path="/" component={this.renderJobsContainer} />
         <Route exact path="/profile/" component={this.renderUserContainer} />
         <Route exact path="/addjob/" component={this.renderAddJobForm} />
+        <Route exact path="/updateJob/:job_id" component={this.renderUpdateJobForm} />
       </div>
     );
   }
