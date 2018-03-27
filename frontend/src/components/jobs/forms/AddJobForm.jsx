@@ -42,14 +42,17 @@ class AddJobForm extends Component {
 
   handleFirstSubmit = e => {
     e.preventDefault();
-    const date = new Date();
-    const dateStr = date.toISOString().substring(0, 10);
+
+    let date = new Date(); // Today 
+    let timeZone = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)); // Today minus time zone 
+    let dateLogged = timeZone.toISOString().substring(0, 10);
+
     axios
       .post('/users/createJobApp', {
         company_name: this.state.company,
         company_logo: this.state.companyLogo,
         date_applied: this.state.date_applied,
-        date_logged: dateStr,
+        date_logged: dateLogged,
         job_email: this.state.email,
         job_phone_number: this.state.phoneNumber,
         position_title: this.state.position,
@@ -259,10 +262,10 @@ class AddJobForm extends Component {
               {companyLogo ? (
                 <img className="company-image" src={companyLogo} />
               ) : (
-                <span className="magnifying-glass">
-                  <i className="fas fa-search fa-2x" />
-                </span>
-              )}
+                  <span className="magnifying-glass">
+                    <i className="fas fa-search fa-2x" />
+                  </span>
+                )}
             </div>
             <div className="add-job-form-input-title">
               {' '}
