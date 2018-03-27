@@ -17,25 +17,6 @@ var curr = new Date(); // get current date
 var first = curr.getDate();
 var firstday = new Date(curr.setDate(first)).toString();
 
-class CustomizedLabel extends Component {
-  render() {
-    const { x, y, fill, value } = this.props;
-    return (
-      <text
-        x={x}
-        y={y}
-        dy={-4}
-        fontSize="16"
-        fontFamily="sans-serif"
-        fill={fill}
-        textAnchor="middle"
-      >
-        Applications Submitted
-      </text>
-    );
-  }
-}
-
 class JobSummary extends Component {
   constructor() {
     super();
@@ -53,7 +34,7 @@ class JobSummary extends Component {
         next.setDate(first - i);
         let obj = {};
         obj.date = next.toDateString();
-        obj.Applications = 0;
+        obj['Applications Submitted'] = 0;
         plotData.push(obj);
       }
       data.data.apps.forEach(app => {
@@ -61,7 +42,7 @@ class JobSummary extends Component {
         const dateString = date.toDateString();
         let index = plotData.findIndex(plot => plot.date === dateString);
         if (index > -1) {
-          plotData[index].Applications += 1;
+          plotData[index]['Applications Submitted'] += 1;
         }
       });
       this.setState({
@@ -71,28 +52,29 @@ class JobSummary extends Component {
   }
   render() {
     const { plotData } = this.state;
-    const label = 'Job Applications Submitted';
-    return (
-      plotData.length > 1 ? 
+    return plotData.length > 1 ? (
       <div className="job-summary-container">
         <h1>{this.props.activeUser.first_name}'s Weekly Activity</h1>
         <ResponsiveContainer height={225}>
-          <LineChart label={<CustomizedLabel />} data={plotData.reverse()}>
+          <LineChart data={plotData.reverse()}>
             <XAxis dataKey="date" />
-            <YAxis dataKey="Applications" />
+            <YAxis dataKey="Applications Submitted" />
             <Tooltip />
             <CartesianGrid stroke="#f5f5f5" />
             <Line
               type="monotone"
-              dataKey="Applications"
+              dataKey="Applications Submitted"
               stroke="#ff7300"
               yAxisId={0}
             />
           </LineChart>
         </ResponsiveContainer>
       </div>
-      :
-      <div> <h1>Loading</h1> </div>
+    ) : (
+      <div>
+        {' '}
+        <h1>Loading</h1>{' '}
+      </div>
     );
   }
 }
