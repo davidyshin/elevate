@@ -41,7 +41,7 @@ class HomeContainer extends Component {
   };
 
   renderJobsContainer = () => {
-    return <JobsContainer activeUser={this.props.activeUser} />;
+    return <JobsContainer activeUser={this.props.activeUser} updateExperience={this.updateExperience} />;
   };
 
   renderUserContainer = () => {
@@ -56,7 +56,7 @@ class HomeContainer extends Component {
     console.log(this.state);
     return (
       <div className="home-container">
-        <HomeNavBar activeUser={this.props.activeUser} experience={this.state.experience}/>
+        <HomeNavBar experience={this.state.experience}/>
         <Route exact path="/" component={this.renderJobsContainer} />
         <Route exact path="/profile/" component={this.renderUserContainer} />
         <Route exact path="/addjob/" component={this.renderAddJobForm} />
