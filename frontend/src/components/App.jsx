@@ -65,8 +65,6 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state); 
-
     AOS.init({
       once: true
     });
