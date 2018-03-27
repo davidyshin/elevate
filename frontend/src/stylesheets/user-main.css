@@ -410,11 +410,9 @@
 /*------------------------------------------*/
 
 .user-activity-container {
-    /* background-color: orange; */
     background-color: #fefefe;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
     border-radius: 4px;
-    /* width: 800px; */
     width: 100%;
     height: 400px;
     margin: 52px auto 0 auto;
@@ -437,14 +435,12 @@
 /*------------------------------------------*/
 
 .user-stats-container {
-    /* background-color: orangered; */
     background-color: #fefefe;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
     border-radius: 4px;
-    /* width: 800px; */
     width: 100%;
     height: 320px;
-    margin: 52px auto;
+    margin: 52px auto 0 auto;
 }
 
 .user-stats-container h3 {
@@ -458,6 +454,46 @@
     font-size: 1.4rem;
 }
 
+/*------------------------------------------*/
+/*             User Statistics              */
+/*------------------------------------------*/
+
+/*
+// Contains logout button
+*/
+.user-logout-container {
+    /* background-color: #fefefe; */
+    /* box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03); */
+    /* border-radius: 4px; */
+    width: 100%;
+    height: 120px;
+    margin: 52px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    /*
+    // Contains logout sign from fontawesome
+    */ 
+    .user-logout-container button {
+        background: none;
+        outline: none;
+        border: none;
+        /* color: rgb(51, 156, 197); */
+        color: rgb(171,0,122);
+        font-size: 1.6rem;
+        cursor: pointer;
+        -moz-transition: 0.15s all;
+        -webkit-transition: 0.15s all;
+        -o-transition: 0.15s all;
+        transition: 0.15s all;
+    }
+
+    .user-logout-container button:hover {
+        /* color: skyblue; */
+        transform: scale(1.2);
+    }
 
 /*------------------------------------------*/
 /*          User Account & Settings         */
