@@ -19,9 +19,10 @@ class JobList extends Component {
     axios
       .get('/users/getAllUserApps')
       .then(data => {
+        const jobs = data.data.apps.sort((a,b) => a.date_applied > b.date_applied).reverse()
         this.setState({
-          jobList: data.data.apps,
-          renderJobList: data.data.apps
+          jobList: jobs,
+          renderJobList: jobs
         });
       })
       .catch(err => {
