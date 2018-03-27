@@ -303,4 +303,7 @@ button:hover {
   .update-job-form-container form {
     width: 80%;
   }
+  add-interview-button {
+    position: absolute;
+  }
 }
