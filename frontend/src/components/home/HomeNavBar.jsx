@@ -26,7 +26,7 @@ class HomeNavBar extends Component {
         </div>
         <div className="home-nav-right">
           <div className="home-nav-exp-container">
-            <img src="https://i.imgur.com/oudBkRW.png" alt="exp" />
+            <img src="https://i.imgur.com/oudBkRW.png" alt="exp-coins" />
             <p>{this.props.experience}</p>
           </div>
           <Link to="/profile"><i className="far fa-user-circle fa-2x"></i></Link>
