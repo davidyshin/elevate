@@ -1,8 +1,16 @@
 // ANALYTICs
 
 import React, { Component } from 'react';
-import Plot from 'react-plotly.js';
 import axios from 'axios';
+import {
+  LineChart,
+  Line,
+  XAxis,
+  Tooltip,
+  CartesianGrid,
+  YAxis,
+  ResponsiveContainer
+} from 'recharts';
 
 // DATE FUNCTIONS
 var curr = new Date(); // get current date
@@ -13,70 +21,59 @@ class JobSummary extends Component {
   constructor() {
     super();
     this.state = {
-      x: [],
-      y: []
+      plotData: []
     };
   }
 
   componentDidMount() {
     axios.get('/users/getAllUserApps').then(data => {
-      let weekobj = {};
-      let y = [];
+      let { plotData } = this.state;
+
       for (var i = 0; i < 8; i++) {
         var next = new Date(curr.getTime());
         next.setDate(first - i);
-        weekobj[next.toDateString()] = 0;
+        let obj = {};
+        obj.date = next.toDateString().substring(0,10);
+        obj['Applications Submitted'] = 0;
+        plotData.push(obj);
       }
       data.data.apps.forEach(app => {
         const date = new Date(app.date_logged);
         const dateString = date.toDateString();
-        const x = Object.keys(weekobj);
-        if (x.includes(dateString)) {
-          weekobj[dateString] += 1;
+        let index = plotData.findIndex(plot => plot.date === dateString.substring(0,10));
+        if (index > -1) {
+          plotData[index]['Applications Submitted'] += 1;
         }
       });
-      let keys = Object.keys(weekobj).reverse()
-      let x = keys.map(date => {
-        date = `${date.split(" ")[1]} ${date.split(" ")[2]}`
-        return date
-      })
-
       this.setState({
-        x: x,
-        y: Object.values(weekobj).reverse()
+        plotData
       });
     });
   }
   render() {
-    const { x, y } = this.state;
-    // var WIDTH_IN_PERCENT_OF_PARENT = 100
-
-    return (
-      <div className="job-summary">
-        <Plot
-          data={[
-            {
-              x: x,
-              y: y,
-              type: 'line+markers',
-              marker: {
-                color: 'rgba(58,200,225,.5)',
-                line: {
-                  color: 'rbg(8,48,107)'
-                }
-              },
-              name: 'Job Applications Logged'
-            }
-          ]}
-          layout={{
-            width: 1200,
-            height: 250,
-            title: `${this.props.activeUser.first_name}'s Weekly Summary`,
-            yaxis: { range: [0, Math.max(...y)+1 || 3] },
-            xaxis: { zeroline: true },
-            showlegend: true
-          }}
-        />
+    const { plotData } = this.state;
+    return plotData.length > 1 ? (
+      <div className="job-summary-container">
+        <h1>{this.props.activeUser.first_name}'s Weekly Activity</h1>
+        <ResponsiveContainer height={225}>
+          <LineChart data={plotData.reverse()}>
+            <XAxis dataKey="date" />
+            <YAxis dataKey="Applications Submitted" />
+            <Tooltip />
+            <CartesianGrid stroke="#f5f5f5" />
+            <Line
+              type="monotone"
+              dataKey="Applications Submitted"
+              stroke="#ff7300"
+              yAxisId={0}
+            />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
+    ) : (
+      <div>
+        {' '}
+        <h1>Loading</h1>{' '}
       </div>
     );
   }

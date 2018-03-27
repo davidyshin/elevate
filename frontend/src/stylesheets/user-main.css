@@ -442,6 +442,13 @@
     height: 320px;
     margin: 52px auto 0 auto;
 }
+.user-stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 320px;
+}
 
 .user-stats-container h3 {
     font-size: 1.8rem;
@@ -449,10 +456,6 @@
     padding: 22px 22px 6px 22px;
 }
 
-.user-stats-chart {
-    padding: 22px;
-    font-size: 1.4rem;
-}
 
 /*------------------------------------------*/
 /*             User Statistics              */
