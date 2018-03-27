@@ -30,37 +30,46 @@ var s3 = new AWS.S3({
 ---------------------------------------
   GET Requests
 ---------------------------------------
- 1. getAllUserApps  // GET Route = /users/getAllUserApps
- 2. getCover  // GET Route = /users/getCover/:job
- 3. getInterviews // GET Route = /users/getInterviews/:job
- 4. getRankedBadge  // GET Route = /users/getRankedBadge/:level
- 5. getResume // GET Route = /users/getResume/:job
- 6. getUser // GET Route = /users/getUser
- 7. getUserAchievementBadges  // GET Route = /users/getUserAchieves
- 8. getUserExp // GET Route = /users/getUserExp
- 9. logoutUser // GET Route = /users/logout
+/* 1. getAllUserApps  // GET Route = /users/getAllUserApps */
+/* 2. getCover // GET Route = /users/getCoverLetter/:job */
+/* 3. getInterviews // GET Route = /users/getInterviews/:job */
+/* 4. getRankedBadge  // GET Route = /users/getRankedBadge/:level */
+/* 5. getResume // GET Route = /users/getResume/:job */
+/* 6. getUser // GET Route = /users/getUser */
+/* 7. getUserAchievementBadges  // GET Route = /users/getUserAchieves */
+/* 8. getUserExp // GET Route = /users/getUserExp */
+/* 9. logoutUser // GET Route = /users/logout */
+/* 10. getLeaders // GET Route = /users/getLeaders */
+/* 11. getNotificationEmail // GET Route = /users/getNotificationEmail */
+/* 12. getNotificationSms // GET Route = /users/getNotificationSms */
 
+// ---------------------------------------
+//   POST Requests
+// ---------------------------------------
+
+/* 13. createJobApp // POST Route /users/createJobApp */
+/* 14. createInterview // POST Route /users/createInterview */
+/* 15. registerUser // POST Route = /users/newuser */
+/* 16. Login User // POST Route = /users/login */
+/* 17. uploadCover AWS // POST Route = /users/uploadCover */
+/* 18. uploadResume AWS // POST Route = /users/uploadResume */
+
+/*---------------------------------------
+   PUT Requests
 ---------------------------------------
-  POST Requests
----------------------------------------
- 10. createJobApp // POST Route /users/createJobApp
- 11. createInterview // // POST Route /users/createInterview
- 12. registerUser // POST Route = /users/newuser
- 13. uploadCover AWS // POST Route = /users/uploadCover
- 14. uploadResume AWS // POST Route = /users/uploadResume
- ---------------------------------------
-  PUT Requests
----------------------------------------
- 15. updateCover // PUT Route = /users/updateCover
- 16. updateResume // PUT Route = /users/updateResume
- 17. updateInterview // PUT Route = /users/updateInterview
- 18. updateUserInfo // PUT Route = /users/updateInfo
- 19. updateJobProgress // PUT Route = /users/updateJobProgress
- 20. updateJobInfo // PUT Route = /users/updateJobInfo/
- 21. updateExperience // PUT Route = /users/updateExperience
- 22. updateJobStatus // PUT Route = /users/updateJobStatus
---------------------------------------- 
-*/
+
+/* 19. updateResume URL on POSTGRES // PUT Route = /users/updateResume */
+/* 20. updateCover URL on POSTGRES // PUT Route = /users/updatecover */
+/* 21. updateInterview // PUT Route = /users/updateInterview */
+/* 22. updateUserInfo // PUT Route = /users/updateUserInfo */
+/* 23. updateJobProgress // PUT Route = /users/updateJobProgress */
+/* 24. updateJobInfo // PUT Route = /users/updateJobInfo */
+/* 25. updateExperience // PUT Route = /users/updateExperience */
+/* 26. updateJobStatus // PUT Route = /users/updateJobStatus */
+/* 27. updateJobStatus // PUT Route = /users/updateJobStatus */
+
+/*--------------------------------------- 
+
 
 /* ----------------------- GET Requests. ----------------------- */
 
@@ -95,68 +104,67 @@ router.get('/logout', loginRequired, db.logoutUser);
 /* 10. getLeaders // GET Route = /users/getLeaders */
 router.get('/getLeaders', loginRequired, db.getLeaders)
 
+/* 11. getNotificationEmail // GET Route = /users/getNotificationEmail */
+router.get('/getNotificationEmail', db.getNotificationEmail);
+
+/* 12. getNotificationSms // GET Route = /users/getNotificationSms */
+router.get('/getNotificationSms', db.getNotificationSms)
+
 /* ----------------------- POST Requests. ----------------------- */
 
-/* 10. createJobApp // POST Route /users/createJobApp */
+/* 13. createJobApp // POST Route /users/createJobApp */
 router.post('/createJobApp', loginRequired, db.createJobApp);
 
-/* 11. createInterview // POST Route /users/createInterview */
+/* 14. createInterview // POST Route /users/createInterview */
 router.post('/createInterview', loginRequired, db.createInterview);
 
-/* 12. registerUser // POST Route = /users/newuser */
+/* 15. registerUser // POST Route = /users/newuser */
 router.post('/newuser', db.registerUser);
 
-/* Login User // POST Route = /users/login */
+/* 16. Login User // POST Route = /users/login */
 /* This route goes through auth instead of our written queries */
 router.post('/login', passport.authenticate('local'), (req, res) => {
   res.json(req.user);
 });
 
 
-/* 13. uploadCover AWS // POST Route = /users/uploadCover */
+/* 17. uploadCover AWS // POST Route = /users/uploadCover */
 router.post('/uploadCover', upload.single('cover'), db.uploadCover)
 
-/* 15. uploadResume AWS // PUT Route = /users/uploadResume */
+/* 18. uploadResume AWS // POST Route = /users/uploadResume */
 router.post('/uploadResume', upload.single('resume'), db.uploadResume)
 
 /* ----------------------- PUT Requests. ----------------------- */
 
 
-/* 16. updateResume URL on POSTGRES // PUT Route = /users/updateResume */
+/* 19. updateResume URL on POSTGRES // PUT Route = /users/updateResume */
 router.put('/updateResume', loginRequired, db.updateResume)
 
-/* 17. updateCover URL on POSTGRES // PUT Route = /users/updatecover */
+/* 20. updateCover URL on POSTGRES // PUT Route = /users/updatecover */
 router.put('/updateCover', loginRequired, db.updateCover)
 
 
-/* 18. updateInterview // PUT Route = /users/updateInterview */
+/* 21. updateInterview // PUT Route = /users/updateInterview */
 router.put('/updateInterview', loginRequired, db.updateInterview);
 
-/* 19. updateUserInfo // PUT Route = /users/updateUserInfo */
+/* 22. updateUserInfo // PUT Route = /users/updateUserInfo */
 router.put('/updateUserInfo', loginRequired, db.updateUserInfo);
 
-/* 20. updateJobProgress // PUT Route = /users/updateJobProgress */
+/* 23. updateJobProgress // PUT Route = /users/updateJobProgress */
 router.put('/updateJobProgress', loginRequired, db.updateJobProgress);
 
-/* 21. updateJobInfo // PUT Route = /users/updateJobInfo */
+/* 24. updateJobInfo // PUT Route = /users/updateJobInfo */
 router.put('/updateJobInfo', loginRequired, db.updateJobInfo)
 
-/* 22. updateExperience // PUT Route = /users/updateExperience */
+/* 25. updateExperience // PUT Route = /users/updateExperience */
 router.put('/updateExperience', loginRequired, db.updateExperience)
 
-/* 23. updateJobStatus // PUT Route = /users/updateJobStatus */
+/* 26. updateJobStatus // PUT Route = /users/updateJobStatus */
 router.put('/updateJobStatus', loginRequired, db.updateJobStatus)
 
-router.put('/updateJobStatus', loginRequired, db.updateJobStatus)
-
-router.put('/updateJobStatus', loginRequired, db.updateJobStatus)
-
-router.put('/updateJobStatus', loginRequired, db.updateJobStatus)
-
+/* 27. updateJobStatus // PUT Route = /users/updateJobStatus */
 router.put('/updateNotification', loginRequired, db.updateNotification)
 
-router.get('/getNotificationEmail', db.getNotificationEmail);
 
-router.get('/getNotificationSms', db.getNotificationSms)
 
 module.exports = router;
