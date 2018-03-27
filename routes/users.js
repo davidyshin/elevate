@@ -146,4 +146,17 @@ router.put('/updateExperience', loginRequired, db.updateExperience)
 
 /* 23. updateJobStatus // PUT Route = /users/updateJobStatus */
 router.put('/updateJobStatus', loginRequired, db.updateJobStatus)
+
+router.put('/updateJobStatus', loginRequired, db.updateJobStatus)
+
+router.put('/updateJobStatus', loginRequired, db.updateJobStatus)
+
+router.put('/updateJobStatus', loginRequired, db.updateJobStatus)
+
+router.put('/updateNotification', loginRequired, db.updateNotification)
+
+router.get('/getNotificationEmail', db.getNotificationEmail);
+
+router.get('/getNotificationSms', db.getNotificationSms)
+
 module.exports = router;
