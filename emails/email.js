@@ -27,8 +27,10 @@ const reminder = (firstName, company_name, interview_date, interview_time) =>
         </tr>
         <tr style = "background-color:#E5F6FA;" >
                <td style = "padding:40px; border-radius: 25px" > 
-               <p> Hello  </p>
-               <p> This is a reminder that your interview with ${company_name} is ${interview_date} at ${interview_time}<p>
+               <p> Hello ${firstName}</p>
+               <p> This is a reminder for your interview with ${company_name} on ${interview_date} at ${interview_time}.<p>
+               <p> Good Luck! </p>
+               <p> -Team Elevate </p>
               </td>
         </tr>
         <tr>
