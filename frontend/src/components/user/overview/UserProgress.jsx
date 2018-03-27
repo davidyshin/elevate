@@ -95,7 +95,6 @@ class UserProgress extends Component {
   render() {
     const { userExperience, experienceToNextLevel, rankBadge, lockedBadgeUrl } = this.state;
     const progressPercentage = (userExperience / experienceToNextLevel) * 100;
-    console.log(this.state);
 
     var progressStyle = {
       width: `${progressPercentage}%`

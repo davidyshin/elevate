@@ -29,27 +29,27 @@ var s3 = new AWS.S3(awsKeys);
  7. getUserAchievementBadges  // GET Route = /users/getUserAchieves
  8. getUserExp // GET Route = /users/getUserExp
  9. logoutUser // GET Route = /users/logout
-
+ 10. getLeaders // GET Route = /users/getLeaders
 ---------------------------------------
   POST Requests
 ---------------------------------------
- 10. createJobApp // POST Route /users/createJobApp
- 11. createInterview // // POST Route /users/createInterview
- 12. registerUser // POST Route = /users/newuser
- 13. uploadCover AWS // POST Route = /users/uploadCover
- 14. uploadResume AWS // POST Route = /users/uploadResume
+ 11. createJobApp // POST Route /users/createJobApp
+ 12. createInterview // // POST Route /users/createInterview
+ 13. registerUser // POST Route = /users/newuser
+ 14. uploadCover AWS // POST Route = /users/uploadCover
+ 15. uploadResume AWS // POST Route = /users/uploadResume
 
  ---------------------------------------
   PUT Requests
 ---------------------------------------
- 13. updateCover // PUT Route = /users/updateCoverLetter
- 14. updateResume // PUT Route = /users/updateResumeAws
- 15. updateInterview // PUT Route = /users/updateInterview
- 16. updateUserInfo // PUT Route = /users/updateInfo
- 17. updateJobProgress // PUT Route = /users/updateJobProgress 
- 18. updateJobInfo // PUT Route = /users/updateJobInfo/
- 19. updateExperience // PUT Route = /users/updateExperience 
- 20. updateJobStatus // PUT Route = /users/updateJobStatus
+ 16. updateCover // PUT Route = /users/updateCoverLetter
+ 17. updateResume // PUT Route = /users/updateResumeAws
+ 18. updateInterview // PUT Route = /users/updateInterview
+ 19. updateUserInfo // PUT Route = /users/updateInfo
+ 20. updateJobProgress // PUT Route = /users/updateJobProgress 
+ 21. updateJobInfo // PUT Route = /users/updateJobInfo/
+ 22. updateExperience // PUT Route = /users/updateExperience 
+ 23. updateJobStatus // PUT Route = /users/updateJobStatus
 --------------------------------------- 
 */
 
@@ -233,11 +233,30 @@ const logoutUser = (req, res, next) => {
   res.status(200).send('log out success');
 };
 
+/* 10 */
+// GET Route = /users/getLeaders
+
+const getLeaders = (req, res, next) => {
+  db
+    .any(
+      'SELECT id, first_name, last_name, photo_url, experience FROM users ORDER BY experience DESC FETCH first 5 ROWS only'
+    )
+    .then(data => {
+      res.status(200).json({
+        status: 'success',
+        data,
+        message: 'Retrieved top 5 leaders by experience'
+      });
+    })
+    .catch(err => {
+      res.status(500).send(`Error getting leaders: ${err}`);
+    });
+};
 
 /* ------------------------ POST REQUESTS QUERIES ------------------------ */
 
-/* 10. */
-// POST Route /users/createJobApp
+/* 11. */
+// POST Route = /users/createJobApp
 
 const createJobApp = (req, res, next) => {
   db
@@ -269,7 +288,7 @@ const createJobApp = (req, res, next) => {
     });
 };
 
-/* 11 */
+/* 12. */
 // POST Route /users/createInterview
 const createInterview = (req, res, next) => {
   db
@@ -294,7 +313,7 @@ const createInterview = (req, res, next) => {
     });
 };
 
-/* 12. */
+/* 13. */
 // POST Route = /users/newuser
 
 const registerUser = (req, res, next) => {
@@ -328,7 +347,7 @@ const registerUser = (req, res, next) => {
 };
 
 // UPLOADING RESUME, COVERLETTER TO AWS
-/* 13. */
+/* 14. */
 const uploadResume = (req, res, next) => {
   if (!req.file) {
     return res.status(400).send('No files were uploaded.');
@@ -337,19 +356,19 @@ const uploadResume = (req, res, next) => {
   var bucketName = 'elevateresumes';
   var params = {
     Bucket: bucketName,
-    Key: 'resume-'+ req.body.id +'-'+ file.originalname ,
+    Key: 'resume-' + req.body.id + '-' + file.originalname,
     Body: file.buffer
   };
   s3.putObject(params, function(err, data) {
     if (err) console.log(err);
-    else data
+    else data;
 
     console.log('Successfully uploaded file');
-  })
-  res.status(200).send({url: params.Key});
+  });
+  res.status(200).send({ url: params.Key });
 };
 
-/* 14. */
+/* 15. */
 
 const uploadCover = (req, res, next) => {
   if (!req.file) {
@@ -359,19 +378,19 @@ const uploadCover = (req, res, next) => {
   var bucketName = 'elevatecovers';
   var params = {
     Bucket: bucketName,
-    Key: 'cover-' + req.body.id +'-'+ file.originalname,
+    Key: 'cover-' + req.body.id + '-' + file.originalname,
     Body: file.buffer
   };
   s3.putObject(params, function(err, data) {
     if (err) console.log(err);
     console.log('Successfully uploaded file');
   });
-  res.status(200).send({url: params.Key});
+  res.status(200).send({ url: params.Key });
 };
 
 /* ------------------------ PUT REQUESTS QUERIES ------------------------ */
 
-/* 15. */
+/* 16. */
 // PUT Route = /users/updateCoverLetter/
 
 const updateCover = (req, res, next) => {
@@ -391,7 +410,7 @@ const updateCover = (req, res, next) => {
     });
 };
 
-/* 16. */
+/* 17. */
 // PUT Route = /users/updateResume
 
 const updateResume = (req, res, next) => {
@@ -415,7 +434,7 @@ const updateResume = (req, res, next) => {
     });
 };
 
-/* 17. */
+/* 18. */
 // PUT Route = /users/updateInterview
 
 const updateInterview = (req, res, next) => {
@@ -441,7 +460,7 @@ const updateInterview = (req, res, next) => {
     });
 };
 
-/* 18. */
+/* 19. */
 // PUT Route = /users/updateUserInfo
 
 const updateUserInfo = (req, res, next) => {
@@ -467,7 +486,7 @@ const updateUserInfo = (req, res, next) => {
     });
 };
 
-/* 19 */
+/* 20 */
 
 // PUT Route =  /users/updateJobProgress
 const updateJobProgress = (req, res, next) => {
@@ -491,7 +510,7 @@ const updateJobProgress = (req, res, next) => {
     });
 };
 
-/* 20. */
+/* 21. */
 // PUT Route = users/updateJobInfo
 const updateJobInfo = (req, res, next) => {
   db
@@ -520,7 +539,7 @@ const updateJobInfo = (req, res, next) => {
     });
 };
 
-/* 21. */
+/* 22. */
 // PUT Route = users/updateExperience
 const updateExperience = (req, res, next) => {
   db
@@ -540,7 +559,7 @@ const updateExperience = (req, res, next) => {
     });
 };
 
-/* 22. */
+/* 23. */
 // PUT Route = users/updateJobStatus
 const updateJobStatus = (req, res, next) => {
   db
@@ -569,6 +588,7 @@ module.exports = {
   getUser,
   getUserAchievementBadges,
   getUserExp,
+  getLeaders,
   logoutUser,
   createJobApp,
   createInterview,
