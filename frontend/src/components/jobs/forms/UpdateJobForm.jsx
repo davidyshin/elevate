@@ -359,7 +359,6 @@ class UpdateJobForm extends Component {
             </div>
           </div>
         </div>
-        <h1 onClick={this.props.handleBack}> Back </h1>
       </div>
     );
   }
