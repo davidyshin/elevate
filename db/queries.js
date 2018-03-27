@@ -8,11 +8,11 @@ const multer = require('multer'),
   fs = require('fs'),
   AWS = require('aws-sdk');
 
-  const nodemailer = require('nodemailer');
-const { welcomeEmail } = require('../emails/email')
+const nodemailer = require('nodemailer');
+const { welcomeEmail } = require('../emails/email');
 
-const accountSid = 'ACbcd18dc237a94feb704fc5a6d8b8a1f1';
-const authToken = 'a866165663aede5b24c8b4d9e712fa58';
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
 
 // require the Twilio module and create a REST client
 const client = require('twilio')(accountSid, authToken);
@@ -28,8 +28,8 @@ var s3 = new AWS.S3(awsKeys);
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'elevateC4Q@gmail.com',
-    pass: '1qaz1QAZ'
+    user: process.env.GMAIL_USER,
+    pass: process.env.GMAIL_PASSWORD
   }
 });
 
@@ -334,9 +334,8 @@ const createInterview = (req, res, next) => {
 // POST Route = /users/newuser
 
 const registerUser = (req, res, next) => {
-
   var mailOptions = {
-    from: 'elevateC4Q@gmail.com',
+    from: process.env.GMAIL_USER,
     to: req.body.username,
     subject: 'welcome to elevate',
     html: welcomeEmail(req.body.firstName)
@@ -355,14 +354,15 @@ const registerUser = (req, res, next) => {
         phoneNumber: req.body.phoneNumber,
         experience: 0
       }
-    ).then(() => {
-      transporter.sendMail(mailOptions, function (error, info) {
+    )
+    .then(() => {
+      transporter.sendMail(mailOptions, function(error, info) {
         if (error) {
           console.log(error);
         } else {
           console.log('Email sent: ' + info.response);
         }
-      })
+      });
     })
     .then(() => {
       res.status(200).json({
@@ -378,7 +378,6 @@ const registerUser = (req, res, next) => {
       });
     });
 };
-
 
 // UPLOADING RESUME, COVERLETTER TO AWS
 /* 14. */
@@ -613,12 +612,11 @@ const updateJobStatus = (req, res, next) => {
     });
 };
 
-
 const updateNotification = (req, res, next) => {
   db
     .none(
-      'UPDATE users SET phone_notification = ${phone_notification} , email_notification = ${email_notification} , notification_interval = ${notification_interval} '
-      + ' WHERE id = ${id}',
+      'UPDATE users SET phone_notification = ${phone_notification} , email_notification = ${email_notification} , notification_interval = ${notification_interval} ' +
+        ' WHERE id = ${id}',
       {
         id: req.user.id,
         phone_notification: req.body.phone_notification,
@@ -626,38 +624,46 @@ const updateNotification = (req, res, next) => {
         notification_interval: req.body.notification_interval
       }
     )
-    .then(function () {
+    .then(function() {
       res.status(200).json({
         status: 'success',
         message: 'updated notification '
       });
     })
-    .catch(function (err) {
+    .catch(function(err) {
       res.status(500).send(`Error updating notification info: ${err}`);
       return next(err);
     });
 };
 
-
 const getNotificationEmail = () => {
-  console.log("sami")
+  console.log('sami');
   const Mail = {
-    from: 'elevateC4Q@gmail.com',
-  }
+    from: 'elevateC4Q@gmail.com'
+  };
 
   db
-    .any('SELECT users.username, users.first_name , users.phone_number, interview.interview_date , interview.interview_time , jobs.company_name '
-    + ' FROM users INNER JOIN jobs ON users.ID = jobs.user_id '
-    + ' INNER JOIN interview ON jobs.job_id = interview.job_id '
-    + ' WHERE interview_date - notification_interval = CURRENT_DATE and interview_time = CURRENT_TIME(0) and email_notification = true ')
-    .then((data) => {
-      console.log("number of email notifications: ", data.length)
+    .any(
+      'SELECT users.username, users.first_name , users.phone_number, interview.interview_date , interview.interview_time , jobs.company_name ' +
+        ' FROM users INNER JOIN jobs ON users.ID = jobs.user_id ' +
+        ' INNER JOIN interview ON jobs.job_id = interview.job_id ' +
+        ' WHERE interview_date - notification_interval = CURRENT_DATE and interview_time = CURRENT_TIME(0) and email_notification = true '
+    )
+    .then(data => {
+      console.log('number of email notifications: ', data.length);
 
       for (i = 0; i < data.length; i++) {
-        console.log(data[i].phone_number)
-        Mail.to = data[i].username
-        Mail.html = reminder(req.body.interview_date , req.body.interview_time , req.body.first_name , req.body.company_name )
-        Mail.subject = `reminder of your interview with ${data[i].company_name}`
+        console.log(data[i].phone_number);
+        Mail.to = data[i].username;
+        Mail.html = reminder(
+          req.body.interview_date,
+          req.body.interview_time,
+          req.body.first_name,
+          req.body.company_name
+        );
+        Mail.subject = `reminder of your interview with ${
+          data[i].company_name
+        }`;
 
         transporter.sendMail(Mail, (error, info) => {
           if (error) {
@@ -665,50 +671,43 @@ const getNotificationEmail = () => {
           } else {
             console.log('Email has been sent ' + info.response);
           }
-
-         
-        
-        })
+        });
       }
     })
     .catch(err => {
-     
-        console.log(`Not get notification email:  ${err}`);
+      console.log(`Not get notification email:  ${err}`);
     });
 };
 
-
-
-
-const  getNotificationSms = () => {
-
-  db.any('SELECT users.username, users.first_name , users.phone_number, interview.interview_date , interview.interview_time , jobs.company_name '
-    + ' FROM users INNER JOIN jobs ON users.ID = jobs.user_id '
-    + ' INNER JOIN interview ON jobs.job_id = interview.job_id '
-    + ' WHERE interview_date - notification_interval = CURRENT_DATE and interview_time = CURRENT_TIME(0) and phone_notification = true' )
-    .then((data) => {
-      console.log("number of sms notifications: ", data.length)
+const getNotificationSms = () => {
+  db
+    .any(
+      'SELECT users.username, users.first_name , users.phone_number, interview.interview_date , interview.interview_time , jobs.company_name ' +
+        ' FROM users INNER JOIN jobs ON users.ID = jobs.user_id ' +
+        ' INNER JOIN interview ON jobs.job_id = interview.job_id ' +
+        ' WHERE interview_date - notification_interval = CURRENT_DATE and interview_time = CURRENT_TIME(0) and phone_notification = true'
+    )
+    .then(data => {
+      console.log('number of sms notifications: ', data.length);
       for (i = 0; i < data.length; i++) {
         client.messages.create({
           to: data[i].phone_number,
-          from: '+16468590485',
-          body: ` Hello for Elevate this is a reminder that your interview with ${data[i].company_name} is on ${data[i].interview_date} by ${data[i].interview_time} `
-        })
+          from: process.env.TWILIO_PHONE_NUMBER,
+          body: ` Hello for Elevate this is a reminder that your interview with ${
+            data[i].company_name
+          } is on ${data[i].interview_date} by ${data[i].interview_time} `
+        });
       }
-     
     })
     .catch(err => {
-        console.log(`not getting notification SMS:  ${err}`);
+      console.log(`not getting notification SMS:  ${err}`);
     });
-}
-
-
+};
 
 setInterval(() => {
-  getNotificationEmail()
-  getNotificationSms()
-}, 1000)
-
+  getNotificationEmail();
+  getNotificationSms();
+}, 1000);
 
 module.exports = {
   getAllUserApps,
