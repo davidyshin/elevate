@@ -41,7 +41,8 @@ class JobsContainer extends Component {
             <UpdateJobForm
               activeUser={this.props.activeUser}
               handleBack={this.handleBack}
-              editingJob={editingJob} />
+              editingJob={editingJob}
+              updateExperience={this.props.updateExperience} />
           )}
       </div>
     );
