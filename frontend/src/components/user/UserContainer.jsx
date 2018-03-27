@@ -20,7 +20,7 @@ class UserContainer extends Component {
   }
 
   renderUserOverview = () => {
-    return <UserOverview activeUser={this.state.activeUser} />
+    return <UserOverview activeUser={this.state.activeUser} logOut={this.props.logOut} />
   };
 
   renderUserInfo = () => {
