@@ -680,8 +680,7 @@ const getNotificationEmail = () => {
 
 
 
-function getNotificationSms() {
-  console.log("sami")
+const  getNotificationSms = () => {
 
   db.any('SELECT users.username, users.first_name , users.phone_number, interview.interview_date , interview.interview_time , jobs.company_name '
     + ' FROM users INNER JOIN jobs ON users.ID = jobs.user_id '
