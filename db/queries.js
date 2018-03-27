@@ -9,7 +9,9 @@ const multer = require('multer'),
   AWS = require('aws-sdk');
 
 const nodemailer = require('nodemailer');
-const { welcomeEmail , reminder } = require('../emails/email');
+const { welcomeEmail } = require('../emails/email');
+const {reminder } = require('../emails/email');
+
 
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
@@ -128,7 +130,7 @@ const getInterviews = (req, res, next) => {
     .then(data => {
       res.status(200).json({ interviews: data });
     })
-    .catch(function(err) {
+    .catch(function (err) {
       res.status(500).send(`Error getting job interview: ${err}`);
     });
 };
@@ -319,13 +321,13 @@ const createInterview = (req, res, next) => {
         interview_time: req.body.interview_time
       }
     )
-    .then(function(data) {
+    .then(function (data) {
       res.status(200).json({
         status: 'success',
         message: 'Created job interview'
       });
     })
-    .catch(function(err) {
+    .catch(function (err) {
       res.status(500).send(`Error creating job interview: ${err}`);
     });
 };
@@ -356,7 +358,7 @@ const registerUser = (req, res, next) => {
       }
     )
     .then(() => {
-      transporter.sendMail(mailOptions, function(error, info) {
+      transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
           console.log(error);
         } else {
@@ -392,7 +394,7 @@ const uploadResume = (req, res, next) => {
     Key: 'resume-' + req.body.id + '-' + file.originalname,
     Body: file.buffer
   };
-  s3.putObject(params, function(err, data) {
+  s3.putObject(params, function (err, data) {
     if (err) console.log(err);
     else data;
 
@@ -414,7 +416,7 @@ const uploadCover = (req, res, next) => {
     Key: 'cover-' + req.body.id + '-' + file.originalname,
     Body: file.buffer
   };
-  s3.putObject(params, function(err, data) {
+  s3.putObject(params, function (err, data) {
     if (err) console.log(err);
     console.log('Successfully uploaded file');
   });
@@ -482,13 +484,13 @@ const updateInterview = (req, res, next) => {
         interview_date: req.body.interview_date
       }
     )
-    .then(function(data) {
+    .then(function (data) {
       res.status(200).json({
         status: 'success',
         message: 'Updated job interview'
       });
     })
-    .catch(function(err) {
+    .catch(function (err) {
       res.status(500).send(`Error updating job interview: ${err}`);
     });
 };
@@ -507,13 +509,13 @@ const updateUserInfo = (req, res, next) => {
         id: req.user.id
       }
     )
-    .then(function() {
+    .then(function () {
       res.status(200).json({
         status: 'success',
         message: 'updated user information'
       });
     })
-    .catch(function(err) {
+    .catch(function (err) {
       res.status(500).send(`Error updating user information: ${err}`);
       return next(err);
     });
@@ -531,13 +533,13 @@ const updateJobProgress = (req, res, next) => {
         job_id: req.body.job_id
       }
     )
-    .then(function(data) {
+    .then(function (data) {
       res.status(200).json({
         status: 'success',
         message: 'updated job progress'
       });
     })
-    .catch(function(err) {
+    .catch(function (err) {
       res.status(500).send(`Error updating job progress: ${err}`);
       return next(err);
     });
@@ -560,13 +562,13 @@ const updateJobInfo = (req, res, next) => {
         progress_in_search: req.body.progress_in_search
       }
     )
-    .then(function(data) {
+    .then(function (data) {
       res.status(200).json({
         status: 'success',
         message: 'updated job info'
       });
     })
-    .catch(function(err) {
+    .catch(function (err) {
       res.status(500).send(`Error updating job info: ${err}`);
       return next(err);
     });
@@ -580,13 +582,13 @@ const updateExperience = (req, res, next) => {
       experience: req.body.experience,
       id: req.user.id
     })
-    .then(function(data) {
+    .then(function (data) {
       res.status(200).json({
         status: 'success',
         message: 'updated user experience'
       });
     })
-    .catch(function(err) {
+    .catch(function (err) {
       res.status(500).send(`Error updating job info: ${err}`);
       return next(err);
     });
@@ -600,13 +602,13 @@ const updateJobStatus = (req, res, next) => {
       'UPDATE jobs SET job_status = ${job_status} WHERE job_id = ${job_id}',
       { job_status: req.body.job_status, job_id: req.body.job_id }
     )
-    .then(function(data) {
+    .then(function (data) {
       res.status(200).json({
         status: 'success',
         message: 'updated user experience'
       });
     })
-    .catch(function(err) {
+    .catch(function (err) {
       res.status(500).send(`Error updating job info: ${err}`);
       return next(err);
     });
@@ -616,7 +618,7 @@ const updateNotification = (req, res, next) => {
   db
     .none(
       'UPDATE users SET phone_notification = ${phone_notification} , email_notification = ${email_notification} , notification_interval = ${notification_interval} ' +
-        ' WHERE id = ${id}',
+      ' WHERE id = ${id}',
       {
         id: req.user.id,
         phone_notification: req.body.phone_notification,
@@ -624,13 +626,13 @@ const updateNotification = (req, res, next) => {
         notification_interval: req.body.notification_interval
       }
     )
-    .then(function() {
+    .then(function () {
       res.status(200).json({
         status: 'success',
         message: 'updated notification '
       });
     })
-    .catch(function(err) {
+    .catch(function (err) {
       res.status(500).send(`Error updating notification info: ${err}`);
       return next(err);
     });
@@ -645,9 +647,9 @@ const getNotificationEmail = () => {
   db
     .any(
       'SELECT users.username, users.first_name , users.phone_number, interview.interview_date , interview.interview_time , jobs.company_name ' +
-        ' FROM users INNER JOIN jobs ON users.ID = jobs.user_id ' +
-        ' INNER JOIN interview ON jobs.job_id = interview.job_id ' +
-        ' WHERE interview_date - notification_interval = CURRENT_DATE and interview_time = CURRENT_TIME(0) and email_notification = true '
+      ' FROM users INNER JOIN jobs ON users.ID = jobs.user_id ' +
+      ' INNER JOIN interview ON jobs.job_id = interview.job_id ' +
+      ' WHERE interview_date - notification_interval = CURRENT_DATE and interview_time = CURRENT_TIME(0) and email_notification = true '
     )
     .then(data => {
       console.log('number of email notifications: ', data.length);
@@ -656,14 +658,14 @@ const getNotificationEmail = () => {
         console.log(data[i].phone_number);
         Mail.to = data[i].username;
         Mail.html = reminder(
-          req.body.interview_date,
-          req.body.interview_time,
-          req.body.first_name,
-          req.body.company_name
+          data[i].interview_date,
+          data[i].interview_time,
+          data[i].first_name,
+          data[i].company_name
         );
         Mail.subject = `reminder of your interview with ${
           data[i].company_name
-        }`;
+          }`;
 
         transporter.sendMail(Mail, (error, info) => {
           if (error) {
@@ -683,9 +685,9 @@ const getNotificationSms = () => {
   db
     .any(
       'SELECT users.username, users.first_name , users.phone_number, interview.interview_date , interview.interview_time , jobs.company_name ' +
-        ' FROM users INNER JOIN jobs ON users.ID = jobs.user_id ' +
-        ' INNER JOIN interview ON jobs.job_id = interview.job_id ' +
-        ' WHERE interview_date - notification_interval = CURRENT_DATE and interview_time = CURRENT_TIME(0) and phone_notification = true'
+      ' FROM users INNER JOIN jobs ON users.ID = jobs.user_id ' +
+      ' INNER JOIN interview ON jobs.job_id = interview.job_id ' +
+      ' WHERE interview_date - notification_interval = CURRENT_DATE and interview_time = CURRENT_TIME(0) and phone_notification = true'
     )
     .then(data => {
       console.log('number of sms notifications: ', data.length);
@@ -695,7 +697,7 @@ const getNotificationSms = () => {
           from: process.env.TWILIO_PHONE_NUMBER,
           body: ` Hello for Elevate this is a reminder that your interview with ${
             data[i].company_name
-          } is on ${data[i].interview_date} by ${data[i].interview_time} `
+            } is on ${data[i].interview_date} by ${data[i].interview_time} `
         });
       }
     })

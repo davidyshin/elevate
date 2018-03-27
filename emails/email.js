@@ -26,7 +26,7 @@ const welcomeEmail = (firstName) => `
 
 
 
-const reminder = (firstName , company_name , interview_date , interview_time) => {
+const reminder = (firstName , company_name , interview_date , interview_time) => 
 
     `<table style = "background-color:#32BBDA;  width:80%; height:1000px; border-radius: 25px">
         <tr>
@@ -34,8 +34,8 @@ const reminder = (firstName , company_name , interview_date , interview_time) =>
         </tr>
         <tr style = "background-color:#E5F6FA;" >
                <td style = "padding:40px; border-radius: 25px" > 
-               <p> Hello ${firstName} </p>
-               <p> This is a reminder that your interview with ${company_name} is next week ${interview_date} at ${interview_time}<p>
+               <p> Hello  </p>
+               <p> This is a reminder that your interview with ${company_name} is ${interview_date} at ${interview_time}<p>
               </td>
         </tr>
         <tr>
@@ -44,7 +44,7 @@ const reminder = (firstName , company_name , interview_date , interview_time) =>
 </table>
 `
 
-}
+
 
 
 module.exports = {
