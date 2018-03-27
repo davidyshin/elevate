@@ -3,26 +3,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../../stylesheets/home-nav.css';
+import axios from 'axios';
 
 class HomeNavBar extends Component {
   constructor() {
     super();
-    this.state = {
-      activeUser: ''
-    };
+    this.state = {};
   }
-
-  componentDidMount() {
-    this.setState({
-      activeUser: this.props.activeUser
-    });
-  }
-
-  
 
   render() {
-    console.log(this.state); 
-
     return (
       <div className="home-nav-bar">
         <div className="home-nav-left">
@@ -38,7 +27,7 @@ class HomeNavBar extends Component {
         <div className="home-nav-right">
           <div className="home-nav-exp-container">
             <img src="https://i.imgur.com/oudBkRW.png" alt="exp" />
-            <p>{this.state.activeUser.experience}</p>
+            <p>{this.props.experience}</p>
           </div>
           <Link to="/profile"><i className="far fa-user-circle fa-2x"></i></Link>
         </div>
