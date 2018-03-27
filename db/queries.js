@@ -657,10 +657,10 @@ const getNotificationEmail = () => {
         console.log(data[i].phone_number);
         Mail.to = data[i].username;
         Mail.html = reminder(
+          data[i].first_name,
+          data[i].company_name,
           data[i].interview_date,
           data[i].interview_time,
-          data[i].first_name,
-          data[i].company_name
         );
         Mail.subject = `reminder of your interview with ${
           data[i].company_name
@@ -698,8 +698,8 @@ const getNotificationSms = () => {
             data[i].first_name
           }, this is a reminder that your interview with ${
             data[i].company_name
-          } is on ${data[i].interview_date} by ${
-            data[i].interview_time.substring
+          } is on ${data[i].interview_date} at ${
+            data[i].interview_time
           }. -Team Elevate `
         });
       }
