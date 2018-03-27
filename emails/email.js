@@ -12,7 +12,7 @@ const welcomeEmail = firstName => `
 <li> Track each job application progress </li>
 <li> Earn points towards your success!</li>
 </ul> <br>
-<p> Cheers, <br> The Reactors </p> </td>
+<p> Cheers, <br> Team Elevate </p> </td>
         </tr>
         <tr>
                <td align="center"><img src="https://image.ibb.co/n6dFEn/Git_Hub_Mark_Light_120px_plus.png" style="width:5%;height:25%;"></td>
