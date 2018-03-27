@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import UserActivity from './UserActivity.jsx';
+import WeeklyActivity from './WeeklyActivity.jsx';
 import UserProgress from './UserProgress.jsx';
 import UserStats from './UserStats.jsx';
 import UserBadges from './UserBadges.jsx';
+import JobSummary from '../../jobs/JobSummary.jsx'
+
 import Modal from 'react-modal';
 import axios from 'axios';
 
@@ -40,8 +42,8 @@ class UserOverview extends Component {
     return <UserBadges activeUser={this.props.activeUser} />;
   }
 
-  renderUserActivity = () => {
-    return <UserActivity activeUser={this.props.activeUser} />;
+  renderWeeklyActivity = () => {
+    return <WeeklyActivity activeUser={this.props.activeUser}/>
   };
 
   renderUserStats = () => {
@@ -53,8 +55,8 @@ class UserOverview extends Component {
       <div className="user-overview-container">
         <this.renderUserProgress />
         <this.renderUserBadges />
-        <this.renderUserActivity />
-        <this.renderUserStats />
+        <this.renderUserStats />        
+        <this.renderWeeklyActivity />
         <div className="user-logout-container">
           <button onClick={this.toggleModal}>
             <i class="fas fa-power-off fa-2x"></i>

@@ -52,6 +52,7 @@ class HomeContainer extends Component {
     return <AddJobForm activeUser={this.props.activeUser} updateExperience={this.updateExperience} />;
   };
 
+
   render() {
     console.log(this.state);
     return (

@@ -106,20 +106,18 @@ class UpdateJobForm extends Component {
     this.setState({ addedInterviews: addedInterviews });
   };
 
-  handleResumeInput = e => {
-    let { job_id } = this.state;
-    const resume_url = e.target.value;
-    e.preventDefault();
+  handleResumeInput = res => {
+    const {job_id} = this.state
     axios
       .put('/users/updateResume', {
-        resume_url: resume_url,
+        resume_url: res,
         job_id: job_id
       })
       .then(() => {
         let { applicationStage } = this.state;
         applicationStage = 3 ? 4 : 3;
         this.setState({
-          resume_url: resume_url,
+          resume_url: res,
           applicationStage
         });
       })
@@ -145,20 +143,18 @@ class UpdateJobForm extends Component {
       });
   };
 
-  handleCoverInput = e => {
+  handleCoverInput = res => {
     let { job_id } = this.state;
-    const cover_url = e.target.value;
-    e.preventDefault();
     axios
-      .put('/users/updateCoverLetter', {
-        cover_url: cover_url,
+      .put('/users/updateCover', {
+        cover_url: res,
         job_id: job_id
       })
       .then(() => {
         let { applicationStage } = this.state;
         applicationStage = 3 ? 4 : 3;
         this.setState({
-          cover_url: cover_url
+          cover_url: res
         });
       })
       .catch(err => {
@@ -280,8 +276,11 @@ class UpdateJobForm extends Component {
           {resume_url ? (
             <div className="resume-url-container">
               <h1> Resume: </h1>
-              <a className="resume-url" href={resume_url}>
-                Your uploaded resume
+              <a
+                href={`https://s3.amazonaws.com/elevateresumes/${resume_url}`}
+                target="_blank"
+              >
+                Your uploaded resume.
               </a>
             </div>
           ) : (
@@ -290,8 +289,7 @@ class UpdateJobForm extends Component {
               <p> You haven't added a resume, add one now </p>
               <ResumeUpload
                 handleResumeInput={this.handleResumeInput}
-                handleSecondSubmit={this.handleSecondSubmit}
-                resume_url={resume_url}
+                job_id={job_id}
               />
             </div>
           )}
@@ -300,8 +298,11 @@ class UpdateJobForm extends Component {
           {cover_url ? (
             <div className="cover-url-container">
               <h1>Cover Letter: </h1>
-              <a className="cover-url" href={cover_url}>
-                Your uploaded cover letter
+              <a
+                href={`https://s3.amazonaws.com/elevatecovers/${cover_url}`}
+                target="_blank"
+              >
+                Your uploaded Cover Letter.
               </a>
             </div>
           ) : (
@@ -310,8 +311,7 @@ class UpdateJobForm extends Component {
               <p> You haven't added a Cover Letter, add one now </p>
               <CoverLetterUpload
                 handleCoverInput={this.handleCoverInput}
-                handleSecondSubmit={this.handleSecondSubmit}
-                cover_url={cover_url}
+                job_id={job_id}
               />
             </div>
           )}
