@@ -27,7 +27,7 @@ class UserInfo extends Component {
     this.interval = [1, 3, 7]
 
     this.state = {
-      // modalOpen: false,
+      modalOpen: false,
       email_notification: false,
       phone_notification: false,
       notification_interval: 7
@@ -39,7 +39,13 @@ class UserInfo extends Component {
   // On checkbox, set state 
   // On checkbox, update database with Y/N for notification settings 
 
-
+  toggleModal = () => {
+    let { modalOpen } = this.state;
+    this.setState({
+      modalOpen: !modalOpen
+    });
+  };
+  
   handleReminderSelect = e => {
     this.setState({
       notification_interval : e.target.value
