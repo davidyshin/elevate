@@ -9,7 +9,7 @@ const multer = require('multer'),
   AWS = require('aws-sdk');
 
 const nodemailer = require('nodemailer');
-const { welcomeEmail } = require('../emails/email');
+const { welcomeEmail , reminder } = require('../emails/email');
 
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
