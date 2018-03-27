@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../../stylesheets/home-nav.css';
+import axios from 'axios';
 
 class HomeNavBar extends Component {
   constructor() {
@@ -24,8 +25,11 @@ class HomeNavBar extends Component {
           <h3><Link to="/addjob">ADD JOB</Link></h3>
         </div>
         <div className="home-nav-right">
+          <div className="home-nav-exp-container">
+            <img src="https://i.imgur.com/oudBkRW.png" alt="exp-coins" />
+            <p>{this.props.experience}</p>
+          </div>
           <Link to="/profile"><i className="far fa-user-circle fa-2x"></i></Link>
-          {/* <h3 onClick={this.props.logOut}>LOGOUT</h3> */}
         </div>
       </div>
     );

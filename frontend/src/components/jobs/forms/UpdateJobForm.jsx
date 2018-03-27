@@ -1,4 +1,4 @@
-// Add Job Form
+// Update Job Form
 
 import React, { Component } from 'react';
 import Autosuggest from 'react-autosuggest';
@@ -27,7 +27,6 @@ class UpdateJobForm extends Component {
       cover_url: '',
       interviews: [],
       addedInterviews: [],
-      experience: 0,
       job_status: 'awaiting'
     };
   }
@@ -128,7 +127,7 @@ class UpdateJobForm extends Component {
         });
       });
     this.updateJobProgress(job_id, 3);
-    this.updateExperience(50);
+    this.props.updateExperience(50);
   };
 
   updateJobProgress = (job_id, progress_in_search) => {
@@ -163,22 +162,7 @@ class UpdateJobForm extends Component {
         });
       });
     this.updateJobProgress(job_id, 4);
-    this.updateExperience(50);
-  };
-
-  updateExperience = exp => {
-    let { experience } = this.state;
-    experience += exp;
-    this.setState({
-      experience
-    });
-    axios
-      .put('/users/updateExperience', {
-        experience: experience
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    this.props.updateExperience(50);
   };
 
   render() {
@@ -332,7 +316,7 @@ class UpdateJobForm extends Component {
               <AddInterview
                 job_id={job_id}
                 addMoreInterview={this.addMoreInterview}
-                updateExperience={this.updateExperience}
+                updateExperience={this.props.updateExperience}
               />
             </div>
           );

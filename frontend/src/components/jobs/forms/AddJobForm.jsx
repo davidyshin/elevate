@@ -72,7 +72,7 @@ class AddJobForm extends Component {
       });
 
     const { job_id } = this.state;
-    this.updateExperience(100);
+    this.props.updateExperience(100);
   };
 
   addMoreInterview = e => {
@@ -93,21 +93,6 @@ class AddJobForm extends Component {
       });
   };
 
-  updateExperience = exp => {
-    let { experience } = this.state;
-    experience += exp;
-    this.setState({
-      experience
-    });
-    axios
-      .put('/users/updateExperience', {
-        experience: experience
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-  
   handleResumeInput = res => {
     let { job_id } = this.state;
     axios
@@ -128,7 +113,7 @@ class AddJobForm extends Component {
         });
       });
     this.updateJobProgress(job_id, 3);
-    this.updateExperience(50);
+    this.props.updateExperience(50);
   };
 
   handleCoverInput = (res) => {
@@ -152,7 +137,7 @@ class AddJobForm extends Component {
         });
       });
     this.updateJobProgress(job_id, 4);
-    this.updateExperience(50);
+    this.props.updateExperience(50);
   };
 
   getSuggestions = value => {
@@ -364,7 +349,7 @@ class AddJobForm extends Component {
             <div className="add-job-interview-container">
               <AddInterview
                 job_id={job_id}
-                updateExperience={this.updateExperience}
+                updateExperience={this.props.updateExperience}
                 addMoreInterview={this.addMoreInterview}
               />
             </div>
