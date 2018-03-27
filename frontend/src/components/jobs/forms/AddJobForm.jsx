@@ -43,8 +43,8 @@ class AddJobForm extends Component {
   handleFirstSubmit = e => {
     e.preventDefault();
 
-    let date = new Date(); // Today 
-    let timeZone = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)); // Today minus time zone 
+    let date = new Date(); // Today
+    let timeZone = new Date(date.getTime() - date.getTimezoneOffset() * 60000); // Today minus time zone
     let dateLogged = timeZone.toISOString().substring(0, 10);
 
     axios
@@ -116,7 +116,7 @@ class AddJobForm extends Component {
     this.props.updateExperience(50);
   };
 
-  handleCoverInput = (res) => {
+  handleCoverInput = res => {
     let { job_id } = this.state;
     axios
       .put('/users/updateCover', {
@@ -248,10 +248,10 @@ class AddJobForm extends Component {
               {companyLogo ? (
                 <img className="company-image" src={companyLogo} />
               ) : (
-                  <span className="magnifying-glass">
-                    <i className="fas fa-search fa-2x" />
-                  </span>
-                )}
+                <span className="magnifying-glass">
+                  <i className="fas fa-search fa-2x" />
+                </span>
+              )}
             </div>
             <div className="add-job-form-input-title">
               {' '}
@@ -350,11 +350,11 @@ class AddJobForm extends Component {
               <AddInterview
                 job_id={job_id}
                 updateExperience={this.props.updateExperience}
-                addMoreInterview={this.addMoreInterview}
               />
             </div>
           );
         })}
+        {this.state.saved ? <button className="add-interview-button" onClick={this.addMoreInterview}> Add an Interview </button> : ''}
       </div>
     );
   }
