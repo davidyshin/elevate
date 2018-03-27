@@ -33,14 +33,14 @@ class JobSummary extends Component {
         var next = new Date(curr.getTime());
         next.setDate(first - i);
         let obj = {};
-        obj.date = next.toDateString();
+        obj.date = next.toDateString().substring(0,10);
         obj['Applications Submitted'] = 0;
         plotData.push(obj);
       }
       data.data.apps.forEach(app => {
         const date = new Date(app.date_logged);
         const dateString = date.toDateString();
-        let index = plotData.findIndex(plot => plot.date === dateString);
+        let index = plotData.findIndex(plot => plot.date === dateString.substring(0,10));
         if (index > -1) {
           plotData[index]['Applications Submitted'] += 1;
         }

@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import JobSummary from '../../jobs/JobSummary.jsx'
 
-class UserActivity extends Component {
+
+
+class WeeklyActivity extends Component {
   constructor() {
     super();
     this.state = {};
@@ -9,15 +12,13 @@ class UserActivity extends Component {
   render() {
     return (
       <div className="user-activity-container" data-aos="fade-up">
-        <h3>User Activity</h3>
+        <h3>Weekly Activity</h3>
         <div className="user-activity-graph">
-          <p>Charts!</p>
-          <p>Legends!</p>
-          <p>John Legend!</p>
+        <JobSummary activeUser={this.props.activeUser}/>
         </div>
       </div>
     )
   }
 }
 
-export default UserActivity;
+export default WeeklyActivity;
