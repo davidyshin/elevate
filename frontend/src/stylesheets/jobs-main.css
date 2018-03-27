@@ -36,14 +36,17 @@
 /*
 // This holds the line graph 
 */ 
-.job-summary {
+.job-summary-container {
   width: 100%;
   height: 300px;
   display: flex;
   align-items: center;
+  flex-direction: column;
   justify-content: center;
   background-color: #fefefe;
+  z-index: 9
 }
+
 
 /*------------------------------------------*/
 /*                 Job List                 */
