@@ -3,21 +3,33 @@ import UserActivity from './UserActivity.jsx';
 import UserProgress from './UserProgress.jsx';
 import UserStats from './UserStats.jsx';
 import UserBadges from './UserBadges.jsx';
+import Modal from 'react-modal';
 import axios from 'axios';
+
+class LogoutWarning extends Component {
+  render() {
+    return (
+      <div className="logout-warning-container">
+        <h3>Are you sure you want to log out?</h3>
+        <button onClick={this.props.logOut} className="logout-button">Logout</button>
+        <button onClick={this.props.toggleModal} className="logout-cancel-button">Cancel</button>
+      </div>
+    )
+  }
+}
 
 class UserOverview extends Component {
   constructor() {
     super();
     this.state = {
-      
+      modalOpen: false
     }
   }
 
-  handleLogoutClick = () => {
-    // modal 
-    // Are you sure? 
-    // Yes => this.props.logOut()
-    // No => close modal 
+  toggleModal = () => {
+    this.setState({
+      modalOpen: !this.state.modalOpen
+    });
   }
 
   renderUserProgress = () => {
@@ -44,10 +56,22 @@ class UserOverview extends Component {
         <this.renderUserActivity />
         <this.renderUserStats />
         <div className="user-logout-container">
-          <button onClick={this.props.logOut}>
+          <button onClick={this.toggleModal}>
             <i class="fas fa-power-off fa-2x"></i>
           </button>
         </div>
+
+        <Modal
+          isOpen={this.state.modalOpen}
+          onRequestClose={this.toggleModal}
+          contentLabel="logout-warning-modal"
+          className="logout-warning-modal"
+        >
+          <LogoutWarning
+            toggleModal={this.toggleModal}
+            logOut={this.props.logOut}
+          />
+        </Modal>
       </div>
     );
   }
