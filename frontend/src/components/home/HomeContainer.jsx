@@ -18,7 +18,7 @@ class HomeContainer extends Component {
   };
 
   renderUserContainer = () => {
-    return <UserContainer activeUser={this.props.activeUser} />;
+    return <UserContainer activeUser={this.props.activeUser} logOut={this.props.logOut} />;
   };
   
   renderAddJobForm = () => {
