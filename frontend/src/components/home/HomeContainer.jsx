@@ -10,7 +10,8 @@ import { Route, Link, Switch, Redirect } from 'react-router-dom';
 class HomeContainer extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+    };
   }
 
   renderJobsContainer = () => {
@@ -24,6 +25,7 @@ class HomeContainer extends Component {
   renderAddJobForm = () => {
     return <AddJobForm activeUser={this.props.activeUser} />;
   };
+
 
   render() {
     return (

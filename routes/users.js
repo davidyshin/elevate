@@ -92,6 +92,9 @@ router.get('/getUserExp', loginRequired, db.getUserExp);
 /* 9. logoutUser // GET Route = /users/logout */
 router.get('/logout', loginRequired, db.logoutUser);
 
+/* 10. getLeaders // GET Route = /users/getLeaders */
+router.get('/getLeaders', loginRequired, db.getLeaders)
+
 /* ----------------------- POST Requests. ----------------------- */
 
 /* 10. createJobApp // POST Route /users/createJobApp */

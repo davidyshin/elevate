@@ -145,7 +145,7 @@ class UpdateJobForm extends Component {
   handleCoverInput = res => {
     let { job_id } = this.state;
     axios
-      .put('/users/updateCoverLetter', {
+      .put('/users/updateCover', {
         cover_url: res,
         job_id: job_id
       })

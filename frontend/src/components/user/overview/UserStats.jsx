@@ -74,7 +74,7 @@ const renderActiveShape = props => {
         fontSize= '18'
         fill="#3A99D8"
       >
-        Applications
+      Applications
       </text>
       <Sector
         cx={cx}
