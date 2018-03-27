@@ -41,7 +41,6 @@ class App extends Component {
     axios
       .get('/users/getUser')
       .then(res => {
-        console.log('THIS IS A RESPONSE', res);
         this.setState({
           activeUser: res.data.user
         });
@@ -51,23 +50,27 @@ class App extends Component {
       });
   }
 
+
   activeComponent = () => {
     // activeUser is the logged in user, if it exists it will render the homepage of the user
     // else it will render the login/register page
-    // Also, we're sending down activeUser down to each child component so we can use it's data
+    // Also, we're sending down activeUser down to each child component so we can use its data
     const { activeUser } = this.state;
 
     return activeUser ? (
       <HomeContainer logOut={this.logOut} activeUser={activeUser} />
     ) : (
-      <AuthContainer setActiveUser={this.setActiveUser} />
-    );
+        <AuthContainer setActiveUser={this.setActiveUser} />
+      );
   };
 
   render() {
+    console.log(this.state); 
+
     AOS.init({
       once: true
     });
+
     return (
       <div className="App">
         <this.activeComponent />
