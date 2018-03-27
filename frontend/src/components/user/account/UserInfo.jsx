@@ -1,34 +1,75 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal';
 import EditUser from './EditUser.jsx';
+import axios from 'axios';
+
+
+class Select extends React.Component {
+  render() {
+    const { values, selectedValue, handleSelect } = this.props
+    const displayValues = ['', ...values]
+
+    return (
+      <select
+        value={selectedValue}
+        onChange={handleSelect}
+      >
+        {displayValues.map(val =>
+          <option value={val}>{val}</option>)}
+      </select>
+    )
+  }
+}
 
 class UserInfo extends Component {
   constructor() {
     super();
+    this.interval = [1, 3, 7]
+
     this.state = {
-      modalOpen: false,
-      phoneNotification: '', 
-      emailNotification: ''
+      // modalOpen: false,
+      email_notification: false,
+      phone_notification: false,
+      notification_interval: 7
     };
   }
+
 
   // Set notification settings by getting the data from backend 
   // On checkbox, set state 
   // On checkbox, update database with Y/N for notification settings 
 
-  toggleModal = () => {
-    let { modalOpen } = this.state;
+
+  handleReminderSelect = e => {
     this.setState({
-      modalOpen: !modalOpen
-    });
+      notification_interval : e.target.value
+
+    })
   };
 
-  handleInput = e => {
-    console.log(e.target.name);
+  handleCheckBoxChange = e => {
+    this.setState({
+      [e.target.name]: e.target.checked
+    })
+  };
+
+
+  handleSave = e => {
+    const {notification_interval, email_notification, phone_notification} = this.state
+    axios.put('/users/updateNotification',{ notification_interval, email_notification, phone_notification})
+    .then(res =>{
+      console.log(res)
+    })
+    .catch( err=>{
+      console.log(err)
+    })
   }
 
+
+
   render() {
-    console.log(this.state); 
+    console.log(this.state);
+    const { notification_interval } = this.state;
 
     return (
       <div className="user-account-container" data-aos="fade-up">
@@ -49,17 +90,24 @@ class UserInfo extends Component {
         <div className="user-settings-container">
           <h3>Notification Settings</h3>
           <div>
-            <p>Send me an important reminder ______ before the event.</p>
+            <p>Send me an important reminder
+              <Select
+                values={this.interval}
+                selectedValue={notification_interval}
+                handleSelect={this.handleReminderSelect}
+              /> days before the event.</p>
+
             <p>Notify me on my:</p>
             <label>
-              <input type="checkbox" name="phone" onChange={this.handleInput} />
+              <input type="checkbox" name="phone_notification" onChange={this.handleCheckBoxChange} />
               Phone
             </label>
             <label>
-              <input type="checkbox" name="email" onChange={this.handleInput} />
+              <input type="checkbox" name="email_notification" onChange={this.handleCheckBoxChange} />
               Email
             </label>
           </div>
+          <button onClick={this.handleSave}>Save</button>
         </div>
 
         <Modal

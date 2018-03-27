@@ -12,8 +12,9 @@ CREATE TABLE Users
     password_digest VARCHAR NOT NULL,
     username VARCHAR UNIQUE,
     phone_number VARCHAR (10) UNIQUE,
-    email_notification VARCHAR(1),
-    phone_notification VARCHAR(1),
+    email_notification boolean DEFAULT FALSE,
+    phone_notification boolean DEFAULT FALSE,
+    notification_interval INTEGER default 7,
     experience INTEGER,
     PRIMARY KEY (id)
 );
