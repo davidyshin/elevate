@@ -27,7 +27,6 @@ class UpdateJobForm extends Component {
       cover_url: '',
       interviews: [],
       addedInterviews: [],
-      // experience: 0,
       job_status: 'awaiting'
     };
   }
@@ -128,7 +127,6 @@ class UpdateJobForm extends Component {
         });
       });
     this.updateJobProgress(job_id, 3);
-    // this.updateExperience(50);
     this.props.updateExperience(50);
   };
 
@@ -164,24 +162,8 @@ class UpdateJobForm extends Component {
         });
       });
     this.updateJobProgress(job_id, 4);
-    // this.updateExperience(50);
     this.props.updateExperience(50);
   };
-
-  // updateExperience = exp => {
-  //   let { experience } = this.state;
-  //   experience += exp;
-  //   this.setState({
-  //     experience
-  //   });
-  //   axios
-  //     .put('/users/updateExperience', {
-  //       experience: experience
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  // };
 
   render() {
     const {
