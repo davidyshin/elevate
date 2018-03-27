@@ -107,6 +107,7 @@ class AddJobForm extends Component {
         console.log(err);
       });
   };
+  
   handleResumeInput = res => {
     let { job_id } = this.state;
     axios
