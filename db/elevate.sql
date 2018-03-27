@@ -94,8 +94,8 @@ VALUES
     ('https://i.imgur.com/fHUUSnY.png', 'Thinker', '4'),
     ('https://i.imgur.com/Iyb6DwP.png', 'Go Getter', '5'),
     ('https://i.imgur.com/3fAyRfg.png', 'Hustler', '6'),
-    ('https://i.imgur.com/C1PuhC7.png', 'Achiever', '7'),
-    ('https://i.imgur.com/ne9xFjt.png', 'Heavy Lifter', '8'),
+    ('https://i.imgur.com/C1PuhC7.png', 'Explorer', '7'),
+    ('https://i.imgur.com/ne9xFjt.png', 'Achiever', '8'),
     ('https://i.imgur.com/HNSG7UF.png', 'Adventurer', '9');
 Drop TABLE Achievement_Badges
 CASCADE;
