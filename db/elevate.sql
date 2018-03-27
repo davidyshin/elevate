@@ -48,12 +48,12 @@ CREATE TABLE Jobs
 INSERT INTO Jobs
     (user_id, company_name, resume_url, cover_url, company_logo, job_posting_url, position_title, job_email, job_phone_number, date_applied, date_logged, progress_in_search, job_status, salary)
 VALUES
-    (1, 'Apple', 'resume-8ds-resume.pdf', 'cover-9-Cover Letter - ShopKeep.docx', 'https://logo.clearbit.com/apple.com', 'https://www.indeed.com/q-Apple-Software-Engineer-jobs.html', 'Software Engineer', 'hiring@apple.com', '3471218976', '2018-01-02', '2018-03-15', 4, 'awaiting', '70,000'),
+    (1, 'Apple', 'resume-8ds-resume.pdf', 'cover-9-Cover Letter - ShopKeep.docx', 'https://logo.clearbit.com/apple.com', 'https://www.indeed.com/q-Apple-Software-Engineer-jobs.html', 'Software Engineer', 'hiring@apple.com', '3471218976', '2018-01-01', '2018-03-15', 4, 'awaiting', '70,000'),
     (1, 'Facebook', 'resume-8ds-resume.pdf', 'cover-9-Cover Letter - ShopKeep.docx','https://logo.clearbit.com/facebook.com', 'https://www.facebook.com/careers/jobs/a0I1200000JXv00EAD/', 'Software Engineer, Full Stack', 'hiring@facebook.com', '3471218976', '2018-01-02', '2018-03-16', 4, 'awaiting', '70,000'),
-    (1, 'Twitch', 'resume-8ds-resume.pdf', 'cover-9-Cover Letter - ShopKeep.docx', 'https://logo.clearbit.com/twitch.tv', 'https://jobs.lever.co/twitch/a5f652d5-4f30-40ae-a860-14b869b5a445' , 'Software Engineer', 'hiring@twitch.tv', '3471218976', '2018-01-02', '2018-03-20', 4, 'awaiting', '70,000'),
-    (1, 'Google', 'resume-8ds-resume.pdf', 'cover-9-Cover Letter - ShopKeep.docx', 'https://logo.clearbit.com/google.com', 'https://careers.google.com/jobs#!t=jo&jid=/google/software-engineer-76-9th-ave-new-york-ny-10011-usa-2748170192&', 'Software Engineer', 'hiring@google.com', '3471218976', '2018-01-02', '2018-03-19', 4, 'awaiting', '70,000'),
-    (1, 'LinkedIn', 'resume-8ds-resume.pdf', 'cover-9-Cover Letter - ShopKeep.docx', 'https://logo.clearbit.com/linkedin.com', 'https://www.linkedin.com/jobs/view/626966558/', 'Senior Software Engineer', 'hiring@linkedin.com', '3471218976', '2018-01-02', '2018-03-22', 4, 'awaiting', '70,000'),
-    (1, 'KickStarter', 'resume-8ds-resume.pdf', 'cover-9-Cover Letter - ShopKeep.docx', 'https://logo.clearbit.com/apple.com', 'https://angel.co/kickstarter/jobs/291580-front-end-engineer?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic', 'Front End Engineer', 'hiring@kickstarter.com', '3471218976', '2018-01-02', '2018-03-22', 4, 'awaiting', '70,000');
+    (1, 'Twitch', 'resume-8ds-resume.pdf', 'cover-9-Cover Letter - ShopKeep.docx', 'https://logo.clearbit.com/twitch.tv', 'https://jobs.lever.co/twitch/a5f652d5-4f30-40ae-a860-14b869b5a445' , 'Software Engineer', 'hiring@twitch.tv', '3471218976', '2018-02-14', '2018-03-20', 4, 'awaiting', '70,000'),
+    (1, 'Google', 'resume-8ds-resume.pdf', 'cover-9-Cover Letter - ShopKeep.docx', 'https://logo.clearbit.com/google.com', 'https://careers.google.com/jobs#!t=jo&jid=/google/software-engineer-76-9th-ave-new-york-ny-10011-usa-2748170192&', 'Software Engineer', 'hiring@google.com', '3471218976', '2018-02-28', '2018-03-19', 4, 'awaiting', '70,000'),
+    (1, 'LinkedIn', 'resume-8ds-resume.pdf', 'cover-9-Cover Letter - ShopKeep.docx', 'https://logo.clearbit.com/linkedin.com', 'https://www.linkedin.com/jobs/view/626966558/', 'Senior Software Engineer', 'hiring@linkedin.com', '3471218976', '2018-03-02', '2018-03-22', 4, 'awaiting', '70,000'),
+    (1, 'KickStarter', 'resume-8ds-resume.pdf', 'cover-9-Cover Letter - ShopKeep.docx', 'https://logo.clearbit.com/apple.com', 'https://angel.co/kickstarter/jobs/291580-front-end-engineer?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic', 'Front End Engineer', 'hiring@kickstarter.com', '3471218976', '2018-03-12', '2018-03-22', 4, 'awaiting', '70,000');
 -- Drop TABLE Resumes CASCADE;
 -- Drop TABLE Cover_Letters CASCADE;
 DROP TABLE Interview
@@ -88,15 +88,15 @@ CREATE TABLE Rank_Badges
 INSERT INTO Rank_Badges
     (badge_url, badge_name, badge_level)
 VALUES
-    ('https://i.imgur.com/oXc6QpZ.png', 'aries', '1'),
-    ('https://i.imgur.com/kgCWbNC.png', 'taurus', '2'),
-    ('https://i.imgur.com/UEK9qaU.png', 'gemini', '3'),
-    ('https://i.imgur.com/fHUUSnY.png', 'cancer', '4'),
-    ('https://i.imgur.com/Iyb6DwP.png', 'leo', '5'),
-    ('https://i.imgur.com/3fAyRfg.png', 'virgo', '6'),
-    ('https://i.imgur.com/C1PuhC7.png', 'libra', '7'),
-    ('https://i.imgur.com/ne9xFjt.png', 'scorpio', '8'),
-    ('https://i.imgur.com/HNSG7UF.png', 'sagittarius', '9');
+    ('https://i.imgur.com/oXc6QpZ.png', 'Dreamer', '1'),
+    ('https://i.imgur.com/kgCWbNC.png', 'Believer', '2'),
+    ('https://i.imgur.com/UEK9qaU.png', 'Stargazer', '3'),
+    ('https://i.imgur.com/fHUUSnY.png', 'Thinker', '4'),
+    ('https://i.imgur.com/Iyb6DwP.png', 'Go Getter', '5'),
+    ('https://i.imgur.com/3fAyRfg.png', 'Hustler', '6'),
+    ('https://i.imgur.com/C1PuhC7.png', 'Explorer', '7'),
+    ('https://i.imgur.com/ne9xFjt.png', 'Achiever', '8'),
+    ('https://i.imgur.com/HNSG7UF.png', 'Adventurer', '9');
 Drop TABLE Achievement_Badges
 CASCADE;
 CREATE TABLE Achievement_Badges
