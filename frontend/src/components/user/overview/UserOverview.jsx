@@ -8,7 +8,16 @@ import axios from 'axios';
 class UserOverview extends Component {
   constructor() {
     super();
-    this.state = {}
+    this.state = {
+      
+    }
+  }
+
+  handleLogoutClick = () => {
+    // modal 
+    // Are you sure? 
+    // Yes => this.props.logOut()
+    // No => close modal 
   }
 
   renderUserProgress = () => {
@@ -34,9 +43,11 @@ class UserOverview extends Component {
         <this.renderUserBadges />
         <this.renderUserActivity />
         <this.renderUserStats />
-        <button onClick={this.props.logOut}>
-          <i class="fas fa-power-off fa-2x"></i>
-        </button>
+        <div className="user-logout-container">
+          <button onClick={this.props.logOut}>
+            <i class="fas fa-power-off fa-2x"></i>
+          </button>
+        </div>
       </div>
     );
   }
