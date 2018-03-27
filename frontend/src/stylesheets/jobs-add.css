@@ -230,6 +230,9 @@ button:hover {
   .add-job-form-container {
     padding-top: 100px;
   }
+  .resume-input-form, .cover-input-form {
+    width: 80%
+  }
 
   .add-job-form-container form {
     width: 80%;
