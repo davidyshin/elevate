@@ -8,7 +8,7 @@ class UserProgress extends Component {
       userExperience: 0,
       experienceToNextLevel: 0,
       rankBadge: '',
-      lockedBadgeUrl: 'https://i.imgur.com/aVEGmKm.png'
+      lockedBadgeUrl: 'https://i.imgur.com/HxuzkQX.png'
     };
   }
 
@@ -52,32 +52,44 @@ class UserProgress extends Component {
 
   convertExperienceToLevel = exp => {
     switch (true) {
-      case (exp < 1000):
+      case (exp < 2000):
         return '1';
         break;
-      case (exp < 2000):
+      case (exp < 4000):
         return '2';
         break;
-      case (exp < 3000):
+      case (exp < 6000):
         return '3';
         break;
-      case (exp < 4000):
+      case (exp < 8000):
         return '4';
         break;
-      case (exp < 5000):
+      case (exp < 10000):
         return '5';
         break;
-      case (exp < 60000):
+      case (exp < 12000):
         return '5';
+        break;
+      case (exp < 14000):
+        return '6';
+        break;
+      case (exp < 16000):
+        return '7';
+        break;
+      case (exp < 18000):
+        return '8';
+        break;
+      case (exp < 20000):
+        return '9';
         break;
       default:
-        return '6';
+        return '1';
         break;
     }
   }
 
   getExperienceToNextLevel = level => {
-    return parseInt(level) * 1000;
+    return parseInt(level) * 2000;
   }
 
   render() {
@@ -108,7 +120,7 @@ class UserProgress extends Component {
             <div className="user-progress-bar-container">
               <div className="user-progress-bar-total">
                 <div className="user-progress-bar-earned" style={progressStyle} />
-                <p>{userExperience}/{experienceToNextLevel}</p>
+                <p>{userExperience} / {experienceToNextLevel}</p>
               </div>
             </div>
           </div>
