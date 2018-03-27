@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import UserOverview from './overview/UserOverview.jsx';
 import UserInfo from './account/UserInfo.jsx';
+import LeaderBoard from './leaderboard/LeaderBoard.jsx';
 import '../../stylesheets/user-main.css';
 
 class UserContainer extends Component {
@@ -20,11 +21,19 @@ class UserContainer extends Component {
   }
 
   renderUserOverview = () => {
-    return <UserOverview activeUser={this.state.activeUser} logOut={this.props.logOut} />
+    return (
+      <UserOverview
+        activeUser={this.state.activeUser}
+        logOut={this.props.logOut}
+      />
+    );
   };
 
   renderUserInfo = () => {
     return <UserInfo activeUser={this.state.activeUser} />;
+  };
+  renderLeaderBoard = () => {
+    return <LeaderBoard activeUser={this.props.activeUser} />;
   };
 
   activeComponent = props => {
@@ -34,6 +43,9 @@ class UserContainer extends Component {
         break;
       case 'account':
         return <this.renderUserInfo />;
+        break;
+      case 'leaders':
+        return <this.renderLeaderBoard />;
         break;
     }
   };
@@ -52,11 +64,38 @@ class UserContainer extends Component {
       <div className="user-container">
         <div className="user-top">
           <img src={activeUser.photo_url} alt={activeUser.first_name} />
-          <h3>{activeUser.first_name} {activeUser.last_name}</h3>
+          <h3>
+            {activeUser.first_name} {activeUser.last_name}
+          </h3>
         </div>
         <nav className="user-navigation">
-          <h3 className={`overview ${activeComponent === 'overview' ? 'active' : null}`} onClick={this.toggleActive} id="overview">Overview</h3>
-          <h3 className={`account ${activeComponent === 'account' ? 'active' : null}`} onClick={this.toggleActive} id="account">Account</h3>
+          <h3
+            className={`overview ${
+              activeComponent === 'overview' ? 'active' : null
+            }`}
+            onClick={this.toggleActive}
+            id="overview"
+          >
+            Overview
+          </h3>
+          <h3
+            className={`account ${
+              activeComponent === 'account' ? 'active' : null
+            }`}
+            onClick={this.toggleActive}
+            id="account"
+          >
+          Account
+          </h3>
+          <h3
+            className={`leaders ${
+              activeComponent === 'leaders' ? 'active' : null
+            }`}
+            onClick={this.toggleActive}
+            id="leaders"
+          >
+            Leaders
+          </h3>
         </nav>
         <this.activeComponent activeComponent={activeComponent} />
       </div>
