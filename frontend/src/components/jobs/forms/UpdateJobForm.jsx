@@ -298,6 +298,7 @@ class UpdateJobForm extends Component {
             </div>
           )}
         </div>
+        <button className='add-interview-button' onClick={this.addMoreInterview}>Add Interview</button>        
         <div>
           {interviews.map(interview => {
             return (
