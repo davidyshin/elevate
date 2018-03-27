@@ -192,7 +192,8 @@
         // Rank badges and experience bar
         */
         .user-progress-left {
-            width: 65%;
+            /* width: 65%; */
+            width: 100%;
             height: 100%;
         }
 
@@ -265,6 +266,7 @@
             flex-direction: column;
             width: 35%;
             height: 100%;
+            display: none;
         }
 
             .user-progress-right h3 {
@@ -408,11 +410,9 @@
 /*------------------------------------------*/
 
 .user-activity-container {
-    /* background-color: orange; */
     background-color: #fefefe;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
     border-radius: 4px;
-    /* width: 800px; */
     width: 100%;
     height: 400px;
     margin: 52px auto 0 auto;
@@ -435,14 +435,12 @@
 /*------------------------------------------*/
 
 .user-stats-container {
-    /* background-color: orangered; */
     background-color: #fefefe;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
     border-radius: 4px;
-    /* width: 800px; */
     width: 100%;
     height: 320px;
-    margin: 52px auto;
+    margin: 52px auto 0 auto;
 }
 
 .user-stats-container h3 {
@@ -455,6 +453,110 @@
     padding: 22px;
     font-size: 1.4rem;
 }
+
+/*------------------------------------------*/
+/*             User Statistics              */
+/*------------------------------------------*/
+
+/*
+// Contains logout button
+*/
+.user-logout-container {
+    /* background-color: #fefefe; */
+    /* box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03); */
+    /* border-radius: 4px; */
+    width: 100%;
+    height: 120px;
+    margin: 52px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    /*
+    // Contains logout sign from fontawesome
+    */ 
+    .user-logout-container button {
+        background: none;
+        outline: none;
+        border: none;
+        /* color: rgb(51, 156, 197); */
+        color: rgb(171,0,122);
+        font-size: 1.6rem;
+        cursor: pointer;
+        -moz-transition: 0.15s all;
+        -webkit-transition: 0.15s all;
+        -o-transition: 0.15s all;
+        transition: 0.15s all;
+    }
+
+    .user-logout-container button:hover {
+        /* color: skyblue; */
+        transform: scale(1.2);
+    }
+
+/*
+// ALL modals
+*/
+.ReactModal__Overlay,
+.ReactModal__Overlay--after-open {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    /*
+    // Logout warning modal (popup box)
+    */
+    .logout-warning-modal {
+        background-color: #fefefe;
+        width: 500px;
+        height: 300px;
+        font-size: 1.6rem;
+        font-family: 'Montserrat', sans-serif;
+        outline: none;
+        border: 2px solid rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+    }
+
+        /*
+        // Contains warning question and buttons 
+        */
+        .logout-warning-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            height: 100%;
+            width: 100%;
+        }
+
+            .logout-warning-container h3 {
+                font-weight: 300;
+            }
+
+            /*
+            // Logout and cancel buttons
+            */
+            .logout-warning-container button {
+                outline: none;
+                border: none;
+                font-size: 1.6rem;
+                font-family: 'Montserrat', sans-serif;
+                width: 200px;
+                padding: 22px;
+                margin-top: 22px;
+                border-radius: 100px;
+            }
+
+            .logout-button {
+                background-color: red;
+            }
+
+            .logout-cancel-button {
+                background-color: rgb(180, 180, 180);
+            }
 
 
 /*------------------------------------------*/
