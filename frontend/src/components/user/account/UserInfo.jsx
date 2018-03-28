@@ -127,7 +127,7 @@ class UserInfo extends Component {
               days before every interview.
             </p>
 
-            <p>Notify me on my:</p>
+            <p>Notify me through:</p>
             <label className="phone-notification-label">
               <input
                 className="phone-notification-checkbox"
@@ -136,7 +136,8 @@ class UserInfo extends Component {
                 name="phone_notification"
                 onChange={this.handleCheckBoxChange}
               />
-              Phone
+              <i class="far fa-comment-alt fa-2x"></i>
+              SMS
             </label>
             <label className="email-notification-label">
               <input
@@ -146,11 +147,14 @@ class UserInfo extends Component {
                 name="email_notification"
                 onChange={this.handleCheckBoxChange}
               />
+              <i class="far fa-envelope fa-2x" />
               Email
             </label>
           </div>
           <div className="save-button">
-          <button className="user-info-save-button"onClick={this.handleSave}>Save</button>
+            <button className="user-info-save-button" onClick={this.handleSave}>
+              Save
+            </button>
           </div>
         </div>
 
