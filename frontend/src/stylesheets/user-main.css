@@ -696,6 +696,12 @@ p {
   flex-direction: flex-start;
 }
 
+.phone-notification-label i,
+.email-notification-label i {
+    color: rgba(0,0,0,.3);
+    padding-right: 10px;
+}
+
 /*
 <Select /> in User Info
 */
