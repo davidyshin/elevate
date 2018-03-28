@@ -107,6 +107,31 @@
         border-bottom: 2px solid rgb(51, 156, 197);
       }
 
+    /*
+    // Search bar
+    */ 
+    .job-list-nav input[type='text'] {
+      outline: none;
+      border: none;
+      padding: 8px 22px;
+      font-size: 1.4rem;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      border-radius: 4px;
+      /* width: 150px; */
+      width: 240px;
+      font-family: 'Montserrat', sans-serif;
+      color: rgb(51, 156, 197);
+      transition: 0.5s all;
+    }
+
+      .job-list-nav input[type='text']::placeholder {
+        color: rgba(0, 0, 0, 0.6);
+      }
+
+      .job-list-nav input[type='text']:focus {
+        border: 1px solid rgba(51, 156, 197, 0.4);
+      }
+
     /* 
     // Didn't incorporate this class name yet on react
     */ 
