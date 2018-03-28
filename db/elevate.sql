@@ -136,3 +136,26 @@ VALUES
     (2, 2),
     (2, 1);
 
+DROP TABLE Forum_Posts
+CASCADE;
+CREATE TABLE Forum_Posts
+(   
+    post_id SERIAL UNIQUE,
+    user_id INTEGER,
+    post_name VARCHAR,
+    PRIMARY KEY (post_id),
+    FOREIGN KEY (user_id) REFERENCES Users(id)
+);
+
+DROP TABLE Forum_Comments
+CASCADE;
+CREATE Table Forum_Comments
+(
+    comment_id INTEGER,
+    post_id INTEGER,
+    user_id INTEGER,
+    comment varchar,
+    PRIMARY KEY (comment_id),
+    FOREIGN KEY (user_id) REFERENCES Users(id),
+    FOREIGN KEY (post_id) REFERENCES Forum_Posts(post_id)
+);
