@@ -49,27 +49,32 @@ class UpdateJobForm extends Component {
   componentDidMount() {
     const id = this.props.job_id;
 
-    axios.get(`/users/getJob/${id}`).then(data => {
-      const editingJob = data.data.job;
-      const date = new Date(editingJob.date_applied);
-      const date_applied = date.toISOString().substring(0, 10);
-      this.setState({
-        job_id: editingJob.job_id,
-        applicationStage: editingJob.progress_in_search,
-        editingJob: editingJob,
-        company: editingJob.company_name,
-        companyLogo: editingJob.company_logo,
-        position: editingJob.position_title,
-        job_phone_number: editingJob.job_phone_number,
-        job_email: editingJob.job_email,
-        url: editingJob.job_posting_url,
-        resume_url: editingJob.resume_url,
-        cover_url: editingJob.cover_url,
-        date_applied: date_applied,
-        job_status: editingJob.job_status,
-        experience: this.props.activeUser.experience
+    axios
+      .get(`/users/getJob/${id}`)
+      .then(data => {
+        const editingJob = data.data.job;
+        const date = new Date(editingJob.date_applied);
+        const date_applied = date.toISOString().substring(0, 10);
+        this.setState({
+          job_id: editingJob.job_id,
+          applicationStage: editingJob.progress_in_search,
+          editingJob: editingJob,
+          company: editingJob.company_name,
+          companyLogo: editingJob.company_logo,
+          position: editingJob.position_title,
+          job_phone_number: editingJob.job_phone_number,
+          job_email: editingJob.job_email,
+          url: editingJob.job_posting_url,
+          resume_url: editingJob.resume_url,
+          cover_url: editingJob.cover_url,
+          date_applied: date_applied,
+          job_status: editingJob.job_status,
+          experience: this.props.activeUser.experience
+        });
+      })
+      .catch(err => {
+        console.log(err);
       });
-    });
     axios
       .get(`/users/getInterviews/${this.state.editingJob.job_id}`, {})
       .then(data => {

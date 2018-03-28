@@ -8,7 +8,6 @@ import AddJobForm from '../jobs/forms/AddJobForm.jsx';
 import UpdateJobForm from '../jobs/forms/UpdateJobForm.jsx';
 import Community from '../community/Community.jsx';
 import LeaderBoard from '../leaderboard/LeaderBoard';
-
 import { Route, Link, Switch, Redirect } from 'react-router-dom';
 import axios from 'axios';
 
