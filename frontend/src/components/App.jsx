@@ -1,16 +1,6 @@
 import React, { Component } from 'react';
 import AuthContainer from './auth/AuthContainer.jsx';
-// Components
-import HomeNavBar from './home/HomeNavBar.jsx';
-import UserContainer from './user/UserContainer.jsx';
-import UserInfo from './user/account/UserInfo.jsx';
-import JobsContainer from './jobs/JobsContainer.jsx';
-import AddJobForm from './jobs/forms/AddJobForm.jsx';
-import UpdateJobForm from './jobs/forms/UpdateJobForm.jsx';
-import Community from './community/Community.jsx';
-import LeaderBoard from './leaderboard/LeaderBoard';
-import { Route, Link, Switch, Redirect } from 'react-router-dom';
-
+import HomeContainer from './home/HomeContainer.jsx';
 import axios from 'axios';
 import '../stylesheets/App.css';
 import AOS from 'aos';
@@ -45,69 +35,6 @@ class App extends Component {
         console.log(err);
       });
   };
-  updateExperience = exp => {
-    let { experience } = this.state;
-    let updatedExperience = experience + exp;
-
-    axios
-      .put('/users/updateExperience', {
-        experience: updatedExperience
-      })
-      .then(() => {
-        this.setState({
-          experience: updatedExperience
-        });
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-
-  renderJobsContainer = () => {
-    const { activeUser } = this.state;
-    return (
-      <JobsContainer
-        activeUser={activeUser}
-        updateExperience={this.updateExperience}
-      />
-    );
-  };
-
-  renderUserContainer = () => {
-    const { activeUser } = this.state;
-    return <UserContainer activeUser={activeUser} logOut={this.logOut} />;
-  };
-
-  renderAddJobForm = () => {
-    const { activeUser } = this.state;
-    return (
-      <AddJobForm
-        activeUser={activeUser}
-        updateExperience={this.updateExperience}
-      />
-    );
-  };
-
-  renderUpdateJobForm = props => {
-    const { activeUser } = this.state;
-    return (
-      <UpdateJobForm
-        activeUser={activeUser}
-        job_id={props.match.params.job_id}
-        updateExperience={this.updateExperience}
-      />
-    );
-  };
-
-  renderLeaderBoard = () => {
-    const { activeUser } = this.state;
-    return <LeaderBoard activeUser={activeUser} />;
-  };
-
-  renderCommunity = () => {
-    const { activeUser } = this.state;
-    return <Community activeUser={activeUser} />;
-  };
 
   componentDidMount() {
     const { activeUser } = this.state;
@@ -123,33 +50,30 @@ class App extends Component {
       });
   }
 
-  renderActiveComponent = () => {
+
+  activeComponent = () => {
+    // activeUser is the logged in user, if it exists it will render the homepage of the user
+    // else it will render the login/register page
+    // Also, we're sending down activeUser down to each child component so we can use its data
     const { activeUser } = this.state;
+
     return activeUser ? (
-      <div className="home-container">
-        <HomeNavBar experience={this.state.experience} />
-        <Route exact path="/" component={this.renderJobsContainer} />
-        <Route exact path="/profile/" component={this.renderUserContainer} />
-        <Route exact path="/addjob/" component={this.renderAddJobForm} />
-        <Route
-          exact
-          path="/updateJob/:job_id"
-          component={this.renderUpdateJobForm}
-        />
-        <Route exact path="/community" component={this.renderCommunity} />
-        <Route exact path="/leaderboard" component={this.renderLeaderBoard} />
-      </div>
+      <HomeContainer logOut={this.logOut} activeUser={activeUser} />
     ) : (
-      <AuthContainer setActiveUser={this.setActiveUser}/>
-    );
+        <AuthContainer setActiveUser={this.setActiveUser} />
+      );
   };
 
   render() {
-    const { activeUser } = this.state;
     AOS.init({
       once: true
     });
-    return (< this.renderActiveComponent />);
+
+    return (
+      <div className="App">
+        <this.activeComponent />
+      </div>
+    );
   }
 }
 
