@@ -497,7 +497,7 @@
         /* color: skyblue; */
         transform: scale(1.2);
     }
-    
+
 
     /*
     // Logout warning modal (popup box)
@@ -511,6 +511,7 @@
         outline: none;
         border: 2px solid rgba(0, 0, 0, 0.1);
         border-radius: 4px;
+        animation: popout 0.1s;
     }
 
         /*
@@ -551,6 +552,15 @@
             .logout-cancel-button {
                 background-color: rgb(180, 180, 180);
             }
+
+    @keyframes popout {
+        from {
+            transform: scale(0);
+        }
+        to {
+            transform: scale(1);
+        }
+    }
 
 
 /*------------------------------------------*/
