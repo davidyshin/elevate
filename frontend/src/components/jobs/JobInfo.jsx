@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
 
 class JobInfo extends Component {
   constructor() {
@@ -67,7 +69,7 @@ class JobInfo extends Component {
           </div>
 
           <div className="job-info-button-container">
-            <button id={job_id} onClick={this.handleEditClick}>Update Job</button>
+            <Link to={`/updateJob/${job_id}`}>Update Job</Link>
           </div>
         </div>
 

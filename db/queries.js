@@ -36,45 +36,52 @@ const transporter = nodemailer.createTransport({
 
 /* List of queries/routes for reference
 ---------------------------------------
-  GET Requests
+GET Requests
 ---------------------------------------
- 1. getAllUserApps  // GET Route = /users/getAllUserApps
- 2. getCover  // GET Route = /users/getCover/:job
- 3. getInterviews // GET Route = /users/getInterviews/:job
- 4. getRankedBadge  // GET Route = /users/getRankedBadge/:level
- 5. getResume // GET Route = /users/getResume/:job
- 6. getUser // GET Route = /users/getUser
- 7. getUserAchievementBadges  // GET Route = /users/getUserAchieves
- 8. getUserExp // GET Route = /users/getUserExp
- 9. logoutUser // GET Route = /users/logout
- 10. getLeaders // GET Route = /users/getLeaders
----------------------------------------
-  POST Requests
----------------------------------------
- 11. createJobApp // POST Route /users/createJobApp
- 12. createInterview // // POST Route /users/createInterview
- 13. registerUser // POST Route = /users/newuser
- 14. uploadCover AWS // POST Route = /users/uploadCover
- 15. uploadResume AWS // POST Route = /users/uploadResume
+/* 1. getAllUserApps  // GET Route = /users/getAllUserApps */
+/* 2. getCover // GET Route = /users/getCoverLetter/:job */
+/* 3. getInterviews // GET Route = /users/getInterviews/:job */
+/* 4. getRankedBadge  // GET Route = /users/getRankedBadge/:level */
+/* 5. getResume // GET Route = /users/getResume/:job */
+/* 6. getUser // GET Route = /users/getUser */
+/* 7. getUserAchievementBadges  // GET Route = /users/getUserAchieves */
+/* 8. getUserExp // GET Route = /users/getUserExp */
+/* 9. logoutUser // GET Route = /users/logout */
+/* 10. getLeaders // GET Route = /users/getLeaders */
+/* 11. getJob // GET Route = /users/getJob
+/* 12. getNotificationEmail // GET Route = /users/getNotificationEmail */
+/* 13. getNotificationSms // GET Route = /users/getNotificationSms */
 
- ---------------------------------------
-  PUT Requests
+// ---------------------------------------
+//   POST Requests
+// ---------------------------------------
+
+/* 14. createJobApp // POST Route /users/createJobApp */
+/* 15. createInterview // POST Route /users/createInterview */
+/* 16. registerUser // POST Route = /users/newuser */
+/* 17. Login User // POST Route = /users/login */
+/* 18. uploadCover AWS // POST Route = /users/uploadCover */
+/* 19. uploadResume AWS // POST Route = /users/uploadResume */
+
+/*---------------------------------------
+ PUT Requests
 ---------------------------------------
- 16. updateCover // PUT Route = /users/updateCoverLetter
- 17. updateResume // PUT Route = /users/updateResumeAws
- 18. updateInterview // PUT Route = /users/updateInterview
- 19. updateUserInfo // PUT Route = /users/updateInfo
- 20. updateJobProgress // PUT Route = /users/updateJobProgress 
- 21. updateJobInfo // PUT Route = /users/updateJobInfo/
- 22. updateExperience // PUT Route = /users/updateExperience 
- 23. updateJobStatus // PUT Route = /users/updateJobStatus
---------------------------------------- 
-*/
+
+/* 20. updateResume URL on POSTGRES // PUT Route = /users/updateResume */
+/* 21. updateCover URL on POSTGRES // PUT Route = /users/updatecover */
+/* 22. updateInterview // PUT Route = /users/updateInterview */
+/* 23. updateUserInfo // PUT Route = /users/updateUserInfo */
+/* 24. updateJobProgress // PUT Route = /users/updateJobProgress */
+/* 25. updateJobInfo // PUT Route = /users/updateJobInfo */
+/* 26. updateExperience // PUT Route = /users/updateExperience */
+/* 27. updateJobStatus // PUT Route = /users/updateJobStatus */
+/* 28. updateNotification // PUT Route = /users/updateJobStatus */
+
+/*--------------------------------------- 
+
 
 /* ------------------------ GET REQUESTS QUERIES ------------------------ */
 
-/* 1. */
-// GET Route = /users/getAllUserApps
 const getAllUserApps = (req, res, next) => {
   db
     .any('SELECT * FROM jobs WHERE user_id=${user_id}', {
@@ -94,8 +101,6 @@ const getAllUserApps = (req, res, next) => {
     });
 };
 
-/* 2. */
-// GET Route = /users/getCover/:job
 
 const getCover = (req, res, next) => {
   db
@@ -118,8 +123,6 @@ const getCover = (req, res, next) => {
     });
 };
 
-/* 3. */
-// GET Route = /users/getInterviews/:job
 
 const getInterviews = (req, res, next) => {
   db
@@ -134,8 +137,6 @@ const getInterviews = (req, res, next) => {
     });
 };
 
-/* 4. */
-// GET Route = /users/getRankedBadge/:level
 
 const getRankedBadge = (req, res, next) => {
   db
@@ -155,8 +156,6 @@ const getRankedBadge = (req, res, next) => {
     });
 };
 
-/* 5. */
-// GET Route = /users/getResume/:job
 
 const getResume = (req, res, next) => {
   db
@@ -179,8 +178,6 @@ const getResume = (req, res, next) => {
     });
 };
 
-/* 6. */
-// GET Route = /users/getUser/
 
 const getUser = (req, res, next) => {
   db
@@ -200,8 +197,6 @@ const getUser = (req, res, next) => {
     });
 };
 
-/* 7. */
-// GET Route = /users/getUserAchieves/
 
 const getUserAchievementBadges = (req, res, next) => {
   db
@@ -223,8 +218,6 @@ const getUserAchievementBadges = (req, res, next) => {
     });
 };
 
-/* 8. */
-// GET Route = /users/getUserExp
 
 const getUserExp = (req, res, next) => {
   db
@@ -243,16 +236,12 @@ const getUserExp = (req, res, next) => {
     });
 };
 
-/* 9. */
-// GET Route = /users/logout
 
 const logoutUser = (req, res, next) => {
   req.logout();
   res.status(200).send('log out success');
 };
 
-/* 10 */
-// GET Route = /users/getLeaders
 
 const getLeaders = (req, res, next) => {
   db
@@ -271,10 +260,29 @@ const getLeaders = (req, res, next) => {
     });
 };
 
+const getJob = (req, res, next) => {
+  db
+    .one('SELECT * FROM jobs WHERE user_id=${user_id} AND job_id=${job_id}', {
+      user_id: req.user.id,
+      job_id: req.params.job_id
+    })
+    .then(data => {
+      res.status(200).json({
+        status: 'success',
+        job: data,
+        message: 'Retrieved job apps for user by ID'
+      });
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .send(`error getting single job application for user:  ${err}`);
+    });
+};
+
+
 /* ------------------------ POST REQUESTS QUERIES ------------------------ */
 
-/* 11. */
-// POST Route = /users/createJobApp
 
 const createJobApp = (req, res, next) => {
   db
@@ -306,8 +314,7 @@ const createJobApp = (req, res, next) => {
     });
 };
 
-/* 12. */
-// POST Route /users/createInterview
+
 const createInterview = (req, res, next) => {
   db
     .none(
@@ -331,8 +338,6 @@ const createInterview = (req, res, next) => {
     });
 };
 
-/* 13. */
-// POST Route = /users/newuser
 
 const registerUser = (req, res, next) => {
   var mailOptions = {
@@ -380,8 +385,7 @@ const registerUser = (req, res, next) => {
     });
 };
 
-// UPLOADING RESUME, COVERLETTER TO AWS
-/* 14. */
+
 const uploadResume = (req, res, next) => {
   if (!req.file) {
     return res.status(400).send('No files were uploaded.');
@@ -402,7 +406,6 @@ const uploadResume = (req, res, next) => {
   res.status(200).send({ url: params.Key });
 };
 
-/* 15. */
 
 const uploadCover = (req, res, next) => {
   if (!req.file) {
@@ -424,8 +427,6 @@ const uploadCover = (req, res, next) => {
 
 /* ------------------------ PUT REQUESTS QUERIES ------------------------ */
 
-/* 16. */
-// PUT Route = /users/updateCoverLetter/
 
 const updateCover = (req, res, next) => {
   db
@@ -444,8 +445,6 @@ const updateCover = (req, res, next) => {
     });
 };
 
-/* 17. */
-// PUT Route = /users/updateResume
 
 const updateResume = (req, res, next) => {
   db
@@ -468,8 +467,6 @@ const updateResume = (req, res, next) => {
     });
 };
 
-/* 18. */
-// PUT Route = /users/updateInterview
 
 const updateInterview = (req, res, next) => {
   db
@@ -494,8 +491,6 @@ const updateInterview = (req, res, next) => {
     });
 };
 
-/* 19. */
-// PUT Route = /users/updateUserInfo
 
 const updateUserInfo = (req, res, next) => {
   db
@@ -520,9 +515,7 @@ const updateUserInfo = (req, res, next) => {
     });
 };
 
-/* 20 */
 
-// PUT Route =  /users/updateJobProgress
 const updateJobProgress = (req, res, next) => {
   db
     .none(
@@ -544,8 +537,7 @@ const updateJobProgress = (req, res, next) => {
     });
 };
 
-/* 21. */
-// PUT Route = users/updateJobInfo
+
 const updateJobInfo = (req, res, next) => {
   db
     .none(
@@ -573,8 +565,7 @@ const updateJobInfo = (req, res, next) => {
     });
 };
 
-/* 22. */
-// PUT Route = users/updateExperience
+
 const updateExperience = (req, res, next) => {
   db
     .none('UPDATE users SET experience = ${experience} WHERE id = ${id}', {
@@ -593,8 +584,7 @@ const updateExperience = (req, res, next) => {
     });
 };
 
-/* 23. */
-// PUT Route = users/updateJobStatus
+
 const updateJobStatus = (req, res, next) => {
   db
     .none(
@@ -612,6 +602,7 @@ const updateJobStatus = (req, res, next) => {
       return next(err);
     });
 };
+
 
 const updateNotification = (req, res, next) => {
   db
@@ -637,8 +628,8 @@ const updateNotification = (req, res, next) => {
     });
 };
 
+
 const getNotificationEmail = () => {
-  console.log('sami');
   const Mail = {
     from: 'elevateC4Q@gmail.com'
   };
@@ -679,6 +670,7 @@ const getNotificationEmail = () => {
       console.log(`Not get notification email:  ${err}`);
     });
 };
+
 
 const getNotificationSms = () => {
   db
@@ -724,6 +716,7 @@ module.exports = {
   getUserAchievementBadges,
   getUserExp,
   getLeaders,
+  getJob,
   logoutUser,
   createJobApp,
   createInterview,
