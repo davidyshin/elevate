@@ -38,17 +38,18 @@ class JobList extends Component {
   handleClick = e => {
     return this.state.expandId === e.target.id
       ? this.setState({
-          expandId: ''
-        })
+        expandId: ''
+      })
       : this.setState({
-          expandId: e.target.id
-        });
+        expandId: e.target.id
+      });
   };
 
   handleInputChange = e => {
     this.setState({
       searching: e.target.value,
-      activeFilter: 'applied'
+      activeFilter: 'applied',
+      renderJobList: this.state.jobList
     });
   };
 
@@ -59,17 +60,19 @@ class JobList extends Component {
         return job.job_status === e.target.id;
       });
       this.setState({
-        renderJobList: filteredJobList
+        renderJobList: filteredJobList,
+        activeFilter: e.target.id
       });
     } else {
       this.setState({
-        renderJobList: jobList
+        renderJobList: jobList,
+        activeFilter: e.target.id
       });
     }
   };
 
   render() {
-    const { expandId, renderJobList, searching } = this.state;
+    const { expandId, renderJobList, searching, activeFilter } = this.state;
 
     const expandClass = 'job-info-container-expand';
 
@@ -82,16 +85,16 @@ class JobList extends Component {
     return (
       <div className="job-list">
         <nav className="job-list-nav">
-          <h3 id="applied" onClick={this.handleFilter}>
+          <h3 id="applied" onClick={this.handleFilter} className={activeFilter === 'applied' ? 'active-job-option' : null}>
             APPLIED
           </h3>
-          <h3 id="awaiting" onClick={this.handleFilter}>
+          <h3 id="awaiting" onClick={this.handleFilter} className={activeFilter === 'awaiting' ? 'active-job-option' : null}>
             AWAITING
           </h3>
-          <h3 id="rejected" onClick={this.handleFilter}>
+          <h3 id="rejected" onClick={this.handleFilter} className={activeFilter === 'rejected' ? 'active-job-option' : null}>
             REJECTED
           </h3>
-          <h3 id="offered" onClick={this.handleFilter}>
+          <h3 id="offered" onClick={this.handleFilter} className={activeFilter === 'offered' ? 'active-job-option' : null}>
             OFFERED
           </h3>
           <input
@@ -107,21 +110,40 @@ class JobList extends Component {
           <p className="job-position">Position</p>
           <p className="job-date">Applied</p>
         </div>
-        {searchRender.map((job, index) => (
-          <div>
-            <JobItem job={job} index={index} handleClick={this.handleClick} />
-            {parseInt(expandId) === parseInt(job.job_id) ? (
-              <JobInfo
-                job={job}
-                index={index}
-                editJob={this.props.editJob}
-                expandClass={expandClass}
-              />
-            ) : (
-              <JobInfo job={job} editJob={this.props.editJob} />
-            )}
-          </div>
-        ))}
+        <div className="job-item-view-web">
+          {searchRender.map((job, index) => (
+            <div>
+              <JobItem job={job} index={index} handleClick={this.handleClick} />
+              {parseInt(expandId) === parseInt(job.job_id) ? (
+                <JobInfo
+                  job={job}
+                  index={index}
+                  editJob={this.props.editJob}
+                  expandClass={expandClass}
+                />
+              ) : (
+                  <JobInfo job={job} editJob={this.props.editJob} />
+                )}
+            </div>
+          ))}
+        </div>
+        <div className="job-item-view-mobile">
+          {searchRender.map((job, index) => (
+            <div>
+              <JobItem job={job} index={index} handleClick={this.handleClick} />
+              {parseInt(expandId) === parseInt(job.job_id) ? (
+                <JobInfo
+                  job={job}
+                  index={index}
+                  editJob={this.props.editJob}
+                  expandClass={expandClass}
+                />
+              ) : (
+                  <JobInfo job={job} editJob={this.props.editJob} />
+                )}
+            </div>
+          ))}
+        </div>
       </div>
     );
   }
