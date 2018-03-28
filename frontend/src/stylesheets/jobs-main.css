@@ -309,6 +309,9 @@
       .job-info-top a:visited {
         text-decoration: none;
         color: rgb(51, 156, 197);
+        -moz-transition: 0.5s color;
+        -webkit-transition: 0.5s color;
+        -o-transition: 0.5s color;
         transition: 0.5s color;
       }
 
@@ -456,68 +459,123 @@
   */
   .job-info-view-mobile {
     display: none;
-    color: red; /* testing purposes */
   }
 
     .job-info-view-mobile p {
       padding: 0;
-      margin: 0;
+      margin: 1.2px 0 1.2px 4%;
     }
 
-    /* .job-info-view-mobile .job-info-top,
-    .job-info-view-mobile .job-info-company-container,
-    .job-info-view-mobile .job-info-user-container,
-    .job-info-view-mobile .job-info-button-container,
-    .job-info-view-mobile .job-info-status-container,
-    .job-info-view-mobile .job-info-bottom {
-      width: 100%;
-      height: 15%;
-    } */
+    .job-info-view-mobile a, 
+    .job-info-view-mobile:visited {
+      color: rgb(51, 156, 197);
+      text-decoration: none;
+      -moz-transition: 0.5s color;
+      -webkit-transition: 0.5s color;
+      -o-transition: 0.5s color;
+      transition: 0.5s color;
+    }
 
+    .job-info-view-mobile a:hover {
+      color: rgb(42, 70, 97);
+    }
+
+    /*
+    // Company logo on top
+    */ 
     .job-info-view-mobile .job-info-top {
       width: 100%;
-      height: 20%;
-      background-color: rgba(255, 0, 0, 0.2);
+      height: 24%;
       display: flex;
       justify-content: center;
+      align-items: center;
     }
 
-    .job-info-view-mobile .job-info-top img {
-      height: 60px;
-      width: auto;
-      border-radius: 100%;
-    }
+      /*
+      // Company logo image 
+      */
+      .job-info-view-mobile .job-info-top img {
+        height: 60px;
+        width: auto;
+        border-radius: 100%;
+      }
 
+    /*
+    // Contains company phone and email 
+    */
     .job-info-view-mobile .job-info-company-container {
       width: 100%;
-      height: 20%;
-      background-color: rgba(255, 0, 0, 0.3);
+      height: 12%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
     }
 
+      .job-info-view-mobile .job-info-company-container p {
+        width: 50%;
+        text-align: left;
+      }
+
+      /*
+      // Font awesome icons: phone and email
+      */ 
+      .job-info-view-mobile .job-info-company-container i {
+        margin-right: 4%;
+      }
+
+    /*
+    // Contains job posting url, resume, cover letter, logged date 
+    */ 
     .job-info-view-mobile .job-info-user-container {
       width: 100%;
-      height: 20%;
-      background-color: rgba(255, 0, 0, 0.4);
+      height: 35%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
     }
 
+    .job-info-view-mobile .job-info-user-container i {
+      margin-left: 2%;
+      font-size: 1.2rem;
+    }
+
+    /* 
+    // Contains update job button 
+    */ 
     .job-info-view-mobile .job-info-button-container {
       width: 100%;
       height: 15%;
-      background-color: rgba(255, 0, 0, 0.5);
     }
 
+      /*
+      // Update Job button 
+      */ 
+      .job-info-view-mobile .job-info-button-container button {
+        margin: 0;
+        border: 0;
+        width: 140px;
+        background: none;
+        background-color: rgb(51, 156, 197);
+        padding: 8px;
+        border-radius: 50px;
+      }
+
+    /*
+    // Contains the response status
+    */ 
     .job-info-view-mobile .job-info-status-container {
       width: 100%;
-      height: 15%;
-      background-color: rgba(255, 0, 0, 0.6);
+      height: 10%;
+      display: flex;
+      align-items: center;
     }
+
 
     .job-info-view-mobile .job-info-bottom {
       width: 100%;
-      height: 10%;
-      background-color: rgba(0, 0, 255, 0.2);
+      height: 4%;
     }
-
 
 
 
@@ -530,6 +588,9 @@
   }
 }
 
+/*
+// When screen is smaller than 800px wide, font sizes get smaller 
+*/
 @media screen and (max-width: 880px) {
   .active-jobs-container {
     width: 95%;
@@ -552,15 +613,21 @@
   .job-info-container {
     font-size: 1.4rem;
   }
-
 }
 
+/*
+// When screen is smaller than 510px wide, mobile class gets toggled 
+*/
 @media screen and (max-width: 510px) {
+  .active-jobs-container {
+    width: 99%;
+  }
+
   /* 
   // Job info expand class on mobile has a height bigger than when it's web 
   */
   .job-info-container-expand-mobile {
-    height: 380px;
+    height: 300px;
   }
 
   /*
