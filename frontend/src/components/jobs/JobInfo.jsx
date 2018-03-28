@@ -91,19 +91,21 @@ class JobInfo extends Component {
           </div>
 
           <div className="job-info-company-container">
-            <p>Phone number: {job_phone_number ? this.convertToPhone(job_phone_number) : 'not available'}</p>
-            <p>Contact email: {job_email ? job_email : 'not available'}</p>
-            <p>{job_posting_url ? <a href={job_posting_url} target="_blank">Go to job posting</a> : null}</p>
+            <p><i className="fas fa-phone"></i> {job_phone_number ? this.convertToPhone(job_phone_number) : 'Not available'}</p>
+            <p><i className="fas fa-envelope"></i> {job_email ? job_email : 'Not available'}</p>
           </div>
 
           <div className="job-info-user-container">
-            <p>{resume_url ? <a href={`https://s3.amazonaws.com/elevateresumes/${resume_url}`} target="_blank">Resume</a> : "No resume on file. Add one now."}</p>
-            <p>{cover_url ? <a href={`https://s3.amazonaws.com/elevatecovers/${cover_url}`} target="_blank">Cover Letter</a> : "No cover letter on file. Add one now."}</p>
+            <p>{job_posting_url ? <a href={job_posting_url} target="_blank">Go to job posting <i className="fas fa-external-link-alt"></i></a> : null}</p>
+            <p>{resume_url ? <a href={`https://s3.amazonaws.com/elevateresumes/${resume_url}`} target="_blank">Resume <i className="fas fa-download"></i></a> : "No resume on file"}</p>
+            <p>{cover_url ? <a href={`https://s3.amazonaws.com/elevatecovers/${cover_url}`} target="_blank">Cover Letter <i className="fas fa-download"></i></a> : "No cover letter on file"}</p>
             <p>Logged on: {date_logged}</p>
           </div>
 
           <div className="job-info-button-container">
-            <Link to={`/updateJob/${job_id}`}>Update Job</Link>
+            <Link to={`/updateJob/${job_id}`}>
+              <button>Update Job</button>
+            </Link>
           </div>
 
           <div className="job-info-status-container">
