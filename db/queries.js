@@ -629,7 +629,6 @@ const updateNotification = (req, res, next) => {
 
 
 const getNotificationEmail = () => {
-  console.log('sami');
   const Mail = {
     from: 'elevateC4Q@gmail.com'
   };
