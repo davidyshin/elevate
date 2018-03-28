@@ -497,16 +497,7 @@
         /* color: skyblue; */
         transform: scale(1.2);
     }
-
-/*
-// ALL modals
-*/
-.ReactModal__Overlay,
-.ReactModal__Overlay--after-open {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+    
 
     /*
     // Logout warning modal (popup box)
