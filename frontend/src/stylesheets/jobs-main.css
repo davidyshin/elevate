@@ -109,6 +109,7 @@
 
       
     /*
+    // Search bar 
     // Contains the search icons and search input box 
     */
     .job-list-searchbar-container {
@@ -164,7 +165,7 @@
 
         .job-list-nav input[type='text']:focus {
           outline: none;
-          width: 40%;
+          width: 48%;
         }
 
     /* 
@@ -628,14 +629,18 @@
 // When screen is smaller than 800px wide, font sizes get smaller 
 */
 @media screen and (max-width: 880px) {
-
   .active-jobs-container {
     width: 95%;
   }
 
   .job-list-nav {
     font-size: 1.2rem;
+    height: 40px;
   }
+
+    .job-list-nav h3 {
+      padding: 10px 0;
+    }
 
   .job-item-top-row {
     font-size: 1.4rem;
@@ -651,15 +656,36 @@
     font-size: 1.4rem;
   }
 
-  /* make company logo smaller */ 
+  /*
+  // Company logo gets smaller
+  */
   .job-info-logo-container img {
     height: 60px;
   }
+
+  /*
+  // Search bar width responsive 
+  */
+  .job-list-nav input[type='text']:focus {
+    width: 60%;
+  }
+
 }
 
 @media screen and (max-width: 720px) {
+  .active-jobs-container {
+    width: 98%;
+  }
+  
   .job-info-logo-container img {
     height: 40px;
+  }
+
+  /*
+  // Search bar width responsive 
+  */
+  .job-list-nav input[type='text']:focus {
+    width: 74%;
   }
 }
 
@@ -677,6 +703,19 @@
   .job-info-container-expand-mobile {
     height: 300px;
   }
+
+  /*
+  // Job filter tabs
+  */ 
+  .job-list-nav h3 {
+    font-size: 1.2rem;
+  }
+
+  /*
+  // Search bar goes below or above the filter tabs 
+  // HERE!
+  // IMPLEMENT THIS SOMEHOW SOON! 
+  */ 
 
   /*
   // Web browser view disappears when width is smaller than 510px

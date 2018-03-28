@@ -149,8 +149,31 @@
     }
 }
 
-@media screen and (max-width: 510px) {
+@media screen and (max-width: 720px) {
+    /* 
+    // Logo disappears
+    */
     .home-nav-left img {
         display: none;
     }
+
+    /*
+    // Experience points disappear 
+    */
+    /* .home-nav-exp-container {
+        width: 24px;
+    } */
+
+        /* .home-nav-exp-container p {
+            width: 0;
+            opacity: 0;
+            visibility: hidden;
+        } */
+
 }
+
+/* @media screen and (max-width: 510px) {
+    .home-nav-left img {
+        display: none;
+    }
+} */
