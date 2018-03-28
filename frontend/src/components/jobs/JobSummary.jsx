@@ -70,7 +70,7 @@ class JobSummary extends Component {
               type="monotone"
               dataKey="Applications Logged"
               stroke="#ff7300"
-              yAxisId={0}
+              yAxisId={0}d
             />
           </LineChart>
         </ResponsiveContainer>
