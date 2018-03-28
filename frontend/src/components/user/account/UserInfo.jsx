@@ -124,7 +124,7 @@ class UserInfo extends Component {
                 email={email_notification}
                 phone={phone_notification}
               />{' '}
-              days before any interview.
+              days before every interview.
             </p>
 
             <p>Notify me on my:</p>
