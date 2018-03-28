@@ -1,15 +1,16 @@
-// Container to hold everything AFTER user has logged in
 import React, { Component } from 'react';
+// Components
 import HomeNavBar from './HomeNavBar.jsx';
-import JobsContainer from '../jobs/JobsContainer.jsx';
-import Community from '../community/Community.jsx';
-import AddJobForm from '../jobs/forms/AddJobForm.jsx';
-import UpdateJobForm from '../jobs/forms/UpdateJobForm.jsx';
 import UserContainer from '../user/UserContainer.jsx';
 import UserInfo from '../user/account/UserInfo.jsx';
+import JobsContainer from '../jobs/JobsContainer.jsx';
+import AddJobForm from '../jobs/forms/AddJobForm.jsx';
+import UpdateJobForm from '../jobs/forms/UpdateJobForm.jsx';
+import Community from '../community/Community.jsx';
+import LeaderBoard from '../leaderboard/LeaderBoard';
+
 import { Route, Link, Switch, Redirect } from 'react-router-dom';
 import axios from 'axios';
-import LeaderBoard from '../leaderboard/LeaderBoard';
 
 class HomeContainer extends Component {
   constructor() {
