@@ -174,7 +174,7 @@ DROP TABLE Forum_Comments
 CASCADE;
 CREATE Table Forum_Comments
 (
-    comment_id INTEGER,
+    comment_id SERIAL UNIQUE ,
     post_id INTEGER,
     user_id INTEGER,
     comment VARCHAR,
