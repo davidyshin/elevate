@@ -43,9 +43,13 @@ app.use(function(req, res, next) {
   next(err);
 });
 
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, '/frontend/public/index.html'));
+// });
+
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/frontend/public/index.html'));
-});
+  res.redirect('/')
+})
 
 // error handler
 app.use(function(err, req, res, next) {
@@ -58,7 +62,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/frontend/public/index.html'));
-});
 module.exports = app;
