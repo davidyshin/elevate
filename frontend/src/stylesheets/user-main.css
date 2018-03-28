@@ -631,17 +631,16 @@ p {
   padding-bottom: 12px;
 }
 
-.user-info-container div:last-child,
 .user-settings-container div {
   padding: 22px;
   font-size: 1.4rem;
 }
 
-.save-button{
-    display:flex;
-    justify-content: center;
-    align-content: center;
-    padding: 11px auto;
+.save-button {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 11px auto;
 }
 /*
     // "Edit" user link 
@@ -652,6 +651,53 @@ p {
   -o-transition: 0.3s color;
   -webkit-transition: 0.3s color;
   transition: 0.3s color;
+  font-size: 2.5rem;
+}
+
+.user-info-edit-container {
+  height: 205px;
+}
+
+.user-info-edit-container input {
+  font-family: 'Montserrat', sans-serif;
+  border: none;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.08);
+  width: 200px;
+  font-size: 15px;
+  font-weight: 300;
+  box-shadow: 1px 1px 1px 1px #ccc;
+  padding-left: 6px;
+}
+
+.user-info-edit-container h4 {
+  width: 200px;
+}
+.saved-message {
+  font-size: 15px;
+  padding-right: 50px;
+}
+
+.user-info-phone-number,
+.user-info-email,
+.user-info-first-name,
+.user-info-last-name {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding-bottom: 9px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.user-info-edit-container {
+  padding: 22px;
+}
+
+.user-info-edit-container input:disabled {
+  background-color: #fefefe;
+  box-shadow: none;
 }
 
 /*
@@ -698,8 +744,8 @@ p {
 
 .phone-notification-label i,
 .email-notification-label i {
-    color: rgba(0,0,0,.3);
-    padding-right: 10px;
+  color: rgba(0, 0, 0, 0.3);
+  padding-right: 10px;
 }
 
 /*
@@ -722,11 +768,7 @@ Save button in User Info
 */
 
 .user-info-save-button {
-  background: linear-gradient(
-    to right,
-    rgba(67, 42, 246, 1) 0%,
-    rgba(0, 149, 222, 1) 100%
-  );
+  background: rgba(0, 149, 222, 1) 100%;
   border-radius: 60px;
   width: 100px;
   padding: 11px 9px 11px 9px;
