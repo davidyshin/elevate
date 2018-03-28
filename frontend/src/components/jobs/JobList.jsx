@@ -74,7 +74,7 @@ class JobList extends Component {
   render() {
     const { expandId, renderJobList, searching, activeFilter } = this.state;
 
-    const expandClass = 'job-info-container-expand';
+    const expandClass = 'job-info-container-expand-web job-info-container-expand-mobile';
 
     const searchRender = renderJobList.filter(
       job =>
@@ -110,40 +110,21 @@ class JobList extends Component {
           <p className="job-position">Position</p>
           <p className="job-date">Applied</p>
         </div>
-        <div className="job-item-view-web">
-          {searchRender.map((job, index) => (
-            <div>
-              <JobItem job={job} index={index} handleClick={this.handleClick} />
-              {parseInt(expandId) === parseInt(job.job_id) ? (
-                <JobInfo
-                  job={job}
-                  index={index}
-                  editJob={this.props.editJob}
-                  expandClass={expandClass}
-                />
-              ) : (
-                  <JobInfo job={job} editJob={this.props.editJob} />
-                )}
-            </div>
-          ))}
-        </div>
-        <div className="job-item-view-mobile">
-          {searchRender.map((job, index) => (
-            <div>
-              <JobItem job={job} index={index} handleClick={this.handleClick} />
-              {parseInt(expandId) === parseInt(job.job_id) ? (
-                <JobInfo
-                  job={job}
-                  index={index}
-                  editJob={this.props.editJob}
-                  expandClass={expandClass}
-                />
-              ) : (
-                  <JobInfo job={job} editJob={this.props.editJob} />
-                )}
-            </div>
-          ))}
-        </div>
+        {searchRender.map((job, index) => (
+          <div>
+            <JobItem job={job} index={index} handleClick={this.handleClick} />
+            {parseInt(expandId) === parseInt(job.job_id) ? (
+              <JobInfo
+                job={job}
+                index={index}
+                editJob={this.props.editJob}
+                expandClass={expandClass}
+              />
+            ) : (
+                <JobInfo job={job} editJob={this.props.editJob} />
+              )}
+          </div>
+        ))}
       </div>
     );
   }
