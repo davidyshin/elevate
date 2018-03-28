@@ -62,6 +62,7 @@ CASCADE;
 CREATE TABLE Interview
 (
     job_id INTEGER,
+    user_id INTEGER,
     contact VARCHAR,
     interview_date DATE,
     interview_time TIME,
@@ -69,13 +70,13 @@ CREATE TABLE Interview
     FOREIGN KEY (job_id) REFERENCES Jobs(job_id)
 );
 INSERT INTO Interview
-    (job_id, contact, interview_date, interview_time, note)
+    (job_id, user_id, contact, interview_date, interview_time, note)
 VALUES
-    (1, 'Helen, helencho@ac.c4q.nyc', '2018-03-28', '11:30:00', 'Interviewer was so mean'),
-    (2, 'David, 3478030075', '2018-03-28', '12:00:00', 'I think I went to college with someone there'),
-    (3, 'Jerell Davis (Dunno his #)', '2018-03-28', '10:00:00', 'Forgot to print out my resume, must remember for next time.'),
-    (4, 'Sami, dunno his email either..', '2018-03-28', '01:30:00', 'I definitely killed it'),
-    (5, 'Reed', '2018-03-28', '03:00:00', 'Meet at C4Q');
+    (1, 1, 'Helen, helencho@ac.c4q.nyc', '2018-03-28', '11:30:00', 'Interviewer was so mean'),
+    (2, 1, 'David, 3478030075', '2018-03-28', '12:00:00', 'I think I went to college with someone there'),
+    (3, 1, 'Jerell Davis (Dunno his #)', '2018-03-28', '10:00:00', 'Forgot to print out my resume, must remember for next time.'),
+    (4, 1, 'Sami, dunno his email either..', '2018-03-28', '01:30:00', 'I definitely killed it'),
+    (5, 1, 'Reed', '2018-03-28', '03:00:00', 'Meet at C4Q');
 Drop TABLE Rank_Badges
 CASCADE;
 CREATE TABLE Rank_Badges
@@ -110,12 +111,33 @@ CREATE TABLE Achievement_Badges
 INSERT INTO Achievement_Badges
     (badge_url, badge_name)
 VALUES
-    ('https://i.imgur.com/VHB6Qtm.png', '25-apps'),
-    ('https://i.imgur.com/NXZj2nF.png', '50-apps'),
-    ('https://i.imgur.com/dneiFhs.png', '100-apps'),
-    ('https://i.imgur.com/1JU7iNE.png', '200-apps'),
-    ('https://i.imgur.com/kEE766y.png', '300-apps'),
-    ('https://i.imgur.com/yLOUrI6.png', '1st-rejection');
+    ('https://i.imgur.com/3MJdZXz.png', 'red'),
+    ('https://i.imgur.com/QXIReL6.png', 'red orange'),
+    ('https://i.imgur.com/HWzdlOf.png', 'yellow orange'),
+    ('https://i.imgur.com/E2iTXcp.png', 'yellower orange'),
+    ('https://i.imgur.com/TTykkhy.png', 'yellow'),
+    ('https://i.imgur.com/aVI1XKK.png', 'neon yellow'),
+    ('https://i.imgur.com/OFAqNoe.png', 'light green'),
+    ('https://i.imgur.com/XUHYM7u.png', 'less light green'),
+    ('https://i.imgur.com/ubq3Wk5.png', 'green'),
+    ('https://i.imgur.com/slDdOXN.png', 'faded aqua green'),
+    ('https://i.imgur.com/DDFgiJL.png', 'teal'),
+    ('https://i.imgur.com/NjkZmf2.png', 'baby blue'),
+    ('https://i.imgur.com/CxC8P7q.png', 'bright baby blue'),
+    ('https://i.imgur.com/bxNfRwQ.png', 'blue'),
+    ('https://i.imgur.com/NPzT2GH.png', 'darker blue'),
+    ('https://i.imgur.com/yaSyJvK.png', 'true blue'),
+    ('https://i.imgur.com/RSHqxEj.png', 'bluish periwinkle'),
+    ('https://i.imgur.com/jizL5d1.png', 'blue purple'),
+    ('https://i.imgur.com/BC6YWPc.png', 'lavender'),
+    ('https://i.imgur.com/Arq3i3Z.png', 'purple pink'),
+    ('https://i.imgur.com/39NM2eS.png', 'pink'),
+    ('https://i.imgur.com/T4aux5D.png', 'bubble gum'),
+    ('https://i.imgur.com/7qgqpQV.png', 'bright pink'),
+    ('https://i.imgur.com/2RfEsRl.png', 'deep pink'),
+    ('https://i.imgur.com/Iy8dhRJ.png', 'slightly pink red');    
+
+
 DROP TABLE Achievement_Badges_Earned
 CASCADE;
 CREATE TABLE Achievement_Badges_Earned
@@ -135,3 +157,26 @@ VALUES
     (2, 2),
     (2, 1);
 
+DROP TABLE Forum_Posts
+CASCADE;
+CREATE TABLE Forum_Posts
+(   
+    post_id SERIAL UNIQUE,
+    user_id INTEGER,
+    post_name VARCHAR,
+    PRIMARY KEY (post_id),
+    FOREIGN KEY (user_id) REFERENCES Users(id)
+);
+
+DROP TABLE Forum_Comments
+CASCADE;
+CREATE Table Forum_Comments
+(
+    comment_id INTEGER,
+    post_id INTEGER,
+    user_id INTEGER,
+    comment varchar,
+    PRIMARY KEY (comment_id),
+    FOREIGN KEY (user_id) REFERENCES Users(id),
+    FOREIGN KEY (post_id) REFERENCES Forum_Posts(post_id)
+);
