@@ -41,7 +41,6 @@
   width: 100%;
   height: 300px;
   display: flex;
-  /* font-size: 1rem; */
   align-items: center;
   flex-direction: column;
   justify-content: center;
@@ -81,9 +80,10 @@
   .job-list-nav {
     display: flex;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
     font-size: 1.4rem;
     height: 60px;
+    padding-left: 4.4%;
     margin-top: 20px;
     color: rgb(51, 156, 197);
     background-color: #fefefe;
@@ -126,6 +126,10 @@
   font-size: 1.6rem;
   font-weight: 500;
   background-color: rgba(0, 0, 0, 0.05);
+  -moz-transition: 0.3s all;
+  -webkit-transition: 0.3s all;
+  -o-transition: 0.3s all;
+  transition: 0.3s all;
 }
 
   /*
@@ -169,6 +173,10 @@
   font-size: 1.6rem;
   height: 60px;
   cursor: pointer;
+  -moz-transition: 0.3s all;
+  -webkit-transition: 0.3s all;
+  -o-transition: 0.3s all;
+  transition: 0.3s all;
 }
 
   /*
@@ -428,10 +436,12 @@
 
   .job-item-top-row {
     font-size: 1.4rem;
+    height: 40px;
   }
 
   .job-item {
     font-size: 1.4rem;
+    height: 40px;
   }
 
   .job-info-container {

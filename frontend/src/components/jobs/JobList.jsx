@@ -12,7 +12,9 @@ class JobList extends Component {
     this.state = {
       jobList: [],
       expandId: '',
-      renderJobList: []
+      renderJobList: [],
+      searching: '',
+      activeFilter: 'applied'
     };
   }
 
@@ -42,6 +44,13 @@ class JobList extends Component {
           expandId: e.target.id
         });
   };
+
+  handleInputChange = e => {
+    this.setState({
+      searching: e.target.value,
+      activeFilter: 'applied'
+    });
+  }
   
   handleFilter = e => {
     let { jobList } = this.state;
@@ -60,7 +69,7 @@ class JobList extends Component {
   };
 
   render() {
-    const { expandId, renderJobList } = this.state;
+    const { expandId, renderJobList, searching } = this.state;
 
     const expandClass = 'job-info-container-expand';
 
@@ -79,12 +88,13 @@ class JobList extends Component {
           <h3 id="offered" onClick={this.handleFilter}>
             OFFERED
           </h3>
+          <input type="text" onChange={this.handleInputChange} value={searching} placeholder="Search all applications..." />
         </nav>
         <div className="job-item-top-row">
           <p className="job-number">#</p>
           <p className="job-company">Company</p>
           <p className="job-position">Position</p>
-          <p className="job-date">Application Date</p>
+          <p className="job-date">Applied</p>
         </div>
         {renderJobList.map((job, index) => (
           <div>
