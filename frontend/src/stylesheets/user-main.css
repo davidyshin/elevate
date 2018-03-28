@@ -352,11 +352,25 @@ p {
   align-items: center;
   width: 80%;
 }
+.achievement-badge-container, .more-achievement-badge-container {
+  position: relative;
+  display: flex;
+  font-size: 12px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
+.badge-hovered {
+  position: absolute;
+  left: 5;
+  bottom: 0;
+  z-index: 10
+}
 /*
         // Achievement badge image 
         */
-.user-badge-image-container img {
+.user-badge-image-container img, .more-achievement-badge-container img {
   width: auto;
   height: 80px;
   margin: 22px;
@@ -666,7 +680,6 @@ p {
   width: 200px;
   font-size: 15px;
   font-weight: 300;
-  box-shadow: 1px 1px 1px 1px #ccc;
   padding-left: 6px;
 }
 
