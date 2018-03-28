@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import Modal from 'react-modal';
-import EditUser from './EditUser.jsx';
 import axios from 'axios';
 
 class Select extends React.Component {
@@ -27,7 +25,6 @@ class UserInfo extends Component {
     this.interval = [1, 3, 7];
 
     this.state = {
-      modalOpen: false,
       email_notification: false,
       phone_notification: false,
       notification_interval: 7,
@@ -276,18 +273,6 @@ class UserInfo extends Component {
             </button>
           </div>
         </div>
-
-        <Modal
-          isOpen={this.state.modalOpen}
-          onRequestClose={this.toggleModal}
-          contentLabel="edit-user-modal"
-          className="edit-user-modal"
-        >
-          <EditUser
-            activeUser={this.props.activeUser}
-            toggleModal={this.toggleModal}
-          />
-        </Modal>
       </div>
     );
   }
