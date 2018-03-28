@@ -498,15 +498,6 @@
         transform: scale(1.2);
     }
 
-/*
-// ALL modals
-*/
-.ReactModal__Overlay,
-.ReactModal__Overlay--after-open {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
     /*
     // Logout warning modal (popup box)
@@ -520,6 +511,7 @@
         outline: none;
         border: 2px solid rgba(0, 0, 0, 0.1);
         border-radius: 4px;
+        animation: popout 0.1s;
     }
 
         /*
@@ -551,15 +543,27 @@
                 padding: 22px;
                 margin-top: 22px;
                 border-radius: 100px;
+                color: rgba(0, 0, 0, 0.6);
+                cursor: pointer;
             }
 
             .logout-button {
                 background-color: red;
+                color: white;
             }
 
             .logout-cancel-button {
                 background-color: rgb(180, 180, 180);
             }
+
+    @keyframes popout {
+        from {
+            transform: scale(0);
+        }
+        to {
+            transform: scale(1);
+        }
+    }
 
 
 /*------------------------------------------*/
