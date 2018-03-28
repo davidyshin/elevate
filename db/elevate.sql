@@ -111,12 +111,33 @@ CREATE TABLE Achievement_Badges
 INSERT INTO Achievement_Badges
     (badge_url, badge_name)
 VALUES
-    ('https://i.imgur.com/VHB6Qtm.png', '25-apps'),
-    ('https://i.imgur.com/NXZj2nF.png', '50-apps'),
-    ('https://i.imgur.com/dneiFhs.png', '100-apps'),
-    ('https://i.imgur.com/1JU7iNE.png', '200-apps'),
-    ('https://i.imgur.com/kEE766y.png', '300-apps'),
-    ('https://i.imgur.com/yLOUrI6.png', '1st-rejection');
+    ('https://i.imgur.com/3MJdZXz.png', 'red'),
+    ('https://i.imgur.com/QXIReL6.png', 'red orange'),
+    ('https://i.imgur.com/HWzdlOf.png', 'yellow orange'),
+    ('https://i.imgur.com/E2iTXcp.png', 'yellower orange'),
+    ('https://i.imgur.com/TTykkhy.png', 'yellow'),
+    ('https://i.imgur.com/aVI1XKK.png', 'neon yellow'),
+    ('https://i.imgur.com/OFAqNoe.png', 'light green'),
+    ('https://i.imgur.com/XUHYM7u.png', 'less light green'),
+    ('https://i.imgur.com/ubq3Wk5.png', 'green'),
+    ('https://i.imgur.com/slDdOXN.png', 'faded aqua green'),
+    ('https://i.imgur.com/DDFgiJL.png', 'teal'),
+    ('https://i.imgur.com/NjkZmf2.png', 'baby blue'),
+    ('https://i.imgur.com/CxC8P7q.png', 'bright baby blue'),
+    ('https://i.imgur.com/bxNfRwQ.png', 'blue'),
+    ('https://i.imgur.com/NPzT2GH.png', 'darker blue'),
+    ('https://i.imgur.com/yaSyJvK.png', 'true blue'),
+    ('https://i.imgur.com/RSHqxEj.png', 'bluish periwinkle'),
+    ('https://i.imgur.com/jizL5d1.png', 'blue purple'),
+    ('https://i.imgur.com/BC6YWPc.png', 'lavender'),
+    ('https://i.imgur.com/Arq3i3Z.png', 'purple pink'),
+    ('https://i.imgur.com/39NM2eS.png', 'pink'),
+    ('https://i.imgur.com/T4aux5D.png', 'bubble gum'),
+    ('https://i.imgur.com/7qgqpQV.png', 'bright pink'),
+    ('https://i.imgur.com/2RfEsRl.png', 'deep pink'),
+    ('https://i.imgur.com/Iy8dhRJ.png', 'slightly pink red');    
+
+
 DROP TABLE Achievement_Badges_Earned
 CASCADE;
 CREATE TABLE Achievement_Badges_Earned
