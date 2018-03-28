@@ -371,6 +371,7 @@
           height: 80px;
           width: auto;
           border-radius: 100%;
+          transition: 0.3s all;
         }
 
       /*
@@ -627,6 +628,7 @@
 // When screen is smaller than 800px wide, font sizes get smaller 
 */
 @media screen and (max-width: 880px) {
+
   .active-jobs-container {
     width: 95%;
   }
@@ -647,6 +649,17 @@
 
   .job-info-container {
     font-size: 1.4rem;
+  }
+
+  /* make company logo smaller */ 
+  .job-info-logo-container img {
+    height: 60px;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .job-info-logo-container img {
+    height: 40px;
   }
 }
 
