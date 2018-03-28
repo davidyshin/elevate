@@ -43,6 +43,14 @@ app.use(function(req, res, next) {
   next(err);
 });
 
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, '/frontend/public/index.html'));
+// });
+
+app.get('*', (req, res) => {
+  res.redirect('/')
+})
+
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
