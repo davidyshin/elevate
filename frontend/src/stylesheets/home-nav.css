@@ -11,9 +11,12 @@
 }
 
 /*
+// Responsive 
+// Web browser 
 // Navigation bar that appears after user logs in 
 */
-.home-nav-bar {
+.home-nav-bar,
+.home-nav-bar-mobile {
     background-color: #fefefe;
     height: 60px;
     width: 100%;
@@ -27,6 +30,114 @@
     color: rgb(0, 149, 222);
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
 }
+
+    /* 
+    // Responsive
+    // Mobile 
+    // Navigation bar 
+    */ 
+    .home-nav-bar-mobile {
+        display: none;
+    }
+
+    .home-nav-bar-mobile-fixed {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+    }
+
+        /*
+        // Profile logo on the top right
+        */ 
+        .home-nav-bar-mobile-fixed a,
+        .home-nav-bar-mobile-fixed a:visited {
+            text-decoration: none;
+            color: rgb(0, 149, 222);
+            -moz-transition: 0.5s color;
+            -o-transition: 0.5s color;
+            -webkit-transition: 0.5s color;
+            transition: 0.5s color;
+        }
+
+        /*
+        // Contains menu bars
+        */
+        .home-nav-bar-bars {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 3%;
+            cursor: pointer;
+            -moz-transition: 0.5s color;
+            -o-transition: 0.5s color;
+            -webkit-transition: 0.5s color;
+            transition: 0.5s color;
+        }
+
+            /*
+            // Hover color on menu bar and profile logo
+            */ 
+            .home-nav-bar-mobile-fixed a:hover,
+            .home-nav-bar-bars:hover {
+                color: rgb(24, 70, 97);
+            }
+
+        /*
+        // Contains experience and profile logo
+        */
+        .home-nav-bar-mobile-right {
+            display: flex;
+            align-items: center;
+            margin-right: 3%;
+        }
+
+        /*
+        // Dropdown menu container 
+        */ 
+        .home-nav-bar-mobile-dropdown {
+            background-color: #fefefe;
+            position: absolute;
+            top: 60px;
+            padding-left: 3%;
+            width: 100%;
+            height: 0;
+            visibility: hidden;
+            overflow: hidden;
+            -moz-transition: all 0.3s ease;
+            -o-transition: all 0.3s ease;
+            -webkit-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+        }
+
+            .home-nav-bar-mobile-dropdown a,
+            .home-nav-bar-mobile-dropdown a:visited {
+                text-decoration: none;
+                color: rgb(0, 149, 222);
+                font-size: 1.6rem;
+            }
+
+            /*
+            // Expanded menu items 
+            */ 
+            .home-nav-bar-mobile-dropdown h3 {
+                font-weight: 400;
+                height: 25%;
+                align-items: center;
+                display: flex;
+            }
+        
+        /*
+        // Dropdown menu container expanding 
+        */ 
+        .home-nav-bar-mobile-expand {
+            visibility: visible;
+            height: 160px;
+            display: flex;
+            flex-direction: column;
+        }
+
+
 
 /*
 // Left section of the navigation bar 
@@ -151,24 +262,25 @@
 
 @media screen and (max-width: 720px) {
     /* 
-    // Logo disappears
+    // Web navigation bar disappears 
     */
-    .home-nav-left img {
+    .home-nav-bar {
         display: none;
     }
 
     /*
-    // Experience points disappear 
-    */
-    /* .home-nav-exp-container {
-        width: 24px;
-    } */
+    // Mobile navigation bar appears 
+    */ 
+    .home-nav-bar-mobile {
+        display: flex;
+        flex-direction: column;
+        z-index: 11;
+    }
 
-        /* .home-nav-exp-container p {
-            width: 0;
-            opacity: 0;
-            visibility: hidden;
-        } */
+    /* .home-nav-bar-mobile-dropdown {
+        display: flex;
+        flex-direction: column;
+    } */
 
 }
 
