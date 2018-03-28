@@ -92,7 +92,7 @@ class LeaderBoard extends Component {
       <div className='LeaderboardDiv'>
         <br />
         <div className='Leaderboard'>
-          <h1>Leaders!</h1>
+          <h1>Leaderboard!</h1>
         </div>
         <br/>
         <ReactTable
