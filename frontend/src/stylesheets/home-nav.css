@@ -73,7 +73,7 @@
 }
 
     /*
-    // Experience points
+    // Experience points bar 
     */
     .home-nav-exp-container {
         background-color: #f5f0f5;
@@ -103,13 +103,11 @@
         // Experience points
         */
         .home-nav-exp-container p {
-            /* color: rgb(24, 70, 97); */
             color: rgb(0, 149, 222);
         }
 
         .home-nav-exp-container:hover {
             background-color: #eeeaee;
-            /* background-color: #e0dee0; */
         }
 
     /*
