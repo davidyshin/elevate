@@ -1,10 +1,13 @@
-// Container to hold everything AFTER user has logged in
 import React, { Component } from 'react';
+// Components
 import HomeNavBar from './HomeNavBar.jsx';
-import JobsContainer from '../jobs/JobsContainer.jsx';
-import AddJobForm from '../jobs/forms/AddJobForm.jsx'
 import UserContainer from '../user/UserContainer.jsx';
 import UserInfo from '../user/account/UserInfo.jsx';
+import JobsContainer from '../jobs/JobsContainer.jsx';
+import AddJobForm from '../jobs/forms/AddJobForm.jsx';
+import UpdateJobForm from '../jobs/forms/UpdateJobForm.jsx';
+import Community from '../community/Community.jsx';
+import LeaderBoard from '../leaderboard/LeaderBoard';
 import { Route, Link, Switch, Redirect } from 'react-router-dom';
 import axios from 'axios';
 
@@ -24,7 +27,7 @@ class HomeContainer extends Component {
 
   updateExperience = exp => {
     let { experience } = this.state;
-    let updatedExperience = experience + exp; 
+    let updatedExperience = experience + exp;
 
     axios
       .put('/users/updateExperience', {
@@ -32,8 +35,8 @@ class HomeContainer extends Component {
       })
       .then(() => {
         this.setState({
-          experience: updatedExperience 
-        })
+          experience: updatedExperience
+        });
       })
       .catch(err => {
         console.log(err);
@@ -41,26 +44,64 @@ class HomeContainer extends Component {
   };
 
   renderJobsContainer = () => {
-    return <JobsContainer activeUser={this.props.activeUser} updateExperience={this.updateExperience} />;
+    return (
+      <JobsContainer
+        activeUser={this.props.activeUser}
+        updateExperience={this.updateExperience}
+      />
+    );
   };
 
   renderUserContainer = () => {
-    return <UserContainer activeUser={this.props.activeUser} logOut={this.props.logOut} />;
+    return (
+      <UserContainer
+        activeUser={this.props.activeUser}
+        logOut={this.props.logOut}
+      />
+    );
   };
 
   renderAddJobForm = () => {
-    return <AddJobForm activeUser={this.props.activeUser} updateExperience={this.updateExperience} />;
+    return (
+      <AddJobForm
+        activeUser={this.props.activeUser}
+        updateExperience={this.updateExperience}
+      />
+    );
   };
 
+  renderUpdateJobForm = props => {
+    return (
+      <UpdateJobForm
+        activeUser={this.props.activeUser}
+        job_id={props.match.params.job_id}
+        updateExperience={this.updateExperience}
+      />
+    );
+  };
+
+  renderLeaderBoard = () => {
+    return <LeaderBoard activeUser={this.props.activeUser} />;
+  };
+
+  renderCommunity = () => {
+    return <Community activeUser={this.props.activeUser} />;
+  };
 
   render() {
-    console.log(this.state);
     return (
       <div className="home-container">
-        <HomeNavBar experience={this.state.experience}/>
+        <HomeNavBar experience={this.state.experience} />
         <Route exact path="/" component={this.renderJobsContainer} />
         <Route exact path="/profile/" component={this.renderUserContainer} />
         <Route exact path="/addjob/" component={this.renderAddJobForm} />
+        <Route
+          exact
+          path="/updateJob/:job_id"
+          component={this.renderUpdateJobForm}
+        />
+        <Route exact path="/community" component={this.renderCommunity} />
+        <Route exact path="/leaderboard" component={this.renderLeaderBoard} />
       </div>
     );
   }

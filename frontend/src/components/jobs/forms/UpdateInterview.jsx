@@ -86,7 +86,6 @@ class UpdateInterview extends Component {
             type="submit"
             value="Save"
           />
-          <button className="add-interview-button" onClick={this.props.addMoreInterview}>Add an Interview</button>
         </form>
       </div>
     );

@@ -12,3 +12,13 @@ body, html {
   font-size: 10px;
   background-color: #f5f0f5;
 }
+
+/*
+// ALL modals
+*/
+.ReactModal__Overlay,
+.ReactModal__Overlay--after-open {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -10,6 +10,7 @@ const multer = require('multer'),
 
 const nodemailer = require('nodemailer');
 const { welcomeEmail } = require('../emails/email');
+const { reminder } = require('../emails/email');
 
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
@@ -35,45 +36,54 @@ const transporter = nodemailer.createTransport({
 
 /* List of queries/routes for reference
 ---------------------------------------
-  GET Requests
+GET Requests
 ---------------------------------------
- 1. getAllUserApps  // GET Route = /users/getAllUserApps
- 2. getCover  // GET Route = /users/getCover/:job
- 3. getInterviews // GET Route = /users/getInterviews/:job
- 4. getRankedBadge  // GET Route = /users/getRankedBadge/:level
- 5. getResume // GET Route = /users/getResume/:job
- 6. getUser // GET Route = /users/getUser
- 7. getUserAchievementBadges  // GET Route = /users/getUserAchieves
- 8. getUserExp // GET Route = /users/getUserExp
- 9. logoutUser // GET Route = /users/logout
- 10. getLeaders // GET Route = /users/getLeaders
----------------------------------------
-  POST Requests
----------------------------------------
- 11. createJobApp // POST Route /users/createJobApp
- 12. createInterview // // POST Route /users/createInterview
- 13. registerUser // POST Route = /users/newuser
- 14. uploadCover AWS // POST Route = /users/uploadCover
- 15. uploadResume AWS // POST Route = /users/uploadResume
+/* 1. getAllUserApps  // GET Route = /users/getAllUserApps */
+/* 2. getCover // GET Route = /users/getCoverLetter/:job */
+/* 3. getInterviews // GET Route = /users/getInterviews/:job */
+/* 4. getRankedBadge  // GET Route = /users/getRankedBadge/:level */
+/* 5. getResume // GET Route = /users/getResume/:job */
+/* 6. getUser // GET Route = /users/getUser */
+/* 7. getUserAchievementBadges  // GET Route = /users/getUserAchieves */
+/* 8. getUserExp // GET Route = /users/getUserExp */
+/* 9. logoutUser // GET Route = /users/logout */
+/* 10. getLeaders // GET Route = /users/getLeaders */
+/* 11. getJob // GET Route = /users/getJob
+/* 12. getNotificationEmail // GET Route = /users/getNotificationEmail */
+/* 13. getNotificationSms // GET Route = /users/getNotificationSms */
+/* 14. getUserInterviews // GET Route = /users/GetUserInterviews */
 
- ---------------------------------------
-  PUT Requests
+// ---------------------------------------
+//   POST Requests
+// ---------------------------------------
+
+/* 15. createJobApp // POST Route /users/createJobApp */
+/* 16. createInterview // POST Route /users/createInterview */
+/* 17. registerUser // POST Route = /users/newuser */
+/* 18. Login User // POST Route = /users/login */
+/* 19. uploadCover AWS // POST Route = /users/uploadCover */
+/* 20. uploadResume AWS // POST Route = /users/uploadResume */
+/* 21. addAchievement // POST Route = /users/addAchievement */
+
+/*---------------------------------------
+ PUT Requests
 ---------------------------------------
- 16. updateCover // PUT Route = /users/updateCoverLetter
- 17. updateResume // PUT Route = /users/updateResumeAws
- 18. updateInterview // PUT Route = /users/updateInterview
- 19. updateUserInfo // PUT Route = /users/updateInfo
- 20. updateJobProgress // PUT Route = /users/updateJobProgress 
- 21. updateJobInfo // PUT Route = /users/updateJobInfo/
- 22. updateExperience // PUT Route = /users/updateExperience 
- 23. updateJobStatus // PUT Route = /users/updateJobStatus
---------------------------------------- 
-*/
+
+/* 22. updateResume URL on POSTGRES // PUT Route = /users/updateResume */
+/* 23. updateCover URL on POSTGRES // PUT Route = /users/updatecover */
+/* 24. updateInterview // PUT Route = /users/updateInterview */
+/* 25. updateUserInfo // PUT Route = /users/updateUserInfo */
+/* 26. updateJobProgress // PUT Route = /users/updateJobProgress */
+/* 27. updateJobInfo // PUT Route = /users/updateJobInfo */
+/* 28. updateExperience // PUT Route = /users/updateExperience */
+/* 29. updateJobStatus // PUT Route = /users/updateJobStatus */
+/* 30. updateNotification // PUT Route = /users/updateJobStatus */
+
+/*--------------------------------------- 
+
 
 /* ------------------------ GET REQUESTS QUERIES ------------------------ */
 
-/* 1. */
-// GET Route = /users/getAllUserApps
 const getAllUserApps = (req, res, next) => {
   db
     .any('SELECT * FROM jobs WHERE user_id=${user_id}', {
@@ -92,9 +102,6 @@ const getAllUserApps = (req, res, next) => {
         .send(`error getting all job applications for user:  ${err}`);
     });
 };
-
-/* 2. */
-// GET Route = /users/getCover/:job
 
 const getCover = (req, res, next) => {
   db
@@ -117,14 +124,15 @@ const getCover = (req, res, next) => {
     });
 };
 
-/* 3. */
-// GET Route = /users/getInterviews/:job
-
 const getInterviews = (req, res, next) => {
   db
-    .any('SELECT * FROM interview WHERE job_id = ${job_id}', {
-      job_id: req.params.job
-    })
+    .any(
+      'SELECT * FROM interview WHERE job_id = ${job_id} AND user_id = ${user_id}',
+      {
+        job_id: req.params.job,
+        user_id: req.user.id
+      }
+    )
     .then(data => {
       res.status(200).json({ interviews: data });
     })
@@ -132,9 +140,6 @@ const getInterviews = (req, res, next) => {
       res.status(500).send(`Error getting job interview: ${err}`);
     });
 };
-
-/* 4. */
-// GET Route = /users/getRankedBadge/:level
 
 const getRankedBadge = (req, res, next) => {
   db
@@ -153,9 +158,6 @@ const getRankedBadge = (req, res, next) => {
       res.status(500).send(`error getting ranked badge: ${err}`);
     });
 };
-
-/* 5. */
-// GET Route = /users/getResume/:job
 
 const getResume = (req, res, next) => {
   db
@@ -178,9 +180,6 @@ const getResume = (req, res, next) => {
     });
 };
 
-/* 6. */
-// GET Route = /users/getUser/
-
 const getUser = (req, res, next) => {
   db
     .one('SELECT * FROM Users WHERE id=${id}', {
@@ -198,9 +197,6 @@ const getUser = (req, res, next) => {
       return next(err);
     });
 };
-
-/* 7. */
-// GET Route = /users/getUserAchieves/
 
 const getUserAchievementBadges = (req, res, next) => {
   db
@@ -222,9 +218,6 @@ const getUserAchievementBadges = (req, res, next) => {
     });
 };
 
-/* 8. */
-// GET Route = /users/getUserExp
-
 const getUserExp = (req, res, next) => {
   db
     .one('SELECT experience FROM Users WHERE id=${id}', {
@@ -242,16 +235,10 @@ const getUserExp = (req, res, next) => {
     });
 };
 
-/* 9. */
-// GET Route = /users/logout
-
 const logoutUser = (req, res, next) => {
   req.logout();
   res.status(200).send('log out success');
 };
-
-/* 10 */
-// GET Route = /users/getLeaders
 
 const getLeaders = (req, res, next) => {
   db
@@ -270,10 +257,44 @@ const getLeaders = (req, res, next) => {
     });
 };
 
-/* ------------------------ POST REQUESTS QUERIES ------------------------ */
+const getJob = (req, res, next) => {
+  db
+    .one('SELECT * FROM jobs WHERE user_id=${user_id} AND job_id=${job_id}', {
+      user_id: req.user.id,
+      job_id: req.params.job_id
+    })
+    .then(data => {
+      res.status(200).json({
+        status: 'success',
+        job: data,
+        message: 'Retrieved job apps for user by ID'
+      });
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .send(`error getting single job application for user:  ${err}`);
+    });
+};
 
-/* 11. */
-// POST Route = /users/createJobApp
+const getUserInterviews = (req, res, next) => {
+  db
+    .any('SELECT * FROM interview WHERE user_id = ${user_id}', {
+      user_id: req.user.id
+    })
+    .then(data => {
+      res.status(200).json({
+        status: 'success',
+        interviews: data,
+        message: 'Retrieved interviews for user by id'
+      });
+    })
+    .catch(err => {
+      res.status(500).send(`error getting user interviews : ${err}`);
+    });
+};
+
+/* ------------------------ POST REQUESTS QUERIES ------------------------ */
 
 const createJobApp = (req, res, next) => {
   db
@@ -305,16 +326,15 @@ const createJobApp = (req, res, next) => {
     });
 };
 
-/* 12. */
-// POST Route /users/createInterview
 const createInterview = (req, res, next) => {
   db
     .none(
-      'INSERT INTO Interview (contact, note, interview_date, interview_time, job_id) VALUES (${contact}, ${note}, ${interview_date}, ${interview_time}, ${job_id})',
+      'INSERT INTO Interview (contact, note, interview_date, interview_time, user_id, job_id) VALUES (${contact}, ${note}, ${interview_date}, ${interview_time}, ${user_id}, ${job_id})',
       {
         contact: req.body.contact,
         note: req.body.note,
         job_id: req.body.job_id,
+        user_id: req.user.id,
         interview_date: req.body.interview_date,
         interview_time: req.body.interview_time
       }
@@ -330,14 +350,11 @@ const createInterview = (req, res, next) => {
     });
 };
 
-/* 13. */
-// POST Route = /users/newuser
-
 const registerUser = (req, res, next) => {
   var mailOptions = {
     from: process.env.GMAIL_USER,
     to: req.body.username,
-    subject: 'welcome to elevate',
+    subject: 'Welcome to Elevate',
     html: welcomeEmail(req.body.firstName)
   };
 
@@ -379,8 +396,24 @@ const registerUser = (req, res, next) => {
     });
 };
 
-// UPLOADING RESUME, COVERLETTER TO AWS
-/* 14. */
+const uploadCover = (req, res, next) => {
+  if (!req.file) {
+    return res.status(400).send('No files were uploaded.');
+  }
+  const file = req.file;
+  var bucketName = 'elevatecovers';
+  var params = {
+    Bucket: bucketName,
+    Key: 'cover-' + req.body.id + '-' + file.originalname,
+    Body: file.buffer
+  };
+  s3.putObject(params, function(err, data) {
+    if (err) console.log(err);
+    console.log('Successfully uploaded file');
+  });
+  res.status(200).send({ url: params.Key });
+};
+
 const uploadResume = (req, res, next) => {
   if (!req.file) {
     return res.status(400).send('No files were uploaded.');
@@ -401,30 +434,27 @@ const uploadResume = (req, res, next) => {
   res.status(200).send({ url: params.Key });
 };
 
-/* 15. */
-
-const uploadCover = (req, res, next) => {
-  if (!req.file) {
-    return res.status(400).send('No files were uploaded.');
-  }
-  const file = req.file;
-  var bucketName = 'elevatecovers';
-  var params = {
-    Bucket: bucketName,
-    Key: 'cover-' + req.body.id + '-' + file.originalname,
-    Body: file.buffer
-  };
-  s3.putObject(params, function(err, data) {
-    if (err) console.log(err);
-    console.log('Successfully uploaded file');
-  });
-  res.status(200).send({ url: params.Key });
+const addAchievement = (req, res, next) => {
+  db
+    .none(
+      'INSERT into achievement_badges_earned (user_id, badge_id) VALUES (${user_id}, ${badge_id})',
+      {
+        user_id: req.user.id,
+        badge_id: req.body.badge_id
+      }
+    )
+    .then(() => {
+      res.status(200).json({
+        status: 'success',
+        message: 'Successfully added achievement'
+      });
+    })
+    .catch(err => {
+      console.log(err)(`Error updating achievements earned: ${err}`);
+    });
 };
 
 /* ------------------------ PUT REQUESTS QUERIES ------------------------ */
-
-/* 16. */
-// PUT Route = /users/updateCoverLetter/
 
 const updateCover = (req, res, next) => {
   db
@@ -442,9 +472,6 @@ const updateCover = (req, res, next) => {
       console.log(err)(`Error updating cover letter: ${err}`);
     });
 };
-
-/* 17. */
-// PUT Route = /users/updateResume
 
 const updateResume = (req, res, next) => {
   db
@@ -467,16 +494,14 @@ const updateResume = (req, res, next) => {
     });
 };
 
-/* 18. */
-// PUT Route = /users/updateInterview
-
 const updateInterview = (req, res, next) => {
   db
     .none(
-      'UPDATE Interview SET contact = ${contact}, note = ${note}, interview_date = ${interview_date}, interview_time = ${interview_time} WHERE job_id = ${job_id}',
+      'UPDATE Interview SET contact = ${contact}, note = ${note}, interview_date = ${interview_date}, interview_time = ${interview_time} WHERE job_id = ${job_id} AND user_id = ${user_id}',
       {
         contact: req.body.contact,
         note: req.body.note,
+        user_id: req.user.id,
         job_id: req.body.job_id,
         interview_time: req.body.interview_time,
         interview_date: req.body.interview_date
@@ -492,9 +517,6 @@ const updateInterview = (req, res, next) => {
       res.status(500).send(`Error updating job interview: ${err}`);
     });
 };
-
-/* 19. */
-// PUT Route = /users/updateUserInfo
 
 const updateUserInfo = (req, res, next) => {
   db
@@ -519,9 +541,6 @@ const updateUserInfo = (req, res, next) => {
     });
 };
 
-/* 20 */
-
-// PUT Route =  /users/updateJobProgress
 const updateJobProgress = (req, res, next) => {
   db
     .none(
@@ -543,8 +562,6 @@ const updateJobProgress = (req, res, next) => {
     });
 };
 
-/* 21. */
-// PUT Route = users/updateJobInfo
 const updateJobInfo = (req, res, next) => {
   db
     .none(
@@ -572,8 +589,6 @@ const updateJobInfo = (req, res, next) => {
     });
 };
 
-/* 22. */
-// PUT Route = users/updateExperience
 const updateExperience = (req, res, next) => {
   db
     .none('UPDATE users SET experience = ${experience} WHERE id = ${id}', {
@@ -592,8 +607,6 @@ const updateExperience = (req, res, next) => {
     });
 };
 
-/* 23. */
-// PUT Route = users/updateJobStatus
 const updateJobStatus = (req, res, next) => {
   db
     .none(
@@ -637,7 +650,6 @@ const updateNotification = (req, res, next) => {
 };
 
 const getNotificationEmail = () => {
-  console.log('sami');
   const Mail = {
     from: 'elevateC4Q@gmail.com'
   };
@@ -656,10 +668,10 @@ const getNotificationEmail = () => {
         console.log(data[i].phone_number);
         Mail.to = data[i].username;
         Mail.html = reminder(
-          req.body.interview_date,
-          req.body.interview_time,
-          req.body.first_name,
-          req.body.company_name
+          data[i].first_name,
+          data[i].company_name,
+          data[i].interview_date,
+          data[i].interview_time
         );
         Mail.subject = `reminder of your interview with ${
           data[i].company_name
@@ -693,9 +705,13 @@ const getNotificationSms = () => {
         client.messages.create({
           to: data[i].phone_number,
           from: process.env.TWILIO_PHONE_NUMBER,
-          body: ` Hello for Elevate this is a reminder that your interview with ${
+          body: ` Hello ${
+            data[i].first_name
+          }, this is a reminder that your interview with ${
             data[i].company_name
-          } is on ${data[i].interview_date} by ${data[i].interview_time} `
+          } is on ${data[i].interview_date} at ${
+            data[i].interview_time
+          }. -Team Elevate `
         });
       }
     })
@@ -719,7 +735,9 @@ module.exports = {
   getUserAchievementBadges,
   getUserExp,
   getLeaders,
+  getJob,
   logoutUser,
+  getUserInterviews,
   createJobApp,
   createInterview,
   registerUser,
@@ -733,6 +751,7 @@ module.exports = {
   updateJobStatus,
   uploadResume,
   uploadCover,
+  addAchievement,
   updateNotification,
   getNotificationSms,
   getNotificationEmail
