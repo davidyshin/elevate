@@ -6,6 +6,7 @@ import axios from 'axios';
 import ResumeUpload from './ResumeUpload.jsx';
 import CoverLetterUpload from './CoverLetterUpload.jsx';
 import AddInterview from './AddInterview.jsx';
+import achieves from '../../achievements/checkForAchievements';
 import '../../../stylesheets/jobs-add.css';
 
 const AutoSuggestStyling = {
@@ -61,6 +62,8 @@ class AddJobForm extends Component {
         job_posting_url: this.state.url
       })
       .then(data => {
+        achieves.checkJobNumber();
+        this.props.updateExperience(100);
         this.setState({
           job_id: data.data.returned.job_id,
           saved: true,
@@ -72,7 +75,6 @@ class AddJobForm extends Component {
       });
 
     const { job_id } = this.state;
-    this.props.updateExperience(100);
   };
 
   addMoreInterview = e => {
@@ -354,7 +356,17 @@ class AddJobForm extends Component {
             </div>
           );
         })}
-        {this.state.saved ? <button className="add-interview-button" onClick={this.addMoreInterview}> Add an Interview </button> : ''}
+        {this.state.saved ? (
+          <button
+            className="add-interview-button"
+            onClick={this.addMoreInterview}
+          >
+            {' '}
+            Add an Interview{' '}
+          </button>
+        ) : (
+          ''
+        )}
       </div>
     );
   }

@@ -76,7 +76,7 @@ class UpdateJobForm extends Component {
         console.log(err);
       });
     axios
-      .get(`/users/getInterviews/${this.state.editingJob.job_id}`, {})
+      .get(`/users/getInterviews/${id}`)
       .then(data => {
         this.setState({ interviews: data.data.interviews });
       })
