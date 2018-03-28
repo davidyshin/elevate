@@ -188,6 +188,15 @@
 
 
 /*
+// Job item (list) container for mobile
+*/ 
+.job-item-view-mobile {
+  /* visibility: hidden; */
+  display: none;
+  color: red;
+}
+
+/*
 // Single job item (single row) 
 */
 .job-item {
@@ -473,4 +482,14 @@
     font-size: 1.4rem;
   }
 
+}
+
+@media screen and (max-width: 510px) {
+  .job-item-view-web {
+    display: none;
+  }
+
+  .job-item-view-mobile {
+    display: initial;
+  }
 }
