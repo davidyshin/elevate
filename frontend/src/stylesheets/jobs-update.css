@@ -63,6 +63,10 @@
 .update-job-status-container {
   padding-top: 50px;
 }
+.cover-input-container {
+  padding-bottom: 50px;
+}
+
 .cover-url, .resume-url {
   font-size: 15px;
 }
@@ -148,12 +152,16 @@ button:focus {
     rgba(67, 42, 246, 1) 0%,
     rgba(0, 149, 222, 1) 100%
   );
+  left: 50px;
+  bottom: 50px;
   border-radius: 60px;
   width: 200px;
+  position: fixed;
   padding: 22px 18px 22px 18px;
   color: #fefefe;
   font-size: 15px;
 }
+
 .add-interview-button:disabled,
 .update-job-form-container form input[type='submit']:disabled {
   background: rgb(255, 255, 255);
@@ -294,5 +302,8 @@ button:hover {
 
   .update-job-form-container form {
     width: 80%;
+  }
+  add-interview-button {
+    position: absolute;
   }
 }

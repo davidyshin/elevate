@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import UserOverview from './overview/UserOverview.jsx';
 import UserInfo from './account/UserInfo.jsx';
-import LeaderBoard from './leaderboard/LeaderBoard.jsx';
 import '../../stylesheets/user-main.css';
 
 class UserContainer extends Component {
@@ -32,9 +31,6 @@ class UserContainer extends Component {
   renderUserInfo = () => {
     return <UserInfo activeUser={this.state.activeUser} />;
   };
-  renderLeaderBoard = () => {
-    return <LeaderBoard activeUser={this.props.activeUser} />;
-  };
 
   activeComponent = props => {
     switch (props.activeComponent) {
@@ -43,9 +39,6 @@ class UserContainer extends Component {
         break;
       case 'account':
         return <this.renderUserInfo />;
-        break;
-      case 'leaders':
-        return <this.renderLeaderBoard />;
         break;
     }
   };
@@ -85,16 +78,7 @@ class UserContainer extends Component {
             onClick={this.toggleActive}
             id="account"
           >
-          Account
-          </h3>
-          <h3
-            className={`leaders ${
-              activeComponent === 'leaders' ? 'active' : null
-            }`}
-            onClick={this.toggleActive}
-            id="leaders"
-          >
-            Leaders
+            Account
           </h3>
         </nav>
         <this.activeComponent activeComponent={activeComponent} />

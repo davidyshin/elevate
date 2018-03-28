@@ -1,4 +1,4 @@
-// ANALYTICs
+// Data visualization
 
 import React, { Component } from 'react';
 import axios from 'axios';
@@ -26,29 +26,34 @@ class JobSummary extends Component {
   }
 
   componentDidMount() {
-    axios.get('/users/getAllUserApps').then(data => {
-      let { plotData } = this.state;
+    axios
+      .get('/users/getAllUserApps')
+      .then(data => {
+        let { plotData } = this.state;
 
-      for (var i = 0; i < 8; i++) {
-        var next = new Date(curr.getTime());
-        next.setDate(first - i);
-        let obj = {};
-        obj.date = next.toDateString().substring(0,10);
-        obj['Applications Submitted'] = 0;
-        plotData.push(obj);
-      }
-      data.data.apps.forEach(app => {
-        const date = new Date(app.date_logged);
-        const dateString = date.toDateString();
-        let index = plotData.findIndex(plot => plot.date === dateString.substring(0,10));
-        if (index > -1) {
-          plotData[index]['Applications Submitted'] += 1;
+        for (var i = 0; i < 8; i++) {
+          var next = new Date(curr.getTime());
+          next.setDate(first - i);
+          let obj = {};
+          obj.date = next.toDateString().substring(0, 10);
+          obj['Applications Submitted'] = 0;
+          plotData.push(obj);
         }
-      });
-      this.setState({
-        plotData
-      });
-    });
+        data.data.apps.forEach(app => {
+          const date = new Date(app.date_logged);
+          const dateString = date.toDateString();
+          let index = plotData.findIndex(
+            plot => plot.date === dateString.substring(0, 10)
+          );
+          if (index > -1) {
+            plotData[index]['Applications Submitted'] += 1;
+          }
+        });
+        this.setState({
+          plotData
+        });
+      })
+      .catch(err => console.log(err));
   }
   render() {
     const { plotData } = this.state;

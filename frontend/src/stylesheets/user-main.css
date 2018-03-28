@@ -6,55 +6,61 @@
 // The user profile page when user clicks on "profile" icon 
 */
 .user-container {
-    background-color: rgb(245, 240, 245);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding-top: 80px;
+  background-color: rgb(245, 240, 245);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding-top: 80px;
 }
 
-.user-container h1, h2, h3, h4, h5, h6, p {
-    margin: 0;
-    padding: 0;
+.user-container h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
 }
 
 /*
 // Holds profile image and first name 
 */
 .user-top {
-    background-color: #fefefe;
-    width: 800px;
-    height: 250px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  background-color: #fefefe;
+  width: 800px;
+  height: 250px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-    /*
+/*
     // Set profile image to 120 by 120 
     */
-    .user-top img {
-        height: 120px;
-        width: auto;
-        margin-bottom: 22px;
-    }
+.user-top img {
+  height: 120px;
+  width: auto;
+  margin-bottom: 22px;
+}
 
-    .user-top h3 {
-        font-size: 2.6rem;
-        font-weight: 300;
-    }
+.user-top h3 {
+  font-size: 2.6rem;
+  font-weight: 300;
+}
 
 /*
 // When screen is smaller than 880px, the box containing profile image becomes responsive 
 */
 @media screen and (max-width: 880px) {
-    .user-top {
-        width: 90%;
-    }
+  .user-top {
+    width: 90%;
+  }
 }
 
 /*------------------------------------------*/
@@ -65,96 +71,96 @@
 // Navigation bar below profile image 
 */
 .user-navigation {
-    background-color: #283c53;
-    color: #fefefe;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 800px;
-    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  background-color: #283c53;
+  color: #fefefe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 800px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
 }
 
 /*
 // When screen is smaller than 880x, navigation bar becomes responsive 
 */
 @media screen and (max-width: 880px) {
-    .user-navigation {
-        width: 90%;
-    }
+  .user-navigation {
+    width: 90%;
+  }
 }
 
-    /*
+/*
     // Navigation tabs: Overview, Account 
     */
-    .user-navigation h3 {
-        display: inline-block;
-        position: relative;
-        padding: 6px 22px;
-        font-size: 1.8rem;
-        font-weight: 300;
-        margin: 0;
-        cursor: pointer;
-        border-top: 2px solid transparent;
-        border-bottom: 2px solid rgba(0, 0, 0, 0);
-    }
+.user-navigation h3 {
+  display: inline-block;
+  position: relative;
+  padding: 6px 22px;
+  font-size: 1.8rem;
+  font-weight: 300;
+  margin: 0;
+  cursor: pointer;
+  border-top: 2px solid transparent;
+  border-bottom: 2px solid rgba(0, 0, 0, 0);
+}
 
-    /* 
+/* 
     // Active tab underlined red  
     */
-    .user-navigation.active {
-        border-bottom: 2px solid red;
-    }
+.user-navigation.active {
+  border-bottom: 2px solid red;
+}
 
-    /*
+/*
     // Tab underline animation
     */
-    .user-navigation.overview::before,
-    .user-navigation.account::before {
-        content: '';
-        position: absolute;
-        width: 0; 
-        height: 2px;
-        display: block;
-        margin-top: 10px;
-        right: 0;
-        background: red;
-        transform: scale(0, 1);
-        transform-origin: right top;
-        /* transition: width .5s ease; */
-        transition: color 0.1s, transform 0.3s ease-out;
-    }
-    
-    /*
+.user-navigation.overview::before,
+.user-navigation.account::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  display: block;
+  margin-top: 10px;
+  right: 0;
+  background: red;
+  transform: scale(0, 1);
+  transform-origin: right top;
+  /* transition: width .5s ease; */
+  transition: color 0.1s, transform 0.3s ease-out;
+}
+
+/*
     // Tab underline hover 
     */
-    .user-navigation.overview:hover::before,
-    .user-navigation.account:hover::before {
-        /* width: 100%; */
-        /* left: 0; */
-        transform-origin: left top;
-        background: red;
-        transform: scale(1, 1);
-    }
+.user-navigation.overview:hover::before,
+.user-navigation.account:hover::before {
+  /* width: 100%; */
+  /* left: 0; */
+  transform-origin: left top;
+  background: red;
+  transform: scale(1, 1);
+}
 
 /*------------------------------------------*/
 /*               User Overview              */
 /*------------------------------------------*/
 .user-overview-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 800px;
-    background-color: rgb(245,240,245);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 800px;
+  background-color: rgb(245, 240, 245);
 }
 
 /*
 // When screen is smaller than 880px, overview container becomes responsive 
 */
 @media screen and (max-width: 880px) {
-    .user-overview-container {
-        width: 90%;
-    }
+  .user-overview-container {
+    width: 90%;
+  }
 }
 
 /*------------------------------------------*/
@@ -165,162 +171,160 @@
 // The first card under user profile Overview 
 */
 .user-progress-container {
-    background-color: #fefefe;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
-    border-radius: 4px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    margin: 52px auto 0 auto;
+  background-color: #fefefe;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
+  border-radius: 4px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 52px auto 0 auto;
 }
 
-    /*
+/*
     // "Level Progress"
     */
-    .user-progress-header h3 {
-        font-size: 1.8rem;
-        font-weight: 400;
-        padding: 22px 22px 6px 22px;
-    }
+.user-progress-header h3 {
+  font-size: 1.8rem;
+  font-weight: 400;
+  padding: 22px 22px 6px 22px;
+}
 
-    .user-progress-content {
-        display: flex;
-        height: 240px;
-    }
+.user-progress-content {
+  display: flex;
+  height: 240px;
+}
 
-        /*
+/*
         // Rank badges and experience bar
         */
-        .user-progress-left {
-            /* width: 65%; */
-            width: 100%;
-            height: 100%;
-        }
+.user-progress-left {
+  /* width: 65%; */
+  width: 100%;
+  height: 100%;
+}
 
-            .user-progress-badge-container {
-                display: flex;
-                justify-content: space-between;
-                align-items: flex-end;
-                height: 65%;
-            }
+.user-progress-badge-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 65%;
+}
 
-                .user-rank-badge {
-                    width: auto;
-                    height: 110px;
-                    margin: 32px 22px 0 22px;
-                    /* margin: 22px; */
-                }
+.user-rank-badge {
+  width: auto;
+  height: 110px;
+  margin: 32px 22px 0 22px;
+  /* margin: 22px; */
+}
 
-                .badge-inactive {
-                    filter: grayscale(100%);
-                    transition: 0.5s all;
-                }
+.badge-inactive {
+  filter: grayscale(100%);
+  transition: 0.5s all;
+}
 
-                .badge-inactive:hover {
-                    filter: grayscale(40%);
-                }
-            
-            .user-progress-bar-container {
-                height: 35%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                /* background-color: rgba(0, 255, 255, 0.4); */
-            }
+.badge-inactive:hover {
+  filter: grayscale(40%);
+}
 
-                .user-progress-bar-container p {
-                    font-size: 1.4rem;
-                    width: 100%;
-                    position: relative;
-                    text-align: left;
-                }
+.user-progress-bar-container {
+  height: 35%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-color: rgba(0, 255, 255, 0.4); */
+}
 
-                .user-progress-bar-total {
-                    width: 95%;
-                    height: 20px;
-                    background-color: skyblue;
-                }
+.user-progress-bar-container p {
+  font-size: 1.4rem;
+  width: 100%;
+  position: relative;
+  text-align: left;
+}
 
-                .user-progress-bar-earned {
-                    height: 20px;
-                    background-color: rgb(51, 156, 197);
-                    transform-origin: top left;
-                    animation: progress-grow 0.5s;
-                }
+.user-progress-bar-total {
+  width: 95%;
+  height: 20px;
+  background-color: skyblue;
+}
 
-                    @keyframes progress-grow {
-                        0% {
-                            transform: scale(0, 1);
-                        }
-                        
-                        100% {
-                            transform: scale(1, 1);
-                        }
-                    }
+.user-progress-bar-earned {
+  height: 20px;
+  background-color: rgb(51, 156, 197);
+  transform-origin: top left;
+  animation: progress-grow 0.5s;
+}
 
-        /*
+@keyframes progress-grow {
+  0% {
+    transform: scale(0, 1);
+  }
+
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+/*
         // Level name and # of experience points left to go 
         */
-        .user-progress-right {
-            display: flex;
-            flex-direction: column;
-            width: 35%;
-            height: 100%;
-            display: none;
-        }
+.user-progress-right {
+  display: flex;
+  flex-direction: column;
+  width: 35%;
+  height: 100%;
+  display: none;
+}
 
-            .user-progress-right h3 {
-                font-size: 1.8rem;
-                color: rgba(0, 0, 0, 1);
-            }
+.user-progress-right h3 {
+  font-size: 1.8rem;
+  color: rgba(0, 0, 0, 1);
+}
 
-            .user-progress-right h4 {
-                font-size: 1.8rem;
-                color: rgba(0, 0, 0, 0.6);
-            }
+.user-progress-right h4 {
+  font-size: 1.8rem;
+  color: rgba(0, 0, 0, 0.6);
+}
 
-            .user-progress-right p {
-                font-size: 1.4rem;
-                color: rgba(0, 0, 0, 0.6);
-            }
+.user-progress-right p {
+  font-size: 1.4rem;
+  color: rgba(0, 0, 0, 0.6);
+}
 
-            .user-progress-current,
-            .user-progress-next,
-            .user-progress-message {
-                display: flex;
-                flex-direction: column;
-                justify-content: flex-start;
-                padding-left: 18px;
-            }
+.user-progress-current,
+.user-progress-next,
+.user-progress-message {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-left: 18px;
+}
 
-            .user-progress-blank {
-                height: 20%;
-            }
+.user-progress-blank {
+  height: 20%;
+}
 
-            .user-progress-current,
-            .user-progress-next {
-                height: 30%;
-                border-left: 2px solid rgba(0, 0, 0, 0.1);
-            }
+.user-progress-current,
+.user-progress-next {
+  height: 30%;
+  border-left: 2px solid rgba(0, 0, 0, 0.1);
+}
 
-            .user-progress-message {
-                justify-content: center;
-                height: 20%;
-            }
+.user-progress-message {
+  justify-content: center;
+  height: 20%;
+}
 
-        
 /*
 // When screen is smaller than 510px, level name content disappears 
 */
 @media screen and (max-width: 510px) {
-    .user-progress-left {
-        width: 100%;
-    }
+  .user-progress-left {
+    width: 100%;
+  }
 
-    .user-progress-right {
-        display: none;
-    }
-
+  .user-progress-right {
+    display: none;
+  }
 }
 
 /*------------------------------------------*/
@@ -331,78 +335,78 @@
 // User achievement badges container
 */
 .user-badges-container {
-    display: flex;
-    width: 100%;
-    height: 140px;
-    margin: 52px auto 0 auto;
-    background-color: #fefefe;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
-    border-radius: 4px;
+  display: flex;
+  width: 100%;
+  height: 140px;
+  margin: 52px auto 0 auto;
+  background-color: #fefefe;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
+  border-radius: 4px;
 }
 
-    /*
+/*
     // Contains single achievement badge 
     */
-    .user-badge-image-container {
-        display: flex;
-        align-items: center;
-        width: 80%;
-    }
+.user-badge-image-container {
+  display: flex;
+  align-items: center;
+  width: 80%;
+}
 
-        /*
+/*
         // Achievement badge image 
         */
-        .user-badge-image-container img {
-            width: auto;
-            height: 80px;
-            margin: 22px;
-        }
+.user-badge-image-container img {
+  width: auto;
+  height: 80px;
+  margin: 22px;
+}
 
-    /*
+/*
     // "More Badges" 
     */
-    .user-badges-container div:last-child {
-        display: flex;
-        width: 20%;
-        justify-content: center;
-        align-items: center;
-    }
+.user-badges-container div:last-child {
+  display: flex;
+  width: 20%;
+  justify-content: center;
+  align-items: center;
+}
 
-    .user-badges-container h3 {
-        font-size: 1.6rem;
-        font-weight: 400;
-        -moz-transition: 0.3s color;
-        -o-transition: 0.3s color;
-        -webkit-transition: 0.3s color;
-        transition: 0.3s color;
-    }
+.user-badges-container h3 {
+  font-size: 1.6rem;
+  font-weight: 400;
+  -moz-transition: 0.3s color;
+  -o-transition: 0.3s color;
+  -webkit-transition: 0.3s color;
+  transition: 0.3s color;
+}
 
-    .user-badges-container h3:hover {
-        color: #3498db;
-    }
+.user-badges-container h3:hover {
+  color: #3498db;
+}
 
 /*
 // When screen is smaller than 510px, the badges container becomes vertical 
 */
 @media screen and (max-width: 510px) {
-    .user-badges-container {
-        flex-direction: column;
-        height: 100%;
-    }
-    
-    .user-badge-image-container {
-        width: 100%;
-        flex-direction: column;
-    }
+  .user-badges-container {
+    flex-direction: column;
+    height: 100%;
+  }
 
-    .user-badge-image-container img {
-        height: 180px;
-    }
+  .user-badge-image-container {
+    width: 100%;
+    flex-direction: column;
+  }
 
-    .user-badges-container div:last-child {
-        width: 100%;
-        padding: 22px 0;
-    }
+  .user-badge-image-container img {
+    height: 180px;
+  }
+
+  .user-badges-container div:last-child {
+    width: 100%;
+    padding: 22px 0;
+  }
 }
 
 /*------------------------------------------*/
@@ -410,52 +414,50 @@
 /*------------------------------------------*/
 
 .user-activity-container {
-    background-color: #fefefe;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
-    border-radius: 4px;
-    width: 100%;
-    height: 400px;
-    margin: 52px auto 0 auto;
+  background-color: #fefefe;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
+  border-radius: 4px;
+  width: 100%;
+  height: 400px;
+  margin: 52px auto 0 auto;
 }
 
 .user-activity-container h3 {
-    font-size: 1.8rem;
-    font-weight: 400;
-    padding: 22px 22px 6px 22px;
+  font-size: 1.8rem;
+  font-weight: 400;
+  padding: 22px 22px 6px 22px;
 }
 
 .user-activity-graph {
-    padding: 22px;
-    font-size: 1.4rem;
+  padding: 22px;
+  font-size: 1.4rem;
 }
-
 
 /*------------------------------------------*/
 /*             User Statistics              */
 /*------------------------------------------*/
 
 .user-stats-container {
-    background-color: #fefefe;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
-    border-radius: 4px;
-    width: 100%;
-    height: 320px;
-    margin: 52px auto 0 auto;
+  background-color: #fefefe;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
+  border-radius: 4px;
+  width: 100%;
+  height: 320px;
+  margin: 52px auto 0 auto;
 }
 .user-stats {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 320px;
 }
 
 .user-stats-container h3 {
-    font-size: 1.8rem;
-    font-weight: 400;
-    padding: 22px 22px 6px 22px;
+  font-size: 1.8rem;
+  font-weight: 400;
+  padding: 22px 22px 6px 22px;
 }
-
 
 /*------------------------------------------*/
 /*             User Statistics              */
@@ -465,102 +467,104 @@
 // Contains logout button
 */
 .user-logout-container {
-    /* background-color: #fefefe; */
-    /* box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03); */
-    /* border-radius: 4px; */
-    width: 100%;
-    height: 120px;
-    margin: 52px auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  /* background-color: #fefefe; */
+  /* box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03); */
+  /* border-radius: 4px; */
+  width: 100%;
+  height: 120px;
+  margin: 52px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
-    /*
-    // Contains logout sign from fontawesome
-    */ 
-    .user-logout-container button {
-        background: none;
-        outline: none;
-        border: none;
-        /* color: rgb(51, 156, 197); */
-        color: rgb(171,0,122);
-        font-size: 1.6rem;
-        cursor: pointer;
-        -moz-transition: 0.15s all;
-        -webkit-transition: 0.15s all;
-        -o-transition: 0.15s all;
-        transition: 0.15s all;
-    }
-
-    .user-logout-container button:hover {
-        /* color: skyblue; */
-        transform: scale(1.2);
-    }
 
 /*
-// ALL modals
-*/
-.ReactModal__Overlay,
-.ReactModal__Overlay--after-open {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    // Contains logout sign from fontawesome
+    */
+.user-logout-container button {
+  background: none;
+  outline: none;
+  border: none;
+  /* color: rgb(51, 156, 197); */
+  color: rgb(171, 0, 122);
+  font-size: 1.6rem;
+  cursor: pointer;
+  -moz-transition: 0.15s all;
+  -webkit-transition: 0.15s all;
+  -o-transition: 0.15s all;
+  transition: 0.15s all;
 }
 
-    /*
+.user-logout-container button:hover {
+  /* color: skyblue; */
+  transform: scale(1.2);
+}
+
+/*
     // Logout warning modal (popup box)
     */
-    .logout-warning-modal {
-        background-color: #fefefe;
-        width: 500px;
-        height: 300px;
-        font-size: 1.6rem;
-        font-family: 'Montserrat', sans-serif;
-        outline: none;
-        border: 2px solid rgba(0, 0, 0, 0.1);
-        border-radius: 4px;
-    }
+.logout-warning-modal {
+  background-color: #fefefe;
+  width: 500px;
+  height: 300px;
+  font-size: 1.6rem;
+  font-family: 'Montserrat', sans-serif;
+  outline: none;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  animation: popout 0.1s;
+}
 
-        /*
+/*
         // Contains warning question and buttons 
         */
-        .logout-warning-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.6rem;
-            height: 100%;
-            width: 100%;
-        }
+.logout-warning-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  height: 100%;
+  width: 100%;
+}
 
-            .logout-warning-container h3 {
-                font-weight: 300;
-            }
+.logout-warning-container h3 {
+  font-weight: 300;
+}
 
-            /*
+/*
             // Logout and cancel buttons
             */
-            .logout-warning-container button {
-                outline: none;
-                border: none;
-                font-size: 1.6rem;
-                font-family: 'Montserrat', sans-serif;
-                width: 200px;
-                padding: 22px;
-                margin-top: 22px;
-                border-radius: 100px;
-            }
+.logout-warning-container button {
+  outline: none;
+  border: none;
+  font-size: 1.6rem;
+  font-family: 'Montserrat', sans-serif;
+  width: 200px;
+  padding: 22px;
+  margin-top: 22px;
+  border-radius: 100px;
+  color: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+}
 
-            .logout-button {
-                background-color: red;
-            }
+.logout-button {
+  background-color: red;
+  color: white;
+}
 
-            .logout-cancel-button {
-                background-color: rgb(180, 180, 180);
-            }
+.logout-cancel-button {
+  background-color: rgb(180, 180, 180);
+}
 
+@keyframes popout {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
 
 /*------------------------------------------*/
 /*          User Account & Settings         */
@@ -570,98 +574,210 @@
 // Contains user and notification information 
 */
 .user-account-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 800px;
-    background-color: rgb(245,240,245);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 800px;
+  background-color: rgb(245, 240, 245);
 }
 
-    /*
+/*
     // Individual container for user and notification 
     */
-    .user-info-container,
-    .user-settings-container {
-        background-color: #fefefe;
-        box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
-        border-radius: 4px;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        margin: 52px auto 0 auto;
-    }
+.user-info-container,
+.user-settings-container {
+  background-color: #fefefe;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
+  border-radius: 4px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 52px auto 0 auto;
+}
 
-    /*
+/*
     // This is the last container of the page - add space to the bottom 
     */
-    .user-settings-container {
-        margin-bottom: 52px;
-    }
+.user-settings-container {
+  margin-bottom: 52px;
+}
 
-    /*
+/*
     // Contains "User Information" and edit button 
     // "Notification Settings" 
     */
-    .user-info-header,
-    .user-settings-container h3 {
-        font-size: 1.8rem;
-        font-weight: 400;
-        padding: 22px 22px 6px 22px;
-        display: flex;
-        justify-content: space-between;
-    }
+.user-info-header,
+.user-settings-container h3 {
+  font-size: 1.8rem;
+  font-weight: 400;
+  padding: 22px 22px 6px 22px;
+  display: flex;
+  justify-content: space-between;
+}
 
-    /*
+/*
     // "User Information" 
     */
-    .user-info-header h3 {
-        font-size: 1.8rem;
-        font-weight: 400;
-    }
+.user-info-header h3 {
+  font-size: 1.8rem;
+  font-weight: 400;
+}
 
-    /*
+/*
     // Every line in user accounts page except headers 
     */
-    .user-account-container p {
-        padding-bottom: 12px;
-    }
+.user-account-container p {
+  padding-bottom: 12px;
+}
 
-    .user-info-container div:last-child,
-    .user-settings-container div {
-        padding: 22px;
-        font-size: 1.4rem;
-    }
+.user-settings-container div {
+  padding: 22px;
+  font-size: 1.4rem;
+}
 
-    /*
+.save-button {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 11px auto;
+}
+/*
     // "Edit" user link 
     */
-    .user-info-edit {
-        cursor: pointer;
-        -moz-transition: 0.3s color;
-        -o-transition: 0.3s color;
-        -webkit-transition: 0.3s color;
-        transition: 0.3s color;
-    }
+.user-info-edit {
+  cursor: pointer;
+  -moz-transition: 0.3s color;
+  -o-transition: 0.3s color;
+  -webkit-transition: 0.3s color;
+  transition: 0.3s color;
+  font-size: 2.5rem;
+}
 
-    /*
+.user-info-edit-container {
+  height: 205px;
+}
+
+.user-info-edit-container input {
+  font-family: 'Montserrat', sans-serif;
+  border: none;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.08);
+  width: 200px;
+  font-size: 15px;
+  font-weight: 300;
+  box-shadow: 1px 1px 1px 1px #ccc;
+  padding-left: 6px;
+}
+
+.user-info-edit-container h4 {
+  width: 200px;
+}
+.saved-message {
+  font-size: 15px;
+  padding-right: 50px;
+}
+
+.user-info-phone-number,
+.user-info-email,
+.user-info-first-name,
+.user-info-last-name {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding-bottom: 9px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.user-info-edit-container {
+  padding: 22px;
+}
+
+.user-info-edit-container input:disabled {
+  background-color: #fefefe;
+  box-shadow: none;
+}
+
+/*
     // When user hovers over edit, color changes to blue 
     */
-    .user-info-edit:hover {
-        color: #3498db;
-    }
-
+.user-info-edit:hover {
+  color: #3498db;
+}
 
 /*
 // Checkbox labels  
 */
-.user-settings-container label {
-    display: block;
+
+.phone-notification-checkbox,
+.email-notification-checkbox {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -o-appearance: none;
+  position: relative;
+  height: 20px;
+  width: 40px;
+  border-radius: 10px;
+  box-shadow: inset -20px 0px 0px 1px rgba(192, 192, 192, 0.5);
+  background-color: white;
+  border: 1px solid rgba(192, 192, 192, 1);
+  outline: none;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  margin-right: 20px;
 }
 
+.phone-notification-checkbox:checked,
+.email-notification-checkbox:checked {
+  box-shadow: inset 20px 0px 0px 1px rgba(33, 150, 243, 0.5);
+  border: 1px solid rgba(33, 150, 243, 1);
+}
+
+.phone-notification-label,
+.email-notification-label {
+  display: flex;
+  align-items: center;
+  flex-direction: flex-start;
+}
+
+.phone-notification-label i,
+.email-notification-label i {
+  color: rgba(0, 0, 0, 0.3);
+  padding-right: 10px;
+}
+
+/*
+<Select /> in User Info
+*/
+.select-interval-option {
+  height: 30px;
+  width: 40px;
+  margin: 0px 6px 0px 8px;
+  background: transparent;
+  border: 1px solid;
+}
+
+.select-interval-option:disabled {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/*
+Save button in User Info
+*/
+
+.user-info-save-button {
+  background: rgba(0, 149, 222, 1) 100%;
+  border-radius: 60px;
+  width: 100px;
+  padding: 11px 9px 11px 9px;
+  color: #fefefe;
+  font-size: 12px;
+}
 
 @media screen and (max-width: 880px) {
-    .user-account-container {
-        width: 90%;
-    }
+  .user-account-container {
+    width: 90%;
+  }
 }
