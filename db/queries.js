@@ -51,31 +51,33 @@ GET Requests
 /* 11. getJob // GET Route = /users/getJob
 /* 12. getNotificationEmail // GET Route = /users/getNotificationEmail */
 /* 13. getNotificationSms // GET Route = /users/getNotificationSms */
+/* 14. getUserInterviews // GET Route = /users/GetUserInterviews */
 
 // ---------------------------------------
 //   POST Requests
 // ---------------------------------------
 
-/* 14. createJobApp // POST Route /users/createJobApp */
-/* 15. createInterview // POST Route /users/createInterview */
-/* 16. registerUser // POST Route = /users/newuser */
-/* 17. Login User // POST Route = /users/login */
-/* 18. uploadCover AWS // POST Route = /users/uploadCover */
-/* 19. uploadResume AWS // POST Route = /users/uploadResume */
+/* 15. createJobApp // POST Route /users/createJobApp */
+/* 16. createInterview // POST Route /users/createInterview */
+/* 17. registerUser // POST Route = /users/newuser */
+/* 18. Login User // POST Route = /users/login */
+/* 19. uploadCover AWS // POST Route = /users/uploadCover */
+/* 20. uploadResume AWS // POST Route = /users/uploadResume */
+/* 21. addAchievement // POST Route = /users/addAchievement */
 
 /*---------------------------------------
  PUT Requests
 ---------------------------------------
 
-/* 20. updateResume URL on POSTGRES // PUT Route = /users/updateResume */
-/* 21. updateCover URL on POSTGRES // PUT Route = /users/updatecover */
-/* 22. updateInterview // PUT Route = /users/updateInterview */
-/* 23. updateUserInfo // PUT Route = /users/updateUserInfo */
-/* 24. updateJobProgress // PUT Route = /users/updateJobProgress */
-/* 25. updateJobInfo // PUT Route = /users/updateJobInfo */
-/* 26. updateExperience // PUT Route = /users/updateExperience */
-/* 27. updateJobStatus // PUT Route = /users/updateJobStatus */
-/* 28. updateNotification // PUT Route = /users/updateJobStatus */
+/* 22. updateResume URL on POSTGRES // PUT Route = /users/updateResume */
+/* 23. updateCover URL on POSTGRES // PUT Route = /users/updatecover */
+/* 24. updateInterview // PUT Route = /users/updateInterview */
+/* 25. updateUserInfo // PUT Route = /users/updateUserInfo */
+/* 26. updateJobProgress // PUT Route = /users/updateJobProgress */
+/* 27. updateJobInfo // PUT Route = /users/updateJobInfo */
+/* 28. updateExperience // PUT Route = /users/updateExperience */
+/* 29. updateJobStatus // PUT Route = /users/updateJobStatus */
+/* 30. updateNotification // PUT Route = /users/updateJobStatus */
 
 /*--------------------------------------- 
 
@@ -101,7 +103,6 @@ const getAllUserApps = (req, res, next) => {
     });
 };
 
-
 const getCover = (req, res, next) => {
   db
     .one(
@@ -123,12 +124,15 @@ const getCover = (req, res, next) => {
     });
 };
 
-
 const getInterviews = (req, res, next) => {
   db
-    .any('SELECT * FROM interview WHERE job_id = ${job_id}', {
-      job_id: req.params.job
-    })
+    .any(
+      'SELECT * FROM interview WHERE job_id = ${job_id} AND user_id = ${user_id}',
+      {
+        job_id: req.params.job,
+        user_id: req.user.id
+      }
+    )
     .then(data => {
       res.status(200).json({ interviews: data });
     })
@@ -136,7 +140,6 @@ const getInterviews = (req, res, next) => {
       res.status(500).send(`Error getting job interview: ${err}`);
     });
 };
-
 
 const getRankedBadge = (req, res, next) => {
   db
@@ -155,7 +158,6 @@ const getRankedBadge = (req, res, next) => {
       res.status(500).send(`error getting ranked badge: ${err}`);
     });
 };
-
 
 const getResume = (req, res, next) => {
   db
@@ -178,7 +180,6 @@ const getResume = (req, res, next) => {
     });
 };
 
-
 const getUser = (req, res, next) => {
   db
     .one('SELECT * FROM Users WHERE id=${id}', {
@@ -196,7 +197,6 @@ const getUser = (req, res, next) => {
       return next(err);
     });
 };
-
 
 const getUserAchievementBadges = (req, res, next) => {
   db
@@ -218,7 +218,6 @@ const getUserAchievementBadges = (req, res, next) => {
     });
 };
 
-
 const getUserExp = (req, res, next) => {
   db
     .one('SELECT experience FROM Users WHERE id=${id}', {
@@ -236,12 +235,10 @@ const getUserExp = (req, res, next) => {
     });
 };
 
-
 const logoutUser = (req, res, next) => {
   req.logout();
   res.status(200).send('log out success');
 };
-
 
 const getLeaders = (req, res, next) => {
   db
@@ -280,9 +277,24 @@ const getJob = (req, res, next) => {
     });
 };
 
+const getUserInterviews = (req, res, next) => {
+  db
+    .any('SELECT * FROM interview WHERE user_id = ${user_id}', {
+      user_id: req.user.id
+    })
+    .then(data => {
+      res.status(200).json({
+        status: 'success',
+        interviews: data,
+        message: 'Retrieved interviews for user by id'
+      });
+    })
+    .catch(err => {
+      res.status(500).send(`error getting user interviews : ${err}`);
+    });
+};
 
 /* ------------------------ POST REQUESTS QUERIES ------------------------ */
-
 
 const createJobApp = (req, res, next) => {
   db
@@ -314,15 +326,15 @@ const createJobApp = (req, res, next) => {
     });
 };
 
-
 const createInterview = (req, res, next) => {
   db
     .none(
-      'INSERT INTO Interview (contact, note, interview_date, interview_time, job_id) VALUES (${contact}, ${note}, ${interview_date}, ${interview_time}, ${job_id})',
+      'INSERT INTO Interview (contact, note, interview_date, interview_time, user_id, job_id) VALUES (${contact}, ${note}, ${interview_date}, ${interview_time}, ${user_id}, ${job_id})',
       {
         contact: req.body.contact,
         note: req.body.note,
         job_id: req.body.job_id,
+        user_id: req.user.id,
         interview_date: req.body.interview_date,
         interview_time: req.body.interview_time
       }
@@ -337,7 +349,6 @@ const createInterview = (req, res, next) => {
       res.status(500).send(`Error creating job interview: ${err}`);
     });
 };
-
 
 const registerUser = (req, res, next) => {
   var mailOptions = {
@@ -385,6 +396,23 @@ const registerUser = (req, res, next) => {
     });
 };
 
+const uploadCover = (req, res, next) => {
+  if (!req.file) {
+    return res.status(400).send('No files were uploaded.');
+  }
+  const file = req.file;
+  var bucketName = 'elevatecovers';
+  var params = {
+    Bucket: bucketName,
+    Key: 'cover-' + req.body.id + '-' + file.originalname,
+    Body: file.buffer
+  };
+  s3.putObject(params, function(err, data) {
+    if (err) console.log(err);
+    console.log('Successfully uploaded file');
+  });
+  res.status(200).send({ url: params.Key });
+};
 
 const uploadResume = (req, res, next) => {
   if (!req.file) {
@@ -406,27 +434,27 @@ const uploadResume = (req, res, next) => {
   res.status(200).send({ url: params.Key });
 };
 
-
-const uploadCover = (req, res, next) => {
-  if (!req.file) {
-    return res.status(400).send('No files were uploaded.');
-  }
-  const file = req.file;
-  var bucketName = 'elevatecovers';
-  var params = {
-    Bucket: bucketName,
-    Key: 'cover-' + req.body.id + '-' + file.originalname,
-    Body: file.buffer
-  };
-  s3.putObject(params, function(err, data) {
-    if (err) console.log(err);
-    console.log('Successfully uploaded file');
-  });
-  res.status(200).send({ url: params.Key });
+const addAchievement = (req, res, next) => {
+  db
+    .none(
+      'INSERT into achievement_badges_earned (user_id, badge_id) VALUES (${user_id}, ${badge_id})',
+      {
+        user_id: req.user.id,
+        badge_id: req.body.badge_id
+      }
+    )
+    .then(() => {
+      res.status(200).json({
+        status: 'success',
+        message: 'Successfully added achievement'
+      });
+    })
+    .catch(err => {
+      console.log(err)(`Error updating achievements earned: ${err}`);
+    });
 };
 
 /* ------------------------ PUT REQUESTS QUERIES ------------------------ */
-
 
 const updateCover = (req, res, next) => {
   db
@@ -444,7 +472,6 @@ const updateCover = (req, res, next) => {
       console.log(err)(`Error updating cover letter: ${err}`);
     });
 };
-
 
 const updateResume = (req, res, next) => {
   db
@@ -467,14 +494,14 @@ const updateResume = (req, res, next) => {
     });
 };
 
-
 const updateInterview = (req, res, next) => {
   db
     .none(
-      'UPDATE Interview SET contact = ${contact}, note = ${note}, interview_date = ${interview_date}, interview_time = ${interview_time} WHERE job_id = ${job_id}',
+      'UPDATE Interview SET contact = ${contact}, note = ${note}, interview_date = ${interview_date}, interview_time = ${interview_time} WHERE job_id = ${job_id} AND user_id = ${user_id}',
       {
         contact: req.body.contact,
         note: req.body.note,
+        user_id: req.user.id,
         job_id: req.body.job_id,
         interview_time: req.body.interview_time,
         interview_date: req.body.interview_date
@@ -490,7 +517,6 @@ const updateInterview = (req, res, next) => {
       res.status(500).send(`Error updating job interview: ${err}`);
     });
 };
-
 
 const updateUserInfo = (req, res, next) => {
   db
@@ -515,7 +541,6 @@ const updateUserInfo = (req, res, next) => {
     });
 };
 
-
 const updateJobProgress = (req, res, next) => {
   db
     .none(
@@ -536,7 +561,6 @@ const updateJobProgress = (req, res, next) => {
       return next(err);
     });
 };
-
 
 const updateJobInfo = (req, res, next) => {
   db
@@ -565,7 +589,6 @@ const updateJobInfo = (req, res, next) => {
     });
 };
 
-
 const updateExperience = (req, res, next) => {
   db
     .none('UPDATE users SET experience = ${experience} WHERE id = ${id}', {
@@ -584,7 +607,6 @@ const updateExperience = (req, res, next) => {
     });
 };
 
-
 const updateJobStatus = (req, res, next) => {
   db
     .none(
@@ -602,7 +624,6 @@ const updateJobStatus = (req, res, next) => {
       return next(err);
     });
 };
-
 
 const updateNotification = (req, res, next) => {
   db
@@ -628,7 +649,6 @@ const updateNotification = (req, res, next) => {
     });
 };
 
-
 const getNotificationEmail = () => {
   const Mail = {
     from: 'elevateC4Q@gmail.com'
@@ -651,7 +671,7 @@ const getNotificationEmail = () => {
           data[i].first_name,
           data[i].company_name,
           data[i].interview_date,
-          data[i].interview_time,
+          data[i].interview_time
         );
         Mail.subject = `reminder of your interview with ${
           data[i].company_name
@@ -670,7 +690,6 @@ const getNotificationEmail = () => {
       console.log(`Not get notification email:  ${err}`);
     });
 };
-
 
 const getNotificationSms = () => {
   db
@@ -718,6 +737,7 @@ module.exports = {
   getLeaders,
   getJob,
   logoutUser,
+  getUserInterviews,
   createJobApp,
   createInterview,
   registerUser,
@@ -731,6 +751,7 @@ module.exports = {
   updateJobStatus,
   uploadResume,
   uploadCover,
+  addAchievement,
   updateNotification,
   getNotificationSms,
   getNotificationEmail

@@ -62,6 +62,7 @@ CASCADE;
 CREATE TABLE Interview
 (
     job_id INTEGER,
+    user_id INTEGER,
     contact VARCHAR,
     interview_date DATE,
     interview_time TIME,
@@ -69,13 +70,13 @@ CREATE TABLE Interview
     FOREIGN KEY (job_id) REFERENCES Jobs(job_id)
 );
 INSERT INTO Interview
-    (job_id, contact, interview_date, interview_time, note)
+    (job_id, user_id, contact, interview_date, interview_time, note)
 VALUES
-    (1, 'Helen, helencho@ac.c4q.nyc', '2018-03-28', '11:30:00', 'Interviewer was so mean'),
-    (2, 'David, 3478030075', '2018-03-28', '12:00:00', 'I think I went to college with someone there'),
-    (3, 'Jerell Davis (Dunno his #)', '2018-03-28', '10:00:00', 'Forgot to print out my resume, must remember for next time.'),
-    (4, 'Sami, dunno his email either..', '2018-03-28', '01:30:00', 'I definitely killed it'),
-    (5, 'Reed', '2018-03-28', '03:00:00', 'Meet at C4Q');
+    (1, 1, 'Helen, helencho@ac.c4q.nyc', '2018-03-28', '11:30:00', 'Interviewer was so mean'),
+    (2, 1, 'David, 3478030075', '2018-03-28', '12:00:00', 'I think I went to college with someone there'),
+    (3, 1, 'Jerell Davis (Dunno his #)', '2018-03-28', '10:00:00', 'Forgot to print out my resume, must remember for next time.'),
+    (4, 1, 'Sami, dunno his email either..', '2018-03-28', '01:30:00', 'I definitely killed it'),
+    (5, 1, 'Reed', '2018-03-28', '03:00:00', 'Meet at C4Q');
 Drop TABLE Rank_Badges
 CASCADE;
 CREATE TABLE Rank_Badges
