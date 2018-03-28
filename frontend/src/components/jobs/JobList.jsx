@@ -83,7 +83,7 @@ class JobList extends Component {
     );
 
     return (
-      <div className="job-list">
+      <div className="job-list" data-aos="fade-up">
         <nav className="job-list-nav">
           <h3 id="applied" onClick={this.handleFilter} className={activeFilter === 'applied' ? 'active-job-option' : null}>
             APPLIED
@@ -105,7 +105,6 @@ class JobList extends Component {
               type="text"
               onChange={this.handleInputChange}
               value={searching}
-              // placeholder=""
             />
           </div>
         </nav>
