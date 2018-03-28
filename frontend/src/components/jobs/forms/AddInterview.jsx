@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import achieves from '../../achievements/checkForAchievements';
 
 class AddInterview extends Component {
   constructor() {
@@ -28,7 +29,6 @@ class AddInterview extends Component {
     e.preventDefault();
     const { date, contact, note, time } = this.state;
     let job_id = this.props.job_id;
-
     axios
       .post('/users/createInterview', {
         contact: contact,
@@ -42,6 +42,7 @@ class AddInterview extends Component {
           interviewSaved: true
         });
         this.props.updateExperience(50);
+        achieves.checkInterviewNumber();
       })
       .catch(err => {
         console.log(err);
@@ -53,7 +54,7 @@ class AddInterview extends Component {
     return (
       <div className="add-interview-form">
         <form onSubmit={this.handleSubmit}>
-        <h1>Add Interview</h1>
+          <h1>Add Interview</h1>
           <p>Interview Date</p>
           <input
             value={date}
@@ -85,7 +86,9 @@ class AddInterview extends Component {
                 name="note"
               />
             </div>
-            <span className="pencil-icon"><i className="fas fa-pencil-alt fa-2x"></i></span>
+            <span className="pencil-icon">
+              <i className="fas fa-pencil-alt fa-2x" />
+            </span>
           </div>
           <input
             disabled={interviewSaved || !date || !contact}
@@ -93,14 +96,13 @@ class AddInterview extends Component {
             value="Save"
           />
           <button
-          className="add-interview-button"
-          disabled={!interviewSaved}
-          onClick={this.props.addMoreInterview}
-        >
-          Add Another
-        </button>
+            className="add-interview-button"
+            disabled={!interviewSaved}
+            onClick={this.props.addMoreInterview}
+          >
+            Add Another
+          </button>
         </form>
-
       </div>
     );
   }
