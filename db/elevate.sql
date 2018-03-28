@@ -164,6 +164,7 @@ CREATE TABLE Forum_Posts
     post_id SERIAL UNIQUE,
     user_id INTEGER,
     post_name VARCHAR,
+    post_date DATE,
     PRIMARY KEY (post_id),
     FOREIGN KEY (user_id) REFERENCES Users(id)
 );
@@ -176,6 +177,7 @@ CREATE Table Forum_Comments
     post_id INTEGER,
     user_id INTEGER,
     comment varchar,
+    comment_date DATE,
     PRIMARY KEY (comment_id),
     FOREIGN KEY (user_id) REFERENCES Users(id),
     FOREIGN KEY (post_id) REFERENCES Forum_Posts(post_id)
