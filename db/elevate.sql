@@ -163,7 +163,8 @@ CREATE TABLE Forum_Posts
 (   
     post_id SERIAL UNIQUE,
     user_id INTEGER,
-    post_name VARCHAR,
+    post_title VARCHAR,
+    post_description VARCHAR,
     post_date DATE,
     PRIMARY KEY (post_id),
     FOREIGN KEY (user_id) REFERENCES Users(id)
@@ -173,10 +174,10 @@ DROP TABLE Forum_Comments
 CASCADE;
 CREATE Table Forum_Comments
 (
-    comment_id INTEGER,
+    comment_id SERIAL UNIQUE ,
     post_id INTEGER,
     user_id INTEGER,
-    comment varchar,
+    comment VARCHAR,
     comment_date DATE,
     PRIMARY KEY (comment_id),
     FOREIGN KEY (user_id) REFERENCES Users(id),
