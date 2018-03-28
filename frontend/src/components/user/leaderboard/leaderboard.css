@@ -1,0 +1,15 @@
+.leaderboard_position{
+    width: 17em;
+    height: 7em;
+}
+
+.Leaderboard{
+    text-align: center;
+    height:3em; 
+    width:100%; 
+    background-color: #283c53;
+    color: white;
+    font-weight: normal;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+}
