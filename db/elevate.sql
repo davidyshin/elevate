@@ -136,3 +136,22 @@ VALUES
     (2, 2),
     (2, 1);
 
+CREATE TABLE Forum_Posts
+(   
+    post_id id SERIAL UNIQUE,
+    user_id INTEGER,
+    post_name varchar,
+    PRIMARY KEY (post_id)
+    FOREIGN KEY (user_id) REFERENCES Users(id),
+);
+
+CREATE Table Forum_comments
+(
+    comment_id INTEGER,
+    post_id id integer,
+    user_id INTEGER,
+    comment varchar,
+    PRIMARY KEY (comment_id)
+    FOREIGN KEY (user_id) REFERENCES Users(id),
+    FOREIGN KEY (post_id) REFERENCES Forum_Posts(post_id),
+);
