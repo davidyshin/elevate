@@ -23,6 +23,8 @@ class HomeNavBar extends Component {
           </Link>
           <h3><Link to="/">JOBS</Link></h3>
           <h3><Link to="/addjob">ADD JOB</Link></h3>
+          <h3><Link to="/leaderboard">LEADERBOARD</Link></h3>        
+          <h3><Link to="/community">COMMUNITY</Link></h3>                      
         </div>
         <div className="home-nav-right">
           <div className="home-nav-exp-container">
