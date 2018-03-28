@@ -97,12 +97,17 @@ class JobList extends Component {
           <h3 id="offered" onClick={this.handleFilter} className={activeFilter === 'offered' ? 'active-job-option' : null}>
             OFFERED
           </h3>
-          <input
-            type="text"
-            onChange={this.handleInputChange}
-            value={searching}
-            placeholder="Search all applications..."
-          />
+          <div className="job-list-searchbar-container">
+            <div className="job-list-search-icon">
+              <i class="fas fa-search"></i>
+            </div>
+            <input
+              type="text"
+              onChange={this.handleInputChange}
+              value={searching}
+              // placeholder=""
+            />
+          </div>
         </nav>
         <div className="job-item-top-row">
           <p className="job-number">#</p>
