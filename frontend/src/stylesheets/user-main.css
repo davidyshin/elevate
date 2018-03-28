@@ -543,10 +543,13 @@
                 padding: 22px;
                 margin-top: 22px;
                 border-radius: 100px;
+                color: rgba(0, 0, 0, 0.6);
+                cursor: pointer;
             }
 
             .logout-button {
                 background-color: red;
+                color: white;
             }
 
             .logout-cancel-button {
