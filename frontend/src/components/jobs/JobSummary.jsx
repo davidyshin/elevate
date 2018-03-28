@@ -76,7 +76,7 @@ class JobSummary extends Component {
         </ResponsiveContainer>
       </div>
     ) : (
-      <div>
+      <div data-aos="fade-up">
         {' '}
         <h1>Loading</h1>{' '}
       </div>
