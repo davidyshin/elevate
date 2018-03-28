@@ -50,8 +50,8 @@ class JobList extends Component {
       searching: e.target.value,
       activeFilter: 'applied'
     });
-  }
-  
+  };
+
   handleFilter = e => {
     let { jobList } = this.state;
     if (e.target.id !== 'applied') {
@@ -73,6 +73,12 @@ class JobList extends Component {
 
     const expandClass = 'job-info-container-expand';
 
+    const searchRender = renderJobList.filter(
+      job =>
+        job.company_name.toLowerCase().includes(searching.toLowerCase()) ||
+        job.position_title.toLowerCase().includes(searching.toLowerCase())
+    );
+
     return (
       <div className="job-list">
         <nav className="job-list-nav">
@@ -88,7 +94,12 @@ class JobList extends Component {
           <h3 id="offered" onClick={this.handleFilter}>
             OFFERED
           </h3>
-          <input type="text" onChange={this.handleInputChange} value={searching} placeholder="Search all applications..." />
+          <input
+            type="text"
+            onChange={this.handleInputChange}
+            value={searching}
+            placeholder="Search all applications..."
+          />
         </nav>
         <div className="job-item-top-row">
           <p className="job-number">#</p>
@@ -96,7 +107,7 @@ class JobList extends Component {
           <p className="job-position">Position</p>
           <p className="job-date">Applied</p>
         </div>
-        {renderJobList.map((job, index) => (
+        {searchRender.map((job, index) => (
           <div>
             <JobItem job={job} index={index} handleClick={this.handleClick} />
             {parseInt(expandId) === parseInt(job.job_id) ? (
