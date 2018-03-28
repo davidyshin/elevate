@@ -9,7 +9,7 @@ import UserContainer from '../user/UserContainer.jsx';
 import UserInfo from '../user/account/UserInfo.jsx';
 import { Route, Link, Switch, Redirect } from 'react-router-dom';
 import axios from 'axios';
-import LeaderBoard from '../user/leaderboard/LeaderBoard';
+import LeaderBoard from '../leaderboard/LeaderBoard';
 
 class HomeContainer extends Component {
   constructor() {
