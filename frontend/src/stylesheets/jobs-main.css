@@ -188,15 +188,6 @@
 
 
 /*
-// Job item (list) container for mobile
-*/ 
-.job-item-view-mobile {
-  /* visibility: hidden; */
-  display: none;
-  color: red;
-}
-
-/*
 // Single job item (single row) 
 */
 .job-item {
@@ -276,7 +267,7 @@
 /*
 // Job information expanded 
 */
-.job-info-container-expand {
+.job-info-container-expand-web {
   visibility: visible;
   opacity: 1;
   height: 200px;
@@ -297,158 +288,238 @@
   }
 
   /*
-  // Contains: company logo, posting url, phone, email, log date, resume, cover letter
+  // Responsive view 
+  // Web browser 
+  // Job info 
   */
-  .job-info-top {
-    width: 100%;
-    height: 60%;
-    display: flex;
-  }
-
-    .job-info-top a,
-    .job-info-top a:visited {
-      text-decoration: none;
-      color: rgb(51, 156, 197);
-      transition: 0.5s color;
-    }
-
-    .job-info-top a:hover {
-      color: rgb(42, 70, 97);
-    }
-  
-    /*
-    // Single div holding the company logo
-    */
-    .job-info-logo-container {
-      width: 10%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-      /*
-      // Contains: company logo on the left
-      */
-      .job-info-logo-container img {
-        height: 80px;
-        width: auto;
-        border-radius: 100%;
-      }
-
-    /*
-    // Contains: job posting, phone number, email 
-    */
-    .job-info-company-container {
-      width: 35%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-      .job-info-company-container p,
-      .job-info-user-container p {
-        margin: 6px 0;
-      }
-
-    /*
-    // Contains: logged on, resume, cover letter 
-    */
-    .job-info-user-container {
-      width: 35%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    /*
-    //
-    */
-    .job-info-button-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 20%;
-    }
-
-      /*
-      // Update Job button
-      */
-      .job-info-button-container button {
-        outline: none;
-        border: none;
-        width: 100%;
-        padding: 22px;
-        margin: 6px;
-        border-radius: 60px;
-        font-size: 1.4rem;
-        font-weight: 300;
-        font-family: 'Montserrat', sans-serif;
-        background-color: rgba(67, 42, 246, 1);
-        background: linear-gradient(to right, rgba(67, 42, 246, 1) 0%,rgba(0, 149, 222, 1) 100%);
-        color: #fefefe;
-        cursor: pointer;
-        transition: 0.2s all;
-      }
-
-  /*
-  // Contains: job status, update button
-  */
-  .job-info-mid {
-    width: 100%;
-    height: 30%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  .job-info-view-web {
+    height: 100%;
   }
 
     /*
-    // Contains: status: awaiting response 
-    */ 
-    .job-info-mid p {
-      margin-left: 22px;
-    }
-
-  /*
-  // Contains the progress bar 
-  */
-  .job-info-bottom {
-    width: 100%;
-    height: 10%;
-    /* background-color: rgba(0, 0, 255, 0.4); */
-  }
-
-    /*
-    // Total bar 
+    // Contains: company logo, posting url, phone, email, log date, resume, cover letter
     */
-    .job-info-search-progress-total {
-      background-color: skyblue;
+    .job-info-top {
       width: 100%;
-      height: 100%;
-      animation: progress-shrink 0.5s;
+      height: 60%;
+      display: flex;
     }
 
-    /*
-    // Progress in search bar
-    */
-    .job-info-search-progress-earned {
-      background-color: rgb(51, 156, 197);
-      height: 100%;
-      transform-origin: top left;
-      animation: progress-grow 0.5s;
-    }
-
-    /*
-    // Ensures that the progress bar doesn't shrink back when job info folds back in 
-    */
-    @keyframes progress-shrink {
-      0% {
-        transform: scale(1, 1);
+      .job-info-top a,
+      .job-info-top a:visited {
+        text-decoration: none;
+        color: rgb(51, 156, 197);
+        transition: 0.5s color;
       }
 
-      100% {
-        transform: scale(1, 1);
+      .job-info-top a:hover {
+        color: rgb(42, 70, 97);
       }
+    
+      /*
+      // Single div holding the company logo
+      */
+      .job-info-logo-container {
+        width: 10%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+        /*
+        // Contains: company logo on the left
+        */
+        .job-info-logo-container img {
+          height: 80px;
+          width: auto;
+          border-radius: 100%;
+        }
+
+      /*
+      // Contains: job posting, phone number, email 
+      */
+      .job-info-company-container {
+        width: 35%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+        .job-info-company-container p,
+        .job-info-user-container p {
+          margin: 6px 0;
+        }
+
+      /*
+      // Contains: logged on, resume, cover letter 
+      */
+      .job-info-user-container {
+        width: 35%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      /*
+      //
+      */
+      .job-info-button-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 20%;
+      }
+
+        /*
+        // Update Job button
+        */
+        .job-info-button-container button {
+          outline: none;
+          border: none;
+          width: 100%;
+          padding: 22px;
+          margin: 6px;
+          border-radius: 60px;
+          font-size: 1.4rem;
+          font-weight: 300;
+          font-family: 'Montserrat', sans-serif;
+          background-color: rgba(67, 42, 246, 1);
+          background: linear-gradient(to right, rgba(67, 42, 246, 1) 0%,rgba(0, 149, 222, 1) 100%);
+          color: #fefefe;
+          cursor: pointer;
+          transition: 0.2s all;
+        }
+
+    /*
+    // Contains: job status, update button
+    */
+    .job-info-mid {
+      width: 100%;
+      height: 30%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
+
+      /*
+      // Contains: status: awaiting response 
+      */ 
+      .job-info-mid p {
+        margin-left: 22px;
+      }
+
+    /*
+    // Contains the progress bar 
+    */
+    .job-info-bottom {
+      width: 100%;
+      height: 10%;
+    }
+
+      /*
+      // Total bar 
+      */
+      .job-info-search-progress-total {
+        background-color: skyblue;
+        width: 100%;
+        height: 100%;
+        animation: progress-shrink 0.5s;
+      }
+
+      /*
+      // Progress in search bar
+      */
+      .job-info-search-progress-earned {
+        background-color: rgb(51, 156, 197);
+        height: 100%;
+        transform-origin: top left;
+        animation: progress-grow 0.5s;
+      }
+
+      /*
+      // Ensures that the progress bar doesn't shrink back when job info folds back in 
+      */
+      @keyframes progress-shrink {
+        0% {
+          transform: scale(1, 1);
+        }
+
+        100% {
+          transform: scale(1, 1);
+        }
+      }
+
+  /*
+  // Responsive view 
+  // Mobile  
+  // Job info 
+  */
+  .job-info-view-mobile {
+    display: none;
+    color: red; /* testing purposes */
+  }
+
+    .job-info-view-mobile p {
+      padding: 0;
+      margin: 0;
+    }
+
+    /* .job-info-view-mobile .job-info-top,
+    .job-info-view-mobile .job-info-company-container,
+    .job-info-view-mobile .job-info-user-container,
+    .job-info-view-mobile .job-info-button-container,
+    .job-info-view-mobile .job-info-status-container,
+    .job-info-view-mobile .job-info-bottom {
+      width: 100%;
+      height: 15%;
+    } */
+
+    .job-info-view-mobile .job-info-top {
+      width: 100%;
+      height: 20%;
+      background-color: rgba(255, 0, 0, 0.2);
+      display: flex;
+      justify-content: center;
+    }
+
+    .job-info-view-mobile .job-info-top img {
+      height: 60px;
+      width: auto;
+      border-radius: 100%;
+    }
+
+    .job-info-view-mobile .job-info-company-container {
+      width: 100%;
+      height: 20%;
+      background-color: rgba(255, 0, 0, 0.3);
+    }
+
+    .job-info-view-mobile .job-info-user-container {
+      width: 100%;
+      height: 20%;
+      background-color: rgba(255, 0, 0, 0.4);
+    }
+
+    .job-info-view-mobile .job-info-button-container {
+      width: 100%;
+      height: 15%;
+      background-color: rgba(255, 0, 0, 0.5);
+    }
+
+    .job-info-view-mobile .job-info-status-container {
+      width: 100%;
+      height: 15%;
+      background-color: rgba(255, 0, 0, 0.6);
+    }
+
+    .job-info-view-mobile .job-info-bottom {
+      width: 100%;
+      height: 10%;
+      background-color: rgba(0, 0, 255, 0.2);
+    }
+
+
+
 
 /*
 // When screen is smaller than 1300px wide, the entire jobs page becomes responsive 
@@ -485,11 +556,27 @@
 }
 
 @media screen and (max-width: 510px) {
-  .job-item-view-web {
+  /* 
+  // Job info expand class on mobile has a height bigger than when it's web 
+  */
+  .job-info-container-expand-mobile {
+    height: 380px;
+  }
+
+  /*
+  // Web browser view disappears when width is smaller than 510px
+  */
+  .job-info-view-web {
     display: none;
   }
 
-  .job-item-view-mobile {
-    display: initial;
+  /*
+  // Job information becomes columnized flexbox 
+  */
+  .job-info-view-mobile {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
   }
 }
