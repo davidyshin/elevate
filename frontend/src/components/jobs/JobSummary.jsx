@@ -36,7 +36,7 @@ class JobSummary extends Component {
           next.setDate(first - i);
           let obj = {};
           obj.date = next.toDateString().substring(0, 10);
-          obj['Applications Submitted'] = 0;
+          obj['Applications Logged'] = 0;
           plotData.push(obj);
         }
         data.data.apps.forEach(app => {
@@ -46,7 +46,7 @@ class JobSummary extends Component {
             plot => plot.date === dateString.substring(0, 10)
           );
           if (index > -1) {
-            plotData[index]['Applications Submitted'] += 1;
+            plotData[index]['Applications Logged'] += 1;
           }
         });
         this.setState({
@@ -63,20 +63,20 @@ class JobSummary extends Component {
         <ResponsiveContainer height={225}>
           <LineChart data={plotData.reverse()}>
             <XAxis dataKey="date" />
-            <YAxis dataKey="Applications Submitted" />
+            <YAxis dataKey="Applications Logged" />
             <Tooltip />
             <CartesianGrid stroke="#f5f5f5" />
             <Line
               type="monotone"
-              dataKey="Applications Submitted"
+              dataKey="Applications Logged"
               stroke="#ff7300"
-              yAxisId={0}
+              yAxisId={0}d
             />
           </LineChart>
         </ResponsiveContainer>
       </div>
     ) : (
-      <div>
+      <div data-aos="fade-up">
         {' '}
         <h1>Loading</h1>{' '}
       </div>

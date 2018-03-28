@@ -1,0 +1,17 @@
+/*------------------------------------------*/
+/*            Keyframe Animations           */
+/*------------------------------------------*/
+
+/*
+// Ensures that the progress bar doesn't shrink back when job info folds back in 
+*/
+@keyframes progress-shrink {
+    0% {
+        transform: scale(1, 1);
+    }
+
+    100% {
+        transform: scale(1, 1);
+    }
+}
+

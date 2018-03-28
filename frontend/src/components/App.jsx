@@ -3,6 +3,7 @@ import AuthContainer from './auth/AuthContainer.jsx';
 import HomeContainer from './home/HomeContainer.jsx';
 import axios from 'axios';
 import '../stylesheets/App.css';
+import '../stylesheets/animations.css';
 import AOS from 'aos';
 import '../../node_modules/aos/dist/aos.css';
 

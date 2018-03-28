@@ -12,7 +12,9 @@ class JobList extends Component {
     this.state = {
       jobList: [],
       expandId: '',
-      renderJobList: []
+      renderJobList: [],
+      searching: '',
+      activeFilter: 'applied'
     };
   }
 
@@ -36,13 +38,21 @@ class JobList extends Component {
   handleClick = e => {
     return this.state.expandId === e.target.id
       ? this.setState({
-          expandId: ''
-        })
+        expandId: ''
+      })
       : this.setState({
-          expandId: e.target.id
-        });
+        expandId: e.target.id
+      });
   };
-  
+
+  handleInputChange = e => {
+    this.setState({
+      searching: e.target.value,
+      activeFilter: 'applied',
+      renderJobList: this.state.jobList
+    });
+  };
+
   handleFilter = e => {
     let { jobList } = this.state;
     if (e.target.id !== 'applied') {
@@ -50,43 +60,61 @@ class JobList extends Component {
         return job.job_status === e.target.id;
       });
       this.setState({
-        renderJobList: filteredJobList
+        renderJobList: filteredJobList,
+        activeFilter: e.target.id
       });
     } else {
       this.setState({
-        renderJobList: jobList
+        renderJobList: jobList,
+        activeFilter: e.target.id
       });
     }
   };
 
   render() {
-    const { expandId, renderJobList } = this.state;
+    const { expandId, renderJobList, searching, activeFilter } = this.state;
 
-    const expandClass = 'job-info-container-expand';
+    const expandClass = 'job-info-container-expand-web job-info-container-expand-mobile';
+
+    const searchRender = renderJobList.filter(
+      job =>
+        job.company_name.toLowerCase().includes(searching.toLowerCase()) ||
+        job.position_title.toLowerCase().includes(searching.toLowerCase())
+    );
 
     return (
-      <div className="job-list">
+      <div className="job-list" data-aos="fade-up">
         <nav className="job-list-nav">
-          <h3 id="applied" onClick={this.handleFilter}>
+          <h3 id="applied" onClick={this.handleFilter} className={activeFilter === 'applied' ? 'active-job-option' : null}>
             APPLIED
           </h3>
-          <h3 id="awaiting" onClick={this.handleFilter}>
+          <h3 id="awaiting" onClick={this.handleFilter} className={activeFilter === 'awaiting' ? 'active-job-option' : null}>
             AWAITING
           </h3>
-          <h3 id="rejected" onClick={this.handleFilter}>
+          <h3 id="rejected" onClick={this.handleFilter} className={activeFilter === 'rejected' ? 'active-job-option' : null}>
             REJECTED
           </h3>
-          <h3 id="offered" onClick={this.handleFilter}>
+          <h3 id="offered" onClick={this.handleFilter} className={activeFilter === 'offered' ? 'active-job-option' : null}>
             OFFERED
           </h3>
+          <div className="job-list-searchbar-container">
+            <div className="job-list-search-icon">
+              <i class="fas fa-search"></i>
+            </div>
+            <input
+              type="text"
+              onChange={this.handleInputChange}
+              value={searching}
+            />
+          </div>
         </nav>
         <div className="job-item-top-row">
           <p className="job-number">#</p>
           <p className="job-company">Company</p>
           <p className="job-position">Position</p>
-          <p className="job-date">Application Date</p>
+          <p className="job-date">Applied</p>
         </div>
-        {renderJobList.map((job, index) => (
+        {searchRender.map((job, index) => (
           <div>
             <JobItem job={job} index={index} handleClick={this.handleClick} />
             {parseInt(expandId) === parseInt(job.job_id) ? (
@@ -97,8 +125,8 @@ class JobList extends Component {
                 expandClass={expandClass}
               />
             ) : (
-              <JobInfo job={job} editJob={this.props.editJob} />
-            )}
+                <JobInfo job={job} editJob={this.props.editJob} />
+              )}
           </div>
         ))}
       </div>
