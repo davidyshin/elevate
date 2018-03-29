@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import leaderboard from '/Users/c4q/Documents/capstone/elevate/frontend/src/components/user/leaderboard/leaderboard.css'
 import ReactTable from 'react-table'
 import 'react-table/react-table.css'
+import '../../stylesheets/leaderboard.css';
+
 
 const columns = [{
   Header: 'Rank',
@@ -33,7 +34,7 @@ class LeaderBoard extends Component {
     super();
     this.state = {
       user: '',
-      top5: ['','','','','']
+      top5: []
     }
   }
   componentDidMount() {
@@ -51,7 +52,8 @@ class LeaderBoard extends Component {
   }
   render() {
     const { top5 } = this.state;
-    return (
+
+    return  top5.length > 4 ? (
       <div className='main' data-aos='fade-up'>
       <div className='LeaderboardDiv'>
         <br />
@@ -83,7 +85,7 @@ class LeaderBoard extends Component {
         <br />
       </div>
       </div>
-    );
+    ) : (<h1> Loading </h1>)
   }
 }
 
