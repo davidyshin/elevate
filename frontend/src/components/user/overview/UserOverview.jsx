@@ -73,9 +73,10 @@ class UserOverview extends Component {
   }
 
   renderMoreBadges = () => {
-    const {allAchievements, achievements} = this.state
+    const {allAchievements, achievements, expanded} = this.state
+    const className = expanded ?  'more-user-badges-container' : 'more-user-badges-hidden'
     const userAchieves = achievements.sort((a,b) => {a.badge_id<b.badge_id}).slice(0, achievements.length-3)
-    return <MoreBadges activeUser={this.props.activeUser} allAchievements={allAchievements} achievements={achievements} />;
+    return <MoreBadges className={className} activeUser={this.props.activeUser} allAchievements={allAchievements} achievements={achievements} />;
   }
 
   renderWeeklyActivity = () => {
@@ -92,7 +93,7 @@ class UserOverview extends Component {
       <div className="user-overview-container">
         <this.renderUserProgress />
         <this.renderUserBadges />
-        {expanded ? <this.renderMoreBadges /> : null}
+        <this.renderMoreBadges />
         <this.renderUserStats />        
         <this.renderWeeklyActivity />
         <div className="user-logout-container">
