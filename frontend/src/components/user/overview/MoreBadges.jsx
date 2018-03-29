@@ -20,35 +20,35 @@ class MoreBadges extends Component {
   render() {
     const { hovered } = this.state;
     const { achievements, allAchievements } = this.props;
-    const shownBadges = achievements.slice(-3);
+    const topThreeBadges = achievements.slice(-3);
     const userBadges = achievements.slice(0, achievements.length - 3);
     const remainingBadges = allAchievements.filter(
       achieve =>
-        shownBadges.findIndex(
+        topThreeBadges.findIndex(
           userBadge => userBadge.badge_id === achieve.badge_id
         ) < 0
     );
 
-    const allBadges = remainingBadges.map(allBadges => {
+    const hiddenBadges = remainingBadges.map(remainingBadge => {
       if (
         userBadges.findIndex(
-          userBadge => userBadge.badge_id === allBadges.badge_id
+          userBadge => remainingBadge.badge_id === userBadge.badge_id
         ) > -1
       ) {
         return (
           <div className="more-achievement-badge-container">
-            {parseInt(hovered) === allBadges.badge_id ? (
-              <div id={allBadges.badge_id} className="badge-hovered">
+            {parseInt(hovered) === remainingBadge.badge_id ? (
+              <div id={remainingBadge.badge_id} className="badge-hovered">
                 {' '}
-                <p> {allBadges.badge_name} </p>
+                <p> {remainingBadge.badge_name} </p>
               </div>
             ) : null}
             <img
               onMouseOver={this.toggleHover}
               onMouseLeave={this.toggleLeave}
-              id={allBadges.badge_id}
-              src={allBadges.badge_url}
-              alt={allBadges.badge_url}
+              id={remainingBadge.badge_id}
+              src={remainingBadge.badge_url}
+              alt={remainingBadge.badge_url}
               className="more-user-achievement-badge"
             />
           </div>
@@ -56,18 +56,18 @@ class MoreBadges extends Component {
       } else {
         return (
           <div className="more-achievement-badge-container">
-            {parseInt(hovered) === allBadges.badge_id ? (
-              <div id={allBadges.badge_id} className="badge-hovered">
+            {parseInt(hovered) === remainingBadge.badge_id ? (
+              <div id={remainingBadge.badge_id} className="badge-hovered">
                 {' '}
-                <p> {allBadges.badge_name} </p>
+                <p> {remainingBadge.badge_name} </p>
               </div>
             ) : null}
             <img
               onMouseOver={this.toggleHover}
               onMouseLeave={this.toggleLeave}
-              id={allBadges.badge_id}
-              src={allBadges.badge_url}
-              alt={allBadges.badge_url}
+              id={remainingBadge.badge_id}
+              src={remainingBadge.badge_url}
+              alt={remainingBadge.badge_url}
               className="more-user-achievement-badge badge-obtained"
             />
           </div>
@@ -81,7 +81,7 @@ class MoreBadges extends Component {
         id="badges"
         data-aos="fade-down"
       >
-        {allBadges}
+        {hiddenBadges}
       </div>
     );
   }
