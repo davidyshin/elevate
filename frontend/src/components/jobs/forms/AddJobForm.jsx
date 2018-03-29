@@ -13,6 +13,20 @@ const AutoSuggestStyling = {
   suggestionsList: { listStyle: 'none' }
 };
 
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+ if(dd<10){
+        dd='0'+dd
+    } 
+    if(mm<10){
+        mm='0'+mm
+    } 
+
+today = yyyy+'-'+mm+'-'+dd;
+
+
 class AddJobForm extends Component {
   constructor() {
     super();
@@ -336,6 +350,7 @@ class AddJobForm extends Component {
                 onChange={this.handleDate}
                 value={date_applied}
                 placeholder="Date"
+                max={today}
                 name="date_applied"
                 type="date"
               />
