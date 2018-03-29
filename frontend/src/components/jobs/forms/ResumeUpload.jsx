@@ -30,7 +30,7 @@ class ResumeUpload extends Component {
     return (
       <div data-aos="fade-up" className="resume-form">
         <form id="2">
-          <h1>Resume:</h1>
+          <h1>Resumkkke:</h1>
           <input
             type="file"
             name="resume"
