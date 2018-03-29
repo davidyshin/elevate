@@ -68,7 +68,7 @@ class AddJobForm extends Component {
           job_id: data.data.returned.job_id,
           saved: true,
           applicationStage: 2,
-          interviewSaved: true,
+          interviewSaved: true
         });
       })
       .catch(err => {
@@ -76,6 +76,22 @@ class AddJobForm extends Component {
       });
 
     const { job_id } = this.state;
+  };
+
+  handleStatusChange = e => {
+    const job_status = e.target.name;
+
+    const { job_id } = this.state;
+    console.log('job_status:', job_status, 'job id:', job_id);
+    axios
+      .put('/users/updateJobStatus', {
+        job_id: job_id,
+        job_status: job_status
+      })
+      .then(() => {
+        this.setState({ job_status });
+      })
+      .catch(err => console.log(err));
   };
 
   addMoreInterview = e => {
@@ -86,8 +102,8 @@ class AddJobForm extends Component {
   };
 
   saveInterview = () => {
-    this.setState({ interviewSaved: true})
-  }
+    this.setState({ interviewSaved: true });
+  };
 
   updateJobProgress = (job_id, progress_in_search) => {
     axios
@@ -133,7 +149,8 @@ class AddJobForm extends Component {
       .then(() => {
         this.setState({
           cover_url: res,
-          interviews: ['firstInterview']
+          interviews: ['firstInterview'],
+          applicationStage: 4
         });
       })
       .catch(err => {
@@ -208,10 +225,9 @@ class AddJobForm extends Component {
     this.setState({ date_applied: e.target.value });
   };
 
-
   changeStage = e => {
-    this.setState({applicationStage: parseInt(e.target.id)})
-  }
+    this.setState({ applicationStage: parseInt(e.target.id) });
+  };
 
   render() {
     const {
@@ -239,11 +255,30 @@ class AddJobForm extends Component {
     };
     return (
       <div className="add-job-form-container">
-        {saved ? <div>
-          <span id="1" onClick={this.changeStage} className = {applicationStage === 1 ? "stage-active" : "stage"} />
-          <span id="2" onClick={this.changeStage} className = {applicationStage === 2 ? "stage-active" : "stage"} />
-          <span id="3" onClick={this.changeStage} className = {applicationStage === 3 ? "stage-active" : "stage"} />
-        </div> : null}
+        {saved ? (
+          <div>
+            <span
+              id="1"
+              onClick={this.changeStage}
+              className={applicationStage === 1 ? 'stage-active' : 'stage'}
+            />
+            <span
+              id="2"
+              onClick={this.changeStage}
+              className={applicationStage === 2 ? 'stage-active' : 'stage'}
+            />
+            <span
+              id="3"
+              onClick={this.changeStage}
+              className={applicationStage === 3 ? 'stage-active' : 'stage'}
+            />
+            <span
+              id="4"
+              onClick={this.changeStage}
+              className={applicationStage === 4 ? 'stage-active' : 'stage'}
+            />
+          </div>
+        ) : null}
         <div
           data-aos="fade-up"
           hidden={applicationStage > 1 ? true : false}
@@ -334,10 +369,10 @@ class AddJobForm extends Component {
         </div>
 
         {applicationStage === 2 ? (
-            <ResumeUpload
-              handleResumeInput={this.handleResumeInput}
-              job_id={job_id}
-            />
+          <ResumeUpload
+            handleResumeInput={this.handleResumeInput}
+            job_id={job_id}
+          />
         ) : null}
         {applicationStage === 3 ? (
           <div data-aos="fade-up" className="add-job-coverletter-container">
@@ -348,17 +383,53 @@ class AddJobForm extends Component {
           </div>
         ) : null}
 
+        {applicationStage === 4 ? (
+          <div data-aos="fade-up" className="update-job-status">
+            <h1> Update Job Application Status </h1>
+            <div className="job-status-switch-field">
+              <input
+                onChange={this.handleStatusChange}
+                type="radio"
+                id="offered"
+                name="offered"
+                className="status-switch-offered"
+                checked={this.state.job_status === 'offered'}
+              />
+              <label for="offered">Offered</label>
+              <input
+                onChange={this.handleStatusChange}
+                type="radio"
+                id="awaiting"
+                name="awaiting"
+                className="status-switch-awaiting"
+                checked={this.state.job_status === 'awaiting'}
+              />
+              <label for="awaiting">Awaiting</label>
+              <input
+                onChange={this.handleStatusChange}
+                type="radio"
+                id="rejected"
+                name="rejected"
+                className="status-switch-rejected"
+                checked={this.state.job_status === 'rejected'}
+              />
+              <label for="rejected">Rejected</label>
+            </div>
+          </div>
+        ) : null}
+
         {interviews.map(interview => {
           return (
             <div data-aos="fade-up" className="add-job-interview-container">
               <AddInterview
                 job_id={job_id}
                 updateExperience={this.props.updateExperience}
-                saveInterview = {this.saveInterview}
+                saveInterview={this.saveInterview}
               />
             </div>
           );
         })}
+
         {this.state.saved ? (
           <button
             className="add-interview-button"
