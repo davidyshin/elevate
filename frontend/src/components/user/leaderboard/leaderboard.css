@@ -1,0 +1,30 @@
+
+.Leaderboard{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3em;
+    background-color: #fefefe; 
+}
+
+.LeaderboardDiv{
+    /* margin-top: 3em; */
+    font-size: 1.4rem;
+    height: 60px;
+    color: rgb(51, 156, 197);
+    background-color: #fefefe; 
+    padding-bottom: .5em;
+}
+
+
+.main{
+    display: flex;
+    background-color: #f5f0f5;
+    padding-top: 9em;
+    justify-content: center;
+}
+
+
+.rt-th:focus{
+    outline: none;
+}
