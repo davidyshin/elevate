@@ -112,7 +112,8 @@ class JobList extends Component {
           <p className="job-number">#</p>
           <p className="job-company">Company</p>
           <p className="job-position">Position</p>
-          <p className="job-date">Applied</p>
+          <p className="job-date">Application Date</p>
+          <p className="job-date-mobile">Date</p>          
         </div>
         {searchRender.map((job, index) => (
           <div>
