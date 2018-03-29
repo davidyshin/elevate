@@ -234,9 +234,9 @@ class AddJobForm extends Component {
     return (
       <div className="add-job-form-container">
         {saved ? <div>
-          <span id="1" onClick={this.changeStage} class={applicationStage === 1 ? "stage-active" : "stage"} />
-          <span id="2" onClick={this.changeStage} class={applicationStage === 2 ? "stage-active" : "stage"} />
-          <span id="3" onClick={this.changeStage} class={applicationStage === 3 ? "stage-active" : "stage"} />
+          <span id="1" onClick={this.changeStage} className = {applicationStage === 1 ? "stage-active" : "stage"} />
+          <span id="2" onClick={this.changeStage} className = {applicationStage === 2 ? "stage-active" : "stage"} />
+          <span id="3" onClick={this.changeStage} className = {applicationStage === 3 ? "stage-active" : "stage"} />
         </div> : null}
         <div
           data-aos="fade-up"
