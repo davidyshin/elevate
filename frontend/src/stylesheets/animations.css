@@ -15,3 +15,28 @@
     }
 }
 
+@keyframes coin-up {
+    0% {
+        margin-bottom: 0;
+    }
+
+    20% {
+        margin-bottom: 8px;
+    }
+
+    40% {
+        margin-bottom: 16px;
+    }
+
+    60% {
+        margin-bottom: 30px;
+    }
+
+    80% {
+        margin-bottom: 45px;
+    }
+
+    100% {
+        margin-bottom: 60px;
+    }
+}
