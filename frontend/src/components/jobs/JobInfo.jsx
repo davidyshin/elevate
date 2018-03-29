@@ -26,13 +26,13 @@ class JobInfo extends Component {
 
     const date_applied = new Date(this.props.job.date_applied).toDateString();
 
-    const { progress_in_search, job_status, job_posting_url, cover_url, resume_url, job_phone_number, job_email, job_id, company_logo, company_name } = this.props.job;
+    const { progress_in_search, job_status, job_posting_url, cover_url, resume_url, job_phone_number, job_email, job_id, company_logo, company_name, salary } = this.props.job;
 
     const expand = this.props.expandClass ? this.props.expandClass : null;
 
     const initiateProgressEarned = this.props.expandClass ? "job-info-search-progress-earned" : null;
 
-    const statusMessage = job_status === 'awaiting' ? 'awaiting response' : job_status === 'offered' ? `offered $___` : 'rejected';
+    const statusMessage = job_status === 'Awaiting' ? 'awaiting response' : job_status === 'offered' ? `Offered: ${salary || ''}` : 'Rejected';
 
     const progressPercentage = (parseInt(progress_in_search) / 5) * 100;
 
