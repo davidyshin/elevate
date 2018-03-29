@@ -77,9 +77,8 @@ class MoreBadges extends Component {
 
     return (
       <div
-        className="more-user-badges-container"
+        className={this.props.className}
         id="badges"
-        data-aos="fade-down"
       >
         {hiddenBadges}
       </div>
