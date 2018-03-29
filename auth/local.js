@@ -19,10 +19,10 @@ passport.use(
           return done(null, false);
         }
         if (!authHelpers.comparePassword(password, user.password_digest)) {
-          console.log("password doesn't work");
+          // console.log("password doesn't work");
           return done(null, false);
         } else {
-          console.log('password correct', user);
+          // console.log('password correct', user);
           return done(null, user);
         }
       })

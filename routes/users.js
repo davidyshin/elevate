@@ -135,6 +135,7 @@ router.post('/newuser', db.registerUser);
 /* 19. Login User // POST Route = /users/login */
 /* This route goes through auth instead of our written queries */
 router.post('/login', passport.authenticate('local'), (req, res) => {
+  delete req.user.password_digest
   res.json(req.user);
 });
 
