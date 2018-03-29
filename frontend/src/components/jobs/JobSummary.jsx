@@ -21,7 +21,7 @@ class JobSummary extends Component {
   constructor() {
     super();
     this.state = {
-      plotData: []
+      plotData: [],
     };
   }
 
@@ -30,16 +30,30 @@ class JobSummary extends Component {
       .get('/users/getAllUserApps')
       .then(data => {
         let { plotData } = this.state;
-
+        let apps = data.data.apps;
         for (var i = 0; i < 8; i++) {
           var next = new Date(curr.getTime());
           next.setDate(first - i);
-          let obj = {};
-          obj.date = next.toDateString().substring(0, 10);
-          obj['Applications Logged'] = 0;
-          plotData.push(obj);
+          let dateObj = {};
+          let offeredObj = {};
+          let rejectedObj = {};
+          // making 3 separate objects for date line, offered line, rejected line
+          // with past 7 days of the week
+          dateObj.date = next.toDateString().substring(0, 10);
+          offeredObj.date = next.toDateString().substring(0, 10);
+          rejectedObj.date = next.toDateString().substring(0, 10);
+
+          dateObj['Applications Logged'] = 0;
+          dateObj['Offered'] = 0;
+          dateObj['Rejected'] = 0;
+          // Each array now has an object with every day of the week
+          // example: {date: Thurs March 23, Applications Logged: 0}
+          // example: {date: Thurs March 23, Offered: 0}
+          // example: {date: Thurs March 23, Rejected: 0}
+
+          plotData.push(dateObj);
         }
-        data.data.apps.forEach(app => {
+        apps.forEach(app => {
           const date = new Date(app.date_logged);
           const dateString = date.toDateString();
           let index = plotData.findIndex(
@@ -48,15 +62,23 @@ class JobSummary extends Component {
           if (index > -1) {
             plotData[index]['Applications Logged'] += 1;
           }
+          if (index > -1 && app.job_status === 'offered') {
+            plotData[index]['Offered'] += 1;
+          }
+          if (index > -1 && app.job_status === 'rejected') {
+            plotData[index]['Rejected'] += 1;
+          }
         });
+
         this.setState({
-          plotData: plotData.reverse()
+          plotData: plotData.reverse(),
         });
       })
       .catch(err => console.log(err));
   }
   render() {
-    const { plotData } = this.state;
+    console.log(this.state);
+    const { plotData} = this.state;
     return plotData.length > 1 ? (
       <div className="job-summary-container">
         <h1>{this.props.activeUser.first_name}'s Weekly Activity</h1>
@@ -69,8 +91,23 @@ class JobSummary extends Component {
             <Line
               type="monotone"
               dataKey="Applications Logged"
-              stroke="#ff7300"
-              yAxisId={0}d
+              stroke="#3a99d8"
+              yAxisId={0}
+              d
+            />
+            <Line
+              type="monotone"
+              dataKey="Offered"
+              stroke="#00e000"
+              yAxisId={0}
+              d
+            />
+            <Line
+              type="monotone"
+              dataKey="Rejected"
+              stroke="#ff4242"
+              yAxisId={0}
+              d
             />
           </LineChart>
         </ResponsiveContainer>
