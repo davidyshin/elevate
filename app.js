@@ -40,7 +40,7 @@ app.use('/', index);
 app.use('/users', users);
 
 app.get('*', (req, res) => {
-  res.sendfile(__dirname + '/frontend/public/index.html');
+  res.sendfile(__dirname + '/frontend/build/index.html');
 });
 
 app.use(fileUpload());
