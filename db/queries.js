@@ -79,6 +79,7 @@ GET Requests
 /* 29. updateExperience // PUT Route = /users/updateExperience */
 /* 30. updateJobStatus // PUT Route = /users/updateJobStatus */
 /* 31. updateNotification // PUT Route = /users/updateJobStatus */
+/* 32. updateJobSalary' // PUT Route = /users/updateJobSalary */
 
 /*--------------------------------------- 
 
@@ -295,18 +296,20 @@ const getUserInterviews = (req, res, next) => {
     });
 };
 
-
 const getAllAchievementBadges = (req, res, next) => {
-  db.any('SELECT * from achievement_badges').then(data => {
-    res.status(200).json({
-      status:'success',
-      all_achievements: data,
-      message: 'Retrieved All achievements in the system'
+  db
+    .any('SELECT * from achievement_badges')
+    .then(data => {
+      res.status(200).json({
+        status: 'success',
+        all_achievements: data,
+        message: 'Retrieved All achievements in the system'
+      });
+    })
+    .catch(err => {
+      res.status(500).send(`error getting user interviews: ${err}`);
     });
-  }).catch(err => {
-    res.status(500).send(`error getting user interviews: ${err}`)
-  })
-}
+};
 
 /* ------------------------ POST REQUESTS QUERIES ------------------------ */
 
@@ -739,6 +742,28 @@ setInterval(() => {
   getNotificationSms();
 }, 1000);
 
+
+
+
+const updateJobSalary = (req, res) => {
+  db
+    .none('UPDATE jobs SET salary = ${salary} WHERE job_id = ${job_id}', {
+      job_id: req.body.job_id,
+      salary: req.body.salary
+    })
+    .then(() => {
+      res.status(200).json({
+        status: 'success',
+        message: 'successfully updated job salary '
+      });
+    })
+    .catch(err => {
+      res.status(500).send(`error updating job salary: ${err}`);
+    });
+};
+
+
+
 module.exports = {
   getAllUserApps,
   getCover,
@@ -768,6 +793,7 @@ module.exports = {
   uploadCover,
   addAchievement,
   updateNotification,
+  updateJobSalary,
   getNotificationSms,
   getNotificationEmail
 };
