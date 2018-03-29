@@ -28,3 +28,8 @@
 .rt-th:focus{
     outline: none;
 }
+
+.avatar{
+    width: 10%;
+    border-radius: 50%
+}
