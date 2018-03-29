@@ -15,7 +15,6 @@ class ResumeUpload extends Component {
     const data = new FormData();
     data.append('resume', file);
     data.append('id', this.props.job_id);
-  
     axios.post('/users/uploadResume', data)
       .then(res => {
         this.props.handleResumeInput(res.data.url)

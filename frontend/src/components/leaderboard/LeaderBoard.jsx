@@ -34,13 +34,19 @@ class LeaderBoard extends Component {
       accessor: 'rank', // String-based value accessors!
       Cell: props => <span className='number'>{(props.index) + 1} </span>,
       minWidth: 120, // Custom cell components!
-      maxWidth: 220, // Custom cell components!
+      maxWidth: 50, // Custom cell components!
       // show:false
     
     }, {
+      id: 'picture',
+      Header: 'Picture',
+      accessor: d => <img className='avatar' src={d.photo_url} alt='user photo'/>, // String-based value accessors!
+      minWidth: 60,// Custom cell components!
+      // accessor: ''  
+    },{
       id: 'name',
       Header: 'Name',
-      accessor: d => d.id === user.id ? (<span><img className='avatar' src={user.photo_url} alt='user photo'/>    You </span>) : (<span><img className='avatar' src={d.photo_url} alt='user photo'/>{'    '+d.first_name+ '  '+ d.last_name}</span>), // String-based value accessors!
+      accessor: d => d.id === user.id ? (<span>You </span>) : (<span>{'    '+d.first_name+ '  '+ d.last_name}</span>), // String-based value accessors!
       minWidth: 50,// Custom cell components!
       minWidth: 250,// Custom cell components!
       // accessor: ''  
