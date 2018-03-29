@@ -115,7 +115,6 @@
     .job-list-searchbar-container {
       display: flex;
       width: 100%;
-      /* justify-content: center; */
       align-items: center;
     }
 
@@ -222,6 +221,14 @@
     width: 20%;
   }
 
+  /*
+  // Responsive 
+  // Hide mobile version of application date 
+  */
+  .job-item-top-row .job-date-mobile {
+    display: none;
+  }
+
 
 /*
 // Single job item (single row) 
@@ -263,7 +270,7 @@
   }
 
   /*
-  // Company logo and name 
+  // Company name 
   */
   .job-item-company {
     width: 35%;
@@ -281,6 +288,16 @@
   */
   .job-item-date {
     width: 20%;
+  }
+
+  /*
+  // Responsive
+  // Tablet and mobile 
+  // Hide application date 
+  */ 
+  .job-item-tablet-date,
+  .job-item-mobile-date {
+    display: none;
   }
 
 
@@ -485,11 +502,17 @@
     display: none;
   }
 
+    /*
+    // Paragraph tags inside job info mobile view 
+    */
     .job-info-view-mobile p {
       padding: 0;
       margin: 1.2px 0 1.2px 4%;
     }
 
+    /*
+    // Anchor and Link tags 
+    */
     .job-info-view-mobile a, 
     .job-info-view-mobile:visited {
       color: rgb(51, 156, 197);
@@ -500,16 +523,19 @@
       transition: 0.5s color;
     }
 
-    .job-info-view-mobile a:hover {
-      color: rgb(42, 70, 97);
-    }
+      /*
+      // Anchor and Link hover color
+      */ 
+      .job-info-view-mobile a:hover {
+        color: rgb(42, 70, 97);
+      }
 
     /*
     // Company logo on top
     */ 
     .job-info-view-mobile .job-info-top {
       width: 100%;
-      height: 24%;
+      height: 28%;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -529,7 +555,7 @@
     */
     .job-info-view-mobile .job-info-company-container {
       width: 100%;
-      height: 12%;
+      height: 11%;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
@@ -553,7 +579,7 @@
     */ 
     .job-info-view-mobile .job-info-user-container {
       width: 100%;
-      height: 35%;
+      height: 32%;
       display: flex;
       flex-direction: column;
       justify-content: space-around;
@@ -636,7 +662,7 @@
 
   .job-item {
     font-size: 1.4rem;
-    height: 40px;
+    height: 42px;
   }
 
   .job-info-container {
@@ -663,6 +689,44 @@
   .active-jobs-container {
     width: 98%;
   }
+
+  /*
+  // Hide top row "Application Date"
+  */
+  .job-item-top-row .job-date {
+    display: none;
+  }
+
+    /*
+    // Show top row "Application Date" mobile version  
+    */
+    .job-item-top-row .job-date-mobile {
+      display: initial;
+      width: 18%; /* 20 */
+    }
+
+    .job-item-top-row .job-position {
+      width: 37%; /* 35 */
+    }
+
+  /*
+  // Web application date disappears 
+  */
+  .job-item-date {
+    display: none;
+  }
+
+    /* 
+    // Show date tablet version
+    */ 
+    .job-item-tablet-date {
+      display: initial;
+      width: 18%; /* 20 */
+    }
+
+    .job-item-position {
+      width: 37%; /* 35 */
+    }
   
   .job-info-logo-container img {
     height: 40px;
@@ -688,7 +752,7 @@
   // Job info expand class on mobile has a height bigger than when it's web 
   */
   .job-info-container-expand-mobile {
-    height: 300px;
+    height: 360px;
   }
 
   /*
@@ -703,6 +767,53 @@
   // HERE!
   // IMPLEMENT THIS SOMEHOW SOON! 
   */ 
+  .job-list-searchbar-container {
+    display: none;
+  }
+
+  /* 
+  // Job list's top row 
+  */
+  .job-item-top-row .job-number {
+    width: 8%;
+  }
+
+  .job-item-top-row .job-company {
+    width: 37%;
+  }
+
+  .job-item-top-row .job-position {
+    width: 39%;
+  }
+
+  .job-item-top-row .job-date-mobile {
+    width: 16%;
+  }
+
+  /*
+  // Job items
+  */ 
+  .job-item-index {
+    width: 8%;
+  }
+
+  .job-item-company {
+    width: 37%;
+  }
+
+  .job-item-position {
+    width: 39%;
+  }
+
+    .job-item-tablet-date {
+      display: none;
+    }
+
+    .job-item-mobile-date {
+      width: 16%;
+      display: initial;
+    }
+
 
   /*
   // Web browser view disappears when width is smaller than 510px
