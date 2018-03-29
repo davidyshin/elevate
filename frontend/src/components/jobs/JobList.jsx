@@ -108,12 +108,44 @@ class JobList extends Component {
             />
           </div>
         </nav>
+
+        {/* Mobile responsive */}
+        <nav className="job-list-nav-mobile">
+          <div className="job-list-searchbar-mobile-container">
+            <div className="job-list-search-icon">
+              <i class="fas fa-search"></i>
+            </div>
+            <input
+              type="text"
+              onChange={this.handleInputChange}
+              value={searching}
+              placeholder="Search in job applications..."
+            />
+          </div>
+          <div className="job-list-nav-mobile-filter-container">
+            <h3 id="applied" onClick={this.handleFilter} className={activeFilter === 'applied' ? 'active-job-option' : null}>
+              APPLIED
+          </h3>
+            <h3 id="awaiting" onClick={this.handleFilter} className={activeFilter === 'awaiting' ? 'active-job-option' : null}>
+              AWAITING
+          </h3>
+            <h3 id="rejected" onClick={this.handleFilter} className={activeFilter === 'rejected' ? 'active-job-option' : null}>
+              REJECTED
+          </h3>
+            <h3 id="offered" onClick={this.handleFilter} className={activeFilter === 'offered' ? 'active-job-option' : null}>
+              OFFERED
+          </h3>
+          </div>
+        </nav>
+        {/* End mobile responsive */}
+
+
         <div className="job-item-top-row">
           <p className="job-number">#</p>
           <p className="job-company">Company</p>
           <p className="job-position">Position</p>
           <p className="job-date">Application Date</p>
-          <p className="job-date-mobile">Date</p>          
+          <p className="job-date-mobile">Date</p>
         </div>
         {searchRender.map((job, index) => (
           <div>
