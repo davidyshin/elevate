@@ -96,13 +96,6 @@ class AddInterview extends Component {
             type="submit"
             value="Save"
           />
-          <button
-            className="add-interview-button"
-            disabled={!interviewSaved}
-            onClick={this.props.addMoreInterview}
-          >
-            Add Another
-          </button>
         </form>
       </div>
     );

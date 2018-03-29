@@ -41,8 +41,7 @@ class UpdateJobForm extends Component {
       job_email: this.state.job_email,
       job_phone_number: this.state.job_phone_number,
       position_title: this.state.position,
-      job_posting_url: this.state.url,
-      progress_in_search: this.state.applicationStage
+      job_posting_url: this.state.url
     });
   };
 
@@ -57,7 +56,6 @@ class UpdateJobForm extends Component {
         const date_applied = date.toISOString().substring(0, 10);
         this.setState({
           job_id: editingJob.job_id,
-          applicationStage: editingJob.progress_in_search,
           editingJob: editingJob,
           company: editingJob.company_name,
           companyLogo: editingJob.company_logo,
@@ -123,10 +121,9 @@ class UpdateJobForm extends Component {
       })
       .then(() => {
         let { applicationStage } = this.state;
-        applicationStage = 3 ? 4 : 3;
         this.setState({
           resume_url: res,
-          applicationStage
+          applicationStage: 3
         });
       })
       .catch(err => {
@@ -158,10 +155,9 @@ class UpdateJobForm extends Component {
         job_id: job_id
       })
       .then(() => {
-        let { applicationStage } = this.state;
-        applicationStage = 3 ? 4 : 3;
         this.setState({
-          cover_url: res
+          cover_url: res,
+          applicationStage: 4
         });
       })
       .catch(err => {
@@ -172,6 +168,9 @@ class UpdateJobForm extends Component {
       });
     this.updateJobProgress(job_id, 4);
     this.props.updateExperience(50);
+  };
+  changeStage = e => {
+    this.setState({ applicationStage: parseInt(e.target.id) });
   };
 
   render() {
@@ -194,7 +193,33 @@ class UpdateJobForm extends Component {
 
     return (
       <div className="update-job-form-container">
-        <div className="update-job-info">
+        <div>
+          <span
+            id="1"
+            onClick={this.changeStage}
+            className={applicationStage === 1 ? 'stage-active' : 'stage'}
+          />
+          <span
+            id="2"
+            onClick={this.changeStage}
+            className={applicationStage === 2 ? 'stage-active' : 'stage'}
+          />
+          <span
+            id="3"
+            onClick={this.changeStage}
+            className={applicationStage === 3 ? 'stage-active' : 'stage'}
+          />
+          <span
+            id="4"
+            onClick={this.changeStage}
+            className={applicationStage === 4 ? 'stage-active' : 'stage'}
+          />
+        </div>
+        <div
+          hidden={applicationStage > 1 ? true : false}
+          className="update-job-info"
+          data-aos="fade-up"
+        >
           <form onSubmit={this.handleSave}>
             <h1> Job Info</h1>
             <p>Company:</p>
@@ -212,7 +237,7 @@ class UpdateJobForm extends Component {
                 <img className="company-image" src={companyLogo} />
               ) : (
                 <span className="building-icon">
-                  <i class="fas fa-building fa-2x" />
+                  <i className="fas fa-building fa-2x" />
                 </span>
               )}
             </div>
@@ -239,23 +264,6 @@ class UpdateJobForm extends Component {
               name="url"
               type="text"
             />
-            <p>Job Contact Phone Number:</p>
-            <input
-              onChange={this.handleInput}
-              value={job_phone_number}
-              placeholder="ex: 3478030075"
-              name="job_phone_number"
-              maxLength="10"
-              type="text"
-            />
-            <p>Job Contact Email:</p>
-            <input
-              onChange={this.handleInput}
-              value={job_email}
-              placeholder="Email Address"
-              name="job_email"
-              type="email"
-            />
             <input
               disabled={saved || !company || !position || !date_applied}
               type="submit"
@@ -263,9 +271,9 @@ class UpdateJobForm extends Component {
             />
           </form>
         </div>
-        <div className="resume-input-container">
-          {resume_url ? (
-            <div className="resume-url-container">
+        {applicationStage === 2 ? (
+          resume_url ? (
+            <div data-aos="fade-up" className="resume-url-container">
               <h1> Resume: </h1>
               <a
                 href={`https://s3.amazonaws.com/elevateresumes/${resume_url}`}
@@ -275,19 +283,15 @@ class UpdateJobForm extends Component {
               </a>
             </div>
           ) : (
-            <div>
-              <h1> Resume: </h1>
-              <p> You haven't added a resume, add one now </p>
-              <ResumeUpload
-                handleResumeInput={this.handleResumeInput}
-                job_id={job_id}
-              />
-            </div>
-          )}
-        </div>
-        <div className="cover-input-container">
-          {cover_url ? (
-            <div className="cover-url-container">
+            <ResumeUpload
+              handleResumeInput={this.handleResumeInput}
+              job_id={job_id}
+            />
+          )
+        ) : null}
+        {applicationStage === 3 ? (
+          cover_url ? (
+            <div data-aos="fade-up"className="cover-url-container">
               <h1>Cover Letter: </h1>
               <a
                 href={`https://s3.amazonaws.com/elevatecovers/${cover_url}`}
@@ -297,18 +301,52 @@ class UpdateJobForm extends Component {
               </a>
             </div>
           ) : (
-            <div>
-              <h1>Cover Letter: </h1>
-              <p> You haven't added a Cover Letter, add one now </p>
-              <CoverLetterUpload
-                handleCoverInput={this.handleCoverInput}
-                job_id={job_id}
-              />
+            <CoverLetterUpload
+              handleCoverInput={this.handleCoverInput}
+              job_id={job_id}
+            />
+          )
+        ) : null}
+        <button
+          className="add-interview-button"
+          onClick={this.addMoreInterview}
+        >
+          Add Interview
+        </button>
+        {applicationStage === 4 ? (
+              <div data-aos="fade-up" className="update-job-status">
+                <h1> Update Job Application Status </h1>
+                <div className="job-status-switch-field">
+                  <input
+                    onChange={this.handleStatusChange}
+                    type="radio"
+                    id="offered"
+                    name="offered"
+                    className="status-switch-offered"
+                    checked={this.state.job_status === 'offered'}
+                  />
+                  <label for="offered">Offered</label>
+                  <input
+                    onChange={this.handleStatusChange}
+                    type="radio"
+                    id="awaiting"
+                    name="awaiting"
+                    className="status-switch-awaiting"
+                    checked={this.state.job_status === 'awaiting'}
+                  />
+                  <label for="awaiting">Awaiting</label>
+                  <input
+                    onChange={this.handleStatusChange}
+                    type="radio"
+                    id="rejected"
+                    name="rejected"
+                    className="status-switch-rejected"
+                    checked={this.state.job_status === 'rejected'}
+                  />
+                  <label for="rejected">Rejected</label>
+                </div>
             </div>
-          )}
-        </div>
-        <button className='add-interview-button' onClick={this.addMoreInterview}>Add Interview</button>        
-        <div>
+          ) : null}
           {interviews.map(interview => {
             return (
               <div className="interview-form-container">
@@ -319,7 +357,6 @@ class UpdateJobForm extends Component {
               </div>
             );
           })}
-        </div>
         {addedInterviews.map(interview => {
           return (
             <div className="add-interview-form-container">
@@ -331,40 +368,6 @@ class UpdateJobForm extends Component {
             </div>
           );
         })}
-        <div className="update-job-status-container">
-          <div className="update-job-status">
-            <h1> Update Job Application Status </h1>
-            <div class="job-status-switch-field">
-              <input
-                onChange={this.handleStatusChange}
-                type="radio"
-                id="offered"
-                name="offered"
-                class="status-switch-offered"
-                checked={this.state.job_status === 'offered'}
-              />
-              <label for="offered">Offered</label>
-              <input
-                onChange={this.handleStatusChange}
-                type="radio"
-                id="awaiting"
-                name="awaiting"
-                class="status-switch-awaiting"
-                checked={this.state.job_status === 'awaiting'}
-              />
-              <label for="awaiting">Awaiting</label>
-              <input
-                onChange={this.handleStatusChange}
-                type="radio"
-                id="rejected"
-                name="rejected"
-                class="status-switch-rejected"
-                checked={this.state.job_status === 'rejected'}
-              />
-              <label for="rejected">Rejected</label>
-            </div>
-          </div>
-        </div>
       </div>
     );
   }

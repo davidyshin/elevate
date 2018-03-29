@@ -133,7 +133,6 @@ class AddJobForm extends Component {
       .then(() => {
         this.setState({
           cover_url: res,
-          applicationStage: 4,
           interviews: ['firstInterview']
         });
       })
@@ -209,6 +208,11 @@ class AddJobForm extends Component {
     this.setState({ date_applied: e.target.value });
   };
 
+
+  changeStage = e => {
+    this.setState({applicationStage: parseInt(e.target.id)})
+  }
+
   render() {
     const {
       company,
@@ -235,7 +239,16 @@ class AddJobForm extends Component {
     };
     return (
       <div className="add-job-form-container">
-        <div className="add-job-info">
+        {saved ? <div>
+          <span id="1" onClick={this.changeStage} className = {applicationStage === 1 ? "stage-active" : "stage"} />
+          <span id="2" onClick={this.changeStage} className = {applicationStage === 2 ? "stage-active" : "stage"} />
+          <span id="3" onClick={this.changeStage} className = {applicationStage === 3 ? "stage-active" : "stage"} />
+        </div> : null}
+        <div
+          data-aos="fade-up"
+          hidden={applicationStage > 1 ? true : false}
+          className="add-job-info"
+        >
           <form onSubmit={this.handleFirstSubmit}>
             <h1> Job Info</h1>
             <div className="add-job-form-input-title">
@@ -303,27 +316,13 @@ class AddJobForm extends Component {
               name="url"
               type="text"
             />
-            <div className="add-job-form-input-title">
-              <p>Job contact phone number: </p>
-            </div>
-            <input
-              onChange={this.handleInput}
-              value={phoneNumber}
-              placeholder="ex: 3470000000"
-              name="phoneNumber"
-              maxLength="10"
-              type="text"
-            />
-            <div className="add-job-form-input-title">
-              <p>Job contact email:</p>
-            </div>
-            <input
+            {/* <input
               onChange={this.handleInput}
               value={email}
               placeholder="Job Contact Email Address"
               name="email"
               type="email"
-            />
+            /> */}
             <div className="add-job-buttons">
               <input
                 disabled={saved || !company || !position || !date_applied}
@@ -333,28 +332,25 @@ class AddJobForm extends Component {
             </div>
           </form>
         </div>
-        <div
-          className="add-job-resume-container"
-          hidden={applicationStage >= 2 ? false : true}
-          className="add-job-resume-container"
-        >
-          <ResumeUpload
-            handleResumeInput={this.handleResumeInput}
-            job_id={job_id}
-          />
-        </div>
-        <div
-          hidden={applicationStage >= 3 ? false : true}
-          className="add-job-coverletter-container"
-        >
-          <CoverLetterUpload
-            handleCoverInput={this.handleCoverInput}
-            job_id={job_id}
-          />
-        </div>
+
+        {applicationStage === 2 ? (
+            <ResumeUpload
+              handleResumeInput={this.handleResumeInput}
+              job_id={job_id}
+            />
+        ) : null}
+        {applicationStage === 3 ? (
+          <div data-aos="fade-up" className="add-job-coverletter-container">
+            <CoverLetterUpload
+              handleCoverInput={this.handleCoverInput}
+              job_id={job_id}
+            />
+          </div>
+        ) : null}
+
         {interviews.map(interview => {
           return (
-            <div className="add-job-interview-container">
+            <div data-aos="fade-up" className="add-job-interview-container">
               <AddInterview
                 job_id={job_id}
                 updateExperience={this.props.updateExperience}
