@@ -48,6 +48,11 @@ class HomeNavBar extends Component {
           <div className="home-nav-right">
             <div className="home-nav-exp-container">
               <img src="https://i.imgur.com/oudBkRW.png" alt="exp-coins" />
+
+              <img src="https://i.imgur.com/oudBkRW.png" alt="exp-coins" className="coin-test-a"/>
+              <img src="https://i.imgur.com/oudBkRW.png" alt="exp-coins" className="coin-test-b"/>
+              <img src="https://i.imgur.com/oudBkRW.png" alt="exp-coins" className="coin-test-c"/>
+
               <p>{this.props.experience}</p>
             </div>
             <Link to="/profile"><i className="far fa-user-circle fa-2x"></i></Link>
