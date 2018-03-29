@@ -35,7 +35,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'frontend/build')));
 
-app.use('/', index);
+app.use('*', index);
 app.use('/users', users);
 app.use(fileUpload());
 
