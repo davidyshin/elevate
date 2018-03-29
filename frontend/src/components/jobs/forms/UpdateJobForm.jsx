@@ -67,7 +67,7 @@ class UpdateJobForm extends Component {
           cover_url: editingJob.cover_url,
           date_applied: date_applied,
           job_status: editingJob.job_status,
-          experience: this.props.activeUser.experience,
+          experience: this.props.activeUser.experience
         });
       })
       .catch(err => {
@@ -326,6 +326,42 @@ class UpdateJobForm extends Component {
           Add Interview
         </button>
         <div>
+          {applicationStage === 4 ? (
+            <div aos-data="fade-up" className="update-job-status-container">
+              <div className="update-job-status">
+                <h1> Update Job Application Status </h1>
+                <div class="job-status-switch-field">
+                  <input
+                    onChange={this.handleStatusChange}
+                    type="radio"
+                    id="offered"
+                    name="offered"
+                    class="status-switch-offered"
+                    checked={this.state.job_status === 'offered'}
+                  />
+                  <label for="offered">Offered</label>
+                  <input
+                    onChange={this.handleStatusChange}
+                    type="radio"
+                    id="awaiting"
+                    name="awaiting"
+                    class="status-switch-awaiting"
+                    checked={this.state.job_status === 'awaiting'}
+                  />
+                  <label for="awaiting">Awaiting</label>
+                  <input
+                    onChange={this.handleStatusChange}
+                    type="radio"
+                    id="rejected"
+                    name="rejected"
+                    class="status-switch-rejected"
+                    checked={this.state.job_status === 'rejected'}
+                  />
+                  <label for="rejected">Rejected</label>
+                </div>
+              </div>
+            </div>
+          ) : null}
           {interviews.map(interview => {
             return (
               <div className="interview-form-container">
@@ -337,6 +373,7 @@ class UpdateJobForm extends Component {
             );
           })}
         </div>
+
         {addedInterviews.map(interview => {
           return (
             <div className="add-interview-form-container">
@@ -348,41 +385,6 @@ class UpdateJobForm extends Component {
             </div>
           );
         })}
-        {applicationStage === 4 ? 
-        <div aos-data="fade-up" className="update-job-status-container">
-          <div className="update-job-status">
-            <h1> Update Job Application Status </h1>
-            <div class="job-status-switch-field">
-              <input
-                onChange={this.handleStatusChange}
-                type="radio"
-                id="offered"
-                name="offered"
-                class="status-switch-offered"
-                checked={this.state.job_status === 'offered'}
-              />
-              <label for="offered">Offered</label>
-              <input
-                onChange={this.handleStatusChange}
-                type="radio"
-                id="awaiting"
-                name="awaiting"
-                class="status-switch-awaiting"
-                checked={this.state.job_status === 'awaiting'}
-              />
-              <label for="awaiting">Awaiting</label>
-              <input
-                onChange={this.handleStatusChange}
-                type="radio"
-                id="rejected"
-                name="rejected"
-                class="status-switch-rejected"
-                checked={this.state.job_status === 'rejected'}
-              />
-              <label for="rejected">Rejected</label>
-            </div>
-          </div>
-        </div> : null }
       </div>
     );
   }

@@ -53,7 +53,7 @@
   // Each stage of the application has it's own form and box, separated by 50px
   */
 
-.add-interview-form {
+.add-interview-form, .update-interview-form {
   padding-top:50px;
 }
 
