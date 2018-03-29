@@ -310,9 +310,6 @@ class AddJobForm extends Component {
               name="url"
               type="text"
             />
-            <div className="add-job-form-input-title">
-              <p>Job contact email:</p>
-            </div>
             {/* <input
               onChange={this.handleInput}
               value={email}
@@ -331,13 +328,10 @@ class AddJobForm extends Component {
         </div>
 
         {applicationStage === 2 ? (
-          <div data-aos="fade-up" className="add-job-resume-container">
-            {' '}
             <ResumeUpload
               handleResumeInput={this.handleResumeInput}
               job_id={job_id}
-            />{' '}
-          </div>
+            />
         ) : null}
         {applicationStage === 3 ? (
           <div data-aos="fade-up" className="add-job-coverletter-container">

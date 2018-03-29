@@ -27,7 +27,7 @@ class CoverLetterUpload extends Component {
 
   render() {
     return (
-      <div  className="cover-form">
+      <div data-aos="fade-up" className="cover-form">
         <form id="2">
           <h1>Cover Letter:</h1>
           <input
