@@ -22,10 +22,10 @@ INSERT INTO Users
     (first_name, last_name, photo_url, password_digest, username, phone_number, email_notification, phone_notification, experience)
 VALUES
     ('Joseph', 'Gaines', 'https://i.imgur.com/wuyr6CT.png', '$2a$10$brAZfSmByFeZmPZ/MH5zne9YDhugjW9CtsBGgXqGfix0g1tcooZWq', 'demo@elevate.app', '3412331093', 'N', 'N', 1350),
-    ('Nick', 'Davis', 'https://i.imgur.com/ePbPHIY.png', '$2a$10$brAZfSmByFeZmPZ/MH5zne9YDhugjW9CtsBGgXqGfix0g1tcooZWq', 'blah@ghfdmail.com', '3022331093', 'N', 'N', 0),
-    ('TomBob', 'Davis', 'https://i.imgur.com/XsVmYKK.png', '$2a$10$brAZfSmByFeZmPZ/MH5zne9YDhugjW9CtsBGgXqGfix0g1tcooZWq', 'blfdfahhh@gmail.com', '9422331093', 'N', 'N', 0),
-    ('Vic', 'Davis', 'https://i.imgur.com/XsVmYKK.png', '$2a$10$brAZfSmByFeZmPZ/MH5zne9YDhugjW9CtsBGgXqGfix0g1tcooZWq', 'blahhddh@gmail.com', '9422331043', 'N', 'N', 0),
-    ('Bob', 'Davis', 'https://i.imgur.com/XsVmYKK.png', '$2a$10$brAZfSmByFeZmPZ/MH5zne9YDhugjW9CtsBGgXqGfix0g1tcooZWq', 'blahhhd@gmafdil.com', '9422331090', 'N', 'N', 0);
+    ('Nick', 'Davis', 'https://i.imgur.com/ePbPHIY.png', '$2a$10$brAZfSmByFeZmPZ/MH5zne9YDhugjW9CtsBGgXqGfix0g1tcooZWq', 'blah@ghfdmail.com', '3022331093', 'N', 'N', 400),
+    ('TomBob', 'Davis', 'https://i.imgur.com/XsVmYKK.png', '$2a$10$brAZfSmByFeZmPZ/MH5zne9YDhugjW9CtsBGgXqGfix0g1tcooZWq', 'blfdfahhh@gmail.com', '9422331093', 'N', 'N', 900),
+    ('Vic', 'Davis', 'https://i.imgur.com/XsVmYKK.png', '$2a$10$brAZfSmByFeZmPZ/MH5zne9YDhugjW9CtsBGgXqGfix0g1tcooZWq', 'blahhddh@gmail.com', '9422331043', 'N', 'N', 100),
+    ('Bob', 'Davis', 'https://i.imgur.com/XsVmYKK.png', '$2a$10$brAZfSmByFeZmPZ/MH5zne9YDhugjW9CtsBGgXqGfix0g1tcooZWq', 'blahhhd@gmafdil.com', '9422331090', 'N', 'N', 50);
 Drop TABLE Jobs
 CASCADE;
 CREATE TABLE Jobs
