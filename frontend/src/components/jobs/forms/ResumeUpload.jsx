@@ -28,7 +28,7 @@ class ResumeUpload extends Component {
 
   render() {
     return (
-      <div className="resume-form">
+      <div className="resume-form-container">
         <form id="2">
           <h1>Resume:</h1>
           <input
