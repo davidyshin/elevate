@@ -1,34 +1,33 @@
 import React, { Component } from 'react';
-import axios from 'axios'
-
+import axios from 'axios';
 
 class CoverLetterUpload extends Component {
   constructor() {
     super();
     this.state = {
-      file: null,
-    }
+      file: null
+    };
   }
 
-  handleFiles = (event) => {
+  handleFiles = event => {
     const file = event.target.files[0];
     const data = new FormData();
     data.append('cover', file);
     data.append('id', this.props.job_id);
-  
-    axios.post('/users/uploadCover', data)
+
+    axios
+      .post('/users/uploadCover', data)
       .then(res => {
-        this.props.handleCoverInput(res.data.url)
+        this.props.handleCoverInput(res.data.url);
       })
       .catch(err => {
-        console.log(err)
-      })
-  }
-
+        console.log(err);
+      });
+  };
 
   render() {
     return (
-      <div className="cover-form">
+      <div  className="cover-form">
         <form id="2">
           <h1>Cover Letter:</h1>
           <input
@@ -36,7 +35,8 @@ class CoverLetterUpload extends Component {
             name="cover"
             id="input"
             onChange={this.handleFiles}
-          ></input><br />
+          />
+          <br />
         </form>
       </div>
     );

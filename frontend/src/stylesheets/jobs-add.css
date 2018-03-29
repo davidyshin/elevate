@@ -3,7 +3,6 @@
 /*------------------------------------------*/
 
 .add-job-form-container {
-  /* padding-top: 60px; */
   font-family: 'Montserrat', sans-serif;
   display: flex;
   align-items: center;
@@ -44,12 +43,11 @@
 /*
 // Each stage of the application has it's own form and box, separated by 50px
 */
-
+/* 
 .resume-form,
-.cover-form,
-.add-interview-form {
+.cover-form{
   padding-top: 50px;
-}
+} */
 /*
 // Input boxes in the forms, and the textarea === note section
 */
@@ -75,7 +73,7 @@ textarea {
 
 textarea {
   font-size: 16px;
-  height: 200px;
+  height: 100px;
   resize: none;
 }
 /*
@@ -221,6 +219,29 @@ button:hover {
 }
 .suggestion-container p {
   padding-left: 5px;
+}
+
+.stage {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: rgba(0,0,0,.1);
+  border: none;  
+  border-radius: 50%;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.stage-active {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: rgba(0,0,0,.4);
+  border: none;  
+  border-radius: 50%;
+  margin-bottom: 20px;
+  
+  display: inline-block;
 }
 
 /*

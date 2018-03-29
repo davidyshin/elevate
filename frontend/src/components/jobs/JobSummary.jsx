@@ -50,7 +50,7 @@ class JobSummary extends Component {
           }
         });
         this.setState({
-          plotData
+          plotData: plotData.reverse()
         });
       })
       .catch(err => console.log(err));
@@ -61,7 +61,7 @@ class JobSummary extends Component {
       <div className="job-summary-container">
         <h1>{this.props.activeUser.first_name}'s Weekly Activity</h1>
         <ResponsiveContainer height={225}>
-          <LineChart data={plotData.reverse()}>
+          <LineChart data={plotData}>
             <XAxis dataKey="date" />
             <YAxis dataKey="Applications Logged" />
             <Tooltip />
