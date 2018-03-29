@@ -53,11 +53,8 @@
   // Each stage of the application has it's own form and box, separated by 50px
   */
 
-.interview-form-container {
-  padding-top: 50px;
-}
 .add-interview-form {
-  padding-bottom:50px;
+  padding-top:50px;
 }
 
 .cover-url, .resume-url {
