@@ -197,22 +197,22 @@ class UpdateJobForm extends Component {
           <span
             id="1"
             onClick={this.changeStage}
-            class={applicationStage === 1 ? 'stage-active' : 'stage'}
+            className={applicationStage === 1 ? 'stage-active' : 'stage'}
           />
           <span
             id="2"
             onClick={this.changeStage}
-            class={applicationStage === 2 ? 'stage-active' : 'stage'}
+            className={applicationStage === 2 ? 'stage-active' : 'stage'}
           />
           <span
             id="3"
             onClick={this.changeStage}
-            class={applicationStage === 3 ? 'stage-active' : 'stage'}
+            className={applicationStage === 3 ? 'stage-active' : 'stage'}
           />
           <span
             id="4"
             onClick={this.changeStage}
-            class={applicationStage === 4 ? 'stage-active' : 'stage'}
+            className={applicationStage === 4 ? 'stage-active' : 'stage'}
           />
         </div>
         <div
@@ -237,7 +237,7 @@ class UpdateJobForm extends Component {
                 <img className="company-image" src={companyLogo} />
               ) : (
                 <span className="building-icon">
-                  <i class="fas fa-building fa-2x" />
+                  <i className="fas fa-building fa-2x" />
                 </span>
               )}
             </div>
@@ -316,13 +316,13 @@ class UpdateJobForm extends Component {
         {applicationStage === 4 ? (
               <div data-aos="fade-up" className="update-job-status">
                 <h1> Update Job Application Status </h1>
-                <div class="job-status-switch-field">
+                <div className="job-status-switch-field">
                   <input
                     onChange={this.handleStatusChange}
                     type="radio"
                     id="offered"
                     name="offered"
-                    class="status-switch-offered"
+                    className="status-switch-offered"
                     checked={this.state.job_status === 'offered'}
                   />
                   <label for="offered">Offered</label>
@@ -331,7 +331,7 @@ class UpdateJobForm extends Component {
                     type="radio"
                     id="awaiting"
                     name="awaiting"
-                    class="status-switch-awaiting"
+                    className="status-switch-awaiting"
                     checked={this.state.job_status === 'awaiting'}
                   />
                   <label for="awaiting">Awaiting</label>
@@ -340,7 +340,7 @@ class UpdateJobForm extends Component {
                     type="radio"
                     id="rejected"
                     name="rejected"
-                    class="status-switch-rejected"
+                    className="status-switch-rejected"
                     checked={this.state.job_status === 'rejected'}
                   />
                   <label for="rejected">Rejected</label>
