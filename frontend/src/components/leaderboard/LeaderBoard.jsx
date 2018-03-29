@@ -3,42 +3,6 @@ import axios from 'axios';
 import leaderboard from '/Users/c4q/Documents/capstone/elevate/frontend/src/components/user/leaderboard/leaderboard.css'
 import ReactTable from 'react-table'
 import 'react-table/react-table.css'
-const data = [{
-  name: 'LBJ',
-  age: 30000,
-  friend: {
-    name: 'Jason Maurer',
-    age: 3000,
-  }
-}, {
-  name: 'Wade',
-  age: 5000,
-  friend: {
-    name: 'Jason Maurer',
-    age: 80,
-  }
-}, {
-  name: 'Kobe',
-  age: 60000,
-  friend: {
-    name: 'Jason Maurer',
-    age: 29,
-  }
-}, {
-  name: 'Magic',
-  age: 800000,
-  friend: {
-    name: 'Jason Maurer',
-    age: 29,
-  }
-}, {
-  name: 'Shaq',
-  age: 120000,
-  friend: {
-    name: 'Jason Maurer',
-    age: 23,
-  }
-}]
 
 const columns = [{
   Header: 'Rank',
@@ -49,7 +13,7 @@ const columns = [{
   // show:false
 
 }, {
-  id: 'friendName',
+  id: 'name',
   Header: 'Name',
   accessor: d => d.first_name + ' ' + d.last_name, // String-based value accessors!
   minWidth: 50,// Custom cell components!
@@ -88,16 +52,15 @@ class LeaderBoard extends Component {
   render() {
     const { top5 } = this.state;
     return (
-      <div className='main'>
+      <div className='main' data-aos='fade-up'>
       <div className='LeaderboardDiv'>
         <br />
         <div className='Leaderboard'>
-          <h1>Leaderboard!</h1>
+          <h1>Leaderboard</h1>
         </div>
         <br/>
-        <ReactTable
+        <ReactTable 
           getTrProps={(state, rowInfo, column, index) => {
-             { console.log(rowInfo.row._index)}
              const rowIndex = rowInfo.row._index
             return {
               style: {
@@ -109,14 +72,14 @@ class LeaderBoard extends Component {
               }
             }
           }}
+          className='stripp'
           data={top5}
           columns={columns}
           showPagination={false}
           defaultPageSize={5}
           resizable={false}
         />
-        <br />
-        <br />
+        <br/>
         <br />
       </div>
       </div>
