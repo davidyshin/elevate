@@ -52,32 +52,33 @@ GET Requests
 /* 12. getNotificationEmail // GET Route = /users/getNotificationEmail */
 /* 13. getNotificationSms // GET Route = /users/getNotificationSms */
 /* 14. getUserInterviews // GET Route = /users/GetUserInterviews */
+/* 15. getAllAchievementBadges // Get Route = /users/getAllAchievementBadges */
 
 // ---------------------------------------
 //   POST Requests
 // ---------------------------------------
 
-/* 15. createJobApp // POST Route /users/createJobApp */
-/* 16. createInterview // POST Route /users/createInterview */
-/* 17. registerUser // POST Route = /users/newuser */
-/* 18. Login User // POST Route = /users/login */
-/* 19. uploadCover AWS // POST Route = /users/uploadCover */
-/* 20. uploadResume AWS // POST Route = /users/uploadResume */
-/* 21. addAchievement // POST Route = /users/addAchievement */
+/* 16. createJobApp // POST Route /users/createJobApp */
+/* 17. createInterview // POST Route /users/createInterview */
+/* 18. registerUser // POST Route = /users/newuser */
+/* 19. Login User // POST Route = /users/login */
+/* 20. uploadCover AWS // POST Route = /users/uploadCover */
+/* 21. uploadResume AWS // POST Route = /users/uploadResume */
+/* 22. addAchievement // POST Route = /users/addAchievement */
 
 /*---------------------------------------
  PUT Requests
 ---------------------------------------
 
-/* 22. updateResume URL on POSTGRES // PUT Route = /users/updateResume */
-/* 23. updateCover URL on POSTGRES // PUT Route = /users/updatecover */
-/* 24. updateInterview // PUT Route = /users/updateInterview */
-/* 25. updateUserInfo // PUT Route = /users/updateUserInfo */
-/* 26. updateJobProgress // PUT Route = /users/updateJobProgress */
-/* 27. updateJobInfo // PUT Route = /users/updateJobInfo */
-/* 28. updateExperience // PUT Route = /users/updateExperience */
-/* 29. updateJobStatus // PUT Route = /users/updateJobStatus */
-/* 30. updateNotification // PUT Route = /users/updateJobStatus */
+/* 23. updateResume URL on POSTGRES // PUT Route = /users/updateResume */
+/* 24. updateCover URL on POSTGRES // PUT Route = /users/updatecover */
+/* 25. updateInterview // PUT Route = /users/updateInterview */
+/* 26. updateUserInfo // PUT Route = /users/updateUserInfo */
+/* 27. updateJobProgress // PUT Route = /users/updateJobProgress */
+/* 28. updateJobInfo // PUT Route = /users/updateJobInfo */
+/* 29. updateExperience // PUT Route = /users/updateExperience */
+/* 30. updateJobStatus // PUT Route = /users/updateJobStatus */
+/* 31. updateNotification // PUT Route = /users/updateJobStatus */
 
 /*--------------------------------------- 
 
@@ -293,6 +294,19 @@ const getUserInterviews = (req, res, next) => {
       res.status(500).send(`error getting user interviews : ${err}`);
     });
 };
+
+
+const getAllAchievementBadges = (req, res, next) => {
+  db.any('SELECT * from achievement_badges').then(data => {
+    res.status(200).json({
+      status:'success',
+      all_achievements: data,
+      message: 'Retrieved All achievements in the system'
+    });
+  }).catch(err => {
+    res.status(500).send(`error getting user interviews: ${err}`)
+  })
+}
 
 /* ------------------------ POST REQUESTS QUERIES ------------------------ */
 
@@ -738,6 +752,7 @@ module.exports = {
   getJob,
   logoutUser,
   getUserInterviews,
+  getAllAchievementBadges,
   createJobApp,
   createInterview,
   registerUser,

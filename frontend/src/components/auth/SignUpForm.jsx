@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import '../../stylesheets/auth-form.css';
+import achieves from '../achievements/checkForAchievements';
 
 class SignUpForm extends Component {
   constructor() {
@@ -31,7 +32,14 @@ class SignUpForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const { username, firstName, lastName, phoneNumber, password, retypePassword } = this.state;
+    const {
+      username,
+      firstName,
+      lastName,
+      phoneNumber,
+      password,
+      retypePassword
+    } = this.state;
 
     if (password.length < 6) {
       this.setState({
@@ -60,6 +68,7 @@ class SignUpForm extends Component {
               password: password
             })
             .then(res => {
+              achieves.addAchievement(1)
               this.props.setActiveUser(res.data);
             })
             .catch(err => {
@@ -81,12 +90,22 @@ class SignUpForm extends Component {
   };
 
   chooseRandomImage = () => {
-    let randomIndex = Math.floor(Math.random() * this.state.profileImages.length);
+    let randomIndex = Math.floor(
+      Math.random() * this.state.profileImages.length
+    );
     return this.state.profileImages[randomIndex];
-  }
+  };
 
   render() {
-    const { username, firstName, lastName, phoneNumber, password, retypePassword, message } = this.state;
+    const {
+      username,
+      firstName,
+      lastName,
+      phoneNumber,
+      password,
+      retypePassword,
+      message
+    } = this.state;
     const errorMessage = message ? <p>{message}</p> : null;
 
     return (

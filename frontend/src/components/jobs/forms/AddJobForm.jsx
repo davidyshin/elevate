@@ -31,7 +31,8 @@ class AddJobForm extends Component {
       cover_url: '',
       experience: 0,
       saved: false,
-      interviews: []
+      interviews: [],
+      interviewSaved: ''
     };
   }
 
@@ -43,7 +44,6 @@ class AddJobForm extends Component {
 
   handleFirstSubmit = e => {
     e.preventDefault();
-
     let date = new Date(); // Today
     let timeZone = new Date(date.getTime() - date.getTimezoneOffset() * 60000); // Today minus time zone
     let dateLogged = timeZone.toISOString().substring(0, 10);
@@ -67,7 +67,8 @@ class AddJobForm extends Component {
         this.setState({
           job_id: data.data.returned.job_id,
           saved: true,
-          applicationStage: 2
+          applicationStage: 2,
+          interviewSaved: true,
         });
       })
       .catch(err => {
@@ -81,8 +82,12 @@ class AddJobForm extends Component {
     e.preventDefault();
     let { interviews } = this.state;
     interviews.push('interview');
-    this.setState({ interviews });
+    this.setState({ interviews, interviewSaved: false });
   };
+
+  saveInterview = () => {
+    this.setState({ interviewSaved: true})
+  }
 
   updateJobProgress = (job_id, progress_in_search) => {
     axios
@@ -219,6 +224,7 @@ class AddJobForm extends Component {
       cover_url,
       job_id,
       saved,
+      interviewSaved,
       applicationStage,
       interviews
     } = this.state;
@@ -352,6 +358,7 @@ class AddJobForm extends Component {
               <AddInterview
                 job_id={job_id}
                 updateExperience={this.props.updateExperience}
+                saveInterview = {this.saveInterview}
               />
             </div>
           );
@@ -359,6 +366,7 @@ class AddJobForm extends Component {
         {this.state.saved ? (
           <button
             className="add-interview-button"
+            disabled={!interviewSaved}
             onClick={this.addMoreInterview}
           >
             {' '}

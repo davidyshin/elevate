@@ -26,7 +26,8 @@ class UserOverview extends Component {
     this.state = {
       modalOpen: false,
       expanded: false,
-      achievements: []
+      achievements: [],
+      allAchievements: []
     }
   }
   componentDidMount() {
@@ -34,7 +35,6 @@ class UserOverview extends Component {
         .get('/users/getUserAchieves')
         .then(data => {
           let achievements = data.data.achieves;
-          console.log(achievements)
           this.setState({
             achievements: achievements
           });
@@ -42,6 +42,13 @@ class UserOverview extends Component {
         .catch(err => {
           console.log(err);
         })
+      axios.get('/users/getAllAchievementBadges')
+      .then(data=> {
+        let allAchievements = data.data.all_achievements
+        this.setState({
+          allAchievements
+        })
+      })
   }
 
   toggleModal = () => {
@@ -61,16 +68,14 @@ class UserOverview extends Component {
 
   renderUserBadges = () => {
     const {achievements, expanded} = this.state
-
-    const recentAchieves = achievements.sort((a,b) => {a.badge_id < b.badge_id}).slice(-3)
+    const recentAchieves = achievements.sort((a,b) => a.badge_id > b.badge_id).slice(-3).reverse()
     return <UserBadges activeUser={this.props.activeUser} recentAchieves={recentAchieves} toggleExpand={this.toggleExpand} expanded={expanded}/>;
   }
 
   renderMoreBadges = () => {
-    const {achievements} = this.state
-
+    const {allAchievements, achievements} = this.state
     const userAchieves = achievements.sort((a,b) => {a.badge_id<b.badge_id}).slice(0, achievements.length-3)
-    return <MoreBadges activeUser={this.props.activeUser} achievements={achievements} />;
+    return <MoreBadges activeUser={this.props.activeUser} allAchievements={allAchievements} achievements={achievements} />;
   }
 
   renderWeeklyActivity = () => {
@@ -87,7 +92,7 @@ class UserOverview extends Component {
       <div className="user-overview-container">
         <this.renderUserProgress />
         <this.renderUserBadges />
-        {expanded ? <this.renderMoreBadges/> : null}
+        {expanded ? <this.renderMoreBadges /> : null}
         <this.renderUserStats />        
         <this.renderWeeklyActivity />
         <div className="user-logout-container">

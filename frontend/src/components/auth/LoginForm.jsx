@@ -21,24 +21,7 @@ class LoginForm extends Component {
     if (this.props.demo) {
       let username = 'demo@elevate.app';
       let password = '123456';
-      let i = 0;
-      let j = 0;
-      let demoUser = '';
-      let demoPassword = '';
-
-      setInterval(() => {
-        if (i < username.length) {
-          demoUser += username[i];
-          this.setState({ username: demoUser });
-          i++;
-        } else if (j < password.length) {
-          demoPassword += password[j];
-          this.setState({ password: demoPassword });
-          j++;
-        } else {
-          return
-        }
-      }, 100);
+      this.setState({ username, password });
     }
   }
 
