@@ -111,18 +111,18 @@ CREATE TABLE Achievement_Badges
 INSERT INTO Achievement_Badges
     (badge_url, badge_name)
 VALUES
-    ('https://i.imgur.com/3MJdZXz.png', 'red'),
-    ('https://i.imgur.com/QXIReL6.png', 'red orange'),
-    ('https://i.imgur.com/HWzdlOf.png', 'yellow orange'),
-    ('https://i.imgur.com/E2iTXcp.png', 'yellower orange'),
-    ('https://i.imgur.com/TTykkhy.png', 'yellow'),
-    ('https://i.imgur.com/aVI1XKK.png', 'neon yellow'),
-    ('https://i.imgur.com/OFAqNoe.png', 'light green'),
-    ('https://i.imgur.com/XUHYM7u.png', 'less light green'),
-    ('https://i.imgur.com/ubq3Wk5.png', 'green'),
-    ('https://i.imgur.com/slDdOXN.png', 'faded aqua green'),
-    ('https://i.imgur.com/DDFgiJL.png', 'teal'),
-    ('https://i.imgur.com/NjkZmf2.png', 'baby blue'),
+    ('https://i.imgur.com/3MJdZXz.png', 'Account Created'),
+    ('https://i.imgur.com/QXIReL6.png', '1st Job App!'),
+    ('https://i.imgur.com/HWzdlOf.png', '25 Job Apps'),
+    ('https://i.imgur.com/E2iTXcp.png', '50 Job Apps'),
+    ('https://i.imgur.com/TTykkhy.png', '100 Job Apps'),
+    ('https://i.imgur.com/aVI1XKK.png', '200 Job Apps'),
+    ('https://i.imgur.com/OFAqNoe.png', '300 Job Apps'),
+    ('https://i.imgur.com/XUHYM7u.png', '400 Job Apps'),
+    ('https://i.imgur.com/ubq3Wk5.png', '500 Job Apps'),
+    ('https://i.imgur.com/slDdOXN.png', '1st Interview Saved'),
+    ('https://i.imgur.com/DDFgiJL.png', '5 Interviews Saved'),
+    ('https://i.imgur.com/NjkZmf2.png', '10 Interviews Saved'),
     ('https://i.imgur.com/CxC8P7q.png', 'bright baby blue'),
     ('https://i.imgur.com/bxNfRwQ.png', 'blue'),
     ('https://i.imgur.com/NPzT2GH.png', 'darker blue'),
@@ -151,11 +151,12 @@ INSERT INTO Achievement_Badges_Earned
     (user_id, badge_id)
 VALUES
     (1, 1),
-    (1, 1),
-    (1, 1),
-    (2, 3),
-    (2, 2),
-    (2, 1);
+    (1, 2),
+    (1, 3),
+    (1, 4),
+    (1, 5),
+    (1, 6),
+    (1, 7);
 
 DROP TABLE Forum_Posts
 CASCADE;

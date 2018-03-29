@@ -140,5 +140,6 @@ const checkInterviewNumber = () => {
 
 export default {
   checkJobNumber,
-  checkInterviewNumber
+  checkInterviewNumber,
+  addAchievement
 };
