@@ -271,13 +271,9 @@ class UpdateJobForm extends Component {
             />
           </form>
         </div>
-        <div
-          hidden={applicationStage === 2 ? false : true}
-          data-aos="fade-up"
-          className="resume-input-container"
-        >
-          {resume_url ? (
-            <div className="resume-url-container">
+        {applicationStage === 2 ? (
+          resume_url ? (
+            <div data-aos="fade-up" className="resume-url-container">
               <h1> Resume: </h1>
               <a
                 href={`https://s3.amazonaws.com/elevateresumes/${resume_url}`}
@@ -287,21 +283,15 @@ class UpdateJobForm extends Component {
               </a>
             </div>
           ) : (
-            <div data-aos="fade-up">
-              <ResumeUpload
-                handleResumeInput={this.handleResumeInput}
-                job_id={job_id}
-              />
-            </div>
-          )}
-        </div>
-        <div
-          data-aos="fade-up"
-          hidden={applicationStage === 3 ? false : true}
-          className="cover-input-container"
-        >
-          {cover_url ? (
-            <div className="cover-url-container">
+            <ResumeUpload
+              handleResumeInput={this.handleResumeInput}
+              job_id={job_id}
+            />
+          )
+        ) : null}
+        {applicationStage === 3 ? (
+          cover_url ? (
+            <div data-aos="fade-up"className="cover-url-container">
               <h1>Cover Letter: </h1>
               <a
                 href={`https://s3.amazonaws.com/elevatecovers/${cover_url}`}
@@ -311,24 +301,20 @@ class UpdateJobForm extends Component {
               </a>
             </div>
           ) : (
-            <div data-aos="fade-up">
-              <CoverLetterUpload
-                handleCoverInput={this.handleCoverInput}
-                job_id={job_id}
-              />
-            </div>
-          )}
-        </div>
+            <CoverLetterUpload
+              handleCoverInput={this.handleCoverInput}
+              job_id={job_id}
+            />
+          )
+        ) : null}
         <button
           className="add-interview-button"
           onClick={this.addMoreInterview}
         >
           Add Interview
         </button>
-        <div>
-          {applicationStage === 4 ? (
-            <div aos-data="fade-up" className="update-job-status-container">
-              <div className="update-job-status">
+        {applicationStage === 4 ? (
+              <div data-aos="fade-up" className="update-job-status">
                 <h1> Update Job Application Status </h1>
                 <div class="job-status-switch-field">
                   <input
@@ -359,7 +345,6 @@ class UpdateJobForm extends Component {
                   />
                   <label for="rejected">Rejected</label>
                 </div>
-              </div>
             </div>
           ) : null}
           {interviews.map(interview => {
@@ -372,8 +357,6 @@ class UpdateJobForm extends Component {
               </div>
             );
           })}
-        </div>
-
         {addedInterviews.map(interview => {
           return (
             <div className="add-interview-form-container">
