@@ -40,9 +40,9 @@ app.get('/', index);
 
 app.use('/users', users);
 
-// app.get('*', (req, res) => {
-//   res.redirect('/')
-// })
+app.get('*', (req, res) => {
+  res.redirect(`/${req.params}`)
+});
 
 app.use(fileUpload());
 
