@@ -42,34 +42,36 @@ GET Requests
 /* 12. getNotificationEmail // GET Route = /users/getNotificationEmail */
 /* 13. getNotificationSms // GET Route = /users/getNotificationSms */
 /* 14. getUserInterviews // GET Route = /users/GetUserInterviews */
+/* 15. getAllAchievementBadges // Get Route = /users/getAllAchievementBadges */
 
 // ---------------------------------------
 //   POST Requests
 // ---------------------------------------
 
-/* 15. createJobApp // POST Route /users/createJobApp */
-/* 16. createInterview // POST Route /users/createInterview */
-/* 17. registerUser // POST Route = /users/newuser */
-/* 18. Login User // POST Route = /users/login */
-/* 19. uploadCover AWS // POST Route = /users/uploadCover */
-/* 20. uploadResume AWS // POST Route = /users/uploadResume */
-/* 21. addAchievement // POST Route = /users/addAchievement */
+/* 16. createJobApp // POST Route /users/createJobApp */
+/* 17. createInterview // POST Route /users/createInterview */
+/* 18. registerUser // POST Route = /users/newuser */
+/* 19. Login User // POST Route = /users/login */
+/* 20. uploadCover AWS // POST Route = /users/uploadCover */
+/* 21. uploadResume AWS // POST Route = /users/uploadResume */
+/* 22. addAchievement // POST Route = /users/addAchievement */
 
 /*---------------------------------------
  PUT Requests
 ---------------------------------------
 
-/* 22. updateResume URL on POSTGRES // PUT Route = /users/updateResume */
-/* 23. updateCover URL on POSTGRES // PUT Route = /users/updatecover */
-/* 24. updateInterview // PUT Route = /users/updateInterview */
-/* 25. updateUserInfo // PUT Route = /users/updateUserInfo */
-/* 26. updateJobProgress // PUT Route = /users/updateJobProgress */
-/* 27. updateJobInfo // PUT Route = /users/updateJobInfo */
-/* 28. updateExperience // PUT Route = /users/updateExperience */
-/* 29. updateJobStatus // PUT Route = /users/updateJobStatus */
-/* 30. updateNotification // PUT Route = /users/updateJobStatus */
+/* 23. updateResume URL on POSTGRES // PUT Route = /users/updateResume */
+/* 24. updateCover URL on POSTGRES // PUT Route = /users/updatecover */
+/* 25. updateInterview // PUT Route = /users/updateInterview */
+/* 26. updateUserInfo // PUT Route = /users/updateUserInfo */
+/* 27. updateJobProgress // PUT Route = /users/updateJobProgress */
+/* 28. updateJobInfo // PUT Route = /users/updateJobInfo */
+/* 29. updateExperience // PUT Route = /users/updateExperience */
+/* 30. updateJobStatus // PUT Route = /users/updateJobStatus */
+/* 31. updateNotification // PUT Route = /users/updateJobStatus */
 
 /*--------------------------------------- 
+
 
 
 /* ----------------------- GET Requests. ----------------------- */
@@ -116,59 +118,62 @@ router.get('/getNotificationSms', db.getNotificationSms);
 /* 14. getUserInterviews // GET Route = /users/getUserInterviews */
 router.get('/getUserInterviews', loginRequired, db.getUserInterviews);
 
+/* 15. getAllAchievementBadges // GET Route = /users/getAllAchievementBadges */
+router.get('/getAllAchievementBadges', loginRequired, db.getAllAchievementBadges)
+
 /* ----------------------- POST Requests. ----------------------- */
 
-/* 15. createJobApp // POST Route /users/createJobApp */
+/* 16. createJobApp // POST Route /users/createJobApp */
 router.post('/createJobApp', loginRequired, db.createJobApp);
 
-/* 16. createInterview // POST Route /users/createInterview */
+/* 17. createInterview // POST Route /users/createInterview */
 router.post('/createInterview', loginRequired, db.createInterview);
 
-/* 17. registerUser // POST Route = /users/newuser */
+/* 18. registerUser // POST Route = /users/newuser */
 router.post('/newuser', db.registerUser);
 
-/* 18. Login User // POST Route = /users/login */
+/* 19. Login User // POST Route = /users/login */
 /* This route goes through auth instead of our written queries */
 router.post('/login', passport.authenticate('local'), (req, res) => {
   res.json(req.user);
 });
 
-/* 19. uploadCover AWS // POST Route = /users/uploadCover */
+/* 20. uploadCover AWS // POST Route = /users/uploadCover */
 router.post('/uploadCover', upload.single('cover'), db.uploadCover);
 
-/* 20. uploadResume AWS // POST Route = /users/uploadResume */
+/* 21. uploadResume AWS // POST Route = /users/uploadResume */
 router.post('/uploadResume', upload.single('resume'), db.uploadResume);
 
-/* 21. addAchievement // POST Route = /users/addAchievement */
+/* 22. addAchievement // POST Route = /users/addAchievement */
 router.post('/addAchievement', loginRequired, db.addAchievement);
 
 /* ----------------------- PUT Requests. ----------------------- */
 
-/* 22. updateResume URL on POSTGRES // PUT Route = /users/updateResume */
+/* 23. updateResume URL on POSTGRES // PUT Route = /users/updateResume */
 router.put('/updateResume', loginRequired, db.updateResume);
 
-/* 23. updateCover URL on POSTGRES // PUT Route = /users/updatecover */
+/* 24. updateCover URL on POSTGRES // PUT Route = /users/updatecover */
 router.put('/updateCover', loginRequired, db.updateCover);
 
-/* 24. updateInterview // PUT Route = /users/updateInterview */
+/* 25. updateInterview // PUT Route = /users/updateInterview */
 router.put('/updateInterview', loginRequired, db.updateInterview);
 
-/* 25. updateUserInfo // PUT Route = /users/updateUserInfo */
+/* 26. updateUserInfo // PUT Route = /users/updateUserInfo */
 router.put('/updateUserInfo', loginRequired, db.updateUserInfo);
 
-/* 26. updateJobProgress // PUT Route = /users/updateJobProgress */
+/* 27. updateJobProgress // PUT Route = /users/updateJobProgress */
 router.put('/updateJobProgress', loginRequired, db.updateJobProgress);
 
-/* 27. updateJobInfo // PUT Route = /users/updateJobInfo */
+/* 28. updateJobInfo // PUT Route = /users/updateJobInfo */
 router.put('/updateJobInfo', loginRequired, db.updateJobInfo);
 
-/* 28. updateExperience // PUT Route = /users/updateExperience */
+/* 29. updateExperience // PUT Route = /users/updateExperience */
 router.put('/updateExperience', loginRequired, db.updateExperience);
 
-/* 29. updateJobStatus // PUT Route = /users/updateJobStatus */
+/* 30. updateJobStatus // PUT Route = /users/updateJobStatus */
 router.put('/updateJobStatus', loginRequired, db.updateJobStatus);
 
-/* 30. updateNotification // PUT Route = /users/updateNotification */
+/* 31. updateNotification // PUT Route = /users/updateNotification */
 router.put('/updateNotification', loginRequired, db.updateNotification);
 
 module.exports = router;

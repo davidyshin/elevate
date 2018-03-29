@@ -41,6 +41,7 @@ class AddInterview extends Component {
         this.setState({
           interviewSaved: true
         });
+        this.props.saveInterview()
         this.props.updateExperience(50);
         achieves.checkInterviewNumber();
       })
