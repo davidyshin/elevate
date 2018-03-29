@@ -353,13 +353,35 @@ p {
   width: 80%;
 }
 
+.more-user-badges-hidden{
+  width: 100%;
+  height: 0;
+  visibility: hidden;
+  opacity: 0;
+  overflow: hidden;
+  -moz-transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+/*
+// Job information expanded 
+*/
+
 .more-user-badges-container {
   display: flex;
   flex-wrap: wrap;
+  visibility: visible;
+  opacity: 1;
   justify-content: center;
   width: 100%;
   margin: 52px auto 0 auto;
   background-color: #fefefe;
+  -moz-transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .achievement-badge-container, .more-achievement-badge-container {
