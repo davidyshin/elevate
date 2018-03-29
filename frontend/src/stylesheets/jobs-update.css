@@ -2,8 +2,7 @@
 /*              Edit Job Form Page          */
 /*------------------------------------------*/
 
-.update-job-form-container,
-.update-job-status-container  {
+.update-job-form-container {
   /* padding-top: 60px; */
   font-family: 'Montserrat', sans-serif;
   display: flex;
@@ -54,22 +53,10 @@
   // Each stage of the application has it's own form and box, separated by 50px
   */
 
-.resume-form,
-.cover-letter-form,
-.add-interview-form,
-.resume-input-container,
-.cover-input-container,
-.interview-form-container,
-.update-job-status-container {
-  padding-top: 50px;
-}
-.cover-input-container {
-  padding-bottom: 50px;
+.add-interview-form, .update-interview-form {
+  padding-top:50px;
 }
 
-.cover-url, .resume-url {
-  font-size: 15px;
-}
 /*
   // Input boxes in the forms, and the textarea === note section
   */
