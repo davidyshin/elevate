@@ -372,10 +372,10 @@ class AddJobForm extends Component {
               {companyLogo ? (
                 <img className="company-image" src={companyLogo} />
               ) : (
-                <span className="magnifying-glass">
-                  <i className="fas fa-search fa-2x" />
-                </span>
-              )}
+                  <span className="magnifying-glass">
+                    <i className="fas fa-search fa-2x" />
+                  </span>
+                )}
             </div>
             <div className="add-job-form-input-title">
               {' '}
@@ -486,11 +486,7 @@ class AddJobForm extends Component {
             </div>
             {job_status === 'offered' ? (
               <div className="salary-input-container">
-                {salarySaved ? (
-                  <h3> Offered Salary </h3>
-                ) : (
-                  <h3>Saved Salary</h3>
-                )}
+                {salarySaved ? <h3> Offered Salary </h3> : <h3>Saved Salary</h3>}
                 <input
                   className="salary-input"
                   name="salary"
@@ -537,14 +533,12 @@ class AddJobForm extends Component {
             </button>
             <Link to="/">
               {' '}
-              <button className="job-finished-button">
-                Come back later
-              </button>{' '}
+              <button className="job-finished-button">Come back later</button>{' '}
             </Link>
           </div>
         ) : (
-          ''
-        )}
+            ''
+          )}
       </div>
     );
   }
