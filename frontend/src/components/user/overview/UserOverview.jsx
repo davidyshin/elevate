@@ -68,7 +68,7 @@ class UserOverview extends Component {
 
   renderUserBadges = () => {
     const { achievements, expanded } = this.state
-    const recentAchieves = achievements.sort((a, b) => a.badge_id > b.badge_id).slice(-3).reverse()
+    const recentAchieves = achievements.sort((a, b) => a.badge_id > b.badge_id).slice(-5).reverse()
     return <UserBadges activeUser={this.props.activeUser} recentAchieves={recentAchieves} toggleExpand={this.toggleExpand} expanded={expanded} />;
   }
 

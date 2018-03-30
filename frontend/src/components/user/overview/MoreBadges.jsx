@@ -20,8 +20,8 @@ class MoreBadges extends Component {
   render() {
     const { hovered } = this.state;
     const { achievements, allAchievements } = this.props;
-    const topThreeBadges = achievements.slice(-3);
-    const userBadges = achievements.slice(0, achievements.length - 3);
+    const topThreeBadges = achievements.slice(-5);
+    const userBadges = achievements.slice(0, achievements.length - 5);
     const remainingBadges = allAchievements.filter(
       achieve =>
         topThreeBadges.findIndex(

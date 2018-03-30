@@ -407,11 +407,14 @@ p {
 .more-achievement-badge-container {
   position: relative;
   display: flex;
-  font-size: 12px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
+  .achievement-badge-container {
+    width: 20%;
+  }
 
 .more-achievement-badge-container {
   opacity: 0;
@@ -430,8 +433,9 @@ p {
   bottom: 0;
   z-index: 10
 }
+
 /*
-        // Achievement badge image 
+// Achievement badge image 
 */
 .user-badge-image-container img, .more-achievement-badge-container img {
   width: auto;
@@ -441,16 +445,16 @@ p {
 
 
 /*
-    // "More Badges" 
+// "More Badges" 
 */
-.user-badges-container div:last-child {
+.more-badges-link-container {
   display: flex;
   width: 20%;
   justify-content: center;
   align-items: center;
 }
 
-.user-badges-container h3 {
+.more-badges-link-container h3 {
   font-size: 1.6rem;
   font-weight: 400;
   cursor: pointer;
