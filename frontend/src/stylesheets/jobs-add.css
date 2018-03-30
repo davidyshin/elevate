@@ -71,9 +71,8 @@ textarea {
   width: 200px;
 }
 
-
 .salary-input-save {
-  background: #2BBA9C;
+  background: #2bba9c;
   border-radius: 60px;
   width: 100px;
   font-weight: 300;
@@ -85,9 +84,8 @@ textarea {
   transition: 0.2s all;
 }
 .salary-input-save:disabled {
-  background: rgba(0,0,0,.3)
+  background: rgba(0, 0, 0, 0.3);
 }
-
 
 textarea {
   font-size: 16px;
@@ -124,11 +122,7 @@ button:focus {
 */
 
 .add-job-form-container form input[type='submit'] {
-  background: linear-gradient(
-    to right,
-    rgba(67, 42, 246, 1) 0%,
-    rgba(0, 149, 222, 1) 100%
-  );
+  background: rgba(0, 149, 222, 1);
   border-radius: 60px;
   width: 200px;
   font-weight: 300;
@@ -143,11 +137,7 @@ button:focus {
 }
 
 .interview-button {
-  background: linear-gradient(
-    to right,
-    rgba(67, 42, 246, 1) 0%,
-    rgba(0, 149, 222, 1) 100%
-  );
+  background: rgba(0, 149, 222, 1);
   border-radius: 60px;
   width: 200px;
   padding: 22px 18px 22px 18px;
@@ -243,8 +233,8 @@ button:hover {
   height: 15px;
   width: 15px;
   margin: 0 2px;
-  background-color: rgba(0,0,0,.1);
-  border: none;  
+  background-color: rgba(0, 0, 0, 0.1);
+  border: none;
   border-radius: 50%;
   margin-bottom: 20px;
   display: inline-block;
@@ -254,11 +244,11 @@ button:hover {
   height: 15px;
   width: 15px;
   margin: 0 2px;
-  background-color: rgba(0,0,0,.4);
-  border: none;  
+  background-color: rgba(0, 0, 0, 0.4);
+  border: none;
   border-radius: 50%;
   margin-bottom: 20px;
-  
+
   display: inline-block;
 }
 
@@ -267,15 +257,15 @@ button:hover {
   height: 40px;
   border: none;
   border-radius: 3px;
-  box-shadow: 1px 1px 2px rgba(0,0,0,.5);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
   cursor: pointer;
-  transition: background-color .3s ease;
+  transition: background-color 0.3s ease;
 }
 
 .input-file:hover {
   background-color: #1788d8;
 }
-.input-file [type = file] {
+.input-file [type='file'] {
   position: absolute;
   top: 0;
   left: 0;
@@ -286,18 +276,18 @@ button:hover {
 }
 .input-file label {
   font-family: 'arial';
-  color: #F1F1F1;
+  color: #f1f1f1;
   font-weight: bold;
   font-size: 17px;
   cursor: pointer;
 }
 
 .salary-input-container {
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
 }
 /*
 // When the screen size is smaller than 720px, form width becomes responsive 
@@ -306,8 +296,9 @@ font-size: 15px;
   .add-job-form-container {
     padding-top: 100px;
   }
-  .resume-input-form, .cover-input-form {
-    width: 80%
+  .resume-input-form,
+  .cover-input-form {
+    width: 80%;
   }
 
   .add-job-form-container form {
