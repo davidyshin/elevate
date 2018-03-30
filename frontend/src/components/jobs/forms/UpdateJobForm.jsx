@@ -7,6 +7,7 @@ import ResumeUpload from './ResumeUpload.jsx';
 import CoverLetterUpload from './CoverLetterUpload.jsx';
 import UpdateInterview from './UpdateInterview.jsx';
 import AddInterview from './AddInterview.jsx';
+import { Link } from 'react-router-dom';
 import '../../../stylesheets/jobs-update.css';
 
 class UpdateJobForm extends Component {
@@ -69,7 +70,7 @@ class UpdateJobForm extends Component {
           job_status: editingJob.job_status,
           experience: this.props.activeUser.experience,
           salary: editingJob.salary || '',
-          salarySaved: false,
+          salarySaved: false
         });
       })
       .catch(err => {
@@ -191,6 +192,23 @@ class UpdateJobForm extends Component {
     this.setState({ applicationStage: parseInt(e.target.id) });
   };
 
+  setApplicationStage = e => {
+    console.log('hello');
+    let { applicationStage } = this.state;
+    if (e.key === 37) {
+      if (applicationStage === 4) {
+        applicationStage = 1;
+      } else {
+        applicationStage += 1;
+      }
+    } else if (e.key === 39) {
+      if (applicationStage === 1) {
+      } else {
+        applicationStage -= 1;
+      }
+    }
+  };
+
   render() {
     const {
       company,
@@ -250,7 +268,7 @@ class UpdateJobForm extends Component {
                   className="update-job-applied-company"
                   type="text"
                   value={company}
-                  disable={true}
+                  disabled={true}
                   readOnly
                 />
               </div>
@@ -288,7 +306,7 @@ class UpdateJobForm extends Component {
             <input
               disabled={saved || !company || !position || !date_applied}
               type="submit"
-              value="Save"
+              value="Next"
             />
           </form>
         </div>
@@ -312,7 +330,7 @@ class UpdateJobForm extends Component {
         ) : null}
         {applicationStage === 3 ? (
           cover_url ? (
-            <div data-aos="fade-up"className="cover-url-container">
+            <div data-aos="fade-up" className="cover-url-container">
               <h1>Cover Letter: </h1>
               <a
                 href={`https://s3.amazonaws.com/elevatecovers/${cover_url}`}
@@ -328,12 +346,18 @@ class UpdateJobForm extends Component {
             />
           )
         ) : null}
+        <div className="job-progress-form-buttons">
         <button
           className="add-interview-button"
           onClick={this.addMoreInterview}
         >
           Add Interview
         </button>
+        <Link to="/">
+          {' '}
+          <button className="job-finished-button">Come back later</button>{' '}
+        </Link>
+        </div>
         {applicationStage === 4 ? (
           <div data-aos="fade-up" className="update-job-status">
             <h1> Update Job Application Status </h1>
@@ -368,7 +392,11 @@ class UpdateJobForm extends Component {
             </div>
             {job_status === 'offered' ? (
               <div className="salary-input-container">
-               {salarySaved ?  <h3>Saved Salary</h3> :<h3> Offered Salary </h3>}
+                {salarySaved ? (
+                  <h3>Saved Salary</h3>
+                ) : (
+                  <h3> Offered Salary </h3>
+                )}
                 <input
                   className="salary-input"
                   name="salary"
@@ -383,21 +411,23 @@ class UpdateJobForm extends Component {
                   onClick={this.handleSalarySave}
                   type="submit"
                   value="Save"
-                >Save</button>
+                >
+                  Apply
+                </button>
               </div>
             ) : null}
           </div>
         ) : null}
-          {interviews.map(interview => {
-            return (
-              <div className="interview-form-container">
-                <UpdateInterview
-                  interview={interview}
-                  addMoreInterview={this.addMoreInterview}
-                />
-              </div>
-            );
-          })}
+        {interviews.map(interview => {
+          return (
+            <div className="interview-form-container">
+              <UpdateInterview
+                interview={interview}
+                addMoreInterview={this.addMoreInterview}
+              />
+            </div>
+          );
+        })}
         {addedInterviews.map(interview => {
           return (
             <div className="add-interview-form-container">

@@ -52,6 +52,7 @@ class UpdateInterview extends Component {
       });
   };
 
+
   render() {
     const { date, contact, note, time } = this.state;
     return (
