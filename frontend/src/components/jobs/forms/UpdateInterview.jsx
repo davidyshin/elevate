@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import Modal from 'react-modal';
 import axios from 'axios';
+import PopupReminder from '../PopupReminder.jsx';
+
 
 class UpdateInterview extends Component {
   constructor() {
@@ -8,7 +11,9 @@ class UpdateInterview extends Component {
       date: '',
       contact: '',
       note: '',
-      time: ''
+      time: '',
+      interviewSaved: false,
+      modalOpen: true
     };
   }
 
@@ -24,6 +29,12 @@ class UpdateInterview extends Component {
     });
   }
 
+  toggleModal = () => {
+    this.setState({
+      modalOpen: !this.state.modalOpen
+    });
+  }
+
   handleInput = e => {
     this.setState({
       [e.target.name]: e.target.value
@@ -34,27 +45,61 @@ class UpdateInterview extends Component {
     e.preventDefault();
     const { date, contact, note, time } = this.state;
     let job_id = this.props.interview.job_id;
+
     axios
-      .put('/users/UpdateInterview', {
-        contact: contact,
-        note: note,
-        interview_date: date,
-        interview_time: time,
-        job_id: job_id
-      })
-      .then(() => {
-        this.setState({
-          interviewSaved: true
-        });
+      .get('/users/getUserInterviews')
+      .then(res => {
+        let interviews = res.data.interviews;
+
+        if (interviews.length > 0) {
+          axios
+            .put('/users/UpdateInterview', {
+              contact: contact,
+              note: note,
+              interview_date: date,
+              interview_time: time,
+              job_id: job_id
+            })
+            .then(() => {
+              this.setState({
+                interviewSaved: true
+              });
+            })
+            .catch(err => {
+              console.log(err);
+            });
+        } else {
+          axios
+            .put('/users/UpdateInterview', {
+              contact: contact,
+              note: note,
+              interview_date: date,
+              interview_time: time,
+              job_id: job_id
+            })
+            .then(() => {
+              this.setState({
+                interviewSaved: true,
+                modalOpen: true 
+              });
+            })
+            .catch(err => {
+              console.log(err);
+            });
+        }
       })
       .catch(err => {
-        console.log(err);
-      });
+        console.log(err)
+      })
+
   };
 
 
   render() {
-    const { date, contact, note, time } = this.state;
+    const { date, contact, note, time, interviewSaved } = this.state;
+    console.log(this.state);
+    const toggleReminderClass = interviewSaved ? 'popup-reminder-container' : null;
+
     return (
       <div className="update-interview-form">
         <form onSubmit={this.handleSubmit}>
@@ -88,6 +133,15 @@ class UpdateInterview extends Component {
             value="Save"
           />
         </form>
+
+        <Modal
+          isOpen={this.state.modalOpen}
+          onRequestClose={this.toggleModal}
+          contentLabel="popup-reminder-modal"
+          className="popup-reminder-modal">
+          <PopupReminder
+            toggleModal={this.toggleModal} />
+        </Modal>
       </div>
     );
   }
