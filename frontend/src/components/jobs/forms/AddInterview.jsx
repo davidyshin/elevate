@@ -44,48 +44,34 @@ class AddInterview extends Component {
       .then(res => {
         let interviews = res.data.interviews;
 
-        if (interviews.length > 1) {
-          axios
-            .post('/users/createInterview', {
-              contact: contact,
-              note: note,
-              interview_date: date,
-              interview_time: time,
-              job_id: job_id
-            })
-            .then(() => {
+        axios
+          .post('/users/createInterview', {
+            contact: contact,
+            note: note,
+            interview_date: date,
+            interview_time: time,
+            job_id: job_id
+          })
+          .then(() => {
+            if (interviews.length > 0) {
+              // modal doesn't open 
               this.setState({
                 interviewSaved: true
-              });
-              this.props.saveInterview()
-              this.props.updateExperience(50);
-              achieves.checkInterviewNumber();
-            })
-            .catch(err => {
-              console.log(err);
-            });
-        } else {
-          axios
-            .post('/users/createInterview', {
-              contact: contact,
-              note: note,
-              interview_date: date,
-              interview_time: time,
-              job_id: job_id
-            })
-            .then(() => {
+              })
+            } else {
+              // modal opens for popup message 
               this.setState({
                 interviewSaved: true,
-                modalOpen: true 
-              });
-              this.props.saveInterview()
-              this.props.updateExperience(50);
-              achieves.checkInterviewNumber();
-            })
-            .catch(err => {
-              console.log(err);
-            });
-        }
+                modalOpen: true
+              })
+            }
+            this.props.saveInterview()
+            this.props.updateExperience(50);
+            achieves.checkInterviewNumber();
+          })
+          .catch(err => {
+            console.log(err);
+          });
       })
       .catch(err => {
         console.log(err)
