@@ -13,7 +13,7 @@ class UpdateInterview extends Component {
       note: '',
       time: '',
       interviewSaved: false,
-      modalOpen: true
+      modalOpen: false
     };
   }
 
@@ -51,42 +51,31 @@ class UpdateInterview extends Component {
       .then(res => {
         let interviews = res.data.interviews;
 
-        if (interviews.length > 0) {
-          axios
-            .put('/users/UpdateInterview', {
-              contact: contact,
-              note: note,
-              interview_date: date,
-              interview_time: time,
-              job_id: job_id
-            })
-            .then(() => {
+        axios
+          .put('/users/UpdateInterview', {
+            contact: contact,
+            note: note,
+            interview_date: date,
+            interview_time: time,
+            job_id: job_id
+          })
+          .then(() => {
+            if (interviews.length > 0) {
+              // modal doesn't open 
               this.setState({
                 interviewSaved: true
               });
-            })
-            .catch(err => {
-              console.log(err);
-            });
-        } else {
-          axios
-            .put('/users/UpdateInterview', {
-              contact: contact,
-              note: note,
-              interview_date: date,
-              interview_time: time,
-              job_id: job_id
-            })
-            .then(() => {
+            } else {
+              // modal opens for popup message 
               this.setState({
                 interviewSaved: true,
-                modalOpen: true 
+                modalOpen: true
               });
-            })
-            .catch(err => {
-              console.log(err);
-            });
-        }
+            }
+          })
+          .catch(err => {
+            console.log(err);
+          });
       })
       .catch(err => {
         console.log(err)
@@ -97,8 +86,6 @@ class UpdateInterview extends Component {
 
   render() {
     const { date, contact, note, time, interviewSaved } = this.state;
-    console.log(this.state);
-    const toggleReminderClass = interviewSaved ? 'popup-reminder-container' : null;
 
     return (
       <div className="update-interview-form">
