@@ -30,23 +30,37 @@ class UserInfo extends Component {
       notification_interval: 7,
       editing: false,
       infoSaved: false,
-      notificationSaved: false
+      notificationSaved: false,
+      activeUser: ''
     };
   }
   componentDidMount() {
-    const { activeUser } = this.props;
-    this.setState({
-      first_name: activeUser.first_name,
-      last_name: activeUser.last_name,
-      phone_number: activeUser.phone_number,
-      newFirstName: '',
-      newLastName: '',
-      newPhoneNumber: '',
-      email: activeUser.username,
-      email_notification: activeUser.email_notification,
-      phone_notification: activeUser.phone_notification,
-      notification_interval: activeUser.notification_interval
-    });
+    axios
+      .get('/users/getUser')
+      .then(res => {
+        this.setState({
+          activeUser: res.data.user
+        });
+      })
+      .catch(err => {
+        console.log(`errrr`, err);
+      })
+      .then(() => {
+        const { activeUser } = this.state;
+
+        this.setState({
+          first_name: activeUser.first_name,
+          last_name: activeUser.last_name,
+          phone_number: activeUser.phone_number,
+          newFirstName: '',
+          newLastName: '',
+          newPhoneNumber: '',
+          email: activeUser.username,
+          email_notification: activeUser.email_notification,
+          phone_notification: activeUser.phone_notification,
+          notification_interval: activeUser.notification_interval
+        });
+      });
   }
 
   // Set notification settings by getting the data from backend
