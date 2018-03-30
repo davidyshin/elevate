@@ -211,6 +211,51 @@
             width: auto;
         }
 
+            .coin-animate-active-a,
+            .coin-animate-active-b,
+            .coin-animate-active-c,
+            .coin-animate-active-d,
+            .coin-animate-active-e,
+            .coin-animate-inactive-a,
+            .coin-animate-inactive-b,
+            .coin-animate-inactive-c,
+            .coin-animate-inactive-d,
+            .coin-animate-inactive-e {
+                position: absolute;
+                bottom: 18px;
+                height: 24px;
+                width: auto;
+            }
+
+            .coin-animate-active-a {
+                animation: coin-animation-up 0.5s linear;
+                opacity: 0.8;
+            }
+
+            .coin-animate-active-b {
+                animation: coin-animation-left 0.5s linear;
+                animation-delay: 0.2s;
+                opacity: 0.7;
+            }
+
+            .coin-animate-active-c {
+                animation: coin-animation-right 0.5s linear;
+                animation-delay: 0.3s;
+                opacity: 0.65;
+            }
+
+            .coin-animate-active-d {
+                animation: coin-animation-up 0.5s linear;
+                animation-delay: 0.6s;
+                opacity: 0.6;
+            }
+
+            .coin-animate-active-e {
+                animation: coin-animation-up 0.5s linear;
+                animation-delay: 0.7s;
+                opacity: 0.55;
+            }
+
         /*
         // Experience points
         */
@@ -278,15 +323,4 @@
         z-index: 11;
     }
 
-    /* .home-nav-bar-mobile-dropdown {
-        display: flex;
-        flex-direction: column;
-    } */
-
 }
-
-/* @media screen and (max-width: 510px) {
-    .home-nav-left img {
-        display: none;
-    }
-} */
