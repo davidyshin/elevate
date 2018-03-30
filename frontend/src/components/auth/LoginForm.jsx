@@ -19,7 +19,7 @@ class LoginForm extends Component {
   };
   componentDidMount() {
     if (this.props.demo) {
-      let username = 'demo@elevate.app';
+      let username = 'joseph.REED.gaines@elevate.app';
       let password = '123456';
       this.setState({ username, password });
     }
