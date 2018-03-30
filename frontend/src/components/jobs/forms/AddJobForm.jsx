@@ -9,6 +9,8 @@ import AddInterview from './AddInterview.jsx';
 import { Link } from 'react-router-dom';
 import achieves from '../../achievements/checkForAchievements';
 import '../../../stylesheets/jobs-add.css';
+import dotenv from 'dotenv'
+dotenv.load()
 
 const AutoSuggestStyling = {
   suggestionsList: { listStyle: 'none' }
