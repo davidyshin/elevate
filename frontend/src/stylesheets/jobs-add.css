@@ -301,27 +301,41 @@ button:hover {
   border-radius: 4px;
 }
 
+  /*
+  // Popup anchor tags 
+  */
   .popup-reminder-modal a,
   .popup-reminder-modal a:visited {
     text-decoration: none;
     color: #fefefe;
     display: inline;
     border-bottom: 1px dotted rgba(254, 254, 254, 0.6);
+    -moz-transition: 0.3s all;
+    -webkit-transition: 0.3s all;
+    -o-transition: 0.3s all;
     transition: 0.3s all;
   }
 
+    /* 
+    // On hover, the underline gets whiter
+    */ 
     .popup-reminder-modal a:hover {
       border-bottom: 1px dotted #fefefe;
     }
 
+/*
+// Contains information logo, content text, exit button
+*/ 
 .popup-reminder-container {
   display: flex;
   height: 140px;
   width: 400px;
+  margin: 0 auto;
   outline: none;
   color: #fefefe;
   background-color: rgb(0, 149, 222);
   border-radius: 4px;
+  transition: 0.5s all;
   animation: popout 0.3s;
 }
 
@@ -398,5 +412,15 @@ button:hover {
 
   .add-job-form-container form {
     width: 80%;
+  }
+}
+
+/*
+// When screen size is smaller than 510px, popup reminder becomes responsive
+*/ 
+@media screen and (max-width: 510px) {
+  .popup-reminder-container {
+    height: 180px;
+    width: 98%;
   }
 }

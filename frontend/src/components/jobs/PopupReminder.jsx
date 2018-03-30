@@ -14,7 +14,7 @@ class PopupReminder extends Component {
           <p>Don't forget to set your <Link to="/profile">reminder preferences</Link> for important dates.</p>
         </div>
         <div>
-          <button><i class="fas fa-times fa-2x"></i></button>
+          <button onClick={this.props.toggleModal}><i class="fas fa-times fa-2x"></i></button>
         </div>
       </div>
     )
