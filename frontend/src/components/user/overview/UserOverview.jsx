@@ -31,19 +31,19 @@ class UserOverview extends Component {
     }
   }
   componentDidMount() {
-      axios
-        .get('/users/getUserAchieves')
-        .then(data => {
-          let achievements = data.data.achieves;
-          this.setState({
-            achievements: achievements
-          });
-        })
-        .catch(err => {
-          console.log(err);
-        })
-      axios.get('/users/getAllAchievementBadges')
-      .then(data=> {
+    axios
+      .get('/users/getUserAchieves')
+      .then(data => {
+        let achievements = data.data.achieves;
+        this.setState({
+          achievements: achievements
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    axios.get('/users/getAllAchievementBadges')
+      .then(data => {
         let allAchievements = data.data.all_achievements
         this.setState({
           allAchievements
@@ -67,20 +67,26 @@ class UserOverview extends Component {
   };
 
   renderUserBadges = () => {
-    const {achievements, expanded} = this.state
-    const recentAchieves = achievements.sort((a,b) => a.badge_id > b.badge_id).slice(-3).reverse()
-    return <UserBadges activeUser={this.props.activeUser} recentAchieves={recentAchieves} toggleExpand={this.toggleExpand} expanded={expanded}/>;
+    const { achievements, expanded } = this.state
+    const recentAchieves = achievements.sort((a, b) => a.badge_id > b.badge_id).slice(-3).reverse()
+    return <UserBadges activeUser={this.props.activeUser} recentAchieves={recentAchieves} toggleExpand={this.toggleExpand} expanded={expanded} />;
   }
 
   renderMoreBadges = () => {
-    const {allAchievements, achievements, expanded} = this.state
-    const className = expanded ?  'more-user-badges-container' : 'more-user-badges-hidden'
-    const userAchieves = achievements.sort((a,b) => {a.badge_id<b.badge_id}).slice(0, achievements.length-3)
-    return <MoreBadges className={className} activeUser={this.props.activeUser} allAchievements={allAchievements} achievements={achievements} />;
+    const { allAchievements, achievements, expanded } = this.state;
+    const className = expanded ? 'more-user-badges-container' : 'more-user-badges-hidden';
+    const badgeVisibilityClass = expanded ? 'more-achievement-badge-container-expand' : null;
+    const userAchieves = achievements.sort((a, b) => { a.badge_id < b.badge_id }).slice(0, achievements.length - 3)
+    return <MoreBadges
+      className={className}
+      badgeVisibilityClass={badgeVisibilityClass}
+      activeUser={this.props.activeUser}
+      allAchievements={allAchievements}
+      achievements={achievements} />;
   }
 
   renderWeeklyActivity = () => {
-    return <WeeklyActivity activeUser={this.props.activeUser}/>
+    return <WeeklyActivity activeUser={this.props.activeUser} />
   };
 
   renderUserStats = () => {
@@ -88,13 +94,13 @@ class UserOverview extends Component {
   };
 
   render() {
-    const {expanded} = this.state
+    const { expanded } = this.state
     return (
       <div className="user-overview-container">
         <this.renderUserProgress />
         <this.renderUserBadges />
         <this.renderMoreBadges />
-        <this.renderUserStats />        
+        <this.renderUserStats />
         <this.renderWeeklyActivity />
         <div className="user-logout-container">
           <button onClick={this.toggleModal}>

@@ -36,7 +36,7 @@ class MoreBadges extends Component {
         ) > -1
       ) {
         return (
-          <div className="more-achievement-badge-container">
+          <div className={`more-achievement-badge-container ${this.props.badgeVisibilityClass}`}>
             {parseInt(hovered) === remainingBadge.badge_id ? (
               <div id={remainingBadge.badge_id} className="badge-hovered">
                 {' '}
@@ -55,7 +55,7 @@ class MoreBadges extends Component {
         );
       } else {
         return (
-          <div className="more-achievement-badge-container">
+          <div className={`more-achievement-badge-container ${this.props.badgeVisibilityClass}`}>
             {parseInt(hovered) === remainingBadge.badge_id ? (
               <div id={remainingBadge.badge_id} className="badge-hovered">
                 {' '}
