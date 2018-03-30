@@ -13,6 +13,7 @@ class HomeNavBar extends Component {
     };
   }
 
+
   handleMenuClick = () => {
     this.setState({
       expandMenu: !this.state.expandMenu
@@ -26,9 +27,11 @@ class HomeNavBar extends Component {
   }
 
   render() {
-    const { expandMenu } = this.state; 
+    const { expandMenu } = this.state;
+    const { coinAnimation } = this.props;
 
     const expandClass = expandMenu ? 'home-nav-bar-mobile-expand' : null;
+    const coinAnimationClass = coinAnimation ? 'coin-animate-active' : 'coin-animate-inactive';
 
     return (
       <div>
@@ -48,6 +51,14 @@ class HomeNavBar extends Component {
           <div className="home-nav-right">
             <div className="home-nav-exp-container">
               <img src="https://i.imgur.com/oudBkRW.png" alt="exp-coins" />
+
+              {/* Animation Coins */}
+              <img src="https://i.imgur.com/oudBkRW.png" alt="exp-coins" className={`${coinAnimationClass}-a`} />
+              <img src="https://i.imgur.com/oudBkRW.png" alt="exp-coins" className={`${coinAnimationClass}-b`} />
+              <img src="https://i.imgur.com/oudBkRW.png" alt="exp-coins" className={`${coinAnimationClass}-c`} />
+              <img src="https://i.imgur.com/oudBkRW.png" alt="exp-coins" className={`${coinAnimationClass}-d`} />
+              <img src="https://i.imgur.com/oudBkRW.png" alt="exp-coins" className={`${coinAnimationClass}-e`} />
+
               <p>{this.props.experience}</p>
             </div>
             <Link to="/profile"><i className="far fa-user-circle fa-2x"></i></Link>
