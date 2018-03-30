@@ -38,6 +38,7 @@ p {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  transition: 0.3s all;
 }
 
 /*
@@ -63,6 +64,12 @@ p {
   }
 }
 
+@media screen and (max-width: 720px) {
+  .user-top {
+    width: 98%;
+  }
+}
+
 /*------------------------------------------*/
 /*         Main User Page Navigation        */
 /*------------------------------------------*/
@@ -78,6 +85,7 @@ p {
   justify-content: center;
   width: 800px;
   border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  transition: 0.3s all;
 }
 
 /*
@@ -88,6 +96,13 @@ p {
     width: 90%;
   }
 }
+
+@media screen and (max-width: 720px) {
+  .user-navigation {
+    width: 98%;
+  }
+}
+
 
 /*
     // Navigation tabs: Overview, Account 
@@ -152,6 +167,7 @@ p {
   justify-content: center;
   width: 800px;
   background-color: rgb(245, 240, 245);
+  transition: 0.3s all;
 }
 
 /*
@@ -160,6 +176,12 @@ p {
 @media screen and (max-width: 880px) {
   .user-overview-container {
     width: 90%;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .user-overview-container {
+    width: 98%;
   }
 }
 
@@ -178,11 +200,12 @@ p {
   display: flex;
   flex-direction: column;
   margin: 52px auto 0 auto;
+  transition: 0.3s all;
 }
 
 /*
-    // "Level Progress"
-    */
+// "Level Progress"
+*/
 .user-progress-header h3 {
   font-size: 1.8rem;
   font-weight: 400;
@@ -195,10 +218,9 @@ p {
 }
 
 /*
-        // Rank badges and experience bar
-        */
+// Rank badges and experience bar
+*/
 .user-progress-left {
-  /* width: 65%; */
   width: 100%;
   height: 100%;
 }
@@ -214,7 +236,6 @@ p {
   width: auto;
   height: 110px;
   margin: 32px 22px 0 22px;
-  /* margin: 22px; */
 }
 
 .badge-inactive, .badge-obtained {
@@ -231,7 +252,6 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* background-color: rgba(0, 255, 255, 0.4); */
 }
 
 .user-progress-bar-container p {
@@ -254,19 +274,10 @@ p {
   animation: progress-grow 0.5s;
 }
 
-@keyframes progress-grow {
-  0% {
-    transform: scale(0, 1);
-  }
-
-  100% {
-    transform: scale(1, 1);
-  }
-}
 
 /*
-        // Level name and # of experience points left to go 
-        */
+// Level name and # of experience points left to go 
+*/
 .user-progress-right {
   display: flex;
   flex-direction: column;
@@ -317,13 +328,19 @@ p {
 /*
 // When screen is smaller than 510px, level name content disappears 
 */
-@media screen and (max-width: 510px) {
+/* @media screen and (max-width: 510px) {
   .user-progress-left {
     width: 100%;
   }
 
   .user-progress-right {
     display: none;
+  }
+} */
+
+@media screen and (max-width: 510px) {
+  .user-progress-container {
+    margin: 20px auto 0 auto;
   }
 }
 
@@ -342,18 +359,19 @@ p {
   background-color: #fefefe;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
   border-radius: 4px;
+  transition: 0.3s all;
 }
 
 /*
-    // Contains single achievement badge 
-    */
+// Contains single achievement badge 
+*/
 .user-badge-image-container {
   display: flex;
   align-items: center;
   width: 80%;
 }
 
-.more-user-badges-hidden{
+.more-user-badges-hidden {
   width: 100%;
   height: 0;
   visibility: hidden;
@@ -366,17 +384,18 @@ p {
 }
 
 /*
-// Job information expanded 
+// More user badges container expanded 
 */
-
 .more-user-badges-container {
   display: flex;
   flex-wrap: wrap;
+  justify-content: flex-start;
   visibility: visible;
+  z-index: 1;
   opacity: 1;
-  justify-content: center;
   width: 100%;
-  margin: 52px auto 0 auto;
+  height: 500px;
+  margin: 0 auto;
   background-color: #fefefe;
   -moz-transition: all 0.3s ease;
   -webkit-transition: all 0.3s ease;
@@ -384,14 +403,36 @@ p {
   transition: all 0.3s ease;
 }
 
-.achievement-badge-container, .more-achievement-badge-container {
+.achievement-badge-container, 
+.more-achievement-badge-container {
   position: relative;
   display: flex;
-  font-size: 12px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
+  .achievement-badge-container {
+    width: 20%;
+  }
+
+.more-achievement-badge-container {
+  opacity: 0;
+  -moz-transition: 0.3s all;
+  -webkit-transition: 0.3s all;
+  -o-transition: 0.3s all;
+  transition: 0.3s all;
+}
+
+  .more-achievement-badge-container-expand {
+    opacity: 1;
+    width: 16%;
+    -moz-transition: 0.3s all;
+    -webkit-transition: 0.3s all;
+    -o-transition: 0.3s all;
+    transition: 0.3s all;
+  }
+
 
 .badge-hovered {
   position: absolute;
@@ -399,8 +440,9 @@ p {
   bottom: 0;
   z-index: 10
 }
+
 /*
-        // Achievement badge image 
+// Achievement badge image 
 */
 .user-badge-image-container img, .more-achievement-badge-container img {
   width: auto;
@@ -410,18 +452,19 @@ p {
 
 
 /*
-    // "More Badges" 
+// "More Badges" 
 */
-.user-badges-container div:last-child {
+.more-badges-link-container {
   display: flex;
   width: 20%;
   justify-content: center;
   align-items: center;
 }
 
-.user-badges-container h3 {
+.more-badges-link-container h3 {
   font-size: 1.6rem;
   font-weight: 400;
+  cursor: pointer;
   -moz-transition: 0.3s color;
   -o-transition: 0.3s color;
   -webkit-transition: 0.3s color;
@@ -439,6 +482,7 @@ p {
   .user-badges-container {
     flex-direction: column;
     height: 100%;
+    margin: 20px auto 0 auto;
   }
 
   .user-badge-image-container {
@@ -454,30 +498,6 @@ p {
     width: 100%;
     padding: 22px 0;
   }
-}
-
-/*------------------------------------------*/
-/*              User Activity               */
-/*------------------------------------------*/
-
-.user-activity-container {
-  background-color: #fefefe;
-  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
-  border-radius: 4px;
-  width: 100%;
-  height: 400px;
-  margin: 52px auto 0 auto;
-}
-
-.user-activity-container h3 {
-  font-size: 1.8rem;
-  font-weight: 400;
-  padding: 22px 22px 6px 22px;
-}
-
-.user-activity-graph {
-  padding: 22px;
-  font-size: 1.4rem;
 }
 
 /*------------------------------------------*/
@@ -506,6 +526,43 @@ p {
   padding: 22px 22px 6px 22px;
 }
 
+@media screen and (max-width: 510px) {
+  .user-stats-container {
+    margin: 20px auto 0 auto;
+  }
+}
+
+/*------------------------------------------*/
+/*              Weekly Activity             */
+/*------------------------------------------*/
+
+.user-activity-container {
+  background-color: #fefefe;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
+  border-radius: 4px;
+  width: 100%;
+  height: 400px;
+  margin: 52px auto 0 auto;
+}
+
+.user-activity-container h3 {
+  font-size: 1.8rem;
+  font-weight: 400;
+  padding: 22px 22px 6px 22px;
+}
+
+.user-activity-graph {
+  padding: 22px;
+  font-size: 1.4rem;
+}
+
+@media screen and (max-width: 510px) {
+  .user-activity-container {
+    margin: 20px auto 0 auto;
+  }
+}
+
+
 /*------------------------------------------*/
 /*             User Statistics              */
 /*------------------------------------------*/
@@ -514,9 +571,6 @@ p {
 // Contains logout button
 */
 .user-logout-container {
-  /* background-color: #fefefe; */
-  /* box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03); */
-  /* border-radius: 4px; */
   width: 100%;
   height: 120px;
   margin: 52px auto;
@@ -526,13 +580,12 @@ p {
 }
 
 /*
-    // Contains logout sign from fontawesome
-    */
+// Contains power sign from fontawesome
+*/
 .user-logout-container button {
   background: none;
   outline: none;
   border: none;
-  /* color: rgb(51, 156, 197); */
   color: rgb(171, 0, 122);
   font-size: 1.6rem;
   cursor: pointer;
@@ -542,14 +595,21 @@ p {
   transition: 0.15s all;
 }
 
-.user-logout-container button:hover {
-  /* color: skyblue; */
-  transform: scale(1.2);
-}
+  /* 
+  // Hovering over the power sign 
+  */ 
+  .user-logout-container button:hover {
+    transform: scale(1.2);
+  }
+
+  .user-logout-container button:focus, 
+  .user-logout-container button:active {
+    outline: none;
+  }
 
 /*
-    // Logout warning modal (popup box)
-    */
+// Logout warning modal (popup box)
+*/
 .logout-warning-modal {
   background-color: #fefefe;
   width: 500px;
@@ -557,14 +617,15 @@ p {
   font-size: 1.6rem;
   font-family: 'Montserrat', sans-serif;
   outline: none;
-  border: 2px solid rgba(0, 0, 0, 0.1);
+  border: 2px solid rgba(0, 0, 0, 0.06);
   border-radius: 4px;
   animation: popout 0.1s;
+  transition: 0.3s all;
 }
 
 /*
-        // Contains warning question and buttons 
-        */
+// Contains warning question and buttons 
+*/
 .logout-warning-container {
   display: flex;
   flex-direction: column;
@@ -575,43 +636,47 @@ p {
   width: 100%;
 }
 
-.logout-warning-container h3 {
-  font-weight: 300;
-}
+  .logout-warning-container h3 {
+    font-weight: 300;
+    font-size: 1.6rem;
+  }
+
+  /*
+  // Logout and cancel buttons
+  */
+  .logout-warning-container button {
+    outline: none;
+    border: none;
+    font-weight: 400;
+    font-size: 1.6rem;
+    font-family: 'Montserrat', sans-serif;
+    width: 200px;
+    padding: 22px;
+    margin-top: 22px;
+    border-radius: 100px;
+    cursor: pointer;
+  }
+
+    .logout-button {
+      background-color: #ef5858;
+      color: #fefefe;
+    }
+
+    .logout-cancel-button {
+      background-color: #f5f0f5;
+      color: rgba(0, 0, 0, 0.6);
+    }
 
 /*
-            // Logout and cancel buttons
-            */
-.logout-warning-container button {
-  outline: none;
-  border: none;
-  font-size: 1.6rem;
-  font-family: 'Montserrat', sans-serif;
-  width: 200px;
-  padding: 22px;
-  margin-top: 22px;
-  border-radius: 100px;
-  color: rgba(0, 0, 0, 0.6);
-  cursor: pointer;
-}
-
-.logout-button {
-  background-color: red;
-  color: white;
-}
-
-.logout-cancel-button {
-  background-color: rgb(180, 180, 180);
-}
-
-@keyframes popout {
-  from {
-    transform: scale(0);
-  }
-  to {
-    transform: scale(1);
+// Logout warning modal fills up the screen
+*/ 
+@media screen and (max-width: 510px) {
+  .logout-warning-modal {
+    width: 98%;
+    height: 100%;
   }
 }
+
 
 /*------------------------------------------*/
 /*          User Account & Settings         */
@@ -627,6 +692,7 @@ p {
   justify-content: center;
   width: 800px;
   background-color: rgb(245, 240, 245);
+  transition: 0.3s all;
 }
 
 /*
@@ -644,16 +710,16 @@ p {
 }
 
 /*
-    // This is the last container of the page - add space to the bottom 
-    */
+// This is the last container of the page - add space to the bottom 
+*/
 .user-settings-container {
   margin-bottom: 52px;
 }
 
 /*
-    // Contains "User Information" and edit button 
-    // "Notification Settings" 
-    */
+// Contains "User Information" and edit button 
+// "Notification Settings" 
+*/
 .user-info-header,
 .user-settings-container h3 {
   font-size: 1.8rem;
@@ -664,16 +730,16 @@ p {
 }
 
 /*
-    // "User Information" 
-    */
+// "User Information" 
+*/
 .user-info-header h3 {
   font-size: 1.8rem;
   font-weight: 400;
 }
 
 /*
-    // Every line in user accounts page except headers 
-    */
+// Every line in user accounts page except headers 
+*/
 .user-account-container p {
   padding-bottom: 12px;
 }
@@ -689,9 +755,22 @@ p {
   align-items: center;
   padding: 11px auto;
 }
+
+  .save-button button {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    transition: 0.2s all;
+    cursor: pointer;
+    outline: none;
+  }
+
+  .save-button button:focus {
+    outline: none;
+  }
+
 /*
-    // "Edit" user link 
-    */
+// "Edit" user link 
+*/
 .user-info-edit {
   cursor: pointer;
   -moz-transition: 0.3s color;
@@ -707,21 +786,30 @@ p {
 
 .user-info-edit-container input {
   font-family: 'Montserrat', sans-serif;
-  border: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  outline: none;
   height: 30px;
   background-color: rgba(0, 0, 0, 0.08);
   width: 200px;
   font-size: 15px;
   font-weight: 300;
   padding-left: 6px;
+  transition: 0.2s all;
 }
+
+  .user-info-edit-container input:focus {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
 
 .user-info-edit-container h4 {
   width: 200px;
 }
+
 .saved-message {
   font-size: 15px;
   padding-right: 50px;
+  font-weight: 300;
 }
 
 .user-info-phone-number,
@@ -747,8 +835,8 @@ p {
 }
 
 /*
-    // When user hovers over edit, color changes to blue 
-    */
+// When user hovers over edit, color changes to blue 
+*/
 .user-info-edit:hover {
   color: #3498db;
 }
@@ -756,7 +844,6 @@ p {
 /*
 // Checkbox labels  
 */
-
 .phone-notification-checkbox,
 .email-notification-checkbox {
   -moz-appearance: none;
@@ -803,6 +890,7 @@ p {
   margin: 0px 6px 0px 8px;
   background: transparent;
   border: 1px solid;
+  outline: none;
 }
 
 .select-interval-option:disabled {
@@ -812,7 +900,6 @@ p {
 /*
 Save button in User Info
 */
-
 .user-info-save-button {
   background: rgba(0, 149, 222, 1) 100%;
   border-radius: 60px;
@@ -825,5 +912,11 @@ Save button in User Info
 @media screen and (max-width: 880px) {
   .user-account-container {
     width: 90%;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .user-account-container {
+    width: 98%;
   }
 }

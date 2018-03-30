@@ -69,7 +69,8 @@ class UserInfo extends Component {
 
   handleReminderSelect = e => {
     this.setState({
-      notification_interval: e.target.value
+      notification_interval: e.target.value,
+      notificationSaved: false
     });
   };
 
@@ -108,7 +109,8 @@ class UserInfo extends Component {
 
   handleCheckBoxChange = e => {
     this.setState({
-      [e.target.name]: e.target.checked
+      [e.target.name]: e.target.checked,
+      notificationSaved: false
     });
   };
 

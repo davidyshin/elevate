@@ -2,6 +2,18 @@
 /*            Keyframe Animations           */
 /*------------------------------------------*/
 
+
+@keyframes progress-grow {
+    0% {
+        transform: scale(0, 1);
+    }
+
+    100% {
+        transform: scale(1, 1);
+    }
+}
+
+
 /*
 // Ensures that the progress bar doesn't shrink back when job info folds back in 
 */
@@ -14,6 +26,16 @@
         transform: scale(1, 1);
     }
 }
+
+@keyframes popout {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
 
 @keyframes coin-animation-up {
     0% {
