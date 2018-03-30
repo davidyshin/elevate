@@ -38,15 +38,19 @@
         justify-content: center;
     }
     .splash-top-info {
-        padding-left: 75px
+        padding-left: 75px;
+        display: flex;
+        flex-direction: column
     }
     .splash-top-info img {
         width: 65px;
         height: 65px;
+        padding-left: 12px;
     }
 
     .splash-top-info-title {
         display: flex;
+        text-align: center;
         flex-direction: row;
         align-items: center;
     }
@@ -56,18 +60,17 @@
     .splash-top h1 {
         font-size: 6rem;
         font-weight: 400;
-        padding: 12px;
+        padding: 12px; 
     }
 
     .splash-top p {
         font-size: 2rem;
         font-weight: 300;
-        padding: 12px;
+        padding: 12px 12px 24px 12px;
     }
 
         .splash-top-button-container {
             display: flex;
-            justify-content: center;
         }
 
         /* 
