@@ -275,10 +275,10 @@ class UpdateJobForm extends Component {
               {companyLogo ? (
                 <img className="company-image" src={companyLogo} />
               ) : (
-                <span className="building-icon">
-                  <i className="fas fa-building fa-2x" />
-                </span>
-              )}
+                  <span className="building-icon">
+                    <i className="fas fa-building fa-2x" />
+                  </span>
+                )}
             </div>
             <p>Position applied to:</p>
             <input
@@ -310,6 +310,7 @@ class UpdateJobForm extends Component {
             />
           </form>
         </div>
+
         {applicationStage === 2 ? (
           resume_url ? (
             <div data-aos="fade-up" className="resume-url-container">
@@ -322,12 +323,13 @@ class UpdateJobForm extends Component {
               </a>
             </div>
           ) : (
-            <ResumeUpload
-              handleResumeInput={this.handleResumeInput}
-              job_id={job_id}
-            />
-          )
+              <ResumeUpload
+                handleResumeInput={this.handleResumeInput}
+                job_id={job_id}
+              />
+            )
         ) : null}
+
         {applicationStage === 3 ? (
           cover_url ? (
             <div data-aos="fade-up" className="cover-url-container">
@@ -340,24 +342,26 @@ class UpdateJobForm extends Component {
               </a>
             </div>
           ) : (
-            <CoverLetterUpload
-              handleCoverInput={this.handleCoverInput}
-              job_id={job_id}
-            />
-          )
+              <CoverLetterUpload
+                handleCoverInput={this.handleCoverInput}
+                job_id={job_id}
+              />
+            )
         ) : null}
+
         <div className="job-progress-form-buttons">
-        <button
-          className="add-interview-button"
-          onClick={this.addMoreInterview}
-        >
-          Add Interview
+          <button
+            className="add-interview-button"
+            onClick={this.addMoreInterview}
+          >
+            Add Interview
         </button>
-        <Link to="/">
-          {' '}
-          <button className="job-finished-button">Come back later</button>{' '}
-        </Link>
+          <Link to="/">
+            {' '}
+            <button className="job-finished-button">Come back later</button>{' '}
+          </Link>
         </div>
+
         {applicationStage === 4 ? (
           <div data-aos="fade-up" className="update-job-status">
             <h1> Update Job Application Status </h1>
@@ -395,8 +399,8 @@ class UpdateJobForm extends Component {
                 {salarySaved ? (
                   <h3>Saved Salary</h3>
                 ) : (
-                  <h3> Offered Salary </h3>
-                )}
+                    <h3> Offered Salary </h3>
+                  )}
                 <input
                   className="salary-input"
                   name="salary"
@@ -418,6 +422,7 @@ class UpdateJobForm extends Component {
             ) : null}
           </div>
         ) : null}
+
         {interviews.map(interview => {
           return (
             <div className="interview-form-container">
@@ -428,6 +433,7 @@ class UpdateJobForm extends Component {
             </div>
           );
         })}
+
         {addedInterviews.map(interview => {
           return (
             <div className="add-interview-form-container">

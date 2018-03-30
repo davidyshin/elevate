@@ -16,16 +16,16 @@ const AutoSuggestStyling = {
 
 var today = new Date();
 var dd = today.getDate();
-var mm = today.getMonth()+1; //January is 0!
+var mm = today.getMonth() + 1; //January is 0!
 var yyyy = today.getFullYear();
- if(dd<10){
-        dd='0'+dd
-    } 
-    if(mm<10){
-        mm='0'+mm
-    } 
+if (dd < 10) {
+  dd = '0' + dd
+}
+if (mm < 10) {
+  mm = '0' + mm
+}
 
-today = yyyy+'-'+mm+'-'+dd;
+today = yyyy + '-' + mm + '-' + dd;
 
 
 class AddJobForm extends Component {
@@ -340,10 +340,10 @@ class AddJobForm extends Component {
               {companyLogo ? (
                 <img className="company-image" src={companyLogo} />
               ) : (
-                <span className="magnifying-glass">
-                  <i className="fas fa-search fa-2x" />
-                </span>
-              )}
+                  <span className="magnifying-glass">
+                    <i className="fas fa-search fa-2x" />
+                  </span>
+                )}
             </div>
             <div className="add-job-form-input-title">
               {' '}
@@ -454,7 +454,7 @@ class AddJobForm extends Component {
             </div>
             {job_status === 'offered' ? (
               <div className="salary-input-container">
-               {salarySaved ? <h3> Offered Salary </h3> : <h3>Saved Salary</h3>}
+                {salarySaved ? <h3> Offered Salary </h3> : <h3>Saved Salary</h3>}
                 <input
                   className="salary-input"
                   name="salary"
@@ -489,22 +489,22 @@ class AddJobForm extends Component {
 
         {this.state.saved ? (
           <div className="job-progress-form-buttons">
-          <button
-            className="add-interview-button"
-            disabled={!interviewSaved}
-            onClick={this.addMoreInterview}
-          >
-            {' '}
-            Add an Interview{' '}
-          </button>
-          <Link to="/">
-          {' '}
-          <button className="job-finished-button">Come back later</button>{' '}
-        </Link>
+            <button
+              className="add-interview-button"
+              disabled={!interviewSaved}
+              onClick={this.addMoreInterview}
+            >
+              {' '}
+              Add an Interview{' '}
+            </button>
+            <Link to="/">
+              {' '}
+              <button className="job-finished-button">Come back later</button>{' '}
+            </Link>
           </div>
         ) : (
-          ''
-        )}
+            ''
+          )}
       </div>
     );
   }
