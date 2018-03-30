@@ -19,14 +19,13 @@ var dd = today.getDate();
 var mm = today.getMonth() + 1; //January is 0!
 var yyyy = today.getFullYear();
 if (dd < 10) {
-  dd = '0' + dd
+  dd = '0' + dd;
 }
 if (mm < 10) {
-  mm = '0' + mm
+  mm = '0' + mm;
 }
 
 today = yyyy + '-' + mm + '-' + dd;
-
 
 class AddJobForm extends Component {
   constructor() {
@@ -262,6 +261,25 @@ class AddJobForm extends Component {
     this.setState({ applicationStage: parseInt(e.target.id) });
   };
 
+  setApplicationStage = e => {
+    console.log('hello');
+    let { applicationStage } = this.state;
+    if (e.target.id === 'right') {
+      if (applicationStage === 4) {
+        applicationStage = 1;
+      } else {
+        applicationStage += 1;
+      }
+    } else if (e.target.id === 'left') {
+      if (applicationStage === 1) {
+        applicationStage = 4;
+      } else {
+        applicationStage -= 1;
+      }
+    }
+    this.setState({ applicationStage });
+  };
+
   render() {
     const {
       company,
@@ -292,7 +310,14 @@ class AddJobForm extends Component {
     return (
       <div className="add-job-form-container">
         {saved ? (
-          <div>
+          <div className="stage-container">
+            <span className="stage-arrow-left">
+              <i
+                id="left"
+                onClick={this.setApplicationStage}
+                class="fas fa-arrow-left fa-2x"
+              />
+            </span>
             <span
               id="1"
               onClick={this.changeStage}
@@ -313,6 +338,13 @@ class AddJobForm extends Component {
               onClick={this.changeStage}
               className={applicationStage === 4 ? 'stage-active' : 'stage'}
             />
+            <span className="stage-arrow-right">
+              <i
+                id="right"
+                onClick={this.setApplicationStage}
+                class="fas fa-arrow-right fa-2x"
+              />
+            </span>
           </div>
         ) : null}
         <div
@@ -469,7 +501,9 @@ class AddJobForm extends Component {
                   onClick={this.handleSalarySave}
                   type="submit"
                   value="Save"
-                >Save</button>
+                >
+                  Save
+                </button>
               </div>
             ) : null}
           </div>
