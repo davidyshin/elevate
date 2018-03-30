@@ -22,25 +22,46 @@ class JobInfo extends Component {
   }
 
   render() {
-    const date_logged = new Date(this.props.job.date_logged).toDateString();
-
-    const date_applied = new Date(this.props.job.date_applied).toDateString();
-
     const { progress_in_search, job_status, job_posting_url, cover_url, resume_url, job_phone_number, job_email, job_id, company_logo, company_name, salary } = this.props.job;
 
-    const expand = this.props.expandClass ? this.props.expandClass : null;
+    // Date format 
+    const date_logged = new Date(this.props.job.date_logged).toDateString();
 
-    const initiateProgressEarned = this.props.expandClass ? "job-info-search-progress-earned" : null;
-
+    // Status message 
     const statusMessage = job_status === 'awaiting' ? 'Awaiting response' : job_status === 'offered' ? `Offered: ${salary || ''}` : 'Rejected';
 
-    const progressPercentage = (parseInt(progress_in_search) / 5) * 100;
-
-    const progressStyle = {
-      width: `${progressPercentage}%`
-    }
-
+    // Toggle classes 
     const alternateBg = (this.props.index) % 2 === 0 ? 'job-info-light' : 'job-info-dark';
+    const expand = this.props.expandClass ? this.props.expandClass : null;
+    const initiateProgressEarned = this.props.expandClass ? "job-info-search-progress-earned" : null;
+
+    // Progress bars: awaiting, rejected, offered 
+    let progressPercentage;
+    let progressTotalStyle;
+    let progressStyle;
+
+    if (job_status === 'offered') {
+      progressPercentage = 100;
+      progressTotalStyle = {
+        backgroundColor: 'rgb(125, 206, 160)'
+      }
+      progressStyle = {
+        backgroundColor: 'rgb(82, 190, 128)'
+      }
+    } else if (job_status === 'rejected') {
+      progressPercentage = 100;
+      progressTotalStyle = {
+        backgroundColor: 'rgb(241, 148, 138)'
+      }
+      progressStyle = {
+        backgroundColor: 'rgb(236, 112, 99)'
+      }
+    } else {
+      progressPercentage = (parseInt(progress_in_search) / 5) * 100;
+      progressStyle = {
+        width: `${progressPercentage}%`
+      }
+    }
 
 
     return (
@@ -80,7 +101,7 @@ class JobInfo extends Component {
           </div>
 
           <div className="job-info-bottom">
-            <div className="job-info-search-progress-total">
+            <div className="job-info-search-progress-total" style={progressTotalStyle}>
               <div className={initiateProgressEarned} style={progressStyle} />
             </div>
           </div>
@@ -114,7 +135,7 @@ class JobInfo extends Component {
           </div>
 
           <div className="job-info-bottom">
-            <div className="job-info-search-progress-total">
+            <div className="job-info-search-progress-total" style={progressTotalStyle}>
               <div className={initiateProgressEarned} style={progressStyle} />
             </div>
           </div>
