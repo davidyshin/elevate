@@ -689,9 +689,22 @@ p {
   align-items: center;
   padding: 11px auto;
 }
+
+  .save-button button {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    transition: 0.2s all;
+    cursor: pointer;
+    outline: none;
+  }
+
+  .save-button button:focus {
+    outline: none;
+  }
+
 /*
-    // "Edit" user link 
-    */
+// "Edit" user link 
+*/
 .user-info-edit {
   cursor: pointer;
   -moz-transition: 0.3s color;
@@ -707,21 +720,30 @@ p {
 
 .user-info-edit-container input {
   font-family: 'Montserrat', sans-serif;
-  border: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  outline: none;
   height: 30px;
   background-color: rgba(0, 0, 0, 0.08);
   width: 200px;
   font-size: 15px;
   font-weight: 300;
   padding-left: 6px;
+  transition: 0.2s all;
 }
+
+  .user-info-edit-container input:focus {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
 
 .user-info-edit-container h4 {
   width: 200px;
 }
+
 .saved-message {
   font-size: 15px;
   padding-right: 50px;
+  font-weight: 300;
 }
 
 .user-info-phone-number,
@@ -803,6 +825,7 @@ p {
   margin: 0px 6px 0px 8px;
   background: transparent;
   border: 1px solid;
+  outline: none;
 }
 
 .select-interval-option:disabled {
