@@ -17,13 +17,20 @@ class SplashContainer extends Component {
     return (
       <div className="splash-container" data-aos="fade-up">
         <div className="splash-top">
-          <h1>Elevate</h1>
-          <p>Elevate your job search experience.</p>
-          <div className="splash-top-button-container">
-            <button id="demo" onClick={this.props.toggleActive}>Demo</button>
-            <button id="signup" onClick={this.props.toggleActive}>
-              Create an account
-            </button>
+          <div className="splash-top-image">
+            <img src="https://i.pinimg.com/564x/74/c2/0b/74c20b6f02246e9ea025e6b07a6c0d22.jpg" />
+          </div>
+          <div className="splash-top-info">
+            <h1>Elevate</h1>
+            <p>Elevate your job search experience.</p>
+            <div className="splash-top-button-container">
+              <button id="signup" onClick={this.props.toggleActive}>
+                Create an account
+              </button>
+              <button id="demo" onClick={this.props.toggleActive}>
+                Demo
+              </button>
+            </div>
           </div>
         </div>
 
