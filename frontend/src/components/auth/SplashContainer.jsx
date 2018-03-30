@@ -21,7 +21,13 @@ class SplashContainer extends Component {
             <img src="https://i.pinimg.com/564x/74/c2/0b/74c20b6f02246e9ea025e6b07a6c0d22.jpg" />
           </div>
           <div className="splash-top-info">
-            <h1>Elevate</h1>
+            <div className="splash-top-info-title">
+            <img
+                src="https://i.imgur.com/JdYm85w.png"
+                alt="elevate"
+              />
+              <h1>Elevate</h1>
+            </div>
             <p>Elevate your job search experience.</p>
             <div className="splash-top-button-container">
               <button id="signup" onClick={this.props.toggleActive}>

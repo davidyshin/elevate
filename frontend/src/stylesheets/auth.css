@@ -40,9 +40,21 @@
     .splash-top-info {
         padding-left: 75px
     }
+    .splash-top-info img {
+        width: 65px;
+        height: 65px;
+    }
+
+    .splash-top-info-title {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+
 
     .splash-top h1 {
-        font-size: 4.8rem;
+        font-size: 6rem;
         font-weight: 400;
         padding: 12px;
     }
@@ -67,7 +79,7 @@
             /* background-color: rgb(0, 149, 222); */
             background: rgba(0, 149, 222, 1); 
             color: #fefefe;
-            border-radius: 6px;
+            border-radius: 60px;
             height: 60px;
             width: 200px;
             font-family: 'Montserrat', sans-serif;
