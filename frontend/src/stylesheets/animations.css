@@ -15,3 +15,46 @@
     }
 }
 
+@keyframes coin-animation-up {
+    0% {
+        bottom: 18px;
+        transform: scale(1);
+    }
+    50% {
+        bottom: 34px;
+    }
+    100% {
+        opacity: 0;
+        bottom: 60px;
+        transform: scale(1.1);
+    }
+}
+
+@keyframes coin-animation-left {
+    0% {
+        bottom: 18px;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        bottom: 60px;
+        margin-left: -4px;
+        transform: scale(1.1);
+    }
+}
+
+@keyframes coin-animation-right {
+    0% {
+        bottom: 18px;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        bottom: 60px;
+        margin-left: 4px;
+        transform: scale(1.1);
+    }
+}
+
