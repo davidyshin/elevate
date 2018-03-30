@@ -501,7 +501,7 @@
           font-weight: 300;
           font-family: 'Montserrat', sans-serif;
           background-color: rgba(67, 42, 246, 1);
-          background: linear-gradient(to right, rgba(67, 42, 246, 1) 0%,rgba(0, 149, 222, 1) 100%);
+          background: rgba(0, 149, 222, 1);
           color: #fefefe;
           cursor: pointer;
           transition: 0.2s all;
