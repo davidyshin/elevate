@@ -195,18 +195,20 @@ class UpdateJobForm extends Component {
   setApplicationStage = e => {
     console.log('hello');
     let { applicationStage } = this.state;
-    if (e.key === 37) {
+    if (e.target.id === 'right') {
       if (applicationStage === 4) {
         applicationStage = 1;
       } else {
         applicationStage += 1;
       }
-    } else if (e.key === 39) {
+    } else if (e.target.id === 'left') {
       if (applicationStage === 1) {
+        applicationStage = 4;
       } else {
         applicationStage -= 1;
       }
     }
+    this.setState({ applicationStage });
   };
 
   render() {
@@ -232,7 +234,14 @@ class UpdateJobForm extends Component {
 
     return (
       <div className="update-job-form-container">
-        <div>
+        <div className="stage-container">
+          <span className="stage-arrow-left">
+            <i
+              id="left"
+              onClick={this.setApplicationStage}
+              class="fas fa-arrow-left fa-2x"
+            />
+          </span>
           <span
             id="1"
             onClick={this.changeStage}
@@ -253,6 +262,13 @@ class UpdateJobForm extends Component {
             onClick={this.changeStage}
             className={applicationStage === 4 ? 'stage-active' : 'stage'}
           />
+          <span className="stage-arrow-right">
+            <i
+              id="right"
+              onClick={this.setApplicationStage}
+              class="fas fa-arrow-right fa-2x"
+            />
+          </span>
         </div>
         <div
           hidden={applicationStage > 1 ? true : false}
@@ -347,16 +363,18 @@ class UpdateJobForm extends Component {
           )
         ) : null}
         <div className="job-progress-form-buttons">
-        <button
-          className="add-interview-button"
-          onClick={this.addMoreInterview}
-        >
-          Add Interview
-        </button>
-        <Link to="/">
-          {' '}
-          <button className="job-finished-button">Come back later</button>{' '}
-        </Link>
+          <button
+            className="add-interview-button"
+            onClick={this.addMoreInterview}
+          >
+            Add Interview
+          </button>
+          <Link to="/">
+            {' '}
+            <button className="job-finished-button">
+              Come back later
+            </button>{' '}
+          </Link>
         </div>
         {applicationStage === 4 ? (
           <div data-aos="fade-up" className="update-job-status">
