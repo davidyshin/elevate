@@ -81,7 +81,7 @@
             cursor: pointer;
         }
         .splash-top-image {
-            box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.3);
+            box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.1);
             -moz-transition: 0.2s all;
             -o-transition: 0.2s all;
             -webkit-transition: 0.2s all;
