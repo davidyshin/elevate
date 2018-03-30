@@ -32,7 +32,7 @@ class JobInfo extends Component {
 
     const initiateProgressEarned = this.props.expandClass ? "job-info-search-progress-earned" : null;
 
-    const statusMessage = job_status === 'Awaiting' ? 'awaiting response' : job_status === 'offered' ? `Offered: ${salary || ''}` : 'Rejected';
+    const statusMessage = job_status === 'awaiting' ? 'Awaiting response' : job_status === 'offered' ? `Offered: ${salary || ''}` : 'Rejected';
 
     const progressPercentage = (parseInt(progress_in_search) / 5) * 100;
 

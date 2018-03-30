@@ -21,7 +21,7 @@ CREATE TABLE Users
 INSERT INTO Users
     (first_name, last_name, photo_url, password_digest, username, phone_number, email_notification, phone_notification, experience)
 VALUES
-    ('Joseph', 'Gaines', 'https://i.imgur.com/wuyr6CT.png', '$2a$10$brAZfSmByFeZmPZ/MH5zne9YDhugjW9CtsBGgXqGfix0g1tcooZWq', 'demo@elevate.app', '3412331093', 'N', 'N', 1350),
+    ('Joseph', 'Gaines', 'https://i.imgur.com/wuyr6CT.png', '$2a$10$brAZfSmByFeZmPZ/MH5zne9YDhugjW9CtsBGgXqGfix0g1tcooZWq', 'joseph.REED.gaines@elevate.app', '3412331093', 'N', 'N', 1350),
     ('Nick', 'Davis', 'https://i.imgur.com/ePbPHIY.png', '$2a$10$brAZfSmByFeZmPZ/MH5zne9YDhugjW9CtsBGgXqGfix0g1tcooZWq', 'blah@ghfdmail.com', '3022331093', 'N', 'N', 400),
     ('TomBob', 'Davis', 'https://i.imgur.com/XsVmYKK.png', '$2a$10$brAZfSmByFeZmPZ/MH5zne9YDhugjW9CtsBGgXqGfix0g1tcooZWq', 'blfdfahhh@gmail.com', '9422331093', 'N', 'N', 900),
     ('Vic', 'Davis', 'https://i.imgur.com/XsVmYKK.png', '$2a$10$brAZfSmByFeZmPZ/MH5zne9YDhugjW9CtsBGgXqGfix0g1tcooZWq', 'blahhddh@gmail.com', '9422331043', 'N', 'N', 100),
@@ -51,12 +51,16 @@ CREATE TABLE Jobs
 INSERT INTO Jobs
     (user_id, company_name, resume_url, cover_url, company_logo, job_posting_url, position_title, job_email, job_phone_number, date_applied, date_logged, progress_in_search, job_status, salary)
 VALUES
-    (1, 'Apple', 'resume-8ds-resume.pdf', 'cover-9-Cover Letter - ShopKeep.docx', 'https://logo.clearbit.com/apple.com', 'https://www.indeed.com/q-Apple-Software-Engineer-jobs.html', 'Software Engineer', 'hiring@apple.com', '3471218976', '2018-03-01', '2018-03-25', 4, 'awaiting', '70,000'),
-    (1, 'Facebook', 'resume-8ds-resume.pdf', 'cover-9-Cover Letter - ShopKeep.docx','https://logo.clearbit.com/facebook.com', 'https://www.facebook.com/careers/jobs/a0I1200000JXv00EAD/', 'Software Engineer, Full Stack', 'hiring@facebook.com', '3471218976', '2018-03-05', '2018-03-14', 4, 'awaiting', '70,000'),
-    (1, 'Twitch', 'resume-8ds-resume.pdf', 'cover-9-Cover Letter - ShopKeep.docx', 'https://logo.clearbit.com/twitch.tv', 'https://jobs.lever.co/twitch/a5f652d5-4f30-40ae-a860-14b869b5a445' , 'Software Engineer', 'hiring@twitch.tv', '3471218976', '2018-03-14', '2018-03-24', 4, 'awaiting', '70,000'),
-    (1, 'Google', 'resume-8ds-resume.pdf', 'cover-9-Cover Letter - ShopKeep.docx', 'https://logo.clearbit.com/google.com', 'https://careers.google.com/jobs#!t=jo&jid=/google/software-engineer-76-9th-ave-new-york-ny-10011-usa-2748170192&', 'Software Engineer', 'hiring@google.com', '3471218976', '2018-03-18', '2018-03-23', 4, 'awaiting', '70,000'),
-    (1, 'LinkedIn', 'resume-8ds-resume.pdf', 'cover-9-Cover Letter - ShopKeep.docx', 'https://logo.clearbit.com/linkedin.com', 'https://www.linkedin.com/jobs/view/626966558/', 'Senior Software Engineer', 'hiring@linkedin.com', '3471218976', '2018-03-02', '2018-03-22', 4, 'rejected', '70,000'),
-    (1, 'KickStarter', 'resume-8ds-resume.pdf', 'cover-9-Cover Letter - ShopKeep.docx', 'https://logo.clearbit.com/apple.com', 'https://angel.co/kickstarter/jobs/291580-front-end-engineer?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic', 'Front End Engineer', 'hiring@kickstarter.com', '3471218976', '2018-03-12', '2018-03-24', 4, 'offered', '70,000');
+    (1, 'Apple', 'resume-8ds-resume.pdf', 'cover-9-Cover Letter - ShopKeep.docx', 'https://logo.clearbit.com/apple.com', 'https://www.indeed.com/q-Apple-Software-Engineer-jobs.html', 'Software Engineer', 'hiring@apple.com', '3471218976', '2018-03-30', '2018-03-30', 4, 'awaiting', '70,000'),
+    (1, 'Facebook', 'resume-8ds-resume.pdf', 'cover-9-Cover Letter - ShopKeep.docx','https://logo.clearbit.com/facebook.com', 'https://www.facebook.com/careers/jobs/a0I1200000JXv00EAD/', 'Software Engineer, Full Stack', 'hiring@facebook.com', '3471218976', '2018-03-29', '2018-03-29', 4, 'awaiting', '70,000'),
+    (1, 'Twitch', 'resume-8ds-resume.pdf', 'cover-9-Cover Letter - ShopKeep.docx', 'https://logo.clearbit.com/twitch.tv', 'https://jobs.lever.co/twitch/a5f652d5-4f30-40ae-a860-14b869b5a445' , 'Software Engineer', 'hiring@twitch.tv', '3471218976', '2018-03-25', '2018-03-25', 4, 'rejected', '70,000'),
+    (1, 'Google', 'resume-8ds-resume.pdf', 'cover-9-Cover Letter - ShopKeep.docx', 'https://logo.clearbit.com/google.com', 'https://careers.google.com/jobs#!t=jo&jid=/google/software-engineer-76-9th-ave-new-york-ny-10011-usa-2748170192&', 'Software Engineer', 'hiring@google.com', '3471218976', '2018-03-24', '2018-03-24', 4, 'awaiting', '70,000'),
+    (1, 'LinkedIn', 'resume-8ds-resume.pdf', 'cover-9-Cover Letter - ShopKeep.docx', 'https://logo.clearbit.com/linkedin.com', 'https://www.linkedin.com/jobs/view/626966558/', 'Senior Software Engineer', 'hiring@linkedin.com', '3471218976', '2018-03-27', '2018-03-27', 4, 'rejected', '70,000'),
+    (1, 'KickStarter', 'resume-8ds-resume.pdf', 'cover-9-Cover Letter - ShopKeep.docx', 'https://logo.clearbit.com/apple.com', 'https://angel.co/kickstarter/jobs/291580-front-end-engineer?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic', 'Front End Engineer', 'hiring@kickstarter.com', '3471218976', '2018-03-27', '2018-03-27', 4, 'awaiting', '70,000'),
+    (1, 'Coalition for Queens - C4Q', 'resume-8ds-resume.pdf', 'cover-9-Cover Letter - ShopKeep.docx', 'https://logo.clearbit.com/c4q.nyc', 'https://www.c4q.nyc/careers/', 'Web Development Technical Expert', 'hello@c4q.nyc', '3478416090', '2018-03-30', '2018-03-30', 4, 'awaiting', '');
+    
+
+    
 -- Drop TABLE Resumes CASCADE;
 -- Drop TABLE Cover_Letters CASCADE;
 DROP TABLE Interview
