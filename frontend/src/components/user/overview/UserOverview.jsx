@@ -76,7 +76,7 @@ class UserOverview extends Component {
     const { allAchievements, achievements, expanded } = this.state;
     const className = expanded ? 'more-user-badges-container' : 'more-user-badges-hidden';
     const badgeVisibilityClass = expanded ? 'more-achievement-badge-container-expand' : null;
-    const userAchieves = achievements.sort((a, b) => { a.badge_id < b.badge_id }).slice(0, achievements.length - 3)
+    const userAchieves = achievements.sort((a, b) => { a.badge_id < b.badge_id }).slice(0, achievements.length - 5)
     return <MoreBadges
       className={className}
       badgeVisibilityClass={badgeVisibilityClass}
