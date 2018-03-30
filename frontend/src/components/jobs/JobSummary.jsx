@@ -31,7 +31,7 @@ class JobSummary extends Component {
       .then(data => {
         let { plotData } = this.state;
         let apps = data.data.apps;
-        for (var i = 0; i < 8; i++) {
+        for (var i = 0; i < 7; i++) {
           var next = new Date(curr.getTime());
           next.setDate(first - i);
           let dateObj = {};
