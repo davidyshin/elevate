@@ -444,7 +444,8 @@ p {
 /*
 // Achievement badge image 
 */
-.user-badge-image-container img, .more-achievement-badge-container img {
+.user-badge-image-container img, 
+.more-achievement-badge-container img {
   width: auto;
   height: 80px;
   margin: 22px;
@@ -461,18 +462,28 @@ p {
   align-items: center;
 }
 
-.more-badges-link-container h3 {
-  font-size: 1.6rem;
-  font-weight: 400;
-  cursor: pointer;
-  -moz-transition: 0.3s color;
-  -o-transition: 0.3s color;
-  -webkit-transition: 0.3s color;
-  transition: 0.3s color;
-}
+  .more-badges-link-container h3 {
+    font-size: 1.6rem;
+    font-weight: 400;
+    cursor: pointer;
+    -moz-transition: 0.3s all;
+    -o-transition: 0.3s all;
+    -webkit-transition: 0.3s all;
+    transition: 0.3s all;
+  }
 
-.user-badges-container h3:hover {
-  color: #3498db;
+  .user-badges-container h3:hover {
+    color: #3498db;
+  }
+
+
+/*
+// When screen is smaller than 720, "More Badges" font gets smaller
+*/
+@media screen and (max-width: 720px) {
+  .more-badges-link-container h3 {
+    font-size: 1.4rem;
+  }
 }
 
 /*
@@ -480,24 +491,49 @@ p {
 */
 @media screen and (max-width: 510px) {
   .user-badges-container {
-    flex-direction: column;
+    flex-wrap: wrap;
     height: 100%;
     margin: 20px auto 0 auto;
   }
 
+  /*
+  // On mobile, the badges wrap around the div 
+  */
   .user-badge-image-container {
     width: 100%;
-    flex-direction: column;
+    flex-wrap: wrap;
   }
 
-  .user-badge-image-container img {
-    height: 180px;
+  /*
+  // 3 badges goes into a user-badge-image-container 
+  */
+  .achievement-badge-container {
+    width: 33%;
   }
 
-  .user-badges-container div:last-child {
+  /*
+  // Holds the words "More Badges", which is moved to the bottom
+  */
+  .more-badges-link-container {
     width: 100%;
-    padding: 22px 0;
+    margin-top: 22px;
+    margin-bottom: 22px;
   }
+
+  /*
+  // Container that shows when user clicks "More Badges"
+  */
+  .more-achievement-badge-container-expand {
+    width: 33%;
+  }
+
+  /*
+  // Contains the badges that expand
+  */
+  .more-user-badges-container {
+    height: 100%;
+  }
+
 }
 
 /*------------------------------------------*/
