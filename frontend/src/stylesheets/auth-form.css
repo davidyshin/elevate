@@ -70,7 +70,7 @@
     // Login and Signup button
     */
     .auth-form-container form input[type='submit'] {
-        background: linear-gradient(to right, rgba(67, 42, 246, 1) 0%,rgba(0, 149, 222, 1) 100%); 
+        background: rgba(0, 149, 222, 1); 
         border-radius: 60px;
         width: 200px;
         margin: 36px auto 14px auto;

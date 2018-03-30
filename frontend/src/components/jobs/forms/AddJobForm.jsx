@@ -6,6 +6,7 @@ import axios from 'axios';
 import ResumeUpload from './ResumeUpload.jsx';
 import CoverLetterUpload from './CoverLetterUpload.jsx';
 import AddInterview from './AddInterview.jsx';
+import { Link } from 'react-router-dom';
 import achieves from '../../achievements/checkForAchievements';
 import '../../../stylesheets/jobs-add.css';
 
@@ -487,6 +488,7 @@ class AddJobForm extends Component {
         })}
 
         {this.state.saved ? (
+          <div className="job-progress-form-buttons">
           <button
             className="add-interview-button"
             disabled={!interviewSaved}
@@ -495,6 +497,11 @@ class AddJobForm extends Component {
             {' '}
             Add an Interview{' '}
           </button>
+          <Link to="/">
+          {' '}
+          <button className="job-finished-button">Come back later</button>{' '}
+        </Link>
+          </div>
         ) : (
           ''
         )}
