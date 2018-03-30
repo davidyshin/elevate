@@ -87,9 +87,6 @@
             -webkit-transition: 0.2s all;
             transition: 0.2s all;            
         }
-        .splash-top-image:hover  {
-            box-shadow: none;
-        }
         .splash-top-image img{
             width: 600;
             height: 400px
