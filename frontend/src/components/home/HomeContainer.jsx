@@ -15,7 +15,8 @@ class HomeContainer extends Component {
   constructor() {
     super();
     this.state = {
-      experience: 0
+      experience: 0,
+      coinAnimation: false
     };
   }
 
@@ -25,9 +26,23 @@ class HomeContainer extends Component {
     });
   }
 
+  coinAnimationToggle = () => {
+    this.setState({
+      coinAnimation: true
+    }, () => {
+      setTimeout(() => {
+        this.setState({
+          coinAnimation: false
+        })
+      }, 3000);
+    })
+  }
+
   updateExperience = exp => {
     let { experience } = this.state;
     let updatedExperience = experience + exp;
+
+    this.coinAnimationToggle();
 
     axios
       .put('/users/updateExperience', {
@@ -35,7 +50,7 @@ class HomeContainer extends Component {
       })
       .then(() => {
         this.setState({
-          experience: updatedExperience
+          experience: updatedExperience,
         });
       })
       .catch(err => {
@@ -89,9 +104,11 @@ class HomeContainer extends Component {
   };
 
   render() {
+    console.log(this.state);
+
     return (
       <div className="home-container">
-        <HomeNavBar experience={this.state.experience} />
+        <HomeNavBar experience={this.state.experience} coinAnimation={this.state.coinAnimation}/>
         <Route exact path="/" component={this.renderJobsContainer} />
         <Route exact path="/profile/" component={this.renderUserContainer} />
         <Route exact path="/addjob/" component={this.renderAddJobForm} />

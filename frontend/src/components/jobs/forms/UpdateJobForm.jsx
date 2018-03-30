@@ -67,7 +67,9 @@ class UpdateJobForm extends Component {
           cover_url: editingJob.cover_url,
           date_applied: date_applied,
           job_status: editingJob.job_status,
-          experience: this.props.activeUser.experience
+          experience: this.props.activeUser.experience,
+          salary: editingJob.salary || '',
+          salarySaved: false,
         });
       })
       .catch(err => {
@@ -80,6 +82,22 @@ class UpdateJobForm extends Component {
       })
       .catch(err => console.log(err));
   }
+
+  handleSalarySave = e => {
+    e.preventDefault();
+    const { salary, job_id } = this.state;
+    axios
+      .put('/users/updateJobSalary', {
+        job_id: job_id,
+        salary: salary
+      })
+      .then(() => {
+        this.setState({
+          salarySaved: true
+        });
+      })
+      .catch(err => console.log(err));
+  };
 
   handleInput = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -188,7 +206,10 @@ class UpdateJobForm extends Component {
       saved,
       applicationStage,
       interviews,
-      addedInterviews
+      addedInterviews,
+      job_status,
+      salary,
+      salarySaved
     } = this.state;
 
     return (
@@ -314,39 +335,59 @@ class UpdateJobForm extends Component {
           Add Interview
         </button>
         {applicationStage === 4 ? (
-              <div data-aos="fade-up" className="update-job-status">
-                <h1> Update Job Application Status </h1>
-                <div className="job-status-switch-field">
-                  <input
-                    onChange={this.handleStatusChange}
-                    type="radio"
-                    id="offered"
-                    name="offered"
-                    className="status-switch-offered"
-                    checked={this.state.job_status === 'offered'}
-                  />
-                  <label for="offered">Offered</label>
-                  <input
-                    onChange={this.handleStatusChange}
-                    type="radio"
-                    id="awaiting"
-                    name="awaiting"
-                    className="status-switch-awaiting"
-                    checked={this.state.job_status === 'awaiting'}
-                  />
-                  <label for="awaiting">Awaiting</label>
-                  <input
-                    onChange={this.handleStatusChange}
-                    type="radio"
-                    id="rejected"
-                    name="rejected"
-                    className="status-switch-rejected"
-                    checked={this.state.job_status === 'rejected'}
-                  />
-                  <label for="rejected">Rejected</label>
-                </div>
+          <div data-aos="fade-up" className="update-job-status">
+            <h1> Update Job Application Status </h1>
+            <div className="job-status-switch-field">
+              <input
+                onChange={this.handleStatusChange}
+                type="radio"
+                id="offered"
+                name="offered"
+                className="status-switch-offered"
+                checked={this.state.job_status === 'offered'}
+              />
+              <label for="offered">Offered</label>
+              <input
+                onChange={this.handleStatusChange}
+                type="radio"
+                id="awaiting"
+                name="awaiting"
+                className="status-switch-awaiting"
+                checked={this.state.job_status === 'awaiting'}
+              />
+              <label for="awaiting">Awaiting</label>
+              <input
+                onChange={this.handleStatusChange}
+                type="radio"
+                id="rejected"
+                name="rejected"
+                className="status-switch-rejected"
+                checked={this.state.job_status === 'rejected'}
+              />
+              <label for="rejected">Rejected</label>
             </div>
-          ) : null}
+            {job_status === 'offered' ? (
+              <div className="salary-input-container">
+               {salarySaved ?  <h3>Saved Salary</h3> :<h3> Offered Salary </h3>}
+                <input
+                  className="salary-input"
+                  name="salary"
+                  onChange={this.handleInput}
+                  type="text"
+                  maxLength="20"
+                  placeholder="Salary"
+                />
+                <button
+                  className="salary-input-save"
+                  disabled={salary.length < 1 || salarySaved}
+                  onClick={this.handleSalarySave}
+                  type="submit"
+                  value="Save"
+                >Save</button>
+              </div>
+            ) : null}
+          </div>
+        ) : null}
           {interviews.map(interview => {
             return (
               <div className="interview-form-container">
