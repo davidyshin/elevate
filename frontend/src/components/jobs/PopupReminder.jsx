@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 
 class PopupReminder extends Component {
   render() {
     return (
       <div className="popup-reminder-container">
-        <h3>Don't forget to set your reminder settings!</h3>
-        <p>Profile > Account > Notification Settings</p>
+        <div>
+          <i class="fas fa-info-circle fa-5x"></i>
+        </div>
+        <div className="reminder-content">
+          <h3>Account Preferences</h3>
+          <p>Don't forget to set your <Link to="/profile">reminder preferences</Link> for important dates.</p>
+        </div>
+        <div>
+          <button><i class="fas fa-times fa-2x"></i></button>
+        </div>
       </div>
     )
   }
