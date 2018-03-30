@@ -44,6 +44,8 @@ class AddJobForm extends Component {
       resume_url: '',
       cover_url: '',
       experience: 0,
+      salary: '',
+      salarySaved: false,
       saved: false,
       interviews: [],
       interviewSaved: ''
@@ -104,6 +106,22 @@ class AddJobForm extends Component {
       })
       .then(() => {
         this.setState({ job_status });
+      })
+      .catch(err => console.log(err));
+  };
+
+  handleSalarySave = e => {
+    e.preventDefault();
+    const { salary, job_id } = this.state;
+    axios
+      .put('/users/updateJobSalary', {
+        job_id: job_id,
+        salary: salary
+      })
+      .then(() => {
+        this.setState({
+          salarySaved: true
+        });
       })
       .catch(err => console.log(err));
   };
@@ -260,7 +278,10 @@ class AddJobForm extends Component {
       saved,
       interviewSaved,
       applicationStage,
-      interviews
+      interviews,
+      job_status,
+      salary,
+      salarySaved
     } = this.state;
     const inputProps = {
       placeholder: `Company Name`,
@@ -430,6 +451,26 @@ class AddJobForm extends Component {
               />
               <label for="rejected">Rejected</label>
             </div>
+            {job_status === 'offered' ? (
+              <div className="salary-input-container">
+               {salarySaved ? <h3> Offered Salary </h3> : <h3>Saved Salary</h3>}
+                <input
+                  className="salary-input"
+                  name="salary"
+                  onChange={this.handleInput}
+                  type="text"
+                  maxLength="20"
+                  placeholder="Salary"
+                />
+                <button
+                  className="salary-input-save"
+                  disabled={salary.length < 1 || salarySaved}
+                  onClick={this.handleSalarySave}
+                  type="submit"
+                  value="Save"
+                >Save</button>
+              </div>
+            ) : null}
           </div>
         ) : null}
 

@@ -69,6 +69,7 @@ GET Requests
 /* 29. updateExperience // PUT Route = /users/updateExperience */
 /* 30. updateJobStatus // PUT Route = /users/updateJobStatus */
 /* 31. updateNotification // PUT Route = /users/updateJobStatus */
+/* 32. updateJobSalary' // PUT Route = /users/updateJobSalary */
 
 /*--------------------------------------- 
 
@@ -176,5 +177,8 @@ router.put('/updateJobStatus', loginRequired, db.updateJobStatus);
 
 /* 31. updateNotification // PUT Route = /users/updateNotification */
 router.put('/updateNotification', loginRequired, db.updateNotification);
+
+/* 32. updateJobSalary // PUT Route = /users/updateJobSalary */
+router.put('/updateJobSalary', loginRequired, db.updateJobSalary)
 
 module.exports = router;
