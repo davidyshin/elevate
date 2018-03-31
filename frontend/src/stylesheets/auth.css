@@ -31,47 +31,119 @@
     */
     .splash-top {
         height: 92.4vh;
+        width: 100%;
         position: relative;
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: center;
     }
-    .splash-top-info {
-        padding-left: 75px;
+
+    /*
+    // Image container 
+    */ 
+    .splash-top-image {
+        /* background-color: rgba(255, 0, 0, 0.4); */
+        width: 50%;
+        height: 100%;
         display: flex;
-        flex-direction: column
-    }
-    .splash-top-info img {
-        width: 65px;
-        height: 65px;
-        padding-left: 12px;
+        justify-content: center;
+        align-items: center;
     }
 
+        /*
+        // Image 
+        */ 
+        .splash-top-image img{
+            width: 600px;
+            /* height: 400px; */
+            height: auto;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
+            -moz-transition: 0.3s all;
+            -webkit-transition: 0.3s all;
+            -o-transition: 0.3s all;
+            transition: 0.3s all;
+        }
+
+
+    /*
+    // Contains Elevate, slogan, and buttons
+    */ 
+    .splash-top-info {
+        width: 50%;
+        height: 100%;
+        /* background-color: rgba(0, 0, 255, 0.2); */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    /*
+    // Elevate logo and title container 
+    */
     .splash-top-info-title {
         display: flex;
         text-align: center;
         flex-direction: row;
         align-items: center;
+        margin-left: 75px;
+        -moz-transition: 0.3s all;
+        -webkit-transition: 0.3s all;
+        -o-transition: 0.3s all;
+        transition: 0.3s all;
     }
 
+        /*
+        // Logo
+        */ 
+        .splash-top-info img {
+            width: 65px;
+            height: 65px;
+            padding-left: 12px;
+            -moz-transition: 0.3s all;
+            -webkit-transition: 0.3s all;
+            -o-transition: 0.3s all;
+            transition: 0.3s all;
+        }
 
+        /* 
+        // Elevate 
+        */ 
+        .splash-top h1 {
+            font-size: 6rem;
+            font-weight: 400;
+            padding: 12px; 
+            -moz-transition: 0.3s all;
+            -webkit-transition: 0.3s all;
+            -o-transition: 0.3s all;
+            transition: 0.3s all;
+        }
 
-    .splash-top h1 {
-        font-size: 6rem;
-        font-weight: 400;
-        padding: 12px; 
-    }
-
+    /*
+    // Elevate your job search experience  
+    */ 
     .splash-top p {
         font-size: 2rem;
         font-weight: 300;
         padding: 12px 12px 24px 12px;
+        margin-left: 75px;
+        -moz-transition: 0.3s all;
+        -webkit-transition: 0.3s all;
+        -o-transition: 0.3s all;
+        transition: 0.3s all;
     }
 
-        .splash-top-button-container {
-            display: flex;
-        }
+    /*
+    // Contains demo and sign up buttons 
+    */ 
+    .splash-top-button-container {
+        display: flex;
+        margin-left: 75px;
+        -moz-transition: 0.3s all;
+        -webkit-transition: 0.3s all;
+        -o-transition: 0.3s all;
+        transition: 0.3s all;
+    }
 
         /* 
         // Demo and create an account button 
@@ -95,18 +167,6 @@
             transition: 0.2s all;
             cursor: pointer;
         }
-        .splash-top-image {
-            box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.1);
-            -moz-transition: 0.2s all;
-            -o-transition: 0.2s all;
-            -webkit-transition: 0.2s all;
-            transition: 0.2s all;            
-        }
-        .splash-top-image img{
-            width: 600;
-            height: 400px
-        }
-
         /*
         // Button gets bigger on hover
         */
@@ -114,6 +174,80 @@
             transform: scale(1.02);
         }
 
+@media screen and (max-width: 1300px) {
+    .splash-top-image {
+        width: 46%;
+    }
+
+    .splash-top-image img {
+        width: 90%;
+        height: auto;
+    }
+
+    .splash-top-info {
+        width: 54%;
+    }
+}
+
+@media screen and (max-width: 880px) {
+    .splash-top-info-title {
+        margin-left: 0;
+    }
+
+    .splash-top p {
+        margin-left: 0;
+    }
+
+    .splash-top-button-container {
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .splash-top-info-title img {
+        height: 56px;
+        width: 56px;
+    }
+
+    .splash-top-info-title h1 {
+        font-size: 4rem;
+    }
+
+    .splash-top-info p {
+        font-size: 1.8rem;
+    }
+}
+
+@media screen and (max-width: 510px) {
+    .splash-top {
+        flex-direction: column-reverse;
+    }
+
+    .splash-top-image {
+        width: 100%;
+        height: 40%;
+        display: none;
+    }
+
+        .splash-top-image img {
+            height: 90%;
+            width: auto;
+        }
+
+
+    .splash-top-info {
+        width: 100%;
+        /* height: 60%; */
+    }
+
+    .splash-top-info-title {
+        justify-content: center;
+    }
+
+    .splash-top-info p {
+        text-align: center;
+    }
+}
 
 /*------------------------------------------*/
 /*               Feature Title              */
