@@ -65,11 +65,11 @@ class AddJobForm extends Component {
     let date = new Date(); // Today
     let timeZone = new Date(date.getTime() - date.getTimezoneOffset() * 60000); // Today minus time zone
     let dateLogged = timeZone.toISOString().substring(0, 10);
-
+    const companyLogo = this.state.companyLogo ? this.state.companyLogo : 'https://i.imgur.com/gBiRInp.png'
     axios
       .post('/users/createJobApp', {
         company_name: this.state.company,
-        company_logo: this.state.companyLogo,
+        company_logo: companyLogo,
         date_applied: this.state.date_applied,
         date_logged: dateLogged,
         job_email: this.state.email,
