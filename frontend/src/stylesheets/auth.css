@@ -245,7 +245,9 @@
     .splash-features {
         flex-direction: column;
         align-items: center;
-        height: 1000px;
+        /* height: 1000px; */
+        height: 100%;
+        margin: 80px auto;
     }
 
     .splash-feature-card {
@@ -283,63 +285,162 @@
 /*               About The Team             */
 /*------------------------------------------*/
 .about-container {
-    background-color: rgba(255, 0, 0, 0.2);
-    height: 500px;
-    /* width: 100%; */
+    background-color: #2f4760;
+    height: 100%;
     margin: 0 auto;
     padding: 0 160px;
+    -moz-transition: 0.3s all;
+    -webkit-transition: 0.3s all;
+    -o-transition: 0.3s all;
     transition: 0.3s all;
 }
 
     .about-container h3 {
         font-weight: 300;
         font-size: 3.2rem;
+        color: #fefefe;
         display: flex;
         justify-content: center;
         align-items: center;
         padding-top: 100px;
+        -moz-transition: 0.3s all;
+        -webkit-transition: 0.3s all;
+        -o-transition: 0.3s all;
         transition: 0.3s all;
     }
 
 /*
-// Contains all the team cards 
+// Contains all four team cards 
 */ 
 .about-team-cards-container {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    height: 500px;
+    width: 100%;
+    transition: 0.3s all;
 }
 
 /*
 // Contains single team photo and name 
 */
 .about-individual-container {
-    background-color: rgba(0, 0, 255, 0.2);
-    height: 260px;
-    width: 240px;
+    background-color: #fefefe;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
+    height: 250px;
+    width: 230px;
     padding: 12px;
+    border-radius: 4px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: 0.3s all;
+    animation: deanimate-on-hover .3s;
+    animation-fill-mode: forwards;
 }
 
+    .about-individual-container:hover {
+        animation: animate-on-hover .3s;
+        animation-fill-mode: forwards;
+    }
+
     /*
-    // Contains image
+    // Image container 
     */ 
-    .about-individual-container div {
-        height: 60%;
+    .about-individual-container div:first-child {
+        height: 65%;
         width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: rgba(0, 255, 0, 0.2);
     }
 
         .about-individual-container img {
-            height: 100px;
-            width: 100px;
+            height: 120px;
+            width: 120px;
             border-radius: 100%;
         }
 
+    /*
+    // Contains name
+    */
     .about-individual-container p {
-        height: 20%;
+        font-size: 1.8rem;
+        font-weight: 500;
+        color: rgba(0, 0, 0, 0.85);
+        width: 100%;
+        height: 16%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
+
+    /*
+    // Contains social media logos 
+    */ 
+    .about-social-container {
+        font-size: 2.6rem;
+        width: 100%;
+        height: 19%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+        /*
+        // Logos 
+        */ 
+        .about-social-container a,
+        .about-social-container a:visited {
+            text-decoration: none;
+            color: rgba(0, 0, 0, 0.4);
+            padding: 0 6px;
+            -moz-transition: 0.3s color;
+            -webkit-transition: 0.3s color;
+            -o-transition: 0.3s color;
+            transition: 0.3s color;
+        }
+
+        .about-social-container a:hover {
+            color: rgba(0, 0, 0, 0.5);
+        }
+
+@media screen and (max-width: 1300px) {
+    .about-container {
+        padding: 0 3%;
+    }
+
+    .about-individual-container {
+        width: 20%;
+    }
+}
+
+@media screen and (max-width: 1040px) {
+    .about-team-cards-container {
+        height: 600px;
+        margin: 80px auto;
+        flex-wrap: wrap;
+    }
+
+    .about-individual-container {
+        width: 46%;
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .about-team-cards-container {
+        justify-content: center;
+        height: 100%;
+    }
+
+    .about-individual-container {
+        width: 80%;
+        margin: 6px auto;
+    }
+}
+
+@media screen and (max-width: 510px) {
+    .about-individual-container {
+        width: 96%;
+    }
+}
