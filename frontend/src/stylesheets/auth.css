@@ -114,6 +114,26 @@
             transform: scale(1.02);
         }
 
+
+/*------------------------------------------*/
+/*               Feature Title              */
+/*------------------------------------------*/
+
+.splash-feature-title {
+    font-weight: 300;
+    font-size: 3.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 160px;
+    transition: 0.3s all;
+}
+
+
+/*------------------------------------------*/
+/*             Feature Cards                */
+/*------------------------------------------*/
+
     /*
     // Middle content, which holds a description of the app's features
     */
@@ -201,31 +221,6 @@
             text-decoration: none;
         }
 
-/*
-// On hover, content shifts up
-*/
-@keyframes animate-on-hover {
-    from {
-        transform: translate(0, 0);
-    }
-
-    to {
-        transform: translate(0, -5px);
-    }
-}
-
-/*
-// On hover off, content shifts back to original place.
-*/
-@keyframes deanimate-on-hover {
-    from {
-        transform: translate(0, -5px);
-    }
-
-    to {
-        transform: translate(0, 0);
-    }
-}
 
 /*
 // When screen is smaller than 1300px, 
@@ -257,6 +252,11 @@
         width: 80%;
         margin-bottom: 12px;
     }
+
+    .splash-feature-title {
+        margin-bottom: 32px;
+        font-size: 2.8rem;
+    }
 }
 
 /*
@@ -268,4 +268,78 @@
         flex-direction: column;
         align-items: center;
     }
+
+    .splash-feature-title {
+        font-size: 2.2rem;
+    }
+
+    .splash-feature-card {
+        width: 96%;
+    }
 }
+
+
+/*------------------------------------------*/
+/*               About The Team             */
+/*------------------------------------------*/
+.about-container {
+    background-color: rgba(255, 0, 0, 0.2);
+    height: 500px;
+    /* width: 100%; */
+    margin: 0 auto;
+    padding: 0 160px;
+    transition: 0.3s all;
+}
+
+    .about-container h3 {
+        font-weight: 300;
+        font-size: 3.2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-top: 100px;
+        transition: 0.3s all;
+    }
+
+/*
+// Contains all the team cards 
+*/ 
+.about-team-cards-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+/*
+// Contains single team photo and name 
+*/
+.about-individual-container {
+    background-color: rgba(0, 0, 255, 0.2);
+    height: 260px;
+    width: 240px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+    /*
+    // Contains image
+    */ 
+    .about-individual-container div {
+        height: 60%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0, 255, 0, 0.2);
+    }
+
+        .about-individual-container img {
+            height: 100px;
+            width: 100px;
+            border-radius: 100%;
+        }
+
+    .about-individual-container p {
+        height: 20%;
+    }
