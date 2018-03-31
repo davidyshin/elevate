@@ -362,9 +362,7 @@ class AddJobForm extends Component {
         >
           <form onSubmit={this.handleFirstSubmit}>
             <h1> Job Info</h1>
-            <div className="add-job-form-input-title">
               <p>Company applied to: *</p>
-            </div>
             <div className="company-search-input">
               <Autosuggest
                 className="add-job-form-input-company"
@@ -403,10 +401,7 @@ class AddJobForm extends Component {
                 <i className="fas fa-briefcase fa-2x" />
               </span>
             </div>
-            <div className="add-job-form-input-title">
-              {' '}
               <p>Date applied: *</p>{' '}
-            </div>
             <div className="date-applied-input">
               <input
                 onChange={this.handleDate}
@@ -417,10 +412,7 @@ class AddJobForm extends Component {
                 type="date"
               />
             </div>
-            <div className="add-job-form-input-title">
-              {' '}
               <p>Job posting url: </p>
-            </div>
             <input
               onChange={this.handleInput}
               value={url}

@@ -30,11 +30,6 @@
   margin: 0 auto;
 }
 
-.add-job-form-input-title {
-  width: 396px;
-  display: flex;
-  justify-content: flex-start;
-}
 .add-job-form-container p {
   font-size: 15px;
   font-weight: 300;
@@ -46,8 +41,7 @@
 */
 
 .add-job-form-container form input,
-.salary-input-container input,
-textarea {
+.salary-input-container input {
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
   outline: none;
@@ -89,8 +83,8 @@ textarea {
 
 textarea {
   font-size: 16px;
-  height: 100px;
   resize: none;
+  padding: 0;
 }
 /*
 // Input text box placeholders and fonts
