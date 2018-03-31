@@ -35,6 +35,31 @@
   font-weight: 300;
 }
 
+input[type="date"]::-webkit-calendar-picker-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0px;
+  width: 100%;
+  height: 100%;
+  opacity: 0
+}
+
+input[type="date"]::-webkit-inner-spin-button {
+  z-index: 1;
+}
+
+/* adjust clear button */
+input[type="date"]::-webkit-clear-button {
+   z-index: 1;
+}
+
+.input-date-container {
+  position: relative;
+}
+
 /*
 // Each stage of the application has it's own form and box, separated by 50px
 // Input boxes in the forms, and the textarea === note section
