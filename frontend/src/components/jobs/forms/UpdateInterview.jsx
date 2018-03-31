@@ -125,7 +125,7 @@ class UpdateInterview extends Component {
             name="contact"
             type="text"
           />
-          <p>Note</p>
+          <p>Note:</p>
           <textarea value={note} onChange={this.handleInput} name="note" />
           <div>
           <input

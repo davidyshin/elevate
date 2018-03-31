@@ -121,7 +121,7 @@ class AddInterview extends Component {
             name="contact"
             type="text"
           />
-          <p>Note</p>
+          <p>Note:</p>
           <div className="interview-note-area">
             <div>
               <textarea
