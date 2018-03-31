@@ -9,8 +9,8 @@ import AddInterview from './AddInterview.jsx';
 import { Link } from 'react-router-dom';
 import achieves from '../../achievements/checkForAchievements';
 import '../../../stylesheets/jobs-add.css';
-import dotenv from 'dotenv'
-dotenv.load()
+import dotenv from 'dotenv';
+dotenv.load();
 
 const AutoSuggestStyling = {
   suggestionsList: { listStyle: 'none' }
@@ -86,7 +86,8 @@ class AddJobForm extends Component {
           job_id: data.data.returned.job_id,
           saved: true,
           applicationStage: 2,
-          interviewSaved: true
+          interviewSaved: true,
+          job_status: 'awaiting'
         });
       })
       .catch(err => {
@@ -267,14 +268,14 @@ class AddJobForm extends Component {
     console.log('hello');
     let { applicationStage } = this.state;
     if (e.target.id === 'right') {
-      if (applicationStage === 4) {
+      if (applicationStage === 5) {
         applicationStage = 1;
       } else {
         applicationStage += 1;
       }
     } else if (e.target.id === 'left') {
       if (applicationStage === 1) {
-        applicationStage = 4;
+        applicationStage = 5;
       } else {
         applicationStage -= 1;
       }
@@ -340,6 +341,11 @@ class AddJobForm extends Component {
               onClick={this.changeStage}
               className={applicationStage === 4 ? 'stage-active' : 'stage'}
             />
+            <span
+              id="5"
+              onClick={this.changeStage}
+              className={applicationStage === 5 ? 'stage-active' : 'stage'}
+            />
             <span className="stage-arrow-right">
               <i
                 id="right"
@@ -356,9 +362,7 @@ class AddJobForm extends Component {
         >
           <form onSubmit={this.handleFirstSubmit}>
             <h1> Job Info</h1>
-            <div className="add-job-form-input-title">
-              <p>Company applied to:</p>
-            </div>
+              <p>Company applied to: *</p>
             <div className="company-search-input">
               <Autosuggest
                 className="add-job-form-input-company"
@@ -374,14 +378,14 @@ class AddJobForm extends Component {
               {companyLogo ? (
                 <img className="company-image" src={companyLogo} />
               ) : (
-                  <span className="magnifying-glass">
-                    <i className="fas fa-search fa-2x" />
-                  </span>
-                )}
+                <span className="magnifying-glass">
+                  <i className="fas fa-search fa-2x" />
+                </span>
+              )}
             </div>
             <div className="add-job-form-input-title">
               {' '}
-              <p>Position applied to:</p>
+              <p>Position applied to: *</p>
             </div>
             <div className="position-search-input">
               <div>
@@ -397,10 +401,7 @@ class AddJobForm extends Component {
                 <i className="fas fa-briefcase fa-2x" />
               </span>
             </div>
-            <div className="add-job-form-input-title">
-              {' '}
-              <p>Date applied:</p>{' '}
-            </div>
+              <p>Date applied: *</p>{' '}
             <div className="date-applied-input">
               <input
                 onChange={this.handleDate}
@@ -411,10 +412,7 @@ class AddJobForm extends Component {
                 type="date"
               />
             </div>
-            <div className="add-job-form-input-title">
-              {' '}
               <p>Job posting url: </p>
-            </div>
             <input
               onChange={this.handleInput}
               value={url}
@@ -453,8 +451,27 @@ class AddJobForm extends Component {
             />
           </div>
         ) : null}
-
         {applicationStage === 4 ? (
+          <div data-aos="fade-up" className="add-job-interview-container">
+            <AddInterview
+              job_id={job_id}
+              updateExperience={this.props.updateExperience}
+              saveInterview={this.saveInterview}
+              addMoreInterview={this.addMoreInterview}
+            />
+            {interviews.map(interview => {
+              return (
+                <AddInterview
+                  job_id={job_id}
+                  updateExperience={this.props.updateExperience}
+                  saveInterview={this.saveInterview}
+                />
+              );
+            })}
+          </div>
+        ) : null}
+
+        {applicationStage === 5 ? (
           <div data-aos="fade-up" className="update-job-status">
             <h1> Update Job Application Status </h1>
             <div className="job-status-switch-field">
@@ -488,7 +505,11 @@ class AddJobForm extends Component {
             </div>
             {job_status === 'offered' ? (
               <div className="salary-input-container">
-                {salarySaved ? <h3> Offered Salary </h3> : <h3>Saved Salary</h3>}
+                {salarySaved ? (
+                  <h3> Offered Salary </h3>
+                ) : (
+                  <h3>Saved Salary</h3>
+                )}
                 <input
                   className="salary-input"
                   name="salary"
@@ -510,37 +531,6 @@ class AddJobForm extends Component {
             ) : null}
           </div>
         ) : null}
-
-        {interviews.map(interview => {
-          return (
-            <div data-aos="fade-up" className="add-job-interview-container">
-              <AddInterview
-                job_id={job_id}
-                updateExperience={this.props.updateExperience}
-                saveInterview={this.saveInterview}
-              />
-            </div>
-          );
-        })}
-
-        {this.state.saved ? (
-          <div className="job-progress-form-buttons">
-            <button
-              className="add-interview-button"
-              disabled={!interviewSaved}
-              onClick={this.addMoreInterview}
-            >
-              {' '}
-              Add an Interview{' '}
-            </button>
-            <Link to="/">
-              {' '}
-              <button className="job-finished-button">Come back later</button>{' '}
-            </Link>
-          </div>
-        ) : (
-            ''
-          )}
       </div>
     );
   }
