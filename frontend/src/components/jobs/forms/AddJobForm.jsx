@@ -86,7 +86,8 @@ class AddJobForm extends Component {
           job_id: data.data.returned.job_id,
           saved: true,
           applicationStage: 2,
-          interviewSaved: true
+          interviewSaved: true,
+          job_status: 'awaiting'
         });
       })
       .catch(err => {
