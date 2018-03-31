@@ -18,9 +18,11 @@ class SplashContainer extends Component {
     return (
       <div className="splash-container" data-aos="fade-up">
         <div className="splash-top">
+        
           <div className="splash-top-image">
             <img src="https://i.pinimg.com/564x/74/c2/0b/74c20b6f02246e9ea025e6b07a6c0d22.jpg" />
           </div>
+
           <div className="splash-top-info">
             <div className="splash-top-info-title">
               <img
