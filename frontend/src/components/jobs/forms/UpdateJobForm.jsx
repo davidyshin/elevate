@@ -27,7 +27,7 @@ class UpdateJobForm extends Component {
       resume_url: '',
       cover_url: '',
       interviews: [],
-      addedInterviews: [],
+      addedInterviews: ['test'],
       job_status: 'awaiting'
     };
   }
@@ -196,19 +196,44 @@ class UpdateJobForm extends Component {
     console.log('hello');
     let { applicationStage } = this.state;
     if (e.target.id === 'right') {
-      if (applicationStage === 4) {
+      if (applicationStage === 5) {
         applicationStage = 1;
       } else {
         applicationStage += 1;
       }
     } else if (e.target.id === 'left') {
       if (applicationStage === 1) {
-        applicationStage = 4;
+        applicationStage = 5;
       } else {
         applicationStage -= 1;
       }
     }
     this.setState({ applicationStage });
+  };
+
+  renderInterviews = () => {
+    const {interviews, addedInterviews, job_id} = this.state
+    return (
+      <div className="update-interview-company" data-aos="fade-up">
+        {interviews.map(interview => {
+          return (
+            <UpdateInterview
+              interview={interview}
+              addMoreInterview={this.addMoreInterview}
+            />
+          );
+        })}
+        {addedInterviews.map(interview => {
+          return (
+            <AddInterview
+              job_id={job_id}
+              addMoreInterview={this.addMoreInterview}
+              updateExperience={this.props.updateExperience}
+            />
+          );
+        })}
+      </div>
+    );
   };
 
   render() {
@@ -262,6 +287,11 @@ class UpdateJobForm extends Component {
             onClick={this.changeStage}
             className={applicationStage === 4 ? 'stage-active' : 'stage'}
           />
+          <span
+            id="5"
+            onClick={this.changeStage}
+            className={applicationStage === 5 ? 'stage-active' : 'stage'}
+          />
           <span className="stage-arrow-right">
             <i
               id="right"
@@ -277,7 +307,7 @@ class UpdateJobForm extends Component {
         >
           <form onSubmit={this.handleSave}>
             <h1> Job Info</h1>
-            <p>Company:</p>
+            <p>Company:  *</p>
             <div className="company-input">
               <div>
                 <input
@@ -291,12 +321,12 @@ class UpdateJobForm extends Component {
               {companyLogo ? (
                 <img className="company-image" src={companyLogo} />
               ) : (
-                  <span className="building-icon">
-                    <i className="fas fa-building fa-2x" />
-                  </span>
-                )}
+                <span className="building-icon">
+                  <i className="fas fa-building fa-2x" />
+                </span>
+              )}
             </div>
-            <p>Position applied to:</p>
+            <p>Position applied to: *</p>
             <input
               onChange={this.handleInput}
               value={position}
@@ -304,7 +334,7 @@ class UpdateJobForm extends Component {
               name="position"
               type="text"
             />
-            <p>Date Applied:</p>
+            <p>Date Applied: *</p>
             <input
               onChange={this.handleDate}
               value={date_applied}
@@ -339,11 +369,11 @@ class UpdateJobForm extends Component {
               </a>
             </div>
           ) : (
-              <ResumeUpload
-                handleResumeInput={this.handleResumeInput}
-                job_id={job_id}
-              />
-            )
+            <ResumeUpload
+              handleResumeInput={this.handleResumeInput}
+              job_id={job_id}
+            />
+          )
         ) : null}
 
         {applicationStage === 3 ? (
@@ -358,27 +388,16 @@ class UpdateJobForm extends Component {
               </a>
             </div>
           ) : (
-              <CoverLetterUpload
-                handleCoverInput={this.handleCoverInput}
-                job_id={job_id}
-              />
-            )
+            <CoverLetterUpload
+              handleCoverInput={this.handleCoverInput}
+              job_id={job_id}
+            />
+          )
         ) : null}
-
-        <div className="job-progress-form-buttons">
-          <button
-            className="add-interview-button"
-            onClick={this.addMoreInterview}
-          >
-            Add Interview
-        </button>
-          <Link to="/">
-            {' '}
-            <button className="job-finished-button">Come back later</button>{' '}
-          </Link>
-        </div>
-
         {applicationStage === 4 ? (
+          <this.renderInterviews />
+        ) : null}
+        {applicationStage === 5 ? (
           <div data-aos="fade-up" className="update-job-status">
             <h1> Update Job Application Status </h1>
             <div className="job-status-switch-field">
@@ -415,8 +434,8 @@ class UpdateJobForm extends Component {
                 {salarySaved ? (
                   <h3>Saved Salary</h3>
                 ) : (
-                    <h3> Offered Salary </h3>
-                  )}
+                  <h3> Offered Salary </h3>
+                )}
                 <input
                   className="salary-input"
                   name="salary"
@@ -438,29 +457,6 @@ class UpdateJobForm extends Component {
             ) : null}
           </div>
         ) : null}
-
-        {interviews.map(interview => {
-          return (
-            <div className="interview-form-container">
-              <UpdateInterview
-                interview={interview}
-                addMoreInterview={this.addMoreInterview}
-              />
-            </div>
-          );
-        })}
-
-        {addedInterviews.map(interview => {
-          return (
-            <div className="add-interview-form-container">
-              <AddInterview
-                job_id={job_id}
-                addMoreInterview={this.addMoreInterview}
-                updateExperience={this.props.updateExperience}
-              />
-            </div>
-          );
-        })}
       </div>
     );
   }
