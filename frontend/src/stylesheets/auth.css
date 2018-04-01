@@ -31,47 +31,119 @@
     */
     .splash-top {
         height: 92.4vh;
+        width: 100%;
         position: relative;
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: center;
     }
-    .splash-top-info {
-        padding-left: 75px;
+
+    /*
+    // Image container 
+    */ 
+    .splash-top-image {
+        /* background-color: rgba(255, 0, 0, 0.4); */
+        width: 50%;
+        height: 100%;
         display: flex;
-        flex-direction: column
-    }
-    .splash-top-info img {
-        width: 65px;
-        height: 65px;
-        padding-left: 12px;
+        justify-content: center;
+        align-items: center;
     }
 
+        /*
+        // Image 
+        */ 
+        .splash-top-image img{
+            width: 600px;
+            /* height: 400px; */
+            height: auto;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
+            -moz-transition: 0.3s all;
+            -webkit-transition: 0.3s all;
+            -o-transition: 0.3s all;
+            transition: 0.3s all;
+        }
+
+
+    /*
+    // Contains Elevate, slogan, and buttons
+    */ 
+    .splash-top-info {
+        width: 50%;
+        height: 100%;
+        /* background-color: rgba(0, 0, 255, 0.2); */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    /*
+    // Elevate logo and title container 
+    */
     .splash-top-info-title {
         display: flex;
         text-align: center;
         flex-direction: row;
         align-items: center;
+        margin-left: 75px;
+        -moz-transition: 0.3s all;
+        -webkit-transition: 0.3s all;
+        -o-transition: 0.3s all;
+        transition: 0.3s all;
     }
 
+        /*
+        // Logo
+        */ 
+        .splash-top-info img {
+            width: 65px;
+            height: 65px;
+            padding-left: 12px;
+            -moz-transition: 0.3s all;
+            -webkit-transition: 0.3s all;
+            -o-transition: 0.3s all;
+            transition: 0.3s all;
+        }
 
+        /* 
+        // Elevate 
+        */ 
+        .splash-top h1 {
+            font-size: 6rem;
+            font-weight: 400;
+            padding: 12px; 
+            -moz-transition: 0.3s all;
+            -webkit-transition: 0.3s all;
+            -o-transition: 0.3s all;
+            transition: 0.3s all;
+        }
 
-    .splash-top h1 {
-        font-size: 6rem;
-        font-weight: 400;
-        padding: 12px; 
-    }
-
+    /*
+    // Elevate your job search experience  
+    */ 
     .splash-top p {
         font-size: 2rem;
         font-weight: 300;
         padding: 12px 12px 24px 12px;
+        margin-left: 75px;
+        -moz-transition: 0.3s all;
+        -webkit-transition: 0.3s all;
+        -o-transition: 0.3s all;
+        transition: 0.3s all;
     }
 
-        .splash-top-button-container {
-            display: flex;
-        }
+    /*
+    // Contains demo and sign up buttons 
+    */ 
+    .splash-top-button-container {
+        display: flex;
+        margin-left: 75px;
+        -moz-transition: 0.3s all;
+        -webkit-transition: 0.3s all;
+        -o-transition: 0.3s all;
+        transition: 0.3s all;
+    }
 
         /* 
         // Demo and create an account button 
@@ -95,24 +167,106 @@
             transition: 0.2s all;
             cursor: pointer;
         }
-        .splash-top-image {
-            box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.1);
-            -moz-transition: 0.2s all;
-            -o-transition: 0.2s all;
-            -webkit-transition: 0.2s all;
-            transition: 0.2s all;            
-        }
-        .splash-top-image img{
-            width: 600;
-            height: 400px
-        }
-
         /*
         // Button gets bigger on hover
         */
         .splash-top button:hover {
             transform: scale(1.02);
         }
+
+@media screen and (max-width: 1300px) {
+    .splash-top-image {
+        width: 46%;
+    }
+
+    .splash-top-image img {
+        width: 90%;
+        height: auto;
+    }
+
+    .splash-top-info {
+        width: 54%;
+    }
+}
+
+@media screen and (max-width: 880px) {
+    .splash-top-info-title {
+        margin-left: 0;
+    }
+
+    .splash-top p {
+        margin-left: 0;
+    }
+
+    .splash-top-button-container {
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .splash-top-info-title img {
+        height: 56px;
+        width: 56px;
+    }
+
+    .splash-top-info-title h1 {
+        font-size: 4rem;
+    }
+
+    .splash-top-info p {
+        font-size: 1.8rem;
+    }
+}
+
+@media screen and (max-width: 510px) {
+    .splash-top {
+        flex-direction: column-reverse;
+    }
+
+    .splash-top-image {
+        width: 100%;
+        height: 40%;
+        display: none;
+    }
+
+        .splash-top-image img {
+            height: 90%;
+            width: auto;
+        }
+
+
+    .splash-top-info {
+        width: 100%;
+        /* height: 60%; */
+    }
+
+    .splash-top-info-title {
+        justify-content: center;
+    }
+
+    .splash-top-info p {
+        text-align: center;
+    }
+}
+
+/*------------------------------------------*/
+/*               Feature Title              */
+/*------------------------------------------*/
+
+.splash-feature-title {
+    font-weight: 300;
+    font-size: 3.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 160px;
+    transition: 0.3s all;
+}
+
+
+/*------------------------------------------*/
+/*             Feature Cards                */
+/*------------------------------------------*/
 
     /*
     // Middle content, which holds a description of the app's features
@@ -201,31 +355,6 @@
             text-decoration: none;
         }
 
-/*
-// On hover, content shifts up
-*/
-@keyframes animate-on-hover {
-    from {
-        transform: translate(0, 0);
-    }
-
-    to {
-        transform: translate(0, -5px);
-    }
-}
-
-/*
-// On hover off, content shifts back to original place.
-*/
-@keyframes deanimate-on-hover {
-    from {
-        transform: translate(0, -5px);
-    }
-
-    to {
-        transform: translate(0, 0);
-    }
-}
 
 /*
 // When screen is smaller than 1300px, 
@@ -250,12 +379,19 @@
     .splash-features {
         flex-direction: column;
         align-items: center;
-        height: 1000px;
+        /* height: 1000px; */
+        height: 100%;
+        margin: 80px auto;
     }
 
     .splash-feature-card {
         width: 80%;
         margin-bottom: 12px;
+    }
+
+    .splash-feature-title {
+        margin-bottom: 32px;
+        font-size: 2.8rem;
     }
 }
 
@@ -267,5 +403,178 @@
     .splash-top-button-container {
         flex-direction: column;
         align-items: center;
+    }
+
+    .splash-feature-title {
+        font-size: 2.2rem;
+    }
+
+    .splash-feature-card {
+        width: 96%;
+    }
+}
+
+
+/*------------------------------------------*/
+/*               About The Team             */
+/*------------------------------------------*/
+.about-container {
+    background-color: #2f4760;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 160px;
+    -moz-transition: 0.3s all;
+    -webkit-transition: 0.3s all;
+    -o-transition: 0.3s all;
+    transition: 0.3s all;
+}
+
+    .about-container h3 {
+        font-weight: 300;
+        font-size: 3.2rem;
+        color: #fefefe;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-top: 100px;
+        -moz-transition: 0.3s all;
+        -webkit-transition: 0.3s all;
+        -o-transition: 0.3s all;
+        transition: 0.3s all;
+    }
+
+/*
+// Contains all four team cards 
+*/ 
+.about-team-cards-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 500px;
+    width: 100%;
+    transition: 0.3s all;
+}
+
+/*
+// Contains single team photo and name 
+*/
+.about-individual-container {
+    background-color: #fefefe;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
+    height: 250px;
+    width: 230px;
+    padding: 12px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: 0.3s all;
+    animation: deanimate-on-hover .3s;
+    animation-fill-mode: forwards;
+}
+
+    .about-individual-container:hover {
+        animation: animate-on-hover .3s;
+        animation-fill-mode: forwards;
+    }
+
+    /*
+    // Image container 
+    */ 
+    .about-individual-container div:first-child {
+        height: 65%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .about-individual-container img {
+            height: 120px;
+            width: 120px;
+            border-radius: 100%;
+        }
+
+    /*
+    // Contains name
+    */
+    .about-individual-container p {
+        font-size: 1.8rem;
+        font-weight: 500;
+        color: rgba(0, 0, 0, 0.85);
+        width: 100%;
+        height: 16%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /*
+    // Contains social media logos 
+    */ 
+    .about-social-container {
+        font-size: 2.6rem;
+        width: 100%;
+        height: 19%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+        /*
+        // Logos 
+        */ 
+        .about-social-container a,
+        .about-social-container a:visited {
+            text-decoration: none;
+            color: rgba(0, 0, 0, 0.4);
+            padding: 0 6px;
+            -moz-transition: 0.3s color;
+            -webkit-transition: 0.3s color;
+            -o-transition: 0.3s color;
+            transition: 0.3s color;
+        }
+
+        .about-social-container a:hover {
+            color: rgba(0, 0, 0, 0.5);
+        }
+
+@media screen and (max-width: 1300px) {
+    .about-container {
+        padding: 0 3%;
+    }
+
+    .about-individual-container {
+        width: 20%;
+    }
+}
+
+@media screen and (max-width: 1040px) {
+    .about-team-cards-container {
+        height: 600px;
+        margin: 80px auto;
+        flex-wrap: wrap;
+    }
+
+    .about-individual-container {
+        width: 46%;
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .about-team-cards-container {
+        justify-content: center;
+        height: 100%;
+    }
+
+    .about-individual-container {
+        width: 80%;
+        margin: 6px auto;
+    }
+}
+
+@media screen and (max-width: 510px) {
+    .about-individual-container {
+        width: 96%;
     }
 }
