@@ -173,14 +173,6 @@ button:hover {
 
 /* hard codoing font awesome pencil to the right hand top corner of the notes area */
 
-.pencil-icon {
-  position: relative;
-  z-index: 9;
-  left: 355px;
-  color: rgba(0, 0, 0, 0.2);
-  bottom: 223px;
-}
-
 .company-input {
   height: 70px;
 }

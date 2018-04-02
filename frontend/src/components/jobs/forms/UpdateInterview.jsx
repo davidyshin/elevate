@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Modal from 'react-modal';
 import axios from 'axios';
 import PopupReminder from '../PopupReminder.jsx';
-
+import Calendar from 'react-calendar';
 
 class UpdateInterview extends Component {
   constructor() {
@@ -20,9 +20,8 @@ class UpdateInterview extends Component {
   componentDidMount() {
     const { interview } = this.props;
     const date = new Date(interview.interview_date);
-    const interview_date = date.toISOString().substring(0, 10);
     this.setState({
-      date: interview_date,
+      date: date,
       contact: interview.contact,
       note: interview.note,
       time: interview.interview_time
@@ -33,12 +32,16 @@ class UpdateInterview extends Component {
     this.setState({
       modalOpen: !this.state.modalOpen
     });
-  }
+  };
 
   handleInput = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
+  };
+
+  handleDate = date => {
+    this.setState({ date: date });
   };
 
   handleSubmit = e => {
@@ -50,7 +53,6 @@ class UpdateInterview extends Component {
       .get('/users/getUserInterviews')
       .then(res => {
         let interviews = res.data.interviews;
-
         axios
           .put('/users/UpdateInterview', {
             contact: contact,
@@ -61,12 +63,12 @@ class UpdateInterview extends Component {
           })
           .then(() => {
             if (interviews.length > 0) {
-              // modal doesn't open 
+              // modal doesn't open
               this.setState({
                 interviewSaved: true
               });
             } else {
-              // modal opens for popup message 
+              // modal opens for popup message
               this.setState({
                 interviewSaved: true,
                 modalOpen: true
@@ -78,11 +80,9 @@ class UpdateInterview extends Component {
           });
       })
       .catch(err => {
-        console.log(err)
-      })
-
+        console.log(err);
+      });
   };
-
 
   render() {
     const { date, contact, note, time, interviewSaved } = this.state;
@@ -92,12 +92,7 @@ class UpdateInterview extends Component {
         <form onSubmit={this.handleSubmit}>
           <h1>Update Interview</h1>
           <p>Interview Date: *</p>
-          <input
-            value={date}
-            onChange={this.handleInput}
-            name="date"
-            type="date"
-          />
+          <Calendar onChange={this.handleDate} value={date} />
           <p>Interview Time: *</p>
           <input
             value={time}
@@ -113,30 +108,40 @@ class UpdateInterview extends Component {
             type="text"
           />
           <p>Note:</p>
-          <textarea value={note} onChange={this.handleInput} name="note" />
+          <div className="interview-note-area">
+              <textarea
+                value={note}
+                placeholder="Note"
+                onChange={this.handleInput}
+                name="note"
+              />
+              <span className="pencil-icon">
+                <i className="fas fa-pencil-alt fa-2x" />
+              </span>
+          </div>
           <div>
-          <input
-            disabled={!time || !date || !contact}
-            type="submit"
-            value="Save"
-          />
-          <button
+            <input
+              disabled={interviewSaved || !time || !date || !contact}
+              type="submit"
+              value="Save"
+            />
+            <button
               className="add-interview-button"
               onClick={this.props.addMoreInterview}
               disabled={!this.state.interviewSaved}
             >
               <i class="fas fa-plus" />
             </button>
-            </div>
+          </div>
         </form>
 
         <Modal
           isOpen={this.state.modalOpen}
           onRequestClose={this.toggleModal}
           contentLabel="popup-reminder-modal"
-          className="popup-reminder-modal">
-          <PopupReminder
-            toggleModal={this.toggleModal} />
+          className="popup-reminder-modal"
+        >
+          <PopupReminder toggleModal={this.toggleModal} />
         </Modal>
       </div>
     );

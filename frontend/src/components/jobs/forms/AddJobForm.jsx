@@ -9,6 +9,8 @@ import AddInterview from './AddInterview.jsx';
 import { Link } from 'react-router-dom';
 import achieves from '../../achievements/checkForAchievements';
 import '../../../stylesheets/jobs-add.css';
+import Calendar from 'react-calendar';
+
 import dotenv from 'dotenv';
 dotenv.load();
 
@@ -256,8 +258,8 @@ class AddJobForm extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  handleDate = e => {
-    this.setState({ date_applied: e.target.value });
+  handleDate = date => {
+    this.setState({ date_applied: date });
   };
 
   changeStage = e => {
@@ -403,14 +405,7 @@ class AddJobForm extends Component {
             </div>
               <p>Date applied: *</p>{' '}
             <div className="date-applied-input">
-              <input
-                onChange={this.handleDate}
-                value={date_applied}
-                placeholder="Date"
-                max={today}
-                name="date_applied"
-                type="date"
-              />
+            <Calendar onChange={this.handleDate} value={date_applied} />
             </div>
               <p>Job posting url: </p>
             <input
@@ -420,13 +415,6 @@ class AddJobForm extends Component {
               name="url"
               type="text"
             />
-            {/* <input
-              onChange={this.handleInput}
-              value={email}
-              placeholder="Job Contact Email Address"
-              name="email"
-              type="email"
-            /> */}
             <div className="add-job-buttons">
               <input
                 disabled={saved || !company || !position || !date_applied}
