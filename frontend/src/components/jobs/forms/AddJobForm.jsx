@@ -5,10 +5,14 @@ import Autosuggest from 'react-autosuggest';
 import axios from 'axios';
 import ResumeUpload from './ResumeUpload.jsx';
 import CoverLetterUpload from './CoverLetterUpload.jsx';
+import JobStatus from './JobStatus.jsx';
+import JobSideBar from './JobSideBar.jsx';
 import AddInterview from './AddInterview.jsx';
 import { Link } from 'react-router-dom';
 import achieves from '../../achievements/checkForAchievements';
 import '../../../stylesheets/jobs-add.css';
+import Calendar from 'react-calendar';
+
 import dotenv from 'dotenv';
 dotenv.load();
 
@@ -65,7 +69,9 @@ class AddJobForm extends Component {
     let date = new Date(); // Today
     let timeZone = new Date(date.getTime() - date.getTimezoneOffset() * 60000); // Today minus time zone
     let dateLogged = timeZone.toISOString().substring(0, 10);
-    const companyLogo = this.state.companyLogo ? this.state.companyLogo : 'https://i.imgur.com/gBiRInp.png'
+    const companyLogo = this.state.companyLogo
+      ? this.state.companyLogo
+      : 'https://i.imgur.com/gBiRInp.png';
     axios
       .post('/users/createJobApp', {
         company_name: this.state.company,
@@ -256,8 +262,8 @@ class AddJobForm extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  handleDate = e => {
-    this.setState({ date_applied: e.target.value });
+  handleDate = date => {
+    this.setState({ date_applied: date });
   };
 
   changeStage = e => {
@@ -281,6 +287,54 @@ class AddJobForm extends Component {
       }
     }
     this.setState({ applicationStage });
+  };
+
+  renderJobSideBar = () => {
+    const {company, companyLogo, date_applied, position} = this.state
+    return <JobSideBar companyLogo={companyLogo} company={company} date_applied={date_applied} position={position}  />
+  }
+
+  renderStage = () => {
+    const { applicationStage, interviews, job_id } = this.state;
+    switch (applicationStage) {
+      case 2:
+        return (
+          <ResumeUpload
+            handleResumeInput={this.handleResumeInput}
+            job_id={job_id}
+          />
+        );
+        break;
+      case 3:
+        return (
+          <CoverLetterUpload
+            Upload
+            handleResumeInput={this.handleResumeInput}
+            job_id={job_id}
+          />
+        );
+      case 4:
+        return (
+          <AddInterview
+            job_id={job_id}
+            updateExperience={this.props.updateExperience}
+            saveInterview={this.saveInterview}
+            addMoreInterview={this.addMoreInterview}
+          />
+        );
+        break;
+      case 5:
+        return (
+          <JobStatus
+            salarySaved={this.state.salarySaved}
+            salary={this.state.salary}
+            handleStatusChange={this.handleStatusChange}
+            handleInput={this.handleInput}
+            job_status={this.state.job_status}
+            handleSalarySave={this.handleSalarySave}
+          />
+        );
+    }
   };
 
   render() {
@@ -362,7 +416,7 @@ class AddJobForm extends Component {
         >
           <form onSubmit={this.handleFirstSubmit}>
             <h1> Job Info</h1>
-              <p>Company applied to: *</p>
+            <p>Company applied to: *</p>
             <div className="company-search-input">
               <Autosuggest
                 className="add-job-form-input-company"
@@ -401,6 +455,7 @@ class AddJobForm extends Component {
                 <i className="fas fa-briefcase fa-2x" />
               </span>
             </div>
+<<<<<<< HEAD
               <p>Date applied: *</p>{' '}
             <div className="input-date-container">
               <input
@@ -411,8 +466,13 @@ class AddJobForm extends Component {
                 name="date_applied"
                 type="date"
               />
+=======
+            <p>Date applied: *</p>{' '}
+            <div className="date-applied-input">
+              <Calendar onChange={this.handleDate} value={date_applied} />
+>>>>>>> b26131b25ffe0e0a3d5e5e94e85de42e8c84a9da
             </div>
-              <p>Job posting url: </p>
+            <p>Job posting url: </p>
             <input
               onChange={this.handleInput}
               value={url}
@@ -420,13 +480,6 @@ class AddJobForm extends Component {
               name="url"
               type="text"
             />
-            {/* <input
-              onChange={this.handleInput}
-              value={email}
-              placeholder="Job Contact Email Address"
-              name="email"
-              type="email"
-            /> */}
             <div className="add-job-buttons">
               <input
                 disabled={saved || !company || !position || !date_applied}
@@ -436,99 +489,9 @@ class AddJobForm extends Component {
             </div>
           </form>
         </div>
-
-        {applicationStage === 2 ? (
-          <ResumeUpload
-            handleResumeInput={this.handleResumeInput}
-            job_id={job_id}
-          />
-        ) : null}
-        {applicationStage === 3 ? (
-          <div data-aos="fade-up" className="add-job-coverletter-container">
-            <CoverLetterUpload
-              handleCoverInput={this.handleCoverInput}
-              job_id={job_id}
-            />
-          </div>
-        ) : null}
-        {applicationStage === 4 ? (
-          <div data-aos="fade-up" className="add-job-interview-container">
-            <AddInterview
-              job_id={job_id}
-              updateExperience={this.props.updateExperience}
-              saveInterview={this.saveInterview}
-              addMoreInterview={this.addMoreInterview}
-            />
-            {interviews.map(interview => {
-              return (
-                <AddInterview
-                  job_id={job_id}
-                  updateExperience={this.props.updateExperience}
-                  saveInterview={this.saveInterview}
-                />
-              );
-            })}
-          </div>
-        ) : null}
-
-        {applicationStage === 5 ? (
-          <div data-aos="fade-up" className="update-job-status">
-            <h1> Update Job Application Status </h1>
-            <div className="job-status-switch-field">
-              <input
-                onChange={this.handleStatusChange}
-                type="radio"
-                id="offered"
-                name="offered"
-                className="status-switch-offered"
-                checked={this.state.job_status === 'offered'}
-              />
-              <label for="offered">Offered</label>
-              <input
-                onChange={this.handleStatusChange}
-                type="radio"
-                id="awaiting"
-                name="awaiting"
-                className="status-switch-awaiting"
-                checked={this.state.job_status === 'awaiting'}
-              />
-              <label for="awaiting">Awaiting</label>
-              <input
-                onChange={this.handleStatusChange}
-                type="radio"
-                id="rejected"
-                name="rejected"
-                className="status-switch-rejected"
-                checked={this.state.job_status === 'rejected'}
-              />
-              <label for="rejected">Rejected</label>
-            </div>
-            {job_status === 'offered' ? (
-              <div className="salary-input-container">
-                {salarySaved ? (
-                  <h3> Offered Salary </h3>
-                ) : (
-                  <h3>Saved Salary</h3>
-                )}
-                <input
-                  className="salary-input"
-                  name="salary"
-                  onChange={this.handleInput}
-                  type="text"
-                  maxLength="20"
-                  placeholder="Salary"
-                />
-                <button
-                  className="salary-input-save"
-                  disabled={salary.length < 1 || salarySaved}
-                  onClick={this.handleSalarySave}
-                  type="submit"
-                  value="Save"
-                >
-                  Save
-                </button>
-              </div>
-            ) : null}
+        {applicationStage > 1 ? (
+          <div>
+            <this.renderJobSideBar/> <this.renderStage />
           </div>
         ) : null}
       </div>

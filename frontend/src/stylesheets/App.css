@@ -1,3 +1,38 @@
 /*------------------------------------------*/
 /*               Main App Page              */
 /*------------------------------------------*/
+.react-calendar {
+  display: flex;
+  flex-direction: column;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  font-family: 'Montserrat', sans-serif;
+  width: 396px;
+  margin: 4px;
+}
+
+.react-calendar__month-view__days button {
+  border: 1px solid transparent;
+}
+.time-picker input {
+  width: 394px;
+  padding: 22px 18px;
+}
+.rc-time-picker-panel-inner {
+  width: 394px;
+}
+
+.rc-time-picker-input {
+  width: 394px;
+  padding: 18px 22px;
+}
+
+.rc-time-picker {
+  width: 394px;
+}
+.rc-time-picker input{
+    width: 100%;
+  }
+.rc-time-picker-panel {
+  width: 394px;
+}
