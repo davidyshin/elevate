@@ -4,6 +4,12 @@ import axios from 'axios';
 import PopupReminder from '../PopupReminder.jsx';
 import Calendar from 'react-calendar';
 
+import moment from 'moment';
+import 'rc-time-picker/assets/index.css';
+import TimePicker from 'rc-time-picker';
+
+const str = 'HH:mm';
+
 class UpdateInterview extends Component {
   constructor() {
     super();
@@ -42,6 +48,11 @@ class UpdateInterview extends Component {
 
   handleDate = date => {
     this.setState({ date: date });
+  };
+
+  handleDate = time => {
+    this.setState({ time: time });
+    console.log(this.state)
   };
 
   handleSubmit = e => {
@@ -94,30 +105,37 @@ class UpdateInterview extends Component {
           <p>Interview Date: *</p>
           <Calendar onChange={this.handleDate} value={date} />
           <p>Interview Time: *</p>
-          <input
+          <TimePicker
+            showSecond={false}
+            defaultValue={moment()}
+            onChange={this.handleTime}
+            use12Hours
+          />
+          {/* <input
             value={time}
             onChange={this.handleInput}
             name="time"
             type="time"
-          />
+          /> */}
           <p>Interview Contact: *</p>
           <input
             value={contact}
+            className="update-contact-input"
             onChange={this.handleInput}
             name="contact"
             type="text"
           />
           <p>Note:</p>
           <div className="interview-note-area">
-              <textarea
-                value={note}
-                placeholder="Note"
-                onChange={this.handleInput}
-                name="note"
-              />
-              <span className="pencil-icon">
-                <i className="fas fa-pencil-alt fa-2x" />
-              </span>
+            <textarea
+              value={note}
+              placeholder="Note"
+              onChange={this.handleInput}
+              name="note"
+            />
+            <span className="pencil-icon">
+              <i className="fas fa-pencil-alt fa-2x" />
+            </span>
           </div>
           <div>
             <input
