@@ -270,22 +270,11 @@ class AddJobForm extends Component {
     this.setState({ applicationStage: parseInt(e.target.id) });
   };
 
-  setApplicationStage = e => {
+  handleSkipButton = e => {
     // console.log('hello');
+    e.preventDefault()
     let { applicationStage } = this.state;
-    if (e.target.id === 'right') {
-      if (applicationStage === 5) {
-        applicationStage = 1;
-      } else {
-        applicationStage += 1;
-      }
-    } else if (e.target.id === 'left') {
-      if (applicationStage === 1) {
-        applicationStage = 5;
-      } else {
-        applicationStage -= 1;
-      }
-    }
+    applicationStage +=1
     this.setState({ applicationStage });
   };
 
@@ -303,6 +292,8 @@ class AddJobForm extends Component {
           <ResumeUpload
             handleResumeInput={this.handleResumeInput}
             job_id={job_id}
+            handleSkipButton={this.handleSkipButton}
+            formStatus={'add'}
           />
         );
         break;
@@ -311,7 +302,9 @@ class AddJobForm extends Component {
           <CoverLetterUpload
             Upload
             handleCoverInput={this.handleCoverInput}
+            handleSkipButton={this.handleSkipButton}
             job_id={job_id}
+            formStatus={'add'}            
           />
         );
       case 4:
