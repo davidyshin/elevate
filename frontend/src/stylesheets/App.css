@@ -30,7 +30,6 @@
   font-size: 1.4rem;
   font-family: 'Montserrat', sans-serif;
 }
-
 .time-picker input {
   width: 394px;
   padding: 22px 18px;
@@ -53,7 +52,6 @@
 .rc-time-picker-panel {
   width: 394px;
 }
-
 /*
 // Contains the dates 
 */ 
