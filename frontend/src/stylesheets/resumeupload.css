@@ -1,0 +1,40 @@
+.resume-form{
+    color: rgb(51, 156, 197);  
+    text-align: center;
+}
+
+.fileinput-button input {
+    position: absolute; 
+    cursor: pointer;   
+    left: 3em;
+    bottom: 0.5em;
+    height: 4em;
+    width: 2em;
+	opacity: 0;
+}
+
+
+.fa-cloud-upload-alt {
+    color: rgb(51, 156, 197);  
+    width: 12em;
+}
+
+.upload-img{
+    width:4em;
+    align-self: center;
+    /* padding-left: 8em;  */
+}
+
+
+.download{
+    transform: scaleY(-1);
+    width:4em;
+    align-self: center;
+    padding-left: 2em; 
+}
+
+.headings{
+    color: rgb(51, 156, 197); 
+}
+
+
