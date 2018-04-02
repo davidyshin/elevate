@@ -9,10 +9,15 @@
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  padding-top: 100px;
+  padding-top: 80px;
   padding-bottom: 20px;
   background-color: #f5f0f5;
   transition: 0.3s all;
+}
+
+.add-job-form-container h1, h2, h3, h4, h5, h6, p {
+  padding: 0;
+  margin: 0;
 }
 
 /*
@@ -22,19 +27,72 @@
   background-color: #fefefe;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 450px;
+  /* align-items: center; */
+  /* width: 450px; */
+  width: 1200px;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
   border-radius: 4px;
   padding: 22px;
   margin: 0 auto;
 }
 
-.add-job-form-container p {
-  font-size: 15px;
-  font-weight: 300;
+/*
+// Application information
+*/
+.add-job-form-container h1 {
+  font-size: 3.2rem;
+  font-weight: 400;
+  margin-left: 22px;
 }
 
+/*
+// Tell us the basic job application...
+*/ 
+.add-job-form-container h3 {
+  font-size: 2.2rem;
+  font-weight: 300;
+  margin-left: 22px;
+}
+
+/*
+// Input labels
+*/ 
+.add-job-form-container p {
+  /* font-size: 15px; */
+  font-size: 2rem;
+  font-weight: 300;
+  margin-left: 22px;
+}
+
+.add-job-inputs-container {
+  height: 100%;
+}
+
+/*
+// Contains the <p> tag and <input> tag in a single div line
+*/ 
+.add-job-input-row {
+  display: flex;
+  background-color: rgba(255, 0, 0, 0.2); /* TEMPORARY */
+}
+
+.add-job-input-row p {
+  width: 25%;
+  background-color: rgba(255, 0, 0, 0.3); /* TEMPORARY */
+}
+
+.add-job-input-row .company-search-input,
+.add-job-input-row .position-search-input,
+.add-job-input-row .date-applied-input,
+.job-posting-input {
+  width: 75%;
+  background-color: rgba(0, 0, 255, 0.2); /* TEMPORARY */
+}
+
+
+/*------------------------------------------*/
+/*          Calendar and Date Input         */
+/*------------------------------------------*/
 input[type="date"]::-webkit-calendar-picker-indicator {
   position: absolute;
   top: 0;
@@ -60,24 +118,32 @@ input[type="date"]::-webkit-clear-button {
   position: relative;
 }
 
+
+/*------------------------------------------*/
+/*              All other inputs            */
+/*------------------------------------------*/
 /*
-// Each stage of the application has it's own form and box, separated by 50px
+// Each stage of the application has its own form and box, separated by 50px
 // Input boxes in the forms, and the textarea === note section
 */
 
 .add-job-form-container form input,
 .salary-input-container input {
   font-family: 'Montserrat', sans-serif;
-  font-weight: 500;
+  font-weight: 400;
   outline: none;
   border: none;
-  width: 350px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
+  width: 60%;
+  /* width: 350px; */
+  /* border: 1px solid rgba(0, 0, 0, 0.2); */
+  /* border-radius: 4px; */
   color: rgba(40, 60, 83, 0.8);
-  padding: 18px 22px;
-  margin: 4px;
-  font-size: 1.2rem;
+  /* padding: 18px 22px; */
+  padding: 12px 12px 12px 0;
+  /* margin: 4px; */
+  /* font-size: 1.2rem; */
+  background: none;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
   -moz-transition: 0.3s all;
   -o-transition: 0.3s all;
   -webkit-transition: 0.3s all;
@@ -104,12 +170,14 @@ input[type="date"]::-webkit-clear-button {
   -webkit-transition: 0.2s all;
   transition: 0.2s all;
 }
+
 .salary-input-save:disabled {
   background: rgba(0, 0, 0, 0.3);
 }
 
 textarea {
-  font-size: 16px;
+  /* font-size: 16px; */
+  font-size: 2rem;
   resize: none;
   padding: 0;
 }
@@ -117,26 +185,33 @@ textarea {
 // Input text box placeholders and fonts
 */
 
-.add-job-form-container form input::placeholder {
+.add-job-form-container form input[type='text']::placeholder,
+.add-job-form-container form input[type='email']::placeholder {
   color: rgba(0, 0, 0, 0.5);
   font-weight: 400;
-  font-size: 13px;
+  /* font-size: 13px; */
+  font-size: 2rem;
 }
+
 .add-job-form-container form input[type='text'],
 .add-job-form-container form input[type='email'],
 .add-job-form-container form input[type='date'] {
-  font-size: 20px;
+  /* font-size: 20px; */
+  font-size: 2rem;
 }
 
 .add-job-form-container form input[type='date'],
 .add-job-form-container form input[type='time'] {
-  font-size: 16px;
+  /* font-size: 16px; */
+  font-size: 2rem;
 }
 
-.add-job-form-container form input:focus,
+/* .add-job-form-container form input[type='text']:focus,
+.add-job-form-container form input[type='email']:focus,
+.add-job-form-container form input[type='date']:focus,
 button:focus {
   border: 1px solid rgba(0, 149, 222, 0.6);
-}
+} */
 
 /*
 // Button stylings
@@ -215,10 +290,11 @@ button:hover {
   position: relative
 }
 
-.company-search-input,
+/* .company-search-input,
 .position-search-input {
   height: 70px;
-}
+} */
+
 .company-image {
   z-index: 9;
   position: relative;
@@ -444,9 +520,9 @@ button:hover {
 // When the screen size is smaller than 720px, form width becomes responsive 
 */
 @media screen and (max-width: 720px) {
-  .add-job-form-container {
+  /* .add-job-form-container {
     padding-top: 100px;
-  }
+  } */
   .resume-input-form,
   .cover-input-form {
     width: 80%;

@@ -271,7 +271,7 @@ class AddJobForm extends Component {
   };
 
   setApplicationStage = e => {
-    console.log('hello');
+    // console.log('hello');
     let { applicationStage } = this.state;
     if (e.target.id === 'right') {
       if (applicationStage === 5) {
@@ -290,8 +290,8 @@ class AddJobForm extends Component {
   };
 
   renderJobSideBar = () => {
-    const {company, companyLogo, date_applied, position} = this.state
-    return <JobSideBar companyLogo={companyLogo} company={company} date_applied={date_applied} position={position}  />
+    const { company, companyLogo, date_applied, position } = this.state
+    return <JobSideBar companyLogo={companyLogo} company={company} date_applied={date_applied} position={position} />
   }
 
   renderStage = () => {
@@ -415,70 +415,82 @@ class AddJobForm extends Component {
           className="add-job-info"
         >
           <form onSubmit={this.handleFirstSubmit}>
-            <h1> Job Info</h1>
-            <p>Company applied to: *</p>
-            <div className="company-search-input">
-              <Autosuggest
-                className="add-job-form-input-company"
-                theme={AutoSuggestStyling}
-                suggestions={suggestedCompanies}
-                onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-                onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-                getSuggestionValue={this.getSuggestionValue}
-                onSuggestionSelected={this.onSuggestionSelected}
-                renderSuggestion={this.renderSuggestion}
-                inputProps={inputProps}
-              />
-              {companyLogo ? (
-                <img className="company-image" src={companyLogo} />
-              ) : (
-                <span className="magnifying-glass">
-                  <i className="fas fa-search fa-2x" />
-                </span>
-              )}
-            </div>
-            <div className="add-job-form-input-title">
-              {' '}
-              <p>Position applied to: *</p>
-            </div>
-            <div className="position-search-input">
-              <div>
-                <input
-                  onChange={this.handleInput}
-                  value={position}
-                  placeholder="Position"
-                  name="position"
-                  type="text"
-                />
+            <h1>Application Information</h1>
+            <h3>Tell us the basic job application information to get started.</h3>
+
+            <div className="add-job-inputs-container">
+              <div className="add-job-input-row">
+                <p>Company *</p>
+                <div className="company-search-input">
+                  <Autosuggest
+                    className="add-job-form-input-company"
+                    theme={AutoSuggestStyling}
+                    suggestions={suggestedCompanies}
+                    onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+                    onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                    getSuggestionValue={this.getSuggestionValue}
+                    onSuggestionSelected={this.onSuggestionSelected}
+                    renderSuggestion={this.renderSuggestion}
+                    inputProps={inputProps}
+                  />
+                  {companyLogo ? (
+                    <img className="company-image" src={companyLogo} />
+                  ) : (
+                      <span className="magnifying-glass">
+                        <i className="fas fa-search fa-2x" />
+                      </span>
+                    )}
+                </div>
               </div>
-              <span className="brief-case">
-                <i className="fas fa-briefcase fa-2x" />
-              </span>
+              <div className="add-job-input-row">
+                <p>Position *</p>
+                <div className="position-search-input">
+                  <div>
+                    <input
+                      onChange={this.handleInput}
+                      value={position}
+                      placeholder="Position"
+                      name="position"
+                      type="text"
+                    />
+                  </div>
+                  <span className="brief-case">
+                    <i className="fas fa-briefcase fa-2x" />
+                  </span>
+                </div>
+              </div>
+              <div className="add-job-input-row">
+                <p>Date applied *</p>
+                <div className="date-applied-input">
+                  <Calendar onChange={this.handleDate} value={date_applied} />
+                </div>
+              </div>
+              <div className="add-job-input-row">
+                <p>Job posting url</p>
+                <div className="job-posting-input">
+                  <input
+                    onChange={this.handleInput}
+                    value={url}
+                    placeholder="URL"
+                    name="url"
+                    type="text"
+                  />
+                </div>
+              </div>
             </div>
-            <p>Date applied: *</p>{' '}
-            <div className="date-applied-input">
-              <Calendar onChange={this.handleDate} value={date_applied} />
-            </div>
-            <p>Job posting url: </p>
-            <input
-              onChange={this.handleInput}
-              value={url}
-              placeholder="URL"
-              name="url"
-              type="text"
-            />
+            {/* End all p and input form pairs */}
             <div className="add-job-buttons">
               <input
                 disabled={saved || !company || !position || !date_applied}
                 type="submit"
-                value="Save"
+                value="Next"
               />
             </div>
           </form>
         </div>
         {applicationStage > 1 ? (
           <div>
-            <this.renderJobSideBar/> <this.renderStage />
+            <this.renderJobSideBar /> <this.renderStage />
           </div>
         ) : null}
       </div>
