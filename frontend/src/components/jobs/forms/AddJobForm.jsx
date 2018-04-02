@@ -455,22 +455,9 @@ class AddJobForm extends Component {
                 <i className="fas fa-briefcase fa-2x" />
               </span>
             </div>
-<<<<<<< HEAD
-              <p>Date applied: *</p>{' '}
-            <div className="input-date-container">
-              <input
-                onChange={this.handleDate}
-                value={date_applied}
-                placeholder="Date"
-                max={today}
-                name="date_applied"
-                type="date"
-              />
-=======
             <p>Date applied: *</p>{' '}
             <div className="date-applied-input">
               <Calendar onChange={this.handleDate} value={date_applied} />
->>>>>>> b26131b25ffe0e0a3d5e5e94e85de42e8c84a9da
             </div>
             <p>Job posting url: </p>
             <input
