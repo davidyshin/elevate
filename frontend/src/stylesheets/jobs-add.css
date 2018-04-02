@@ -94,6 +94,8 @@ input[type="date"]::-webkit-clear-button {
   background: #2bba9c;
   border-radius: 60px;
   width: 100px;
+  border: none;   
+  outline: none;  
   font-weight: 300;
   color: #fefefe;
   cursor: pointer;
@@ -141,6 +143,8 @@ button:focus {
 */
 .add-job-form-container form input[type='submit'] {
   background: rgba(0, 149, 222, 1);
+  outline: none;      
+  border: none;  
   border-radius: 60px;
   width: 200px;
   font-weight: 300;
@@ -161,6 +165,7 @@ button:focus {
 .add-job-form-container form input[type='submit']:disabled, .add-interview-button:disabled,
 .update-job-form-container form input[type='submit']:disabled {
   background: rgba(0, 0, 0,.1);
+  outline: none;      
   border: none;
   color: rgba(0, 0, 0,.3);
 }
