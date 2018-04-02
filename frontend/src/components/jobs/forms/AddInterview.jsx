@@ -126,13 +126,6 @@ class AddInterview extends Component {
               type="submit"
               value="Save"
             />
-            <button
-              className="add-interview-button"
-              onClick={this.props.addMoreInterview}
-              disabled={!this.state.interviewSaved}
-            >
-              <i class="fas fa-plus" />
-            </button>
           </div>
         </form>
 

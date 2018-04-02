@@ -52,6 +52,8 @@
   // Input boxes in the forms, and the textarea === note section
   */
 
+
+
 .update-job-form-container form input {
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
@@ -69,6 +71,8 @@
   -webkit-transition: 0.3s all;
   transition: 0.3s all;
 }
+
+
 
 textarea {
   font-size: 16px;
