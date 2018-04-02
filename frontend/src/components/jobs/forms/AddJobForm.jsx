@@ -402,7 +402,7 @@ class AddJobForm extends Component {
               </span>
             </div>
               <p>Date applied: *</p>{' '}
-            <div className="date-applied-input">
+            <div className="input-date-container">
               <input
                 onChange={this.handleDate}
                 value={date_applied}

@@ -27,7 +27,7 @@ class UpdateJobForm extends Component {
       resume_url: '',
       cover_url: '',
       interviews: [],
-      addedInterviews: ['test'],
+      addedInterviews: [],
       job_status: 'awaiting'
     };
   }
@@ -212,7 +212,7 @@ class UpdateJobForm extends Component {
   };
 
   renderInterviews = () => {
-    const {interviews, addedInterviews, job_id} = this.state
+    const { interviews, addedInterviews, job_id } = this.state;
     return (
       <div className="update-interview-company" data-aos="fade-up">
         {interviews.map(interview => {
@@ -307,7 +307,7 @@ class UpdateJobForm extends Component {
         >
           <form onSubmit={this.handleSave}>
             <h1> Job Info</h1>
-            <p>Company:  *</p>
+            <p>Company: *</p>
             <div className="company-input">
               <div>
                 <input
@@ -335,12 +335,14 @@ class UpdateJobForm extends Component {
               type="text"
             />
             <p>Date Applied: *</p>
-            <input
-              onChange={this.handleDate}
-              value={date_applied}
-              name="date_applied"
-              type="date"
-            />
+            <div className="input-date-container">
+              <input
+                value={date_applied}
+                onChange={this.handleInput}
+                name="date_applied"
+                type="date"
+              />
+            </div>
             <p>Job Posting Url:</p>
             <input
               onChange={this.handleInput}
@@ -394,9 +396,7 @@ class UpdateJobForm extends Component {
             />
           )
         ) : null}
-        {applicationStage === 4 ? (
-          <this.renderInterviews />
-        ) : null}
+        {applicationStage === 4 ? <this.renderInterviews /> : null}
         {applicationStage === 5 ? (
           <div data-aos="fade-up" className="update-job-status">
             <h1> Update Job Application Status </h1>

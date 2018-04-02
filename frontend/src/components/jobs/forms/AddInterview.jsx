@@ -87,12 +87,14 @@ class AddInterview extends Component {
         <form onSubmit={this.handleSubmit}>
           <h1>Add Interview</h1>
           <p>Interview Date: *</p>
+          <div className="input-date-container">
           <input
             value={date}
             onChange={this.handleInput}
             name="date"
             type="date"
           />
+          </div>
           <p>Interview Time: *</p>
           <input
             value={time}

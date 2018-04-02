@@ -664,6 +664,7 @@
       // Update Job button 
       */ 
       .job-info-view-mobile .job-info-button-container button {
+        outline: none;            
         margin: 0;
         border: 0;
         width: 140px;

@@ -35,6 +35,31 @@
   font-weight: 300;
 }
 
+input[type="date"]::-webkit-calendar-picker-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0px;
+  width: 100%;
+  height: 100%;
+  opacity: 0
+}
+
+input[type="date"]::-webkit-inner-spin-button {
+  z-index: 1;
+}
+
+/* adjust clear button */
+input[type="date"]::-webkit-clear-button {
+   z-index: 1;
+}
+
+.input-date-container {
+  position: relative;
+}
+
 /*
 // Each stage of the application has it's own form and box, separated by 50px
 // Input boxes in the forms, and the textarea === note section
@@ -69,6 +94,8 @@
   background: #2bba9c;
   border-radius: 60px;
   width: 100px;
+  border: none;   
+  outline: none;  
   font-weight: 300;
   color: #fefefe;
   cursor: pointer;
@@ -116,6 +143,8 @@ button:focus {
 */
 .add-job-form-container form input[type='submit'] {
   background: rgba(0, 149, 222, 1);
+  outline: none;      
+  border: none;  
   border-radius: 60px;
   width: 200px;
   font-weight: 300;
@@ -136,6 +165,7 @@ button:focus {
 .add-job-form-container form input[type='submit']:disabled, .add-interview-button:disabled,
 .update-job-form-container form input[type='submit']:disabled {
   background: rgba(0, 0, 0,.1);
+  outline: none;      
   border: none;
   color: rgba(0, 0, 0,.3);
 }
