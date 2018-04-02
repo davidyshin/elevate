@@ -200,6 +200,8 @@ input[type="date"]::-webkit-clear-button {
 // Input boxes in the forms, and the textarea === note section
 */
 
+
+
 .add-job-form-container form input,
 .salary-input-container input {
   font-family: 'Montserrat', sans-serif;
@@ -223,6 +225,8 @@ input[type="date"]::-webkit-clear-button {
   -webkit-transition: 0.3s all;
   transition: 0.3s all;
 }
+
+
 
 .salary-input-container input {
   font-size: 18px;
