@@ -66,7 +66,6 @@ class CoverLetterUpload extends Component {
             Upload
           </button>
           </form>
-
         </div>
       </div>
     );
