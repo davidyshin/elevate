@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import axios from 'axios';
 import achieves from '../../achievements/checkForAchievements';
 import PopupReminder from '../PopupReminder.jsx';
+import Calendar from 'react-calendar';
 
 class AddInterview extends Component {
   constructor() {
@@ -26,11 +27,16 @@ class AddInterview extends Component {
     this.setState({
       modalOpen: !this.state.modalOpen
     });
-  }
+  };
 
   handleInput = e => {
     this.setState({
       [e.target.name]: e.target.value
+    });
+  };
+  handleDate = date => {
+    this.setState({
+      date: date
     });
   };
 
@@ -54,18 +60,18 @@ class AddInterview extends Component {
           })
           .then(() => {
             if (interviews.length > 0) {
-              // modal doesn't open 
+              // modal doesn't open
               this.setState({
                 interviewSaved: true
-              })
+              });
             } else {
-              // modal opens for popup message 
+              // modal opens for popup message
               this.setState({
                 interviewSaved: true,
                 modalOpen: true
-              })
+              });
             }
-            this.props.saveInterview()
+            this.props.saveInterview();
             this.props.updateExperience(50);
             achieves.checkInterviewNumber();
           })
@@ -74,9 +80,8 @@ class AddInterview extends Component {
           });
       })
       .catch(err => {
-        console.log(err)
-      })
-
+        console.log(err);
+      });
   };
 
   render() {
@@ -87,6 +92,7 @@ class AddInterview extends Component {
         <form onSubmit={this.handleSubmit}>
           <h1>Add Interview</h1>
           <p>Interview Date: *</p>
+<<<<<<< HEAD
           <div className="input-date-container">
           <input
             value={date}
@@ -95,6 +101,10 @@ class AddInterview extends Component {
             type="date"
           />
           </div>
+=======
+          <Calendar onChange={this.handleDate} value={date} />
+
+>>>>>>> b26131b25ffe0e0a3d5e5e94e85de42e8c84a9da
           <p>Interview Time: *</p>
           <input
             value={time}
@@ -111,41 +121,32 @@ class AddInterview extends Component {
           />
           <p>Note:</p>
           <div className="interview-note-area">
-            <div>
               <textarea
                 value={note}
                 placeholder="Note"
                 onChange={this.handleInput}
                 name="note"
               />
-            </div>
-            <span className="pencil-icon">
-              <i className="fas fa-pencil-alt fa-2x" />
-            </span>
+              <span className="pencil-icon">
+                <i className="fas fa-pencil-alt fa-2x" />
+              </span>
           </div>
           <div>
-          <input
-            disabled={interviewSaved || !date || !contact}
-            type="submit"
-            value="Save"
-          />
-          <button
-              className="add-interview-button"
-              onClick={this.props.addMoreInterview}
-              disabled={!this.state.interviewSaved}
-            >
-              <i class="fas fa-plus" />
-            </button>
-            </div>
+            <input
+              disabled={interviewSaved || !date || !contact}
+              type="submit"
+              value="Save"
+            />
+          </div>
         </form>
 
         <Modal
           isOpen={this.state.modalOpen}
           onRequestClose={this.toggleModal}
           contentLabel="popup-reminder-modal"
-          className="popup-reminder-modal">
-          <PopupReminder
-            toggleModal={this.toggleModal} />
+          className="popup-reminder-modal"
+        >
+          <PopupReminder toggleModal={this.toggleModal} />
         </Modal>
       </div>
     );

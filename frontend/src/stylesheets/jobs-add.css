@@ -157,17 +157,18 @@ button:focus {
   transition: 0.2s all;
   font-size: 15px;
 }
-.add-interview-form, .update-interview-form {
+.add-interview-form,
+.update-interview-form {
   padding-bottom: 50px;
 }
 
 .interview-button:disabled,
-.add-job-form-container form input[type='submit']:disabled, .add-interview-button:disabled,
+.add-job-form-container form input[type='submit']:disabled,
+.add-interview-button:disabled,
 .update-job-form-container form input[type='submit']:disabled {
-  background: rgba(0, 0, 0,.1);
-  outline: none;      
+  background: rgba(0, 0, 0, 0.1);
   border: none;
-  color: rgba(0, 0, 0,.3);
+  color: rgba(0, 0, 0, 0.3);
 }
 
 /*
@@ -204,11 +205,14 @@ button:hover {
 
 /* hard codoing font awesome pencil to the right hand top corner of the notes area */
 .pencil-icon {
-  position: relative;
+  position: absolute;;
   z-index: 9;
   left: 355px;
   color: rgba(0, 0, 0, 0.2);
-  bottom: 223px;
+  top: 15px;
+}
+.interview-note-area {
+  position: relative
 }
 
 .company-search-input,
@@ -264,11 +268,10 @@ button:hover {
   color: rgba(0, 0, 0, 0.1);
 }
 
-.stage-container i:hover, .stage-container i:hover {
-  color: rgba(0,0,0,.3)
+.stage-container i:hover,
+.stage-container i:hover {
+  color: rgba(0, 0, 0, 0.3);
 }
-
-
 
 .stage {
   height: 15px;
@@ -331,8 +334,6 @@ button:hover {
   font-size: 15px;
 }
 
-
-
 /*------------------------------------------*/
 /*               Popup Reminder             */
 /*------------------------------------------*/
@@ -343,31 +344,31 @@ button:hover {
   border-radius: 4px;
 }
 
-  /*
+/*
   // Popup anchor tags 
   */
-  .popup-reminder-modal a,
-  .popup-reminder-modal a:visited {
-    text-decoration: none;
-    color: #fefefe;
-    display: inline;
-    border-bottom: 1px dotted rgba(254, 254, 254, 0.6);
-    -moz-transition: 0.3s all;
-    -webkit-transition: 0.3s all;
-    -o-transition: 0.3s all;
-    transition: 0.3s all;
-  }
+.popup-reminder-modal a,
+.popup-reminder-modal a:visited {
+  text-decoration: none;
+  color: #fefefe;
+  display: inline;
+  border-bottom: 1px dotted rgba(254, 254, 254, 0.6);
+  -moz-transition: 0.3s all;
+  -webkit-transition: 0.3s all;
+  -o-transition: 0.3s all;
+  transition: 0.3s all;
+}
 
-    /* 
+/* 
     // On hover, the underline gets whiter
-    */ 
-    .popup-reminder-modal a:hover {
-      border-bottom: 1px dotted #fefefe;
-    }
+    */
+.popup-reminder-modal a:hover {
+  border-bottom: 1px dotted #fefefe;
+}
 
 /*
 // Contains information logo, content text, exit button
-*/ 
+*/
 .popup-reminder-container {
   display: flex;
   height: 140px;
@@ -381,64 +382,63 @@ button:hover {
   animation: popout 0.3s;
 }
 
-  /*
+/*
   // I (information) container
-  */ 
-  .popup-reminder-container div:first-child {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 24%;
-    color: #fefefe;
-  }
+  */
+.popup-reminder-container div:first-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24%;
+  color: #fefefe;
+}
 
-  /*
+/*
   // Message content 
-  */ 
-  .popup-reminder-container .reminder-content {
-    width: 66%;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
+  */
+.popup-reminder-container .reminder-content {
+  width: 66%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
 
-    .popup-reminder-container .reminder-content h3 {
-      height: 45%;
-      font-size: 1.8rem;
-      font-weight: 400;
-      display: flex;
-      align-items: center;
-    }
+.popup-reminder-container .reminder-content h3 {
+  height: 45%;
+  font-size: 1.8rem;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+}
 
-    .popup-reminder-container .reminder-content p {
-      height: 55%;
-      font-size: 1.6rem;
-      font-weight: 300;
-      line-height: 1.4;
-    }
+.popup-reminder-container .reminder-content p {
+  height: 55%;
+  font-size: 1.6rem;
+  font-weight: 300;
+  line-height: 1.4;
+}
 
-  /*
+/*
   // Exit button container 
-  */ 
-  .popup-reminder-container div:last-child {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    width: 10%;
-  }
+  */
+.popup-reminder-container div:last-child {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 10%;
+}
 
-    /*
+/*
     // The actual exit button 
-    */ 
-    .popup-reminder-container div:last-child button {
-      outline: none;
-      border: none;
-      background: none;
-      margin-top: 12px;
-      cursor: pointer;
-      color: #fefefe;
-    }
-
+    */
+.popup-reminder-container div:last-child button {
+  outline: none;
+  border: none;
+  background: none;
+  margin-top: 12px;
+  cursor: pointer;
+  color: #fefefe;
+}
 
 /*
 // When the screen size is smaller than 720px, form width becomes responsive 
@@ -459,7 +459,7 @@ button:hover {
 
 /*
 // When screen size is smaller than 510px, popup reminder becomes responsive
-*/ 
+*/
 @media screen and (max-width: 510px) {
   .popup-reminder-container {
     height: 180px;
