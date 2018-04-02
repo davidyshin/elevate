@@ -290,8 +290,9 @@ class AddJobForm extends Component {
   };
 
   renderJobSideBar = () => {
-    const { company, companyLogo, date_applied, position } = this.state
-    return <JobSideBar companyLogo={companyLogo} company={company} date_applied={date_applied} position={position} />
+    const {company, companyLogo, date_applied, position, resume_url, cover_url} = this.state
+
+    return <JobSideBar companyLogo={companyLogo} resume_url={resume_url} cover_url={cover_url} company={company} date_applied={date_applied} position={position}  />
   }
 
   renderStage = () => {
@@ -309,7 +310,7 @@ class AddJobForm extends Component {
         return (
           <CoverLetterUpload
             Upload
-            handleResumeInput={this.handleResumeInput}
+            handleCoverInput={this.handleCoverInput}
             job_id={job_id}
           />
         );
