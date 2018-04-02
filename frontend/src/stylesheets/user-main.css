@@ -798,6 +798,7 @@ p {
     transition: 0.2s all;
     cursor: pointer;
     outline: none;
+    border: none;
   }
 
   .save-button button:focus {
@@ -827,7 +828,7 @@ p {
   outline: none;
   height: 30px;
   background-color: rgba(0, 0, 0, 0.08);
-  width: 200px;
+  width: 45%;
   font-size: 15px;
   font-weight: 300;
   padding-left: 6px;
@@ -939,6 +940,8 @@ Save button in User Info
 .user-info-save-button {
   background: rgba(0, 149, 222, 1) 100%;
   border-radius: 60px;
+  border: none;
+  outline: none;
   width: 100px;
   padding: 11px 9px 11px 9px;
   color: #fefefe;

@@ -3,6 +3,33 @@
 /*------------------------------------------*/
 
 
+/*
+// On hover, content shifts up
+*/
+@keyframes animate-on-hover {
+    from {
+        transform: translate(0, 0);
+    }
+
+    to {
+        transform: translate(0, -5px);
+    }
+}
+
+/*
+// On hover off, content shifts back to original place.
+*/
+@keyframes deanimate-on-hover {
+    from {
+        transform: translate(0, -5px);
+    }
+
+    to {
+        transform: translate(0, 0);
+    }
+}
+
+
 @keyframes progress-grow {
     0% {
         transform: scale(0, 1);
@@ -12,7 +39,6 @@
         transform: scale(1, 1);
     }
 }
-
 
 /*
 // Ensures that the progress bar doesn't shrink back when job info folds back in 
