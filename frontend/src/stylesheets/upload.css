@@ -20,9 +20,6 @@
     align-items: center;
     padding: 100px;
 }
-resume-form-input h3, cover-form-input h3 {
-    font-weight: 400px;
-}
 
 #resume-input, #cover-input {
     position: absolute; 
