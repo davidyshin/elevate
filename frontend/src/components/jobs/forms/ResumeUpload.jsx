@@ -39,9 +39,13 @@ class ResumeUpload extends Component {
       <div data-aos="fade-up" className="resume-form">
         <form className="resume-form  fileinput-button" id="2">
           <div className="upload-headers">
-        <h1> Resume </h1>
-        <h3> Upload the resume you used when applying to this job to earn experience points!</h3>
-        </div>
+            <h1> Resume </h1>
+            <h3>
+              {' '}
+              Upload the resume you used when applying to this job to earn
+              experience points!
+            </h3>
+          </div>
           <div className="resume-form-input">
             <div>
               <span>
@@ -62,12 +66,14 @@ class ResumeUpload extends Component {
             />
           </div>
           <div className="upload-button-container">
-            <button
-              onClick={this.props.handleSkipButton}
-              className="skip-button"
-            >
-              Skip
-            </button>
+            {this.props.formStatus === 'add' ? (
+              <button
+                onClick={this.props.handleSkipButton}
+                className="skip-button"
+              >
+                Skip
+              </button>
+            ) : null}
             <button
               disabled={!file}
               className="upload-button"

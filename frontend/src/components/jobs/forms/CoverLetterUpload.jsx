@@ -62,12 +62,12 @@ class CoverLetterUpload extends Component {
             />
           </div>
           <div className="upload-button-container">
-            <button
+           {this.props.formStatus === 'add' ?  <button
               onClick={this.props.handleSkipButton}
               className="skip-button"
             >
               Skip
-            </button>
+            </button>: null}
             <button
               disabled={!file}
               className="upload-button"
