@@ -477,69 +477,6 @@ class AddJobForm extends Component {
                 </div>
               </div>
             </div>
-
-            {/* <div className="add-job-inputs-container">
-              <div className="add-job-input-row">
-                <p>Company *</p>
-                <div className="company-search-input">
-                  <Autosuggest
-                    className="add-job-form-input-company"
-                    theme={AutoSuggestStyling}
-                    suggestions={suggestedCompanies}
-                    onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-                    onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-                    getSuggestionValue={this.getSuggestionValue}
-                    onSuggestionSelected={this.onSuggestionSelected}
-                    renderSuggestion={this.renderSuggestion}
-                    inputProps={inputProps}
-                  />
-                  {companyLogo ? (
-                    <img className="company-image" src={companyLogo} />
-                  ) : (
-                      <span className="magnifying-glass">
-                        <i className="fas fa-search fa-2x" />
-                      </span>
-                    )}
-                </div>
-              </div>
-              <div className="add-job-input-row">
-                <p>Position *</p>
-                <div className="position-search-input">
-                  <div>
-                    <input
-                      onChange={this.handleInput}
-                      value={position}
-                      placeholder="Position"
-                      name="position"
-                      type="text"
-                    />
-                  </div>
-                  <span className="brief-case">
-                    <i className="fas fa-briefcase fa-2x" />
-                  </span>
-                </div>
-              </div>
-              <div className="add-job-input-row">
-                <p>Date applied *</p>
-                <div className="date-applied-input">
-                  <Calendar onChange={this.handleDate} value={date_applied} />
-                </div>
-              </div>
-              <div className="add-job-input-row">
-                <p>Job posting url</p>
-                <div className="job-posting-input">
-                  <input
-                    onChange={this.handleInput}
-                    value={url}
-                    placeholder="URL"
-                    name="url"
-                    type="text"
-                  />
-                </div>
-              </div>
-            </div> */}
-            {/* End all p and input form pairs */}
-
             <div className="add-job-buttons">
               <input
                 disabled={saved || !company || !position || !date_applied}
@@ -551,7 +488,7 @@ class AddJobForm extends Component {
         </div>
         {applicationStage > 1 ? (
           <div>
-            <this.renderJobSideBar /> <this.renderStage />
+            <this.renderJobSideBar/> <this.renderStage />
           </div>
         ) : null}
       </div>
