@@ -1,15 +1,14 @@
-.resume-form{
-    color: rgb(51, 156, 197);  
+.resume-form, .cover-form{  
     text-align: center;
+    width: 100%;
 }
 
 .fileinput-button input {
     position: absolute; 
     cursor: pointer;   
-    left: 3em;
-    bottom: 0.5em;
-    height: 4em;
-    width: 2em;
+    top: 0em;
+    height: 3em;
+    width: 100%em;
 	opacity: 0;
 }
 
@@ -26,6 +25,24 @@
 }
 
 
+.upload-button {
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    background-color: rgb(51, 156, 197);  
+    color: #fefefe;
+    width: 100px;
+    font-weight: 300;
+    font-size: 12px;
+    font-family: 'Montserrat', sans-serif;
+    height: 35px;
+}
+
+.upload-button:disabled {
+    background-color: rgba(0, 0, 0, .2);  
+    color: rgba(0,0,0);
+}
+
 .download{
     transform: scaleY(-1);
     width:4em;
@@ -36,5 +53,3 @@
 .headings{
     color: rgb(51, 156, 197); 
 }
-
-
