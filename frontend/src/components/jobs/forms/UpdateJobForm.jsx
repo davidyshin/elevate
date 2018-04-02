@@ -335,16 +335,6 @@ class UpdateJobForm extends Component {
               type="text"
             />
             <p>Date Applied: *</p>
-<<<<<<< HEAD
-            <div className="input-date-container">
-              <input
-                value={date_applied}
-                onChange={this.handleInput}
-                name="date_applied"
-                type="date"
-              />
-            </div>
-=======
             <Calendar onChange={this.handleDate} value={date_applied} />
             {/* <input
               onChange={this.handleDate}
@@ -352,7 +342,6 @@ class UpdateJobForm extends Component {
               name="date_applied"
               type="date"
             /> */}
->>>>>>> b26131b25ffe0e0a3d5e5e94e85de42e8c84a9da
             <p>Job Posting Url:</p>
             <input
               onChange={this.handleInput}
@@ -402,19 +391,11 @@ class UpdateJobForm extends Component {
               </a>
             </div>
           ) : (
-<<<<<<< HEAD
-            <CoverLetterUpload
-              handleCoverInput={this.handleCoverInput}
-              job_id={job_id}
-            />
-          )
-=======
               <CoverLetterUpload
                 handleCoverInput={this.handleCoverInput}
                 job_id={job_id}
               />
             )
->>>>>>> b26131b25ffe0e0a3d5e5e94e85de42e8c84a9da
         ) : null}
         {applicationStage === 4 ? <this.renderInterviews /> : null}
         {applicationStage === 5 ? (

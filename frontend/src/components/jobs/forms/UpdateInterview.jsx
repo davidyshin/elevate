@@ -103,18 +103,7 @@ class UpdateInterview extends Component {
         <form onSubmit={this.handleSubmit}>
           <h1>Update Interview</h1>
           <p>Interview Date: *</p>
-<<<<<<< HEAD
-          <div className="input-date-container">
-          <input
-            value={date}
-            onChange={this.handleInput}
-            name="date"
-            type="date"
-          />
-          </div>
-=======
           <Calendar onChange={this.handleDate} value={date} />
->>>>>>> b26131b25ffe0e0a3d5e5e94e85de42e8c84a9da
           <p>Interview Time: *</p>
           <TimePicker
             showSecond={false}
@@ -127,12 +116,7 @@ class UpdateInterview extends Component {
             onChange={this.handleInput}
             name="time"
             type="time"
-<<<<<<< HEAD
-          />
-
-=======
           /> */}
->>>>>>> b26131b25ffe0e0a3d5e5e94e85de42e8c84a9da
           <p>Interview Contact: *</p>
           <input
             value={contact}
