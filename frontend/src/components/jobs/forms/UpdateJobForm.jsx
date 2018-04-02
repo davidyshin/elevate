@@ -31,7 +31,7 @@ class UpdateJobForm extends Component {
       resume_url: '',
       cover_url: '',
       interviews: [],
-      addedInterviews: ['test'],
+      addedInterviews: [],
       job_status: 'awaiting'
     };
   }

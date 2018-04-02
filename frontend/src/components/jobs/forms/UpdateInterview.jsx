@@ -111,12 +111,6 @@ class UpdateInterview extends Component {
             onChange={this.handleTime}
             use12Hours
           />
-          {/* <input
-            value={time}
-            onChange={this.handleInput}
-            name="time"
-            type="time"
-          /> */}
           <p>Interview Contact: *</p>
           <input
             value={contact}

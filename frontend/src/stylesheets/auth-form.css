@@ -71,6 +71,8 @@
     */
     .auth-form-container form input[type='submit'] {
         background: rgba(0, 149, 222, 1); 
+        outline: none;
+        border: none;
         border-radius: 60px;
         width: 200px;
         margin: 36px auto 14px auto;

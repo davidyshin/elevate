@@ -93,7 +93,6 @@ class AddInterview extends Component {
           <h1>Add Interview</h1>
           <p>Interview Date: *</p>
           <Calendar onChange={this.handleDate} value={date} />
-
           <p>Interview Time: *</p>
           <input
             value={time}

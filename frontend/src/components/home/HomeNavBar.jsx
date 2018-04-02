@@ -43,8 +43,9 @@ class HomeNavBar extends Component {
                 alt="elevate"
               />
             </Link>
-            <h3><Link to="/">JOBS</Link></h3>
-            <h3><Link to="/addjob">ADD JOB</Link></h3>
+
+            <h3><Link to="/">HOME</Link></h3>
+            <h3><Link to="/addjob"><i class="fas fa-plus"></i> JOB</Link></h3>
             <h3><Link to="/leaderboard">LEADERBOARD</Link></h3>
             <h3><Link to="/community">COMMUNITY</Link></h3>
           </div>
@@ -81,8 +82,8 @@ class HomeNavBar extends Component {
           </div>
 
           <div className={`home-nav-bar-mobile-dropdown ${expandClass}`}>
-            <h3 onClick={this.handleCloseMenu}><Link to="/">JOBS</Link></h3>
-            <h3 onClick={this.handleCloseMenu}><Link to="/addjob">ADD JOB</Link></h3>
+            <h3 onClick={this.handleCloseMenu}><Link to="/">HOME</Link></h3>
+            <h3 onClick={this.handleCloseMenu}><Link to="/addjob"><i class="fas fa-plus"></i> JOB</Link></h3>
             <h3 onClick={this.handleCloseMenu}><Link to="/leaderboard">LEADERBOARD</Link></h3>
             <h3 onClick={this.handleCloseMenu}><Link to="/community">COMMUNITY</Link></h3>
           </div>
