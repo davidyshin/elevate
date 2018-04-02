@@ -52,6 +52,8 @@
   // Input boxes in the forms, and the textarea === note section
   */
 
+
+
 .update-job-form-container form input {
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
@@ -69,6 +71,8 @@
   -webkit-transition: 0.3s all;
   transition: 0.3s all;
 }
+
+
 
 textarea {
   font-size: 16px;
@@ -157,14 +161,6 @@ button:hover {
 }
 
 /* hard codoing font awesome pencil to the right hand top corner of the notes area */
-
-.pencil-icon {
-  position: relative;
-  z-index: 9;
-  left: 355px;
-  color: rgba(0, 0, 0, 0.2);
-  bottom: 223px;
-}
 
 .company-input {
   height: 70px;

@@ -5,10 +5,14 @@ import Autosuggest from 'react-autosuggest';
 import axios from 'axios';
 import ResumeUpload from './ResumeUpload.jsx';
 import CoverLetterUpload from './CoverLetterUpload.jsx';
+import JobStatus from './JobStatus.jsx';
+import JobSideBar from './JobSideBar.jsx';
 import AddInterview from './AddInterview.jsx';
 import { Link } from 'react-router-dom';
 import achieves from '../../achievements/checkForAchievements';
 import '../../../stylesheets/jobs-add.css';
+import Calendar from 'react-calendar';
+
 import dotenv from 'dotenv';
 dotenv.load();
 
@@ -65,7 +69,9 @@ class AddJobForm extends Component {
     let date = new Date(); // Today
     let timeZone = new Date(date.getTime() - date.getTimezoneOffset() * 60000); // Today minus time zone
     let dateLogged = timeZone.toISOString().substring(0, 10);
-    const companyLogo = this.state.companyLogo ? this.state.companyLogo : 'https://i.imgur.com/gBiRInp.png'
+    const companyLogo = this.state.companyLogo
+      ? this.state.companyLogo
+      : 'https://i.imgur.com/gBiRInp.png';
     axios
       .post('/users/createJobApp', {
         company_name: this.state.company,
@@ -256,8 +262,8 @@ class AddJobForm extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  handleDate = e => {
-    this.setState({ date_applied: e.target.value });
+  handleDate = date => {
+    this.setState({ date_applied: date });
   };
 
   changeStage = e => {
@@ -265,7 +271,7 @@ class AddJobForm extends Component {
   };
 
   setApplicationStage = e => {
-    console.log('hello');
+    // console.log('hello');
     let { applicationStage } = this.state;
     if (e.target.id === 'right') {
       if (applicationStage === 5) {
@@ -281,6 +287,55 @@ class AddJobForm extends Component {
       }
     }
     this.setState({ applicationStage });
+  };
+
+  renderJobSideBar = () => {
+    const { company, companyLogo, date_applied, position, resume_url, cover_url } = this.state
+
+    return <JobSideBar companyLogo={companyLogo} resume_url={resume_url} cover_url={cover_url} company={company} date_applied={date_applied} position={position} />
+  }
+
+  renderStage = () => {
+    const { applicationStage, interviews, job_id } = this.state;
+    switch (applicationStage) {
+      case 2:
+        return (
+          <ResumeUpload
+            handleResumeInput={this.handleResumeInput}
+            job_id={job_id}
+          />
+        );
+        break;
+      case 3:
+        return (
+          <CoverLetterUpload
+            Upload
+            handleCoverInput={this.handleCoverInput}
+            job_id={job_id}
+          />
+        );
+      case 4:
+        return (
+          <AddInterview
+            job_id={job_id}
+            updateExperience={this.props.updateExperience}
+            saveInterview={this.saveInterview}
+            addMoreInterview={this.addMoreInterview}
+          />
+        );
+        break;
+      case 5:
+        return (
+          <JobStatus
+            salarySaved={this.state.salarySaved}
+            salary={this.state.salary}
+            handleStatusChange={this.handleStatusChange}
+            handleInput={this.handleInput}
+            job_status={this.state.job_status}
+            handleSalarySave={this.handleSalarySave}
+          />
+        );
+    }
   };
 
   render() {
@@ -312,7 +367,7 @@ class AddJobForm extends Component {
     };
     return (
       <div className="add-job-form-container">
-        {saved ? (
+        {/* {saved ? (
           <div className="stage-container">
             <span className="stage-arrow-left">
               <i
@@ -354,181 +409,149 @@ class AddJobForm extends Component {
               />
             </span>
           </div>
-        ) : null}
+        ) : null} */}
         <div
           data-aos="fade-up"
           hidden={applicationStage > 1 ? true : false}
           className="add-job-info"
         >
           <form onSubmit={this.handleFirstSubmit}>
-            <h1> Job Info</h1>
-              <p>Company applied to: *</p>
-            <div className="company-search-input">
-              <Autosuggest
-                className="add-job-form-input-company"
-                theme={AutoSuggestStyling}
-                suggestions={suggestedCompanies}
-                onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-                onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-                getSuggestionValue={this.getSuggestionValue}
-                onSuggestionSelected={this.onSuggestionSelected}
-                renderSuggestion={this.renderSuggestion}
-                inputProps={inputProps}
-              />
-              {companyLogo ? (
-                <img className="company-image" src={companyLogo} />
-              ) : (
-                <span className="magnifying-glass">
-                  <i className="fas fa-search fa-2x" />
-                </span>
-              )}
-            </div>
-            <div className="add-job-form-input-title">
-              {' '}
-              <p>Position applied to: *</p>
-            </div>
-            <div className="position-search-input">
-              <div>
-                <input
-                  onChange={this.handleInput}
-                  value={position}
-                  placeholder="Position"
-                  name="position"
-                  type="text"
-                />
+            <h1>Job Application Information</h1>
+            <h3>Let's start with the basics</h3>
+
+            <div className="add-job-input-pairs-container">
+              <div className="add-job-labels-container">
+                <p>Company *</p>
+                <p>Position *</p>
+                <div>
+                  <p className="add-job-date-label">Date applied *</p>
+                </div>
+                <p>Job posting url</p>
               </div>
-              <span className="brief-case">
-                <i className="fas fa-briefcase fa-2x" />
-              </span>
+              <div className="add-job-inputs-container">
+                <div className="company-search-input">
+                  <Autosuggest
+                    className="add-job-form-input-company"
+                    theme={AutoSuggestStyling}
+                    suggestions={suggestedCompanies}
+                    onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+                    onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                    getSuggestionValue={this.getSuggestionValue}
+                    onSuggestionSelected={this.onSuggestionSelected}
+                    renderSuggestion={this.renderSuggestion}
+                    inputProps={inputProps}
+                  />
+                  {companyLogo ? (
+                    <img className="company-image" src={companyLogo} />
+                  ) : (
+                      <span className="magnifying-glass">
+                        <i className="fas fa-search fa-2x" />
+                      </span>
+                    )}
+                </div>
+                <div className="position-search-input">
+                  <div>
+                    <input
+                      onChange={this.handleInput}
+                      value={position}
+                      placeholder="Position"
+                      name="position"
+                      type="text"
+                    />
+                  </div>
+                  <span className="brief-case">
+                    <i className="fas fa-briefcase fa-2x" />
+                  </span>
+                </div>
+                <div className="date-applied-input">
+                  <Calendar onChange={this.handleDate} value={date_applied} />
+                </div>
+                <div className="job-posting-input">
+                  <input
+                    onChange={this.handleInput}
+                    value={url}
+                    placeholder="Url"
+                    name="url"
+                    type="text"
+                  />
+                </div>
+              </div>
             </div>
-              <p>Date applied: *</p>{' '}
-            <div className="input-date-container">
-              <input
-                onChange={this.handleDate}
-                value={date_applied}
-                placeholder="Date"
-                max={today}
-                name="date_applied"
-                type="date"
-              />
-            </div>
-              <p>Job posting url: </p>
-            <input
-              onChange={this.handleInput}
-              value={url}
-              placeholder="URL"
-              name="url"
-              type="text"
-            />
-            {/* <input
-              onChange={this.handleInput}
-              value={email}
-              placeholder="Job Contact Email Address"
-              name="email"
-              type="email"
-            /> */}
+
+            {/* <div className="add-job-inputs-container">
+              <div className="add-job-input-row">
+                <p>Company *</p>
+                <div className="company-search-input">
+                  <Autosuggest
+                    className="add-job-form-input-company"
+                    theme={AutoSuggestStyling}
+                    suggestions={suggestedCompanies}
+                    onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+                    onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                    getSuggestionValue={this.getSuggestionValue}
+                    onSuggestionSelected={this.onSuggestionSelected}
+                    renderSuggestion={this.renderSuggestion}
+                    inputProps={inputProps}
+                  />
+                  {companyLogo ? (
+                    <img className="company-image" src={companyLogo} />
+                  ) : (
+                      <span className="magnifying-glass">
+                        <i className="fas fa-search fa-2x" />
+                      </span>
+                    )}
+                </div>
+              </div>
+              <div className="add-job-input-row">
+                <p>Position *</p>
+                <div className="position-search-input">
+                  <div>
+                    <input
+                      onChange={this.handleInput}
+                      value={position}
+                      placeholder="Position"
+                      name="position"
+                      type="text"
+                    />
+                  </div>
+                  <span className="brief-case">
+                    <i className="fas fa-briefcase fa-2x" />
+                  </span>
+                </div>
+              </div>
+              <div className="add-job-input-row">
+                <p>Date applied *</p>
+                <div className="date-applied-input">
+                  <Calendar onChange={this.handleDate} value={date_applied} />
+                </div>
+              </div>
+              <div className="add-job-input-row">
+                <p>Job posting url</p>
+                <div className="job-posting-input">
+                  <input
+                    onChange={this.handleInput}
+                    value={url}
+                    placeholder="URL"
+                    name="url"
+                    type="text"
+                  />
+                </div>
+              </div>
+            </div> */}
+            {/* End all p and input form pairs */}
+
             <div className="add-job-buttons">
               <input
                 disabled={saved || !company || !position || !date_applied}
                 type="submit"
-                value="Save"
+                value="Next"
               />
             </div>
           </form>
         </div>
-
-        {applicationStage === 2 ? (
-          <ResumeUpload
-            handleResumeInput={this.handleResumeInput}
-            job_id={job_id}
-          />
-        ) : null}
-        {applicationStage === 3 ? (
-          <div data-aos="fade-up" className="add-job-coverletter-container">
-            <CoverLetterUpload
-              handleCoverInput={this.handleCoverInput}
-              job_id={job_id}
-            />
-          </div>
-        ) : null}
-        {applicationStage === 4 ? (
-          <div data-aos="fade-up" className="add-job-interview-container">
-            <AddInterview
-              job_id={job_id}
-              updateExperience={this.props.updateExperience}
-              saveInterview={this.saveInterview}
-              addMoreInterview={this.addMoreInterview}
-            />
-            {interviews.map(interview => {
-              return (
-                <AddInterview
-                  job_id={job_id}
-                  updateExperience={this.props.updateExperience}
-                  saveInterview={this.saveInterview}
-                />
-              );
-            })}
-          </div>
-        ) : null}
-
-        {applicationStage === 5 ? (
-          <div data-aos="fade-up" className="update-job-status">
-            <h1> Update Job Application Status </h1>
-            <div className="job-status-switch-field">
-              <input
-                onChange={this.handleStatusChange}
-                type="radio"
-                id="offered"
-                name="offered"
-                className="status-switch-offered"
-                checked={this.state.job_status === 'offered'}
-              />
-              <label for="offered">Offered</label>
-              <input
-                onChange={this.handleStatusChange}
-                type="radio"
-                id="awaiting"
-                name="awaiting"
-                className="status-switch-awaiting"
-                checked={this.state.job_status === 'awaiting'}
-              />
-              <label for="awaiting">Awaiting</label>
-              <input
-                onChange={this.handleStatusChange}
-                type="radio"
-                id="rejected"
-                name="rejected"
-                className="status-switch-rejected"
-                checked={this.state.job_status === 'rejected'}
-              />
-              <label for="rejected">Rejected</label>
-            </div>
-            {job_status === 'offered' ? (
-              <div className="salary-input-container">
-                {salarySaved ? (
-                  <h3> Offered Salary </h3>
-                ) : (
-                  <h3>Saved Salary</h3>
-                )}
-                <input
-                  className="salary-input"
-                  name="salary"
-                  onChange={this.handleInput}
-                  type="text"
-                  maxLength="20"
-                  placeholder="Salary"
-                />
-                <button
-                  className="salary-input-save"
-                  disabled={salary.length < 1 || salarySaved}
-                  onClick={this.handleSalarySave}
-                  type="submit"
-                  value="Save"
-                >
-                  Save
-                </button>
-              </div>
-            ) : null}
+        {applicationStage > 1 ? (
+          <div>
+            <this.renderJobSideBar /> <this.renderStage />
           </div>
         ) : null}
       </div>

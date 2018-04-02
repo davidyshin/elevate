@@ -46,7 +46,7 @@ class LeaderBoard extends Component {
     },{
       id: 'name',
       Header: 'Name',
-      accessor: d => d.id === user.id ? (<span>You </span>) : (<span>{'    '+d.first_name+ '  '+ d.last_name}</span>), // String-based value accessors!
+      accessor: d => d.id === user.id ? (<span>You </span>) : (<span>{'    '+d.first_name+ '  '+ d.last_name[0]}</span>), // String-based value accessors!
       minWidth: 50,// Custom cell components!
       minWidth: 250,// Custom cell components!
       // accessor: ''  
