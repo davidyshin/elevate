@@ -55,7 +55,7 @@
 // Application information
 // Do you have an interview to add? 
 */
-.add-job-form-container h1, update-job-form-container update-initial-prompt h1 {
+.add-job-form-container h1 {
   font-size: 3.2rem;
   font-weight: 400;
   padding-left: 22px;
@@ -65,7 +65,7 @@
 // Tell us the basic job application...
 // If not, you can always come back later to add one.
 */ 
-.add-job-form-container h3, update-job-form-container h3 {
+.add-job-form-container h3 {
   font-size: 2.2rem;
   font-weight: 300;
   padding-left: 22px;
@@ -75,7 +75,7 @@
 /*
 // Input labels
 */ 
-.add-job-form-container p, update-job-form-container p {
+.add-job-form-container p {
   font-size: 1.8rem;
   font-weight: 300;
   padding-left: 22px;
@@ -86,15 +86,16 @@
 */ 
 .add-job-input-pairs-container {
   display: flex;
-  height: 480px;
   width: 100%;
+  height: 480px;
   margin-top: 22px;
 }
 
   /* 
-  // Labels column
+  // Labels column for add job and add interview 
   */
-  .add-job-labels-container {
+  .add-job-labels-container,
+  .add-interview-labels-container {
     display: flex;
     flex-direction: column;
     width: 30%;
@@ -125,7 +126,8 @@
   /*
   // Inputs column
   */
-  .add-job-inputs-container {
+  .add-job-inputs-container,
+  .add-interview-inputs-container {
     display: flex;
     flex-direction: column;
     width: 70%;
@@ -157,10 +159,12 @@
 /*------------------------------------------*/
 /*
 // Each stage of the application has its own form and box, separated by 50px
-// Input boxes in the forms, and the textarea === note section
+// Input boxes in the forms
 */
 
-.add-job-form-container form input, .salary-input input  {
+.add-job-form-container form input,
+.add-interview-form form input,
+.salary-input input {
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
   outline: none;
@@ -261,11 +265,6 @@ textarea {
   justify-content: center;
 }
 
-.add-interview-form,
-.update-interview-form {
-  padding-bottom: 50px;
-}
-
 .interview-button:disabled,
 .add-job-form-container form input[type='submit']:disabled,
 .add-interview-button:disabled,
@@ -318,19 +317,6 @@ textarea {
   height: 32px;
   width: 32px;
   border-radius: 50%;
-}
-
-/* hard coding font awesome pencil to the right hand top corner of the notes area */
-.pencil-icon {
-  position: absolute;
-  z-index: 9;
-  left: 355px;
-  color: rgba(0, 0, 0, 0.2);
-  top: 15px;
-}
-
-.interview-note-area {
-  position: relative;
 }
 
 
