@@ -337,7 +337,7 @@ class AddJobForm extends Component {
           <JobStatus
             handleStatusChange={this.handleStatusChange}
             job_status={this.state.job_status}
-            handleSkipButton={this.state.handleSkipButton}
+            handleSkipButton={this.handleSkipButton}
           />
         );
         break;

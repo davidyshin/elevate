@@ -259,7 +259,7 @@ button:hover {
 .job-salary-buttons, .job-salary-buttons-saved  {
   border: none;
   outline: none;
-  margin: 10px;
+  margin: 0 22px;
 }
 
 .salary-input-button-container a {

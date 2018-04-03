@@ -188,7 +188,7 @@
 
 .add-job-form-container form input[type='text'],
 .add-job-form-container form input[type='email'],
-.add-job-form-container form input[type='date'],
+.add-job-form-container form input[type='date']
 {
   font-size: 1.8rem;
 }
