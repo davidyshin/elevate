@@ -39,7 +39,7 @@ class JobSideBar extends Component {
       <a
         href={`https://s3.amazonaws.com/elevatecovers/${cover_url}`}
         target="_blank">
-        <h3>over letter <i class="fas fa-download"></i></h3>
+        <h3>cover letter <i class="fas fa-download"></i></h3>
       </a>
     ) : null;
 
