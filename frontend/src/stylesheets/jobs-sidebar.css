@@ -27,7 +27,7 @@
 }
 
 .job-sidebar .company-container {
-    width: 50%;
+    width: 33.33%;
     display: flex;
     align-items: flex-end;
     /* background-color: rgba(255, 0, 0, 0.1); */
@@ -35,30 +35,35 @@
 
 .job-sidebar .company-container img {
     position: relative;
-    height: 46px;
-    width: 46px;
+    height: 28px;
+    width: 28px;
     border-radius: 100%;
-    margin-right: 22px;
+    margin-right: 12px;
 }
 
 .job-sidebar h3.company {
-    font-size: 3.6rem;
-    font-weight: 400;
+    /* font-size: 3.6rem; */
+    font-size: 2rem;
+    font-weight: 300;
     padding: 0;
     /* background-color: rgba(255, 0, 0, 0.2); */
 }
 
 .job-sidebar h3.position {
-    font-size: 2.6rem;
-    width: 36%;
+    /* font-size: 2.6rem; */
+    font-size: 2rem;
+    width: 33.33%;
     padding: 0;
+    text-align: center;
     /* background-color: rgba(255, 0, 0, 0.3); */
 }
 
 .job-sidebar h3.applied-date {
     font-size: 2rem;
-    width: 14%;
+    width: 33.33%;
     padding: 0;
+    display: flex;
+    justify-content: flex-end;
     /* background-color: rgba(255, 0, 0, 0.4); */
 }
 
@@ -68,14 +73,14 @@
     /* background-color: rgba(255, 0, 0, 0.1); */
     display: flex;
     height: 76px;
-    border-bottom: 2px solid rgba(0, 0, 0, 0.04);
+    /* border-bottom: 2px solid rgba(0, 0, 0, 0.04); */
 }
 
 
     /* Bottom left of sidebar */
     .job-sidebar .sidebar-left {
         /* background-color: rgba(0, 0, 255, 0.1);  */
-        width: 86%;
+        width: 66.66%;
         justify-content: center;
     }
 
@@ -84,8 +89,9 @@
         /* background-color: rgba(0, 0, 255, 0.2); */
         display: flex;
         flex-direction: column;
-        width: 14%;
+        width: 33.33%;
         justify-content: center;
+        align-items: flex-end;
     }
 
     .job-sidebar .sidebar-right h3 {
@@ -97,6 +103,11 @@
     .job-sidebar .sidebar-right a:visited {
         text-decoration: none;
         color: rgba(0, 0, 0, 0.9);
+        transition: 0.3s color;
+    }
+
+    .job-sidebar .sidebar-right a:hover {
+        color: #3a99db;
     }
 
 @media screen and (max-width: 1300px) {
