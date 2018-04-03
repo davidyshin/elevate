@@ -17,9 +17,8 @@
 
 .add-job-form-container .add-job-info {
   width: 920px;
-  display: flex;
+  display: flex; 
   justify-content: center;
-  /* width: 100vw; */
 }
 
 .add-job-form-container h1, h2, h3, h4, h5, h6, p {
@@ -34,13 +33,13 @@
   background-color: #fefefe;
   display: flex;
   flex-direction: column;
-  /* width: 920px; */
   width: 100%;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
   border-radius: 4px;
   padding: 22px;
   margin: 0 auto;
   color: rgba(0, 0, 0, 0.9);
+  transition: 0.3s all;
 }
 
 /*
@@ -86,7 +85,7 @@
   .add-job-labels-container {
     display: flex;
     flex-direction: column;
-    width: 25%;
+    width: 30%;
   }
 
     .add-job-labels-container p {
@@ -117,7 +116,7 @@
   .add-job-inputs-container {
     display: flex;
     flex-direction: column;
-    width: 75%;
+    width: 70%;
     height: 100%;
   }
 
@@ -576,31 +575,22 @@ textarea {
 /*------------------------------------------*/
 
 @media screen and (max-width: 1040px) {
+  /* Parent container's width becomes 100 */
   .add-job-form-container .add-job-info {
+    width: 100vw;
+  }
+
+  /* Child container's width becomes 90 */
+  .add-job-form-container form {
     width: 90%;
   }
 }
 
 @media screen and (max-width: 880px) {
+  /* Input borders shrink */
   .add-job-form-container form input,
   .salary-input-container input {
     width: 394px;
-  }
-
-
-}
-
-/*
-// When the screen size is smaller than 720px, form width becomes responsive 
-*/
-@media screen and (max-width: 720px) {
-  .resume-input-form,
-  .cover-input-form {
-    width: 80%;
-  }
-
-  .add-job-form-container .add-job-info {
-    width: 70%;
   }
 
   .add-job-form-container h1 {
@@ -613,30 +603,56 @@ textarea {
     padding-left: 0;
   }
 
+  .add-job-form-container p {
+    font-size: 1.6rem;
+    padding-left: 0;
+  }
+
+  .add-job-form-container form input[type='text'],
+  .add-job-form-container form input[type='text']::placeholder {
+    font-size: 1.6rem;
+  }
+}
+
+/*
+// When the screen size is smaller than 720px, form width becomes responsive 
+*/
+@media screen and (max-width: 720px) {
+  .resume-input-form,
+  .cover-input-form {
+    width: 80%;
+  }
+
+  /* Child container's width shrinks to 70 */
+  .add-job-form-container form {
+    width: 70%;
+  }
+
+  /* Get rid of the labels on the side */ 
   .add-job-labels-container {
     display: none;
   }
 
+  /* Width becomes 100 to make up for the labels container disappearing */
   .add-job-inputs-container {
     width: 100%;
   }
 
+  /* Inputs container width becomes wide */
   .add-job-inputs-container div {
     width: 100%;
   }
 
+  /* Then input borders also become wide to fit the parent div */
   .add-job-form-container form input {
     width: 100%;
   }
-
 }
 
-/*
-// When screen size is smaller than 510px, popup reminder becomes responsive
-*/
 @media screen and (max-width: 510px) {
-  .add-job-form-container .add-job-info {
-    width: 98%;
+  /* Child container's width grows to 90 to fill up the page */
+  .add-job-form-container form {
+    width: 90%;
   }
 
   .popup-reminder-container {
