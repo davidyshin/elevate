@@ -13,6 +13,7 @@ import Calendar from 'react-calendar';
 import '../../../stylesheets/upload.css';
 import JobStatus from './JobStatus.jsx';
 import JobSideBar from './JobSideBar.jsx';
+import JobSalary from './JobSalary.jsx'
 
 class UpdateJobForm extends Component {
   constructor() {
@@ -32,7 +33,8 @@ class UpdateJobForm extends Component {
       cover_url: '',
       interviews: [],
       addedInterviews: [],
-      job_status: 'awaiting'
+      job_status: 'awaiting',
+      salary: ''
     };
   }
 
@@ -75,7 +77,6 @@ class UpdateJobForm extends Component {
           job_status: editingJob.job_status,
           experience: this.props.activeUser.experience,
           salary: editingJob.salary || '',
-          salarySaved: false
         });
       })
       .catch(err => {
@@ -89,25 +90,17 @@ class UpdateJobForm extends Component {
       .catch(err => console.log(err));
   }
 
-  handleSalarySave = e => {
+  handleSkipButton = e => {
+    // console.log('hello');
     e.preventDefault();
-    const { salary, job_id } = this.state;
-    axios
-      .put('/users/updateJobSalary', {
-        job_id: job_id,
-        salary: salary
-      })
-      .then(() => {
-        this.setState({
-          salarySaved: true
-        });
-      })
-      .catch(err => console.log(err));
+    let { applicationStage } = this.state;
+    applicationStage += 1;
+    this.setState({ applicationStage });
   };
 
-  handleInput = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
+  // handleInput = e => {
+  //   this.setState({ [e.target.name]: e.target.value });
+  // };
 
   handleDate = date => {
     this.setState({ date_applied: date });
@@ -249,16 +242,15 @@ class UpdateJobForm extends Component {
       job_id,
       url,
       resume_url,
-      cover_url
+      cover_url,
+      salary
     } = this.state;
     switch (applicationStage) {
       case 1:
         return (
           <div className="update-form initial-prompt">
-              <h1>
-                Which do you wish to update?
-              </h1>
-              <div className="initial-prompt choices">
+            <h1>Which do you wish to update?</h1>
+            <div className="initial-prompt choices">
               {!resume_url ? (
                 <h3 id="2" onClick={this.handleClick}>
                   I want to add a resume
@@ -335,12 +327,16 @@ class UpdateJobForm extends Component {
       case 5:
         return (
           <JobStatus
-            salarySaved={this.state.salarySaved}
-            salary={this.state.salary}
             handleStatusChange={this.handleStatusChange}
-            handleInput={this.handleInput}
             job_status={this.state.job_status}
-            handleSalarySave={this.handleSalarySave}
+            handleSkipButton={this.handleSkipButton}
+          />
+        );
+      case 6:
+        return (
+          <JobSalary
+          salary={salary}
+            job_id={job_id}
           />
         );
     }
@@ -363,8 +359,7 @@ class UpdateJobForm extends Component {
       interviews,
       addedInterviews,
       job_status,
-      salary,
-      salarySaved
+      salary
     } = this.state;
 
     return (
