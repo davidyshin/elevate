@@ -15,6 +15,13 @@
   transition: 0.3s all;
 }
 
+.add-job-form-container .add-job-info {
+  width: 920px;
+  display: flex;
+  justify-content: center;
+  /* width: 100vw; */
+}
+
 .add-job-form-container h1, h2, h3, h4, h5, h6, p {
   padding: 0;
   margin: 0;
@@ -27,7 +34,8 @@
   background-color: #fefefe;
   display: flex;
   flex-direction: column;
-  width: 920px;
+  /* width: 920px; */
+  width: 100%;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
   border-radius: 4px;
   padding: 22px;
@@ -563,29 +571,77 @@ textarea {
   color: #fefefe;
 }
 
+/*------------------------------------------*/
+/*       Media Queries for Job Info         */
+/*------------------------------------------*/
+
+@media screen and (max-width: 1040px) {
+  .add-job-form-container .add-job-info {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 880px) {
+  .add-job-form-container form input,
+  .salary-input-container input {
+    width: 394px;
+  }
+
+
+}
+
 /*
 // When the screen size is smaller than 720px, form width becomes responsive 
 */
 @media screen and (max-width: 720px) {
-  /* .add-job-form-container {
-    padding-top: 100px;
-  } */
   .resume-input-form,
   .cover-input-form {
     width: 80%;
   }
 
-  .add-job-form-container form {
-    width: 80%;
+  .add-job-form-container .add-job-info {
+    width: 70%;
   }
+
+  .add-job-form-container h1 {
+    font-size: 2.6rem;
+    padding-left: 0;
+  }
+
+  .add-job-form-container h3 {
+    font-size: 1.8rem;
+    padding-left: 0;
+  }
+
+  .add-job-labels-container {
+    display: none;
+  }
+
+  .add-job-inputs-container {
+    width: 100%;
+  }
+
+  .add-job-inputs-container div {
+    width: 100%;
+  }
+
+  .add-job-form-container form input {
+    width: 100%;
+  }
+
 }
 
 /*
 // When screen size is smaller than 510px, popup reminder becomes responsive
 */
 @media screen and (max-width: 510px) {
+  .add-job-form-container .add-job-info {
+    width: 98%;
+  }
+
   .popup-reminder-container {
     height: 180px;
     width: 98%;
   }
+
 }
