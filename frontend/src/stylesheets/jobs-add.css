@@ -2,7 +2,7 @@
 /*              Add Job Form Page           */
 /*------------------------------------------*/
 
-.add-job-form-container {
+.add-job-form-container, .update-job-form-container {
   font-family: 'Montserrat', sans-serif;
   display: flex;
   align-items: center;
@@ -45,7 +45,7 @@
 /*
 // Application information
 */
-.add-job-form-container h1 {
+.add-job-form-container h1, update-job-form-container update-initial-prompt h1 {
   font-size: 3.2rem;
   font-weight: 400;
   padding-left: 22px;
@@ -54,7 +54,7 @@
 /*
 // Tell us the basic job application...
 */ 
-.add-job-form-container h3 {
+.add-job-form-container h3, update-job-form-container h3 {
   font-size: 2.2rem;
   font-weight: 300;
   padding-left: 22px;
@@ -63,7 +63,7 @@
 /*
 // Input labels
 */ 
-.add-job-form-container p {
+.add-job-form-container p, update-job-form-container p {
   font-size: 1.8rem;
   font-weight: 300;
   padding-left: 22px;
