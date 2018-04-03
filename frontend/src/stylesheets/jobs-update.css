@@ -8,26 +8,56 @@
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  width: 100%;
+  width: 920px;
   padding-top: 80px;
+  margin: 0 auto;
   padding-bottom: 20px;
   background-color: #f5f0f5;
   transition: 0.3s all;
+}
+
+.update-form {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #fefefe;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 22px;
+  color: rgba(0, 0, 0, 0.9);
+  transition: 0.3s all;
+}
+
+.update-job-form-container h1 {
+  font-weight: 400px;
+  font-size: 3.2rem;
+  padding-left: 22px;
+}
+.update-job-form-container h3{
+  font-weight: 300;
+  font-size: 2.2rem;
+  padding-left: 22px;
+}
+.initial-prompt h3 {
+  padding: 22px 0px 22px 22px;
+}
+
+.update-job-form-container p {
+  font-weight: 300;
+  font-size: 1.8rem;
+  padding-left: 22px;
 }
 
 /*
   // Update Job form
   */
 
-.update-job-form-container form, .update-job-status {
+.update-job-form-container form, .update-job-status, .update-initial-prompt {
   background-color: #fefefe;
   display: flex;
   flex-direction: column;
-  width: 920px;
+  width: 100%;
   justify-content: center;
   align-items: center;
-  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
-  border-radius: 4px;
   padding: 22px;
   margin: 0 auto;
   color: rgba(0, 0, 0, 0.9);

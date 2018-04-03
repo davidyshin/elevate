@@ -254,30 +254,30 @@ class UpdateJobForm extends Component {
     switch (applicationStage) {
       case 1:
         return (
-          <div>
+          <div className="update-form initial-prompt">
             <h1>Which part of your application log would you like to see?</h1>
             {!resume_url ? (
               <h3 id="2" onClick={this.handleClick}>
-                I want to add a Resume
+                I want to add a resume
               </h3>
             ) : null}
             {!cover_url ? (
               <h3 id="3" onClick={this.handleClick}>
-                I want to add a Cover Letter
+                I want to add a cover letter
               </h3>
             ) : null}
             <h3 id="4" onClick={this.handleClick}>
-              I have an Interview to add
+              I have an interview to add
             </h3>
             <h3 id="5" onClick={this.handleClick}>
-              I want to change my job status (Offered, Awaiting, Rejected)
+              I was offered / rejected
             </h3>
           </div>
         );
       case 2:
         return resume_url ? (
-          <div data-aos="fade-up" className="resume-url-container resume-form">
-            <h3> You've uploaded a Resume for this job</h3>
+          <div data-aos="fade-up" className="update-form resume-form">
+            <h3> You've already uploaded a resume for this job</h3>
             <br />
             <a
               href={`https://s3.amazonaws.com/elevateresumes/${resume_url}`}
@@ -299,8 +299,8 @@ class UpdateJobForm extends Component {
         break;
       case 3:
         return cover_url ? (
-          <div data-aos="fade-up" className="cover-url-container resume-form">
-            <h3>You've already uploaded a Cover Letter for this job</h3>
+          <div data-aos="fade-up" className="update-form cover-form">
+            <h3>You've already uploaded a cover letter for this job</h3>
             <br />
             <a
               href={`https://s3.amazonaws.com/elevatecovers/${cover_url}`}
