@@ -512,8 +512,9 @@ class AddJobForm extends Component {
           </div>
         </div>
         {applicationStage > 1 ? (
-          <div>
-            <this.renderJobSideBar /> <this.renderStage />
+          <div className="add-job-moving-stages-container">
+            <this.renderJobSideBar />
+            <this.renderStage />
           </div>
         ) : null}
       </div>
