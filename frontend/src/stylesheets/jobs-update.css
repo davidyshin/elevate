@@ -8,7 +8,6 @@
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  width: 920px;
   padding-top: 80px;
   margin: 0 auto;
   padding-bottom: 20px;
@@ -21,18 +20,24 @@
   margin: 0;
 }
 
-.update-form {
+.update-form, .job-status-form {
   font-family: 'Montserrat', sans-serif;
   background-color: #fefefe;
   display: flex;
-  width: 100%;
+  width: 920px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
   flex-direction: column;
   justify-content: center;
   padding: 22px;
+  border-radius: 4px;
+  
   color: rgba(0, 0, 0, 0.9);
   transition: 0.3s all;
 }
 
+.job-status-form {
+  align-items: center;
+}
 .update-job-form-container h1 {
   font-weight: 400;
   font-size: 3.2rem;
@@ -58,6 +63,11 @@
   font-size: 1.8rem;
   padding-left: 22px;
 }
+
+/*
+// Width of the job status (Awaiting, Offered, Rejected) form
+*/
+
 
 /*
   // Update Job form
