@@ -6,11 +6,11 @@
 .resume-form, 
 .cover-form {
     display: flex;
-    /* flex-direction: column; */
     align-items: center;
     justify-content: center;
-    /* width: 100%; */
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
     width: 920px;
+    border-radius: 4px;
     margin: 0 auto;
 }
 
