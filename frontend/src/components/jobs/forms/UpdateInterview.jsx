@@ -99,7 +99,7 @@ class UpdateInterview extends Component {
     const { date, contact, note, time, interviewSaved } = this.state;
 
     return (
-      <div className="update-interview-form">
+      <div data-aos="fade-up" className="update-interview-form">
         <form onSubmit={this.handleSubmit}>
           <h1>Update Interview</h1>
           <p>Interview Date: *</p>
@@ -137,13 +137,6 @@ class UpdateInterview extends Component {
               type="submit"
               value="Save"
             />
-            <button
-              className="add-interview-button"
-              onClick={this.props.addMoreInterview}
-              disabled={!this.state.interviewSaved}
-            >
-              <i class="fas fa-plus" />
-            </button>
           </div>
         </form>
 

@@ -7,7 +7,7 @@ class InterviewPrompt extends Component {
   }
   render() {
     return (
-      <div className="interview-prompt-container">
+      <div data-aos="fade-up" className="interview-prompt-container">
         <h1> Do you have an interview to add? </h1>
         <h3> If not, you can always come back later to add one. </h3>
         <button onClick={this.props.handleInterviewPrompt} id="no" className="interview-prompt-no">No</button>{' '}

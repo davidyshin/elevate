@@ -71,9 +71,13 @@ class AddInterview extends Component {
                 modalOpen: true
               });
             }
-            this.props.saveInterview();
             this.props.updateExperience(50);
             achieves.checkInterviewNumber();
+            {
+              this.props.backToHome
+                ? this.props.backToHome()
+                : this.props.saveInterview();
+            }
           })
           .catch(err => {
             console.log(err);
@@ -88,7 +92,7 @@ class AddInterview extends Component {
     const { date, contact, note, time, interviewSaved } = this.state;
 
     return (
-      <div className="add-interview-form">
+      <div data-aos="fade-up" className="add-interview-form">
         <form onSubmit={this.handleSubmit}>
           <h1>Add Interview</h1>
           <p>Interview Date: *</p>
@@ -109,15 +113,15 @@ class AddInterview extends Component {
           />
           <p>Note:</p>
           <div className="interview-note-area">
-              <textarea
-                value={note}
-                placeholder="Note"
-                onChange={this.handleInput}
-                name="note"
-              />
-              <span className="pencil-icon">
-                <i className="fas fa-pencil-alt fa-2x" />
-              </span>
+            <textarea
+              value={note}
+              placeholder="Note"
+              onChange={this.handleInput}
+              name="note"
+            />
+            <span className="pencil-icon">
+              <i className="fas fa-pencil-alt fa-2x" />
+            </span>
           </div>
           <div>
             <input
