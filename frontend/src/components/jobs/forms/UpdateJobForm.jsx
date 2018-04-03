@@ -49,7 +49,7 @@ class UpdateJobForm extends Component {
         position_title: this.state.position,
         job_posting_url: this.state.url
       })
-      .then(this.setState({ applicationStage: 0 }));
+      .then(this.setState({ applicationStage: 1 }));
   };
 
   componentDidMount() {
@@ -128,13 +128,6 @@ class UpdateJobForm extends Component {
       .catch(err => console.log(err));
   };
 
-  addMoreInterview = e => {
-    e.preventDefault();
-    let { addedInterviews } = this.state;
-    addedInterviews.push('Interview');
-    this.setState({ addedInterviews: addedInterviews });
-  };
-
   handleResumeInput = res => {
     const { job_id } = this.state;
     axios
@@ -146,7 +139,7 @@ class UpdateJobForm extends Component {
         let { applicationStage } = this.state;
         this.setState({
           resume_url: res,
-          applicationStage: 3
+          applicationStage: 1
         });
       })
       .catch(err => {
@@ -180,7 +173,7 @@ class UpdateJobForm extends Component {
       .then(() => {
         this.setState({
           cover_url: res,
-          applicationStage: 4
+          applicationStage: 1
         });
       })
       .catch(err => {
@@ -192,32 +185,10 @@ class UpdateJobForm extends Component {
     this.updateJobProgress(job_id, 4);
     this.props.updateExperience(50);
   };
-  changeStage = e => {
-    this.setState({ applicationStage: parseInt(e.target.id) + 1 });
-  };
 
-  handleBackButton = e => {
-    this.setState({applicationStage: 1})
-    console.log('hello')
+  backToHome = () => {
+    this.setState({ applicationStage: 1})
   }
-  // setApplicationStage = e => {
-  //   console.log('hello');
-  //   let { applicationStage } = this.state;
-  //   if (e.target.id === 'right') {
-  //     if (applicationStage === 5) {
-  //       applicationStage = 2;
-  //     } else {
-  //       applicationStage += 1;
-  //     }
-  //   } else if (e.target.id === 'left') {
-  //     if (applicationStage === 2) {
-  //       applicationStage = 5;
-  //     } else {
-  //       applicationStage -= 1;
-  //     }
-  //   }
-  //   this.setState({ applicationStage });
-  // };
 
   renderInterviews = () => {
     const { interviews, addedInterviews, job_id } = this.state;
@@ -296,7 +267,7 @@ class UpdateJobForm extends Component {
               </h3>
             ) : null}
             <h3 id="4" onClick={this.handleClick}>
-              I have an Interview
+              I have an Interview to add
             </h3>
             <h3 id="5" onClick={this.handleClick}>
               I want to change my job status (Offered, Awaiting, Rejected)
@@ -353,8 +324,7 @@ class UpdateJobForm extends Component {
           <AddInterview
             job_id={job_id}
             updateExperience={this.props.updateExperience}
-            saveInterview={this.saveInterview}
-            addMoreInterview={this.addMoreInterview}
+            backToHome = {this.backToHome}
           />
         );
         break;
@@ -398,7 +368,7 @@ class UpdateJobForm extends Component {
         <this.renderJobSideBar />
         {applicationStage > 1 ? (
           <div className="back-button">
-            <i onClick={this.handleBackButton} class="fas fa-angle-left fa-7x" />
+            <i onClick={this.backToHome} class="fas fa-angle-left fa-7x" />
           </div>
         ) : null}
 

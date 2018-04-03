@@ -71,8 +71,8 @@ class AddInterview extends Component {
                 modalOpen: true
               });
             }
-            this.props.saveInterview();
             this.props.updateExperience(50);
+            {this.props.backToHome ? this.props.backToHome() : null}
             achieves.checkInterviewNumber();
           })
           .catch(err => {
