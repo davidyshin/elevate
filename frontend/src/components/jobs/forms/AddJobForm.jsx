@@ -9,6 +9,7 @@ import JobStatus from './JobStatus.jsx';
 import InterviewPrompt from './InterviewPrompt.jsx';
 import JobSideBar from './JobSideBar.jsx';
 import AddInterview from './AddInterview.jsx';
+import JobSalary from './JobSalary.jsx'
 import { Link } from 'react-router-dom';
 import achieves from '../../achievements/checkForAchievements';
 import '../../../stylesheets/jobs-add.css';
@@ -51,8 +52,6 @@ class AddJobForm extends Component {
       resume_url: '',
       cover_url: '',
       experience: 0,
-      salary: '',
-      salarySaved: false,
       saved: false,
       interviews: [],
       interviewSaved: ''
@@ -117,22 +116,6 @@ class AddJobForm extends Component {
       })
       .then(() => {
         this.setState({ job_status });
-      })
-      .catch(err => console.log(err));
-  };
-
-  handleSalarySave = e => {
-    e.preventDefault();
-    const { salary, job_id } = this.state;
-    axios
-      .put('/users/updateJobSalary', {
-        job_id: job_id,
-        salary: salary
-      })
-      .then(() => {
-        this.setState({
-          salarySaved: true
-        });
       })
       .catch(err => console.log(err));
   };
@@ -354,14 +337,16 @@ class AddJobForm extends Component {
       case 6:
         return (
           <JobStatus
-            salarySaved={this.state.salarySaved}
-            salary={this.state.salary}
             handleStatusChange={this.handleStatusChange}
-            handleInput={this.handleInput}
             job_status={this.state.job_status}
-            handleSalarySave={this.handleSalarySave}
+            handleSkipButton={this.handleSkipButton}
           />
         );
+        break;
+        case 7: 
+        return (
+          <JobSalary job_id={job_id}/>
+        )
     }
   };
 
@@ -383,9 +368,7 @@ class AddJobForm extends Component {
       interviewSaved,
       applicationStage,
       interviews,
-      job_status,
-      salary,
-      salarySaved
+      job_status
     } = this.state;
 
     const inputProps = {
