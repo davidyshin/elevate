@@ -31,7 +31,7 @@ class JobSideBar extends Component {
       <a
         href={`https://s3.amazonaws.com/elevateresumes/${resume_url}`}
         target="_blank">
-        <h3><i class="far fa-arrow-alt-circle-down"></i> resume</h3>
+        <h3>resume <i class="fas fa-download"></i></h3>
       </a>
     ) : null;
 
@@ -39,7 +39,7 @@ class JobSideBar extends Component {
       <a
         href={`https://s3.amazonaws.com/elevatecovers/${cover_url}`}
         target="_blank">
-        <h3><i class="fas fa-download"></i> cover letter</h3>
+        <h3>over letter <i class="fas fa-download"></i></h3>
       </a>
     ) : null;
 
