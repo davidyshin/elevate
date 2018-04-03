@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../../../stylesheets/jobs-sidebar.css';
 
 class JobSideBar extends Component {
   constructor() {
@@ -19,34 +20,50 @@ class JobSideBar extends Component {
     date = mm + '-' + dd + '-' + yyyy;
 
     const {
-      comapnyLogo,
+      companyLogo,
       company,
       position,
       resume_url,
       cover_url
     } = this.props;
 
+    const resume = resume_url ? (
+      <a
+        href={`https://s3.amazonaws.com/elevateresumes/${resume_url}`}
+        target="_blank">
+        <h3>resume <i class="fas fa-download"></i></h3>
+      </a>
+    ) : null;
+
+    const cover = cover_url ? (
+      <a
+        href={`https://s3.amazonaws.com/elevatecovers/${cover_url}`}
+        target="_blank">
+        <h3>over letter <i class="fas fa-download"></i></h3>
+      </a>
+    ) : null;
+
     return (
-      <div className="job-side-bar">
-        <h3> {company} </h3>
-        <h3> {position} </h3>
-        <h3>Applied on: {date} </h3>
-        {resume_url ? (
-          <a
-            href={`https://s3.amazonaws.com/elevateresumes/${resume_url}`}
-            target="_blank"
-          >
-            <h3>Download your resume</h3>
-          </a>
-        ) : null}
-        {cover_url ? (
-          <a
-            href={`https://s3.amazonaws.com/elevatecovers/${cover_url}`}
-            target="_blank"
-          >
-            <h3>Download your cover letter</h3>
-          </a>
-        ) : null}
+      <div className="job-sidebar">
+        <div className="sidebar-top">
+          {/* <div className="company-logo">
+            <img src={companyLogo} />
+          </div> */}
+          <div className="company-container">
+            <img src={companyLogo} />
+            <h3 className="company">{company}</h3>
+          </div>
+          <h3 className="position">{position}</h3>
+          <h3 className="applied-date">{date}</h3>
+        </div>
+        <div className="sidebar-bottom">
+          <div className="sidebar-left">
+          </div>
+          <div className="sidebar-right">
+            {resume}
+            {cover}
+          </div>
+        </div>
       </div>
     );
   }
