@@ -10,7 +10,7 @@ import AddInterview from './AddInterview.jsx';
 import { Link } from 'react-router-dom';
 import '../../../stylesheets/jobs-update.css';
 import Calendar from 'react-calendar';
-import '../../../stylesheets/resumeupload.css';
+import '../../../stylesheets/upload.css';
 import JobStatus from './JobStatus.jsx';
 import JobSideBar from './JobSideBar.jsx'
 

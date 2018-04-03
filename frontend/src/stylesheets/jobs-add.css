@@ -140,6 +140,7 @@
 // Each stage of the application has its own form and box, separated by 50px
 // Input boxes in the forms, and the textarea === note section
 */
+
 .add-job-form-container form input,
 .salary-input-container input {
   font-family: 'Montserrat', sans-serif;
