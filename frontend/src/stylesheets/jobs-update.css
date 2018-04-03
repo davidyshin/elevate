@@ -3,14 +3,13 @@
 /*------------------------------------------*/
 
 .update-job-form-container {
-  /* padding-top: 60px; */
   font-family: 'Montserrat', sans-serif;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  padding-top: 100px;
+  padding-top: 80px;
   padding-bottom: 20px;
   background-color: #f5f0f5;
   transition: 0.3s all;
@@ -19,19 +18,20 @@
 /*
   // Update Job form
   */
-.update-job-form-container form,
-.resume-url-container,
-.cover-url-container,
-.update-job-status {
+
+.update-job-form-container form, .update-job-status {
   background-color: #fefefe;
   display: flex;
   flex-direction: column;
+  width: 920px;
+  justify-content: center;
   align-items: center;
-  width: 450px;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
   border-radius: 4px;
   padding: 22px;
   margin: 0 auto;
+  color: rgba(0, 0, 0, 0.9);
+  transition: 0.3s all;
 }
 
 .update-job-applied-company {
@@ -52,8 +52,6 @@
   // Input boxes in the forms, and the textarea === note section
   */
 
-
-
 .update-job-form-container form input {
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
@@ -71,8 +69,6 @@
   -webkit-transition: 0.3s all;
   transition: 0.3s all;
 }
-
-
 
 textarea {
   font-size: 16px;
@@ -117,8 +113,8 @@ button:focus {
 
 .update-job-form-container form input[type='submit'] {
   background: rgba(0, 149, 222, 1);
-  outline: none;      
-  border: none;    
+  outline: none;
+  border: none;
   border-radius: 60px;
   width: 200px;
   font-weight: 300;
@@ -134,9 +130,9 @@ button:focus {
 
 .add-interview-button {
   background: rgba(0, 149, 222, 1);
-  border: none;   
+  border: none;
   border-radius: 100px;
-  outline: none;      
+  outline: none;
   width: 50px;
   height: 50px;
   color: #fefefe;
@@ -208,11 +204,11 @@ button:hover {
 
 .back-button {
   position: absolute;
-  left: 25%;
+  left: 5%;
   top: 45%;
   flex-direction: row;
   justify-content: flex-start;
-  z-index: 3
+  z-index: 3;
 }
 
 .switch-title {
