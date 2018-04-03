@@ -206,6 +206,15 @@ button:hover {
   overflow: hidden;
 }
 
+.back-button {
+  position: absolute;
+  left: 25%;
+  top: 45%;
+  flex-direction: row;
+  justify-content: flex-start;
+  z-index: 3
+}
+
 .switch-title {
   margin-bottom: 6px;
 }
