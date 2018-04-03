@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { Link } from 'react-router-dom'
 class JobStatus extends Component {
   constructor() {
     super();
@@ -9,7 +9,10 @@ class JobStatus extends Component {
   render() {
     return (
       <div data-aos="fade-up" className="job-status-form">
-        <h1> Update Job Application Status </h1>
+        <div className="job-status-form-title">
+        <h1> Update your status </h1>
+        <h3> Click on the current status of this application </h3>
+        </div>
         <div className="job-status-switch-field">
           <input
             onChange={this.props.handleStatusChange}
@@ -39,26 +42,25 @@ class JobStatus extends Component {
           />
           <label for="rejected">Rejected</label>
         </div>
+
         {this.props.job_status === 'offered' ? (
-          <div className="salary-input-container">
-            {this.props.salarySaved ? <h3> Offered Salary </h3> : <h3>Salary</h3>}
-            <input
-              className="salary-input"
-              name="salary"
-              onChange={this.props.handleInput}
-              type="text"
-              maxLength="20"
-              placeholder="Salary"
-            />
-            <button
-              className="salary-input-save"
-              disabled={this.props.salary.length < 1 || this.props.salarySaved}
-              onClick={this.props.handleSalarySave}
-              type="submit"
-              value="Save"
-            >
-              Save
-            </button>
+          <div className="job-status-message">
+            <h3>Congratulations!</h3>
+            <div className='job-status-button-container'>
+            <button onClick={this.props.handleSkipButton} className='job-status-accepted-button' type="button">Next</button>
+            </div>
+          </div>
+        ) : null}
+        {this.props.job_status === 'awaiting' ? (
+          <div className="job-status-message">
+            <h3>Patience is a virtue.</h3>
+            <Link to ='/'><h3>Click here to return home.</h3></Link>
+          </div>
+        ) : null}
+        {this.props.job_status === 'rejected' ? (
+          <div className="job-status-message">
+            <h3>At least you made it this far.</h3>
+            <Link to ='/'><h3>Click here to return home.</h3></Link>
           </div>
         ) : null}
       </div>
@@ -66,6 +68,4 @@ class JobStatus extends Component {
   }
 }
 
-
-
-export default JobStatus
+export default JobStatus;
