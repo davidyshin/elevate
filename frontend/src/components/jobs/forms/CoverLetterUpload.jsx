@@ -40,7 +40,7 @@ class CoverLetterUpload extends Component {
         <form className="cover-form  fileinput-button" id="2">
           <div className="upload-headers">
         <h1> Cover Letter </h1>
-        <h3> Upload the Cover Letter you used when applying to this job to earn experience points!</h3>
+        <h3> Upload the cover letter you used when applying to this job to earn experience points!</h3>
         </div>
           <div className="cover-form-input">
             <div>
