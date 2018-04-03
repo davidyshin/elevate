@@ -8,7 +8,7 @@ class JobStatus extends Component {
 
   render() {
     return (
-      <div data-aos="fade-up" className="update-job-status">
+      <div data-aos="fade-up" className="job-status-form">
         <h1> Update Job Application Status </h1>
         <div className="job-status-switch-field">
           <input
