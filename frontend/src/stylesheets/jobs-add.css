@@ -160,8 +160,7 @@
 // Input boxes in the forms, and the textarea === note section
 */
 
-.add-job-form-container form input,
-.salary-input-container input {
+.add-job-form-container form input, .salary-input input  {
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
   outline: none;
@@ -189,38 +188,21 @@
 
 .add-job-form-container form input[type='text'],
 .add-job-form-container form input[type='email'],
-.add-job-form-container form input[type='date'] {
+.add-job-form-container form input[type='date'],
+{
   font-size: 1.8rem;
+}
+.salary-input input {
+  width: 150px;
+}
+.salary-input input[type='text'] {
+  font-size: 2.4rem;
+  padding: 0px 22px 0px 22px;
 }
 
 .add-job-form-container form input[type='date'],
 .add-job-form-container form input[type='time'] {
   font-size: 1.8rem;
-}
-
-.salary-input-container input {
-  font-size: 18px;
-  text-align: center;
-  width: 200px;
-}
-
-.salary-input-save {
-  background: #2bba9c;
-  border-radius: 60px;
-  width: 100px;
-  border: none;   
-  outline: none;  
-  font-weight: 300;
-  color: #fefefe;
-  cursor: pointer;
-  -moz-transition: 0.2s all;
-  -o-transition: 0.2s all;
-  -webkit-transition: 0.2s all;
-  transition: 0.2s all;
-}
-
-.salary-input-save:disabled {
-  background: rgba(0, 0, 0, 0.3);
 }
 
 textarea {
@@ -239,10 +221,8 @@ textarea {
 /*------------------------------------------*/
 
 .add-job-form-container form input[type='submit'],
-.interview-prompt-container button {
+.interview-prompt-container button, .job-status-accepted-button, .job-salary-buttons, .job-salary-buttons-saved {
   background: rgba(0, 149, 222, 1);
-  outline: none;      
-  border: none;  
   border-radius: 60px;
   width: 200px;
   font-family: 'Montserrat', sans-serif;
@@ -255,6 +235,18 @@ textarea {
   -webkit-transition: 0.2s all;
   transition: 0.2s all;
   font-size: 1.6rem;
+  outline: none;      
+  border: none;  
+}
+
+.job-salary-buttons-saved {
+  background: rgb(0, 218, 73);
+  border: none;
+  outline: none;
+}
+.job-salary-buttons-saved:focus {
+  border:none;
+  outline:none;
 }
 
 .add-job-form-container form input[type='submit'] {
@@ -277,7 +269,8 @@ textarea {
 .interview-button:disabled,
 .add-job-form-container form input[type='submit']:disabled,
 .add-interview-button:disabled,
-.update-job-form-container form input[type='submit']:disabled {
+.update-job-form-container form input[type='submit']:disabled,
+.job-salary-buttons:disabled {
   background: rgba(0, 0, 0, 0.1);
   border: none;
   color: rgba(0, 0, 0, 0.3);
@@ -473,14 +466,6 @@ textarea {
   cursor: pointer;
 }
 
-.salary-input-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: 15px;
-}
-
 /*------------------------------------------*/
 /*               Popup Reminder             */
 /*------------------------------------------*/
@@ -606,7 +591,7 @@ textarea {
 @media screen and (max-width: 880px) {
   /* Input borders shrink */
   .add-job-form-container form input,
-  .salary-input-container input {
+  .salary-input-form input {
     width: 394px;
   }
 

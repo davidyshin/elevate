@@ -20,11 +20,12 @@
   margin: 0;
 }
 
-.update-form, .job-status-form {
+.update-form, .job-status-form, .salary-input-form {
   font-family: 'Montserrat', sans-serif;
   background-color: #fefefe;
   display: flex;
   width: 920px;
+  margin: 0 auto;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
   flex-direction: column;
   justify-content: center;
@@ -35,9 +36,10 @@
   transition: 0.3s all;
 }
 
-.job-status-form {
-  align-items: center;
+.job-status-form, .salary-input-form {
+  justify-content: space-between;
 }
+
 .update-job-form-container h1 {
   font-weight: 400;
   font-size: 3.2rem;
@@ -48,7 +50,7 @@
   font-size: 2.2rem;
   padding-left: 22px;
 }
-.initial-prompt {
+.initial-prompt, .job-status-form, .salary-input-form{
   height: 420px;
 }
 .initial-prompt .choices {
@@ -73,7 +75,7 @@
   // Update Job form
   */
 
-.update-job-form-container form, .update-job-status, .update-initial-prompt {
+.update-job-form-container form, .update-initial-prompt {
   background-color: #fefefe;
   display: flex;
   flex-direction: column;
@@ -248,10 +250,37 @@ button:hover {
   padding-left: 5px;
 }
 
-.job-status-switch-field {
-  font-family: 'Gotham SSm', sans-serif !important;
-  padding: 40px;
+.job-status-button-container {
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+}
+.job-salary-buttons, .job-salary-buttons-saved  {
+  border: none;
+  outline: none;
+  margin: 10px;
+}
+
+.salary-input-button-container a {
+  text-decoration: none;
+  color: #fefefe
+}
+
+.salary-input-button-container {
+  margin: 0 auto;
+}
+.job-status-message, .salary-input-button-container{
+  height: 95px;
+}
+
+.job-status-switch-field, .salary-input {
+  font-family: 'Montserrat', sans-serif !important;
   overflow: hidden;
+  display: flex;
+  flex-direction:row;
+  justify-content: center;
+  align-items: center;
 }
 
 .back-button {
@@ -277,15 +306,16 @@ button:hover {
 
 .job-status-switch-field label {
   display: inline-block;
-  width: 70px;
+  width: 100px;
+
   background-color: #fff;
   color: rgba(0, 0, 0, 0.6);
   font-size: 14px;
   font-weight: normal;
   text-align: center;
   text-shadow: none;
-  padding: 6px 14px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 10px 18px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1),
     0 1px rgba(255, 255, 255, 0.1);
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px rgba(255, 255, 255, 0.1);
