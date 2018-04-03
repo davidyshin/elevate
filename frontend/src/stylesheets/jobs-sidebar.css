@@ -2,11 +2,6 @@
 /*        Side/Top Bar for Adding Job       */
 /*------------------------------------------*/
 
-/* Container that holds sidebar and current stage */
-.add-job-moving-stages-container {
-    width: 100%;
-    /* background-color: rgba(0, 255, 0, 0.1);  */
-}
 
 /* Main sidebar/topbar container */
 .job-sidebar {

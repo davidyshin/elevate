@@ -1,0 +1,38 @@
+/*------------------------------------------*/
+/*               Interview Prompt           */
+/*------------------------------------------*/
+
+.interview-prompt-container {
+    /* background-color: rgba(0, 255, 0, 0.1); */
+    background-color: #fefefe;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
+    border-radius: 4px;
+    width: 920px;
+    height: 420px;
+    margin: 0 auto;
+    padding: 22px;
+    color: rgba(0, 0, 0, 0.9);
+    -moz-transition: 0.3s all;
+    -webkit-transition: 0.3s all;
+    -o-transition: 0.3s all;
+    transition: 0.3s all;
+}
+
+/* Holds the No and Yes buttons */
+.interview-prompt-buttons {
+    /* background-color: rgba(0, 255, 0, 0.1); */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 86%;
+}
+
+.interview-prompt-container button {
+    margin: 0 30px;
+    margin-top: 0;
+}
+
+.interview-prompt-container button:first-child {
+    background-color: rgba(0, 0, 0, 0.4);
+}
