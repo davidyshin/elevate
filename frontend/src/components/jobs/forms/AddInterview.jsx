@@ -88,7 +88,7 @@ class AddInterview extends Component {
     const { date, contact, note, time, interviewSaved } = this.state;
 
     return (
-      <div className="add-interview-form">
+      <div data-aos="fade-up" className="add-interview-form">
         <form onSubmit={this.handleSubmit}>
           <h1>Add Interview</h1>
           <p>Interview Date: *</p>
