@@ -16,10 +16,16 @@
   transition: 0.3s all;
 }
 
+.update-job-form-container h1, h2, h3, h4, h5, h6, p {
+  padding: 0;
+  margin: 0;
+}
+
 .update-form {
   font-family: 'Montserrat', sans-serif;
   background-color: #fefefe;
   display: flex;
+  width: 100%;
   flex-direction: column;
   justify-content: center;
   padding: 22px;
@@ -28,7 +34,7 @@
 }
 
 .update-job-form-container h1 {
-  font-weight: 400px;
+  font-weight: 400;
   font-size: 3.2rem;
   padding-left: 22px;
 }
@@ -37,8 +43,14 @@
   font-size: 2.2rem;
   padding-left: 22px;
 }
+.initial-prompt {
+  height: 420px;
+}
+.initial-prompt .choices {
+  padding-top: 30px;
+}
 .initial-prompt h3 {
-  padding: 22px 0px 22px 22px;
+  padding: 14px 0px 14px 22px;
 }
 
 .update-job-form-container p {

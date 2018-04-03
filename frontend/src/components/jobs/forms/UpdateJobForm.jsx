@@ -187,8 +187,8 @@ class UpdateJobForm extends Component {
   };
 
   backToHome = () => {
-    this.setState({ applicationStage: 1})
-  }
+    this.setState({ applicationStage: 1 });
+  };
 
   renderInterviews = () => {
     const { interviews, addedInterviews, job_id } = this.state;
@@ -255,23 +255,27 @@ class UpdateJobForm extends Component {
       case 1:
         return (
           <div className="update-form initial-prompt">
-            <h1>Which part of your application log would you like to see?</h1>
-            {!resume_url ? (
-              <h3 id="2" onClick={this.handleClick}>
-                I want to add a resume
+              <h1>
+                Which do you wish to update?
+              </h1>
+              <div className="initial-prompt choices">
+              {!resume_url ? (
+                <h3 id="2" onClick={this.handleClick}>
+                  I want to add a resume
+                </h3>
+              ) : null}
+              {!cover_url ? (
+                <h3 id="3" onClick={this.handleClick}>
+                  I want to add a cover letter
+                </h3>
+              ) : null}
+              <h3 id="4" onClick={this.handleClick}>
+                I have an interview to add
               </h3>
-            ) : null}
-            {!cover_url ? (
-              <h3 id="3" onClick={this.handleClick}>
-                I want to add a cover letter
+              <h3 id="5" onClick={this.handleClick}>
+                I was offered / rejected
               </h3>
-            ) : null}
-            <h3 id="4" onClick={this.handleClick}>
-              I have an interview to add
-            </h3>
-            <h3 id="5" onClick={this.handleClick}>
-              I was offered / rejected
-            </h3>
+            </div>
           </div>
         );
       case 2:
@@ -324,7 +328,7 @@ class UpdateJobForm extends Component {
           <AddInterview
             job_id={job_id}
             updateExperience={this.props.updateExperience}
-            backToHome = {this.backToHome}
+            backToHome={this.backToHome}
           />
         );
         break;
