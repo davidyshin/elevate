@@ -4,6 +4,7 @@ import axios from 'axios';
 import achieves from '../../achievements/checkForAchievements';
 import PopupReminder from '../PopupReminder.jsx';
 import Calendar from 'react-calendar';
+import '../../../stylesheets/jobs-interview.css';
 
 class AddInterview extends Component {
   constructor() {
@@ -34,6 +35,7 @@ class AddInterview extends Component {
       [e.target.name]: e.target.value
     });
   };
+
   handleDate = date => {
     this.setState({
       date: date
@@ -90,46 +92,74 @@ class AddInterview extends Component {
 
   render() {
     const { date, contact, note, time, interviewSaved } = this.state;
+    const toggleButton = interviewSaved ?
+      <button className="saved-button">
+        <i class="fas fa-check fa" />
+      </button>
+      :
+      <input disabled={!date || !time || !contact}
+        type="submit"
+        value="Save" />;
+
 
     return (
       <div data-aos="fade-up" className="add-interview-form">
         <form onSubmit={this.handleSubmit}>
-          <h1>Add Interview</h1>
-          <p>Interview Date: *</p>
-          <Calendar onChange={this.handleDate} value={date} />
-          <p>Interview Time: *</p>
-          <input
-            value={time}
-            onChange={this.handleInput}
-            name="time"
-            type="time"
-          />
-          <p>Interview Contact: *</p>
-          <input
-            value={contact}
-            onChange={this.handleInput}
-            name="contact"
-            type="text"
-          />
-          <p>Note:</p>
-          <div className="interview-note-area">
-            <textarea
-              value={note}
-              placeholder="Note"
-              onChange={this.handleInput}
-              name="note"
-            />
-            <span className="pencil-icon">
-              <i className="fas fa-pencil-alt fa-2x" />
-            </span>
+          {/* <h1>Interview</h1> */}
+          <div className="add-interview-input-pairs-container">
+            <div className="add-interview-labels-container">
+              <div>
+                <p className="add-interview-date-label">Interview Date *</p>
+              </div>
+              <p className="add-interview-time-label">Interview Time *</p>
+              <p className="add-interview-contact-label">Contact *</p>
+              <p className="add-interview-notes-label">Notes</p>
+            </div>
+            <div className="add-interview-inputs-container">
+              <div className="add-interview-date">
+                <Calendar onChange={this.handleDate} value={date} />
+              </div>
+              <div className="add-interview-time">
+                <input
+                  value={time}
+                  onChange={this.handleInput}
+                  name="time"
+                  type="time"
+                />
+              </div>
+              <div className="add-interview-contact">
+                <input
+                  value={contact}
+                  onChange={this.handleInput}
+                  name="contact"
+                  type="text"
+                />
+              </div>
+              <div className="add-interview-notes">
+                <div className="interview-note-area">
+                  <textarea
+                    value={note}
+                    placeholder="Notes about the upcoming interview..."
+                    onChange={this.handleInput}
+                    name="note"
+                  />
+                  <span className="pencil-icon">
+                    <i className="fas fa-pencil-alt fa-2x" />
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
-          <div>
+          <div className="add-interview-buttons">
+            {toggleButton}
             <input
-              disabled={interviewSaved || !date || !contact}
+              disabled={!interviewSaved}
+              onClick={this.props.handleSkipButton}
               type="submit"
-              value="Save"
+              value="Next"
             />
           </div>
+
         </form>
 
         <Modal
