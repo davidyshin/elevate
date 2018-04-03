@@ -6,6 +6,7 @@ import axios from 'axios';
 import ResumeUpload from './ResumeUpload.jsx';
 import CoverLetterUpload from './CoverLetterUpload.jsx';
 import JobStatus from './JobStatus.jsx';
+import InterviewPrompt from './InterviewPrompt.jsx';
 import JobSideBar from './JobSideBar.jsx';
 import AddInterview from './AddInterview.jsx';
 import { Link } from 'react-router-dom';
@@ -272,17 +273,44 @@ class AddJobForm extends Component {
 
   handleSkipButton = e => {
     // console.log('hello');
-    e.preventDefault()
+    e.preventDefault();
     let { applicationStage } = this.state;
-    applicationStage +=1
+    applicationStage += 1;
+    this.setState({ applicationStage });
+  };
+
+  handleInterviewPrompt = e => {
+    e.preventDefault();
+    let { applicationStage } = this.state;
+    if (e.target.id === 'yes') {
+      applicationStage += 1;
+    } else if (e.target.id === 'no') {
+      applicationStage += 2;
+    }
     this.setState({ applicationStage });
   };
 
   renderJobSideBar = () => {
-    const { company, companyLogo, date_applied, position, resume_url, cover_url } = this.state
+    const {
+      company,
+      companyLogo,
+      date_applied,
+      position,
+      resume_url,
+      cover_url
+    } = this.state;
 
-    return <JobSideBar companyLogo={companyLogo} resume_url={resume_url} cover_url={cover_url} company={company} date_applied={date_applied} position={position} />
-  }
+    return (
+      <JobSideBar
+        companyLogo={companyLogo}
+        resume_url={resume_url}
+        cover_url={cover_url}
+        company={company}
+        date_applied={date_applied}
+        position={position}
+      />
+    );
+  };
 
   renderStage = () => {
     const { applicationStage, interviews, job_id } = this.state;
@@ -304,10 +332,14 @@ class AddJobForm extends Component {
             handleCoverInput={this.handleCoverInput}
             handleSkipButton={this.handleSkipButton}
             job_id={job_id}
-            formStatus={'add'}            
+            formStatus={'add'}
           />
         );
       case 4:
+        return (
+          <InterviewPrompt handleInterviewPrompt={this.handleInterviewPrompt} />
+        );
+      case 5:
         return (
           <AddInterview
             job_id={job_id}
@@ -317,7 +349,7 @@ class AddJobForm extends Component {
           />
         );
         break;
-      case 5:
+      case 6:
         return (
           <JobStatus
             salarySaved={this.state.salarySaved}
@@ -427,8 +459,12 @@ class AddJobForm extends Component {
                     className="add-job-form-input-company"
                     theme={AutoSuggestStyling}
                     suggestions={suggestedCompanies}
-                    onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-                    onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                    onSuggestionsFetchRequested={
+                      this.onSuggestionsFetchRequested
+                    }
+                    onSuggestionsClearRequested={
+                      this.onSuggestionsClearRequested
+                    }
                     getSuggestionValue={this.getSuggestionValue}
                     onSuggestionSelected={this.onSuggestionSelected}
                     renderSuggestion={this.renderSuggestion}
@@ -437,10 +473,10 @@ class AddJobForm extends Component {
                   {companyLogo ? (
                     <img className="company-image" src={companyLogo} />
                   ) : (
-                      <span className="magnifying-glass">
-                        <i className="fas fa-search fa-2x" />
-                      </span>
-                    )}
+                    <span className="magnifying-glass">
+                      <i className="fas fa-search fa-2x" />
+                    </span>
+                  )}
                 </div>
                 <div className="position-search-input">
                   <div>
@@ -481,7 +517,7 @@ class AddJobForm extends Component {
         </div>
         {applicationStage > 1 ? (
           <div>
-            <this.renderJobSideBar/> <this.renderStage />
+            <this.renderJobSideBar /> <this.renderStage />
           </div>
         ) : null}
       </div>
