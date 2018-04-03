@@ -41,7 +41,7 @@ class JobStatus extends Component {
         </div>
         {this.props.job_status === 'offered' ? (
           <div className="salary-input-container">
-            {this.props.salarySaved ? <h3> Offered Salary </h3> : <h3>Saved Salary</h3>}
+            {this.props.salarySaved ? <h3> Offered Salary </h3> : <h3>Salary</h3>}
             <input
               className="salary-input"
               name="salary"
