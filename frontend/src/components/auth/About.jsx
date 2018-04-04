@@ -8,7 +8,7 @@ class About extends Component {
                 <div className="about-team-cards-container">
                     <div className="about-individual-container">
                         <div>
-                            <img src="https://www.popsci.com/sites/popsci.com/files/styles/1000_1x_/public/images/2017/10/terrier-puppy.jpg?itok=rIgh3ArV&fc=50,50" />
+                            <img src="https://avatars1.githubusercontent.com/u/32101386?s=400&u=c2249c907343dce7cb1ec938a98f361ff9defb6e&v=4" />
                         </div>
                         <p>David</p>
                         <div className="about-social-container">
@@ -19,7 +19,7 @@ class About extends Component {
 
                     <div className="about-individual-container">
                         <div>
-                            <img src="https://i.pinimg.com/originals/ec/db/bc/ecdbbc960442c58ca657b9cc50d11d30.jpg" />
+                            <img src="https://media.licdn.com/dms/image/C5103AQERWTaeMwLpSg/profile-displayphoto-shrink_800_800/0?e=1528063200&v=alpha&t=w2xyJOo1Ngq_d6KYyiIzrkBJSS2Tkde1gfBaqH4L7Bw" />
                         </div>
                         <p>Helen</p>
                         <div className="about-social-container">
@@ -30,7 +30,7 @@ class About extends Component {
 
                     <div className="about-individual-container">
                         <div>
-                            <img src="https://gfp-2a3tnpzj.stackpathdns.com/wp-content/uploads/2016/07/Alaskan-Malamute-Mix-Puppy-600x600.jpg" />
+                            <img src="https://media.licdn.com/dms/image/C4D03AQEXNgDMRrMjSQ/profile-displayphoto-shrink_800_800/0?e=1528063200&v=alpha&t=Z1iqlRYXJc0WVFUxIErogIUbJkGeeLsZe9aV3g57zik" />
                         </div>
                         <p>Jerell</p>
                         <div className="about-social-container">
@@ -41,7 +41,7 @@ class About extends Component {
 
                     <div className="about-individual-container">
                         <div>
-                            <img src="https://fthmb.tqn.com/QFnKSQixWEsyIk53_Ov0ke_tDMA=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/puppy-toy-581107c75f9b58564c6b6438.jpg" />
+                            <img src="https://image.ibb.co/b7eM2H/sami.png" />
                         </div>
                         <p>Sami</p>
                         <div className="about-social-container">
