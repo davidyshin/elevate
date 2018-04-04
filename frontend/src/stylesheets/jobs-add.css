@@ -279,7 +279,8 @@ button:hover {
 
 .interview-button:disabled,
 .add-job-form-container form input[type='submit']:disabled,
-.add-interview-button:disabled,
+.add-interview-next-button:disabled,
+.add-interview-save-button:disabled,
 .update-job-form-container form input[type='submit']:disabled,
 .job-salary-buttons:disabled {
   background: rgba(0, 0, 0, 0.1);

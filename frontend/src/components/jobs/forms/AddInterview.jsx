@@ -67,6 +67,7 @@ class AddInterview extends Component {
                 interviewSaved: true
               });
             } else {
+              console.log('THIS HAS HIT');
               // modal opens for popup message
               this.setState({
                 interviewSaved: true,
@@ -76,9 +77,7 @@ class AddInterview extends Component {
             this.props.updateExperience(50);
             achieves.checkInterviewNumber();
             {
-              this.props.backToHome
-                ? this.props.backToHome()
-                : this.props.saveInterview();
+              this.props.saveInterview();
             }
           })
           .catch(err => {
@@ -92,15 +91,20 @@ class AddInterview extends Component {
 
   render() {
     const { date, contact, note, time, interviewSaved } = this.state;
-    const toggleButton = interviewSaved ?
+    const toggleButton = interviewSaved ? (
       <button className="saved-button">
         <i class="fas fa-check fa" />
       </button>
-      :
-      <input disabled={!date || !time || !contact}
-        type="submit"
-        value="Save" />;
-
+    ) : (
+      <button
+        type="button"
+        className="add-interview-save-button"
+        onClick={this.handleSubmit}
+        disabled={!date || !time || !contact}
+      >
+        Save
+      </button>
+    );
 
     return (
       <div data-aos="fade-up" className="add-interview-form">
@@ -152,14 +156,19 @@ class AddInterview extends Component {
           </div>
           <div className="add-interview-buttons">
             {toggleButton}
-            <input
+            <button
+              className="add-interview-next-button"
               disabled={!interviewSaved}
-              onClick={this.props.handleSkipButton}
-              type="submit"
-              value="Next"
-            />
+              onClick={
+                this.props.backToHome
+                  ? this.props.backToHome
+                  : this.props.handleSkipButton
+              }
+              type="button"
+            >
+              {this.props.backToHome ? 'Back' : 'Next'}
+            </button>
           </div>
-
         </form>
 
         <Modal
