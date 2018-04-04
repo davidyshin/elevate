@@ -30,7 +30,6 @@
   background-color: #fefefe;
   display: flex;
   width: 920px;
-  /* margin: 0 auto; */
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
   flex-direction: column;
   justify-content: center;
@@ -85,9 +84,6 @@
   transition: 0.2s all;
 }
 
-/*
-// Width of the job status (Awaiting, Offered, Rejected) form
-*/
 
 
 /*------------------------------------------*/
@@ -181,6 +177,7 @@ button:focus {
   border: 1px solid rgba(0, 149, 222, 0.6);
 }
 
+
 /*------------------------------------------*/
 /*                  Buttons                 */
 /*------------------------------------------*/
@@ -214,10 +211,10 @@ button:focus {
 }
 
 /* Button pseudo elements */
-.update-job-form-container form input[type='submit']:hover,
+/* .update-job-form-container form input[type='submit']:hover,
 button:hover {
   transform: scale(1.02);
-}
+} */
 
 /*------------------------------------------*/
 /*        Fontawesome inside Inputs         */
@@ -289,13 +286,15 @@ button:hover {
   margin: 0 22px;
 }
 
+.salary-input-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .salary-input-button-container a {
   text-decoration: none;
   color: #fefefe
-}
-
-.salary-input-button-container {
-  margin: 0 auto;
 }
 
 .job-status-message, 
@@ -303,14 +302,23 @@ button:hover {
   height: 110px;
 }
 
-.job-status-switch-field, 
-.salary-input {
+/* Contains Salary label and input box */
+.job-status-switch-field,
+.salary-input-container {
   font-family: 'Montserrat', sans-serif !important;
   overflow: hidden;
   display: flex;
-  flex-direction:row;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+
+.salary-input-container {
+  align-items: flex-end;
+}
+
+.salary-input-container h3 {
+  padding-right: 22px;
 }
 
 .back-button {
@@ -325,6 +333,7 @@ button:hover {
 .switch-title {
   margin-bottom: 6px;
 }
+
 
 /*------------------------------------------*/
 /*             Job Status Buttons           */
@@ -343,17 +352,15 @@ button:hover {
   width: 100px;
   background-color: #fefefe;
   color: rgba(0, 0, 0, 0.6);
-  /* font-size: 14px; */
   font-family: 'Montserrat', sans-serif;
   font-size: 1.6rem;
   font-weight: 300;
-  /* font-weight: normal; */
   text-align: center;
   text-shadow: none;
   padding: 10px 18px;
   border: 1px solid rgba(0, 0, 0, 0.08);
-  /* -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1),
-    0 1px rgba(255, 255, 255, 0.1); */
+  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.08),
+    0 1px rgba(255, 255, 255, 0.1);
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px rgba(255, 255, 255, 0.1);
   -webkit-transition: all 0.1s ease-in-out;
   -moz-transition: all 0.1s ease-in-out;
