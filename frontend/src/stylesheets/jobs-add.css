@@ -569,6 +569,9 @@ button:hover {
   .salary-input-form {
     width: 90%;
   }
+  .pencil-icon {
+    right: 95px
+  }
 }
 
 @media screen and (max-width: 880px) {
@@ -647,6 +650,9 @@ button:hover {
   .salary-input-button-container .job-salary-buttons:first-child {
     margin-bottom: 12px;
   }
+  .pencil-icon {
+    right: 35px
+  }
 }
 
 @media screen and (max-width: 510px) {
@@ -678,6 +684,17 @@ button:hover {
 
   .salary-input-container .salary-input {
     width: 98%;
+  }
+
+  .pencil-icon {
+    right: 8px;
+  }
+
+  .add-interview-buttons {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
 }
