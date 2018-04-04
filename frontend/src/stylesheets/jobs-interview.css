@@ -4,22 +4,20 @@
 
 /* Parent container, which contains the actual form */
 .add-interview-form {
-    width: 920px;
-    display: flex;
-    justify-content: center;
-    margin: 0 auto;
-    /* background-color: rgba(255, 0, 0, 0.1); */
+  width: 920px;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  /* background-color: rgba(255, 0, 0, 0.1); */
 }
 
 /* Contains the labels and input containers */
 .add-interview-input-pairs-container {
-    display: flex;
-    width: 100%;
-    height: 460px;
-    /* background-color: rgba(0, 0, 255, 0.1); */
+  display: flex;
+  width: 100%;
+  height: 460px;
+  /* background-color: rgba(0, 0, 255, 0.1); */
 }
-
-
 
 /*------------------------------------------*/
 /*                  Labels                  */
@@ -27,30 +25,29 @@
 
 /* Contains Interview Date label */
 .add-interview-labels-container div {
-    height: 62%;
-    /* background-color: rgba(0, 0, 255, 0.1); */
+  height: 62%;
+  /* background-color: rgba(0, 0, 255, 0.1); */
 }
 
 /* Contains time and contact labels */
 .add-interview-labels-container .add-interview-time-label,
 .add-interview-labels-container .add-interview-contact-label {
-    height: 10%;
-    display: flex;
-    align-items: flex-end;
-    padding-bottom: 6px;
-    margin-top: -8px;
-    border-bottom: 2px solid transparent;
-    /* background-color: rgba(0, 0, 255, 0.2); */
+  height: 10%;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 6px;
+  margin-top: -8px;
+  border-bottom: 2px solid transparent;
+  /* background-color: rgba(0, 0, 255, 0.2); */
 }
 
 /* Contains notes label */
 .add-interview-labels-container .add-interview-notes-label {
-    height: 18%;
-    padding-top: 6px;
-    margin-bottom: -6px;
-    /* background-color: rgba(0, 0, 255, 0.3); */
+  height: 18%;
+  padding-top: 6px;
+  margin-bottom: -6px;
+  /* background-color: rgba(0, 0, 255, 0.3); */
 }
-
 
 /*------------------------------------------*/
 /*                  Inputs                  */
@@ -58,99 +55,199 @@
 
 /* Contains calendar input */
 .add-interview-inputs-container .add-interview-date {
-    height: 62%;
-    /* background-color: rgba(0, 255, 0, 0.1); */
+  height: 62%;
+  /* background-color: rgba(0, 255, 0, 0.1); */
 }
 
 /* Contains time input and contact text inputs */
 .add-interview-inputs-container .add-interview-time,
-.add-interview-inputs-container .add-interview-contact  {
-    height: 10%;
-    display: flex;
-    align-items: flex-end;
-    font-weight: 300;
-    /* background-color: rgba(0, 255, 0, 0.2); */
+.add-interview-inputs-container .add-interview-contact {
+  height: 10%;
+  display: flex;
+  align-items: flex-end;
+  font-weight: 300;
+  /* background-color: rgba(0, 255, 0, 0.2); */
 }
 
 /* Contains notes textarea input */
 .add-interview-inputs-container .add-interview-notes {
-    height: 18%;
-    /* background-color: rgba(255, 0, 0, 0.1); */
+  height: 18%;
+  /* background-color: rgba(255, 0, 0, 0.1); */
 }
-
-
 
 /* Notes text area */
 .interview-note-area {
-    position: relative;
-    height: 100%;
+  position: relative;
+  height: 100%;
 }
 
 .add-interview-inputs-container textarea {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.6rem;
-    font-weight: 300;
-    outline: none;
-    border: none;
-    border-radius: 2px;
-    width: 488px; 
-    height: 86%;
-    /* padding: 0; */
-    padding: 6px;
-    resize: none;
-    background-color: rgba(0, 0, 0, 0.02);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 300;
+  outline: none;
+  border: none;
+  border-radius: 2px;
+  width: 488px;
+  height: 86%;
+  /* padding: 0; */
+  padding: 6px;
+  resize: none;
+  background-color: rgba(0, 0, 0, 0.02);
 }
 
 .add-interview-inputs-container textarea::placeholder {
-    font-weight: 300;
-    font-family: 'Montserrat', sans-serif;
-    color: rgba(0, 0, 0, 0.2);
+  font-weight: 300;
+  font-family: 'Montserrat', sans-serif;
+  color: rgba(0, 0, 0, 0.2);
 }
 
 /* Hard code the pencil icon to fit inside the textarea */
 .pencil-icon {
-    position: absolute;
-    z-index: 9;
-    top: 0;
-    right: 120px;
-    font-size: 0.8rem;
-    padding-top: 6px;
-    color: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  z-index: 9;
+  top: 0;
+  right: 120px;
+  font-size: 0.8rem;
+  padding-top: 6px;
+  color: rgba(0, 0, 0, 0.2);
 }
-
 
 /*------------------------------------------*/
 /*                  Buttons                 */
 /*------------------------------------------*/
 
 .add-interview-buttons {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
 }
 
 .add-interview-buttons input[type='submit'],
 .add-interview-buttons .saved-button {
-    margin: 0 22px;
+  margin: 0 22px;
 }
 
 .add-interview-buttons .saved-button {
-    outline: none;      
-    border: none;  
-    border-radius: 60px;
-    width: 200px;
-    font-family: 'Montserrat', sans-serif;
+  outline: none;
+  border: none;
+  border-radius: 60px;
+  width: 200px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  color: #fefefe;
+  padding: 18px;
+  cursor: pointer;
+  -moz-transition: 0.2s all;
+  -o-transition: 0.2s all;
+  -webkit-transition: 0.2s all;
+  transition: 0.2s all;
+  font-size: 1.6rem;
+}
+
+.add-interview-buttons .saved-button {
+  background-color: rgb(0, 218, 73);
+}
+
+/*------------------------------------------*/
+/*              Interview Modal             */
+/*------------------------------------------*/
+
+.job-info-interview-modal {
+  outline: none;
+  background-color: #fefefe;
+  border-radius: 4px;
+}
+
+.interviews-modal-container {
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+  width: 800px;
+  padding: 22px;
+  margin: 0 auto;
+  outline: none;
+  overflow: scroll;
+  background-color: #fefefe;
+  border-radius: 4px;
+  transition: 0.5s all;
+  animation: popout 0.3s;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
+}
+
+/* interview-info */
+.interviews-modal-container h1, h2, h3, h4, h5, h6, p {
+    padding: 0;
+    margin: 0;
+}
+.interviews-modal-container h1 {
+    font-weight: 400;
+    font-size: 3.2rem
+}
+.interviews-modal-container h3 {
     font-weight: 300;
-    color: #fefefe;
-    padding: 18px;
-    cursor: pointer;
-    -moz-transition: 0.2s all;
-    -o-transition: 0.2s all;
-    -webkit-transition: 0.2s all;
-    transition: 0.2s all;
-    font-size: 1.6rem;
+    font-size: 2.2rem
+}.interviews-modal-container p {
+    font-weight: 300;
+    font-size: 1.8rem
+}
+.interviews-info-container {
+    /* display: flex;
+    flex-direction: column; */
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    padding: 22px 22px 50px 22px;
+    height: 360px;
 }
 
-.add-interview-buttons .saved-button {
-    background-color: rgb(0, 218, 73);
+.interviews-info{
+    display: flex;
+    flex-direction: row;
+}
+.interviews-info {
+    display: flex;
+    flex-direction: row;
+    padding: 30px 0px 0px 22px;
+    width: 100%;
+}
+.interviews-info-titles {
+    display:flex;
+    flex-direction: column;
+    width: 30%
+}
+
+.interviews-info-titles h3, .interviews-notes h3{
+    font-weight: 500;
+}
+.interviews-info-details {
+    display:flex;
+    flex-direction: column;
+    width: 50%    
+}
+
+.interviews-notes {
+    padding: 20px 0px 0px 22px;
+}
+.notes-text-area {
+    background-color: rgba(0,0,0,.03);
+    height: 100px;
+    padding: 11px;
+    width: 50%
+}
+
+.modal-exit-button {
+    position: absolute;
+    right: -5px;
+    top: 20px;
+    width: 50px;
+    height: 50px;
+}
+
+.modal-exit-button i {
+    color: rgba(0,0,0,.5)
+}
+
+.modal-exit-button i:hover {
+    color: #3B99D8;
+    cursor: pointer;
+    transition: 0.2s all;
 }
