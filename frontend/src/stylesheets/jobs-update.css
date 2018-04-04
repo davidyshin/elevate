@@ -286,13 +286,15 @@ button:hover {
   margin: 0 22px;
 }
 
+.salary-input-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .salary-input-button-container a {
   text-decoration: none;
   color: #fefefe
-}
-
-.salary-input-button-container {
-  margin: 0 auto;
 }
 
 .job-status-message, 
