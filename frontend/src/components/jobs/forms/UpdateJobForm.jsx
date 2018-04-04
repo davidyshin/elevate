@@ -5,7 +5,7 @@ import Autosuggest from 'react-autosuggest';
 import axios from 'axios';
 import ResumeUpload from './ResumeUpload.jsx';
 import CoverLetterUpload from './CoverLetterUpload.jsx';
-import UpdateInterview from './UpdateInterview.jsx';
+// import UpdateInterview from './UpdateInterview.jsx';
 import AddInterview from './AddInterview.jsx';
 import { Link } from 'react-router-dom';
 import '../../../stylesheets/jobs-update.css';
@@ -183,25 +183,25 @@ class UpdateJobForm extends Component {
     this.setState({ applicationStage: 1 });
   };
 
-  renderInterviews = () => {
-    const { interviews, addedInterviews, job_id } = this.state;
-    return (
-      <div className="update-interview-company" data-aos="fade-up">
-        {interviews.map(interview => {
-          return <UpdateInterview interview={interview} />;
-        })}
-        {addedInterviews.map(interview => {
-          return (
-            <AddInterview
-              job_id={job_id}
-              addMoreInterview={this.addMoreInterview}
-              updateExperience={this.props.updateExperience}
-            />
-          );
-        })}
-      </div>
-    );
-  };
+  // renderInterviews = () => {
+  //   const { interviews, addedInterviews, job_id } = this.state;
+  //   return (
+  //     <div className="update-interview-company" data-aos="fade-up">
+  //       {interviews.map(interview => {
+  //         return <UpdateInterview interview={interview} />;
+  //       })}
+  //       {addedInterviews.map(interview => {
+  //         return (
+  //           <AddInterview
+  //             job_id={job_id}
+  //             addMoreInterview={this.addMoreInterview}
+  //             updateExperience={this.props.updateExperience}
+  //           />
+  //         );
+  //       })}
+  //     </div>
+  //   );
+  // };
   handleClick = e => {
     this.setState({ applicationStage: parseInt(e.target.id) });
   };
