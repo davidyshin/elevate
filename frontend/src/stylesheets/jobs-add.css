@@ -619,7 +619,7 @@ textarea {
   /* Child container's width shrinks to 70 */
   .add-job-form-container form,
   .add-interview-form form {
-    width: 70%;
+    width: 80%;
   }
 
   /* Get rid of the labels on the side */ 
