@@ -56,14 +56,12 @@ class Interviews extends Component {
                   <h3> {interview.contact}</h3>
                 </div>
               </div>
-              {interview.note.length > 0 ? (
                 <div className="interviews-notes">
                   <h3>Notes:</h3>
                   <div className="notes-text-area">
                     <p> {interview.note}</p>
                   </div>
                 </div>
-              ) : null}
             </div>
           );
         })}
