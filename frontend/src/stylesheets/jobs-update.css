@@ -120,10 +120,6 @@
   display: flex;
   justify-content: flex-start;
 }
-.update-job-form-container p {
-  font-size: 15px;
-  font-weight: 300;
-}
 
 /*------------------------------------------*/
 /*                  Inputs                  */
@@ -181,7 +177,7 @@ textarea {
 
 .update-job-form-container form input:focus,
 button:focus {
-  border: 1px solid rgba(0, 149, 222, 0.6);
+  border-bottom: 2px solid rgba(52, 152, 219, 0.6);
 }
 
 
