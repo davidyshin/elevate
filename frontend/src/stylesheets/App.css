@@ -62,3 +62,9 @@
 .react-calendar__tile {
   padding: .5em 0;
 }
+
+@media screen and (max-width: 510px) {
+  .add-interview-date .react-calendar {
+    width: 100%;
+  }
+}

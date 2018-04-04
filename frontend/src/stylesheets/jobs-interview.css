@@ -4,11 +4,12 @@
 
 /* Parent container, which contains the actual form */
 .add-interview-form {
-  width: 920px;
-  display: flex;
-  justify-content: center;
-  margin: 0 auto;
-  /* background-color: rgba(255, 0, 0, 0.1); */
+    width: 920px;
+    display: flex;
+    justify-content: center;
+    overflow-x: hidden;
+    /* margin: 0 auto; */
+    /* background-color: rgba(255, 0, 0, 0.1); */
 }
 
 /* Contains the labels and input containers */
@@ -251,3 +252,8 @@
     cursor: pointer;
     transition: 0.2s all;
 }
+
+/*------------------------------------------*/
+/*     All Interview Media Queries are      */
+/*             in jobs-add.css              */
+/*------------------------------------------*/
