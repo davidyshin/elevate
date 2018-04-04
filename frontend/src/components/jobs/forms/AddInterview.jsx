@@ -67,7 +67,6 @@ class AddInterview extends Component {
                 interviewSaved: true
               });
             } else {
-              console.log('THIS HAS HIT');
               // modal opens for popup message
               this.setState({
                 interviewSaved: true,
