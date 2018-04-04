@@ -9,7 +9,7 @@ import JobStatus from './JobStatus.jsx';
 import InterviewPrompt from './InterviewPrompt.jsx';
 import JobSideBar from './JobSideBar.jsx';
 import AddInterview from './AddInterview.jsx';
-import JobSalary from './JobSalary.jsx'
+import JobSalary from './JobSalary.jsx';
 import { Link } from 'react-router-dom';
 import achieves from '../../achievements/checkForAchievements';
 import '../../../stylesheets/jobs-add.css';
@@ -43,25 +43,14 @@ class AddJobForm extends Component {
       suggestedCompanies: [],
       companyLogo: '',
       position: '',
-      phoneNumber: '',
-      email: '',
       date_applied: '',
       url: '',
       applicationStage: 1,
       job_id: '',
       resume_url: '',
       cover_url: '',
-      experience: 0,
-      saved: false,
-      interviews: [],
-      interviewSaved: ''
+      saved: false
     };
-  }
-
-  componentDidMount() {
-    this.setState({
-      experience: this.props.activeUser.experience
-    });
   }
 
   handleFirstSubmit = e => {
@@ -93,7 +82,6 @@ class AddJobForm extends Component {
           saved: true,
           applicationStage: 2,
           companyLogo: companyLogo,
-          // interviewSaved: true,
           job_status: 'awaiting'
         });
       })
@@ -106,9 +94,7 @@ class AddJobForm extends Component {
 
   handleStatusChange = e => {
     const job_status = e.target.name;
-
     const { job_id } = this.state;
-    console.log('job_status:', job_status, 'job id:', job_id);
     axios
       .put('/users/updateJobStatus', {
         job_id: job_id,
@@ -118,17 +104,6 @@ class AddJobForm extends Component {
         this.setState({ job_status });
       })
       .catch(err => console.log(err));
-  };
-
-  addMoreInterview = e => {
-    e.preventDefault();
-    let { interviews } = this.state;
-    interviews.push('interview');
-    this.setState({ interviews, interviewSaved: false });
-  };
-
-  saveInterview = () => {
-    this.setState({ interviewSaved: true });
   };
 
   updateJobProgress = (job_id, progress_in_search) => {
@@ -175,7 +150,6 @@ class AddJobForm extends Component {
       .then(() => {
         this.setState({
           cover_url: res,
-          interviews: ['firstInterview'],
           applicationStage: 4
         });
       })
@@ -256,7 +230,6 @@ class AddJobForm extends Component {
   };
 
   handleSkipButton = e => {
-    // console.log('hello');
     e.preventDefault();
     let { applicationStage } = this.state;
     applicationStage += 1;
@@ -297,7 +270,7 @@ class AddJobForm extends Component {
   };
 
   renderStage = () => {
-    const { applicationStage, interviews, job_id } = this.state;
+    const { applicationStage, job_id } = this.state;
     switch (applicationStage) {
       case 2:
         return (
@@ -343,10 +316,8 @@ class AddJobForm extends Component {
           />
         );
         break;
-        case 7: 
-        return (
-          <JobSalary job_id={job_id}/>
-        )
+      case 7:
+        return <JobSalary job_id={job_id} />;
     }
   };
 
@@ -365,9 +336,7 @@ class AddJobForm extends Component {
       cover_url,
       job_id,
       saved,
-      interviewSaved,
       applicationStage,
-      interviews,
       job_status
     } = this.state;
 
@@ -377,60 +346,55 @@ class AddJobForm extends Component {
       onChange: this.handleCompanyInput
     };
 
-    const stageContainer = (
-      saved ? (
-        <div className="stage-container" >
-          <span className="stage-arrow-left">
-            <i
-              id="left"
-              onClick={this.setApplicationStage}
-              class="fas fa-arrow-left fa-2x"
-            />
-          </span>
-          <span
-            id="1"
-            onClick={this.changeStage}
-            className={applicationStage === 1 ? 'stage-active' : 'stage'}
+    const stageContainer = saved ? (
+      <div className="stage-container">
+        <span className="stage-arrow-left">
+          <i
+            id="left"
+            onClick={this.setApplicationStage}
+            class="fas fa-arrow-left fa-2x"
           />
-          <span
-            id="2"
-            onClick={this.changeStage}
-            className={applicationStage === 2 ? 'stage-active' : 'stage'}
+        </span>
+        <span
+          id="1"
+          onClick={this.changeStage}
+          className={applicationStage === 1 ? 'stage-active' : 'stage'}
+        />
+        <span
+          id="2"
+          onClick={this.changeStage}
+          className={applicationStage === 2 ? 'stage-active' : 'stage'}
+        />
+        <span
+          id="3"
+          onClick={this.changeStage}
+          className={applicationStage === 3 ? 'stage-active' : 'stage'}
+        />
+        <span
+          id="4"
+          onClick={this.changeStage}
+          className={applicationStage === 4 ? 'stage-active' : 'stage'}
+        />
+        <span
+          id="5"
+          onClick={this.changeStage}
+          className={applicationStage === 5 ? 'stage-active' : 'stage'}
+        />
+        <span className="stage-arrow-right">
+          <i
+            id="right"
+            onClick={this.setApplicationStage}
+            class="fas fa-arrow-right fa-2x"
           />
-          <span
-            id="3"
-            onClick={this.changeStage}
-            className={applicationStage === 3 ? 'stage-active' : 'stage'}
-          />
-          <span
-            id="4"
-            onClick={this.changeStage}
-            className={applicationStage === 4 ? 'stage-active' : 'stage'}
-          />
-          <span
-            id="5"
-            onClick={this.changeStage}
-            className={applicationStage === 5 ? 'stage-active' : 'stage'}
-          />
-          <span className="stage-arrow-right">
-            <i
-              id="right"
-              onClick={this.setApplicationStage}
-              class="fas fa-arrow-right fa-2x"
-            />
-          </span>
-        </div >
-      ) : null
-    );
+        </span>
+      </div>
+    ) : null;
 
     return (
-      <div className="add-job-form-container" >
+      <div className="add-job-form-container">
         {/* {stageContainer} */}
-        < div hidden={applicationStage > 1 ? true : false} >
-          <div
-            data-aos="fade-up"
-            className="add-job-info"
-          >
+        <div hidden={applicationStage > 1 ? true : false}>
+          <div data-aos="fade-up" className="add-job-info">
             <form onSubmit={this.handleFirstSubmit}>
               <h1>Job Application Information</h1>
               <h3>Let's start with the basics</h3>
@@ -449,8 +413,12 @@ class AddJobForm extends Component {
                       className="add-job-form-input-company"
                       theme={AutoSuggestStyling}
                       suggestions={suggestedCompanies}
-                      onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-                      onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                      onSuggestionsFetchRequested={
+                        this.onSuggestionsFetchRequested
+                      }
+                      onSuggestionsClearRequested={
+                        this.onSuggestionsClearRequested
+                      }
                       getSuggestionValue={this.getSuggestionValue}
                       onSuggestionSelected={this.onSuggestionSelected}
                       renderSuggestion={this.renderSuggestion}
@@ -459,10 +427,10 @@ class AddJobForm extends Component {
                     {companyLogo ? (
                       <img className="company-image" src={companyLogo} />
                     ) : (
-                        <span className="magnifying-glass">
-                          <i className="fas fa-search fa-2x" />
-                        </span>
-                      )}
+                      <span className="magnifying-glass">
+                        <i className="fas fa-search fa-2x" />
+                      </span>
+                    )}
                   </div>
                   <div className="position-search-input">
                     <div>
@@ -502,15 +470,13 @@ class AddJobForm extends Component {
             </form>
           </div>
         </div>
-        {
-          applicationStage > 1 ? (
-            <div className="add-job-moving-stages-container">
-              <this.renderJobSideBar />
-              <this.renderStage />
-            </div>
-          ) : null
-        }
-      </div >
+        {applicationStage > 1 ? (
+          <div className="add-job-moving-stages-container">
+            <this.renderJobSideBar />
+            <this.renderStage />
+          </div>
+        ) : null}
+      </div>
     );
   }
 }

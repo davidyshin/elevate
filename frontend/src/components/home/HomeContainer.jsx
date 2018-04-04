@@ -104,8 +104,6 @@ class HomeContainer extends Component {
   };
 
   render() {
-    console.log(this.state);
-
     return (
       <div className="home-container">
         <HomeNavBar experience={this.state.experience} coinAnimation={this.state.coinAnimation}/>

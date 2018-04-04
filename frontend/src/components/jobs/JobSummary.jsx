@@ -77,7 +77,6 @@ class JobSummary extends Component {
       .catch(err => console.log(err));
   }
   render() {
-    console.log(this.state);
     const { plotData} = this.state;
     return plotData.length > 1 ? (
       <div className="job-summary-container">
