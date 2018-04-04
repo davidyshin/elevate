@@ -149,7 +149,7 @@
 .add-interview-buttons .saved-button {
   background-color: rgb(0, 218, 73);
 }
-.add-interview-buttons .saved-button:focus, add-interview-save-button:focus, .add-interview-next-button:focus{
+.add-interview-buttons .saved-button:focus, .add-interview-save-button:focus, .add-interview-next-button:focus{
   border:none;
   outline:none;
 }
