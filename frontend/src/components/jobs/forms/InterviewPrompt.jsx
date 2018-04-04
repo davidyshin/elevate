@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import '../../../stylesheets/interview-prompt.css';
-
 class InterviewPrompt extends Component {
   constructor() {
     super();
