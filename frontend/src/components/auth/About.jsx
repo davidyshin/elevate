@@ -46,7 +46,7 @@ class About extends Component {
                         <p>Sami</p>
                         <div className="about-social-container">
                             <a href="https://github.com/alaac4q" target="_blank"><i class="fab fa-github"></i></a>
-                            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://www.linkedin.com/in/sami-alaa-al-sudani-488704158/" target="_blank"><i class="fab fa-linkedin"></i></a>
                         </div>
                     </div>
                 </div>
