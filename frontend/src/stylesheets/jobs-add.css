@@ -21,7 +21,6 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  /* background-color: rgba(0, 255, 0, 0.2); */
 }
 
 .add-job-form-container .add-job-info {
@@ -167,7 +166,7 @@
 
 .add-job-form-container form input,
 .add-interview-form form input,
-.salary-input input {
+.salary-input-container input {
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
   outline: none;
@@ -183,28 +182,17 @@
   transition: 0.3s all;
 }
 
-/*
-// Input text, email, date, time placeholders and fonts
-*/
-.add-job-form-container form input[type='text']::placeholder,
-.add-job-form-container form input[type='email']::placeholder {
-  color: rgba(0, 0, 0, 0.5);
-  font-weight: 400;
-  font-size: 1.8rem;
-}
-
 .add-job-form-container form input[type='text'],
 .add-job-form-container form input[type='email'],
 .add-job-form-container form input[type='date']
 {
   font-size: 1.8rem;
 }
-.salary-input input {
-  width: 150px;
-}
-.salary-input input[type='text'] {
+
+/* Salary input box */
+.salary-input-container input[type='text'] {
   font-size: 2.4rem;
-  padding: 0px 22px 0px 22px;
+  padding-bottom: 0;
 }
 
 .add-job-form-container form input[type='date'],
@@ -218,6 +206,18 @@ textarea {
   padding: 0;
 }
 
+/* Pseudo elements */
+.add-job-form-container form input[type='text']::placeholder,
+.add-job-form-container form input[type='email']::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 400;
+  font-size: 1.8rem;
+}
+
+.salary-input-container input[type='text']::placeholder {
+  color: rgba(0, 0, 0, 0.2);
+}
+
 .add-job-form-container form input[type='text']:focus,
 .add-job-form-container form input[type='email']:focus {
   border-bottom: 2px solid rgba(52, 152, 219, 0.6);
@@ -228,7 +228,10 @@ textarea {
 /*------------------------------------------*/
 
 .add-job-form-container form input[type='submit'],
-.interview-prompt-container button, .job-status-accepted-button, .job-salary-buttons, .job-salary-buttons-saved {
+.interview-prompt-container button, 
+.job-status-accepted-button, 
+.job-salary-buttons, 
+.job-salary-buttons-saved {
   background: rgba(0, 149, 222, 1);
   border-radius: 60px;
   width: 200px;
@@ -251,21 +254,27 @@ textarea {
   border: none;
   outline: none;
 }
-.job-salary-buttons-saved:focus {
-  border:none;
-  outline:none;
-}
 
 .add-job-form-container form input[type='submit'] {
   margin-top: 30px;
 }
 
-/*
-// Contains the "Next" button on the initial job information form 
-*/ 
+/* The first "Next" button */
 .add-job-buttons {
   display: flex;
   justify-content: center;
+}
+
+
+/* Button pseudo elements */
+.update-job-form-container form input[type='submit']:hover,
+button:hover {
+  transform: scale(1.02);
+}
+
+.job-salary-buttons-saved:focus {
+  border:none;
+  outline:none;
 }
 
 .interview-button:disabled,
@@ -276,30 +285,23 @@ textarea {
   background: rgba(0, 0, 0, 0.1);
   border: none;
   color: rgba(0, 0, 0, 0.3);
+  transform: none;
 }
 
-  /*
-  // Button gets bigger on hover
-  */
-  .add-job-form-container form input[type='submit']:hover,
-  button:hover {
-    transform: scale(1.02);
-  }
+.add-job-form-container form input[type='submit']:hover,
+button:hover {
+  transform: scale(1.02);
+}
 
-  /*
-  // When "Next" button is disabled, button doesn't get bigger on hover 
-  */
-  .add-job-form-container form input[type='submit']:disabled:hover {
-    transform: none;
-  }
-
+.add-job-form-container form input[type='submit']:disabled:hover {
+  transform: none;
+}
 
 
 /*------------------------------------------*/
 /*     Fontawesome Icons in Input Boxes     */
 /*------------------------------------------*/
-
-/*
+/* 
 // Company and briefcase logo on input forms 
 // Hard code fontawesome icons to the right sides 
 */
@@ -465,9 +467,7 @@ textarea {
   border-radius: 4px;
 }
 
-/*
-  // Popup anchor tags 
-  */
+/* Anchor tags */
 .popup-reminder-modal a,
 .popup-reminder-modal a:visited {
   text-decoration: none;
@@ -480,9 +480,7 @@ textarea {
   transition: 0.3s all;
 }
 
-/* 
-    // On hover, the underline gets whiter
-    */
+/* Pseudo elements */
 .popup-reminder-modal a:hover {
   border-bottom: 1px dotted #fefefe;
 }
@@ -503,9 +501,7 @@ textarea {
   animation: popout 0.3s;
 }
 
-/*
-  // I (information) container
-  */
+/* Information container */
 .popup-reminder-container div:first-child {
   display: flex;
   justify-content: center;
@@ -514,9 +510,7 @@ textarea {
   color: #fefefe;
 }
 
-/*
-  // Message content 
-  */
+/* Message content */
 .popup-reminder-container .reminder-content {
   width: 66%;
   display: flex;
@@ -539,9 +533,7 @@ textarea {
   line-height: 1.4;
 }
 
-/*
-  // Exit button container 
-  */
+/* Exit button container */
 .popup-reminder-container div:last-child {
   display: flex;
   justify-content: center;
@@ -549,9 +541,7 @@ textarea {
   width: 10%;
 }
 
-/*
-    // The actual exit button 
-    */
+/* The actual exit button */
 .popup-reminder-container div:last-child button {
   outline: none;
   border: none;
@@ -560,6 +550,7 @@ textarea {
   cursor: pointer;
   color: #fefefe;
 }
+
 
 /*------------------------------------------*/
 /*       Media Queries for Job Info         */
