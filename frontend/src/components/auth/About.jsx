@@ -12,8 +12,8 @@ class About extends Component {
                         </div>
                         <p>David</p>
                         <div className="about-social-container">
-                            <a href="https://github.com/davidyshin" target="_blank"><i class="fab fa-github"></i></a>
-                            <a href="https://www.linkedin.com/in/y-davidshin/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/davidyshin" target="_blank"><i className="fab fa-github"></i></a>
+                            <a href="https://www.linkedin.com/in/y-davidshin/" target="_blank"><i className="fab fa-linkedin"></i></a>
                         </div>
                     </div>
 
@@ -23,8 +23,8 @@ class About extends Component {
                         </div>
                         <p>Helen</p>
                         <div className="about-social-container">
-                            <a href="https://github.com/helencho" target="_blank"><i class="fab fa-github"></i></a>
-                            <a href="https://www.linkedin.com/in/haeyoungcho/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/helencho" target="_blank"><i className="fab fa-github"></i></a>
+                            <a href="https://www.linkedin.com/in/haeyoungcho/" target="_blank"><i className="fab fa-linkedin"></i></a>
                         </div>
                     </div>
 
@@ -34,8 +34,8 @@ class About extends Component {
                         </div>
                         <p>Jerell</p>
                         <div className="about-social-container">
-                            <a href="https://github.com/ramborell23" target="_blank"><i class="fab fa-github"></i></a>
-                            <a href="https://www.linkedin.com/in/jerell-davis-2495bb150/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/ramborell23" target="_blank"><i className="fab fa-github"></i></a>
+                            <a href="https://www.linkedin.com/in/jerell-davis-2495bb150/" target="_blank"><i className="fab fa-linkedin"></i></a>
                         </div>
                     </div>
 
@@ -45,8 +45,8 @@ class About extends Component {
                         </div>
                         <p>Sami</p>
                         <div className="about-social-container">
-                            <a href="https://github.com/alaac4q" target="_blank"><i class="fab fa-github"></i></a>
-                            <a href="https://www.linkedin.com/in/sami-alaa-al-sudani-488704158/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/alaac4q" target="_blank"><i className="fab fa-github"></i></a>
+                            <a href="https://www.linkedin.com/in/sami-alaa-al-sudani-488704158/" target="_blank"><i className="fab fa-linkedin"></i></a>
                         </div>
                     </div>
                 </div>
