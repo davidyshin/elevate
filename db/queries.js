@@ -582,16 +582,13 @@ const updateJobProgress = (req, res, next) => {
 const updateJobInfo = (req, res, next) => {
   db
     .none(
-      'UPDATE jobs SET date_applied = ${date_applied}, job_email = ${job_email}, job_phone_number = ${job_phone_number}, position_title = ${position_title}, job_posting_url = ${job_posting_url}, progress_in_search = ${progress_in_search} WHERE job_id = ${job_id} AND user_id = ${user_id}',
+      'UPDATE jobs SET date_applied = ${date_applied}, position_title = ${position_title}, job_posting_url = ${job_posting_url} WHERE job_id = ${job_id} AND user_id = ${user_id}',
       {
         user_id: req.user.id,
         job_id: req.body.job_id,
         date_applied: req.body.date_applied,
-        job_email: req.body.job_email,
-        job_phone_number: req.body.job_phone_number,
         position_title: req.body.position_title,
         job_posting_url: req.body.job_posting_url,
-        progress_in_search: req.body.progress_in_search
       }
     )
     .then(function(data) {

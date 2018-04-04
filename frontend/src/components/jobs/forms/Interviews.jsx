@@ -17,9 +17,6 @@ class Interviews extends Component {
       interviews: []
     };
   }
-  getTime = time => {
-
-  }
 
   componentDidMount() {
     const id = this.props.job_id;
@@ -29,12 +26,10 @@ class Interviews extends Component {
         this.setState({ interviews: data.data.interviews });
       })
       .catch(err => console.log(err));
-    console.log(this.state.interviews);
   }
 
   render() {
     const { interviews } = this.state;
-    console.log(interviews);
 
     return interviews.length > 0 ? (
       <div data-aos="fade-up" className="interviews-modal-container">

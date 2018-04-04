@@ -13,7 +13,7 @@ import Calendar from 'react-calendar';
 import '../../../stylesheets/upload.css';
 import JobStatus from './JobStatus.jsx';
 import JobSideBar from './JobSideBar.jsx';
-import JobSalary from './JobSalary.jsx'
+import JobSalary from './JobSalary.jsx';
 
 class UpdateJobForm extends Component {
   constructor() {
@@ -23,22 +23,18 @@ class UpdateJobForm extends Component {
       company: '',
       companyLogo: '',
       position: '',
-      job_phone_number: '',
-      job_email: '',
       date_applied: '',
       url: '',
       applicationStage: 1,
       job_id: '',
       resume_url: '',
       cover_url: '',
-      interviews: [],
-      addedInterviews: [],
       job_status: 'awaiting',
       salary: ''
     };
   }
 
-  // 'UPDATE jobs SET date_applied = ${date_applied}, job_email = ${job_email}, job_phone_number = ${job_phone_number}, position_title = ${position_title}, job_posting_url = ${job_posting_url}, progress_in_search = ${progress_in_search} WHERE job_id = ${job_id} AND user_id = ${user_id}',
+  // 'UPDATE jobs SET date_applied = ${date_applied}, position_title = ${position_title}, job_posting_url = ${job_posting_url} WHERE job_id = ${job_id} AND user_id = ${user_id}',
 
   handleSave = e => {
     e.preventDefault();
@@ -46,8 +42,6 @@ class UpdateJobForm extends Component {
       .put('/users/updateJobInfo', {
         job_id: this.state.job_id,
         date_applied: this.state.date_applied,
-        job_email: this.state.job_email,
-        job_phone_number: this.state.job_phone_number,
         position_title: this.state.position,
         job_posting_url: this.state.url
       })
@@ -68,26 +62,18 @@ class UpdateJobForm extends Component {
           company: editingJob.company_name,
           companyLogo: editingJob.company_logo,
           position: editingJob.position_title,
-          job_phone_number: editingJob.job_phone_number,
-          job_email: editingJob.job_email,
           url: editingJob.job_posting_url,
           resume_url: editingJob.resume_url,
           cover_url: editingJob.cover_url,
           date_applied: date,
           job_status: editingJob.job_status,
           experience: this.props.activeUser.experience,
-          salary: editingJob.salary || '',
+          salary: editingJob.salary || ''
         });
       })
       .catch(err => {
         console.log(err);
       });
-    axios
-      .get(`/users/getInterviews/${id}`)
-      .then(data => {
-        this.setState({ interviews: data.data.interviews });
-      })
-      .catch(err => console.log(err));
   }
 
   handleSkipButton = e => {
@@ -122,7 +108,7 @@ class UpdateJobForm extends Component {
   };
 
   handleResumeInput = res => {
-    const { job_id } = this.state;
+    const { job_id, cover_url } = this.state;
     axios
       .put('/users/updateResume', {
         resume_url: res,
@@ -141,7 +127,11 @@ class UpdateJobForm extends Component {
           message: 'Error updating resume'
         });
       });
-    this.updateJobProgress(job_id, 3);
+    if (cover_url) {
+      this.updateJobProgress(job_id, 4);
+    } else {
+      this.updateJobProgress(job_id, 3);
+    }
     this.props.updateExperience(50);
   };
 
@@ -157,7 +147,7 @@ class UpdateJobForm extends Component {
   };
 
   handleCoverInput = res => {
-    let { job_id } = this.state;
+    let { job_id, resume_url } = this.state;
     axios
       .put('/users/updateCover', {
         cover_url: res,
@@ -175,33 +165,18 @@ class UpdateJobForm extends Component {
           message: 'Error updating cover letter'
         });
       });
-    this.updateJobProgress(job_id, 4);
+    if (resume_url) {
+      this.updateJobProgress(job_id, 4);
+    } else {
+      this.updateJobProgress(job_id, 3);
+    }
     this.props.updateExperience(50);
   };
 
-  backToHome = () => {
+  backToUpdatePrompt = () => {
     this.setState({ applicationStage: 1 });
   };
 
-  // renderInterviews = () => {
-  //   const { interviews, addedInterviews, job_id } = this.state;
-  //   return (
-  //     <div className="update-interview-company" data-aos="fade-up">
-  //       {interviews.map(interview => {
-  //         return <UpdateInterview interview={interview} />;
-  //       })}
-  //       {addedInterviews.map(interview => {
-  //         return (
-  //           <AddInterview
-  //             job_id={job_id}
-  //             addMoreInterview={this.addMoreInterview}
-  //             updateExperience={this.props.updateExperience}
-  //           />
-  //         );
-  //       })}
-  //     </div>
-  //   );
-  // };
   handleClick = e => {
     this.setState({ applicationStage: parseInt(e.target.id) });
   };
@@ -238,7 +213,6 @@ class UpdateJobForm extends Component {
       position,
       saved,
       date_applied,
-      interviews,
       job_id,
       url,
       resume_url,
@@ -320,7 +294,7 @@ class UpdateJobForm extends Component {
           <AddInterview
             job_id={job_id}
             updateExperience={this.props.updateExperience}
-            backToHome={this.backToHome}
+            backToUpdatePrompt={this.backToUpdatePrompt}
           />
         );
         break;
@@ -333,12 +307,7 @@ class UpdateJobForm extends Component {
           />
         );
       case 6:
-        return (
-          <JobSalary
-          salary={salary}
-            job_id={job_id}
-          />
-        );
+        return <JobSalary salary={salary} job_id={job_id} />;
     }
   };
 
@@ -347,17 +316,13 @@ class UpdateJobForm extends Component {
       company,
       companyLogo,
       position,
-      job_email,
       date_applied,
-      job_phone_number,
       url,
       resume_url,
       cover_url,
       job_id,
       saved,
       applicationStage,
-      interviews,
-      addedInterviews,
       job_status,
       salary
     } = this.state;
@@ -367,7 +332,10 @@ class UpdateJobForm extends Component {
         <this.renderJobSideBar />
         {applicationStage > 1 ? (
           <div className="back-button">
-            <i onClick={this.backToHome} class="fas fa-angle-left fa-7x" />
+            <i
+              onClick={this.backToUpdatePrompt}
+              class="fas fa-angle-left fa-7x"
+            />
           </div>
         ) : null}
 

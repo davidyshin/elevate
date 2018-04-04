@@ -24,6 +24,17 @@ class AddInterview extends Component {
   job_id: req.body.job_id,
   interview_date: req.body.interview_date */
 
+  updateJobProgress = (job_id, progress_in_search) => {
+    axios
+      .put('/users/updateJobProgress', {
+        job_id: job_id,
+        progress_in_search: progress_in_search
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   toggleModal = () => {
     this.setState({
       modalOpen: !this.state.modalOpen
@@ -75,9 +86,6 @@ class AddInterview extends Component {
             }
             this.props.updateExperience(50);
             achieves.checkInterviewNumber();
-            {
-              this.props.saveInterview();
-            }
           })
           .catch(err => {
             console.log(err);
@@ -165,7 +173,7 @@ class AddInterview extends Component {
               }
               type="button"
             >
-              {this.props.backToHome ? 'Back' : 'Next'}
+              {this.props.backToUpdatePrompt ? 'Back' : 'Next'}
             </button>
           </div>
         </form>
