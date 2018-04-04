@@ -279,7 +279,8 @@ button:hover {
 
 .interview-button:disabled,
 .add-job-form-container form input[type='submit']:disabled,
-.add-interview-button:disabled,
+.add-interview-next-button:disabled,
+.add-interview-save-button:disabled,
 .update-job-form-container form input[type='submit']:disabled,
 .job-salary-buttons:disabled {
   background: rgba(0, 0, 0, 0.1);
@@ -568,6 +569,9 @@ button:hover {
   .salary-input-form {
     width: 90%;
   }
+  .pencil-icon {
+    right: 95px
+  }
 }
 
 @media screen and (max-width: 880px) {
@@ -646,6 +650,9 @@ button:hover {
   .salary-input-button-container .job-salary-buttons:first-child {
     margin-bottom: 12px;
   }
+  .pencil-icon {
+    right: 35px
+  }
 }
 
 @media screen and (max-width: 510px) {
@@ -677,6 +684,17 @@ button:hover {
 
   .salary-input-container .salary-input {
     width: 98%;
+  }
+
+  .pencil-icon {
+    right: 8px;
+  }
+
+  .add-interview-buttons {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
 }
