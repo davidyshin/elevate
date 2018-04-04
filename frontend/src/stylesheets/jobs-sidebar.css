@@ -140,17 +140,17 @@
     } */
     .job-sidebar .company-container {
         width: 100%;
-        background-color: rgba(255, 0, 0, 0.1);
+        /* background-color: rgba(255, 0, 0, 0.1); */
     }
     /* And the position and date gets pushed to 2nd row */
     .job-sidebar h3.position {
         width: 70%;
         display: flex;
-        background-color: rgba(255, 0, 0, 0.2);
+        /* background-color: rgba(255, 0, 0, 0.2); */
     }
     .job-sidebar h3.applied-date {
         width: 30%;
-        background-color: rgba(255, 0, 0, 0.3);
+        /* background-color: rgba(255, 0, 0, 0.3); */
     }
 
     .sidebar-bottom .sidebar-left {

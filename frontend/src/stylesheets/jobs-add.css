@@ -21,7 +21,7 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  background-color: rgba(0, 255, 0, 0.2);
+  /* background-color: rgba(0, 255, 0, 0.2); */
 }
 
 .add-job-form-container .add-job-info {
