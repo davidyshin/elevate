@@ -167,8 +167,8 @@ class AddInterview extends Component {
               className="add-interview-next-button"
               disabled={!interviewSaved}
               onClick={
-                this.props.backToHome
-                  ? this.props.backToHome
+                this.props.backToUpdatePrompt
+                  ? this.props.backToUpdatePrompt
                   : this.props.handleSkipButton
               }
               type="button"
