@@ -8,7 +8,7 @@
     /* background-color: rgba(0, 0, 255, 0.1);  */
     display: flex;
     flex-direction: column;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     width: 90%;
 }
 
@@ -21,6 +21,7 @@
     justify-content: space-between;
 }
 
+/* Company logo and name */
 .job-sidebar .company-container {
     width: 33.33%;
     display: flex;
@@ -110,22 +111,22 @@
         width: 94%;
     }
 
-    .job-sidebar h3.position {
+    /* .job-sidebar h3.position {
         font-size: 2.2rem;
-    }
+    } */
 }
 
 @media screen and (max-width: 1040px) {
-    .job-sidebar h3.company {
+    /* .job-sidebar h3.company {
         font-size: 3rem;
-    }
+    } */
     /* And the position and date gets pushed to 2nd row */
-    .job-sidebar h3.position {
+    /* .job-sidebar h3.position {
         font-size: 2.2rem;
     }
     .job-sidebar h3.applied-date {
         font-size: 1.8rem;
-    }
+    } */
 }
 
 @media screen and (max-width: 720px) {
@@ -134,22 +135,29 @@
         flex-wrap: wrap;
     }
     /* So that the company name could be on its own row */
-    .job-sidebar h3.company {
+    /* .job-sidebar h3.company {
         width: 100%;
+    } */
+    .job-sidebar .company-container {
+        width: 100%;
+        background-color: rgba(255, 0, 0, 0.1);
     }
     /* And the position and date gets pushed to 2nd row */
     .job-sidebar h3.position {
-        width: 74%;
+        width: 70%;
+        display: flex;
+        background-color: rgba(255, 0, 0, 0.2);
     }
     .job-sidebar h3.applied-date {
-        width: 26%;
+        width: 30%;
+        background-color: rgba(255, 0, 0, 0.3);
     }
 
     .sidebar-bottom .sidebar-left {
-        width: 74%;
+        width: 70%;
     }
     .sidebar-bottom .sidebar-right {
-        width: 26%;
+        width: 30%;
     }
 }
 
@@ -158,11 +166,11 @@
         width: 98%;
     }
     /* Shrink fonts */
-    .job-sidebar h3.company {
+    /* .job-sidebar h3.company {
         font-size: 2.8rem;
     }
     .job-sidebar h3.position {
         font-size: 2.2rem;
-    }
+    } */
 
 }
