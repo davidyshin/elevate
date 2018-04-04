@@ -7,7 +7,8 @@
     width: 920px;
     display: flex;
     justify-content: center;
-    margin: 0 auto;
+    overflow-x: hidden;
+    /* margin: 0 auto; */
     /* background-color: rgba(255, 0, 0, 0.1); */
 }
 
@@ -154,3 +155,9 @@
 .add-interview-buttons .saved-button {
     background-color: rgb(0, 218, 73);
 }
+
+
+/*------------------------------------------*/
+/*     All Interview Media Queries are      */
+/*             in jobs-add.css              */
+/*------------------------------------------*/
