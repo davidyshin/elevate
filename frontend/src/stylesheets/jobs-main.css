@@ -433,6 +433,7 @@
 
       .job-info-top a:hover, .interview-modal-button:hover {
         color: rgb(42, 70, 97);
+        cursor: pointer;
       }
 
       
