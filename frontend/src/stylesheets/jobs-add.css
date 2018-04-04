@@ -564,7 +564,8 @@ button:hover {
 
   /* Child container's width becomes 90 */
   .add-job-form-container form,
-  .add-interview-form {
+  .add-interview-form,
+  .salary-input-form {
     width: 90%;
   }
 }
@@ -609,7 +610,8 @@ button:hover {
 
   /* Child container's width shrinks to 70 */
   .add-job-form-container form,
-  .add-interview-form form {
+  .add-interview-form form,
+  .salary-input-form {
     width: 80%;
   }
 
@@ -634,11 +636,22 @@ button:hover {
   .add-job-form-container form input {
     width: 100%;
   }
+
+  /* Salary save button container becomes taller */
+  .salary-input-button-container {
+    flex-direction: column;
+    height: 160px;
+  }
+
+  .salary-input-button-container .job-salary-buttons:first-child {
+    margin-bottom: 12px;
+  }
 }
 
 @media screen and (max-width: 510px) {
   /* Child container's width grows to 90 to fill up the page */
-  .add-job-form-container form {
+  .add-job-form-container form,
+  .salary-input-form {
     width: 90%;
   }
 
@@ -654,6 +667,15 @@ button:hover {
 
   .popup-reminder-container {
     height: 180px;
+    width: 98%;
+  }
+
+  .salary-input-container {
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .salary-input-container .salary-input {
     width: 98%;
   }
 

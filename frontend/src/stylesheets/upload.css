@@ -117,3 +117,9 @@
         margin: 0 6%;
     }
 }
+
+@media screen and (max-width: 510px) {
+    .upload-button-container {
+        width: 100%;
+    }
+}
