@@ -8,7 +8,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
+    /* box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03); */
     width: 920px;
     border-radius: 4px;
     margin: 0 auto;
@@ -104,6 +104,10 @@
 @media screen and (max-width: 880px) {
     .upload-img {
         padding-right: 22px;
+    }
+    .resume-form,
+    .cover-form {
+        width: 100%;
     }
 }
 

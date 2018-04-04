@@ -17,8 +17,11 @@
 
 /* Container that holds sidebar and current stage */
 .add-job-moving-stages-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
-  /* background-color: rgba(255, 0, 0, 0.1); */
+  /* background-color: rgba(0, 255, 0, 0.2); */
 }
 
 .add-job-form-container .add-job-info {
@@ -569,13 +572,15 @@ textarea {
   }
 
   /* Child container's width becomes 90 */
-  .add-job-form-container form {
+  .add-job-form-container form,
+  .add-interview-form {
     width: 90%;
   }
 }
 
 @media screen and (max-width: 880px) {
   /* Input borders shrink */
+  .add-job-form-container form input,
   .add-job-form-container form input,
   .salary-input-form input {
     width: 394px;
@@ -612,17 +617,20 @@ textarea {
   }
 
   /* Child container's width shrinks to 70 */
-  .add-job-form-container form {
-    width: 70%;
+  .add-job-form-container form,
+  .add-interview-form form {
+    width: 80%;
   }
 
   /* Get rid of the labels on the side */ 
-  .add-job-labels-container {
+  .add-job-labels-container,
+  .add-interview-labels-container {
     display: none;
   }
 
   /* Width becomes 100 to make up for the labels container disappearing */
-  .add-job-inputs-container {
+  .add-job-inputs-container,
+  .add-interview-inputs-container {
     width: 100%;
   }
 
@@ -641,6 +649,16 @@ textarea {
   /* Child container's width grows to 90 to fill up the page */
   .add-job-form-container form {
     width: 90%;
+  }
+
+  /* Interview questionnaire form grows to fit the small browser width */
+  .add-job-form-container .add-interview-form {
+    width: 98%;
+  }
+
+  /* Textarea (notes) width grows to fit the parent container */
+  .add-interview-inputs-container textarea {
+    width: 98%;
   }
 
   .popup-reminder-container {
