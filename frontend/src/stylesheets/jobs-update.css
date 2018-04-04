@@ -69,6 +69,13 @@
   padding: 14px 0px 14px 22px;
 }
 
+.initial-prompt h3:hover {
+  color: #3B99D8;
+  cursor: pointer;
+  transition: 0.2s all;
+}
+
+
 .update-job-form-container p {
   font-weight: 300;
   font-size: 1.8rem;
@@ -328,6 +335,15 @@ button:hover {
   flex-direction: row;
   justify-content: flex-start;
   z-index: 3;
+}
+
+.back-button {
+  color: rgba(0,0,0,.4)
+}
+
+.back-button i:hover {
+  cursor: pointer;
+  transition: 0.2s all;
 }
 
 .switch-title {

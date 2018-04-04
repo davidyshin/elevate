@@ -421,6 +421,7 @@
     }
 
       .job-info-top a,
+      .interview-modal-button,
       .job-info-top a:visited {
         text-decoration: none;
         color: rgb(51, 156, 197);
@@ -430,9 +431,11 @@
         transition: 0.5s color;
       }
 
-      .job-info-top a:hover {
+      .job-info-top a:hover, .interview-modal-button:hover {
         color: rgb(42, 70, 97);
       }
+
+      
     
       /*
       // Single div holding the company logo
