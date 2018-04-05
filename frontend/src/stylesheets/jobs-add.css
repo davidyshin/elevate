@@ -45,7 +45,6 @@
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
   border-radius: 4px;
   padding: 22px;
-  margin: 0 auto;
   color: rgba(0, 0, 0, 0.9);
   -moz-transition: 0.3s all;
   -webkit-transition: 0.3s all;
@@ -572,9 +571,11 @@ button:hover {
   /* Child container's width becomes 90 */
   .add-job-form-container form,
   .add-interview-form,
-  .salary-input-form {
+  .salary-input-form,
+  .update-form {
     width: 90%;
   }
+
   .pencil-icon {
     right: 95px
   }
@@ -613,17 +614,23 @@ button:hover {
 // When the screen size is smaller than 720px, form width becomes responsive 
 */
 @media screen and (max-width: 720px) {
+  /* Width shrinks to 80% */
   .resume-input-form,
-  .cover-input-form {
+  .cover-input-form,
+  .update-form,
+  .add-job-form-container form,
+  .add-interview-form,
+  /* .add-interview-form form, */
+  .salary-input-form  {
     width: 80%;
   }
 
   /* Child container's width shrinks to 70 */
-  .add-job-form-container form,
+  /* .add-job-form-container form,
   .add-interview-form form,
   .salary-input-form {
     width: 80%;
-  }
+  } */
 
   /* Get rid of the labels on the side */ 
   .add-job-labels-container,
@@ -662,15 +669,28 @@ button:hover {
 }
 
 @media screen and (max-width: 510px) {
-  /* Child container's width grows to 90 to fill up the page */
+  /* Width grows to 90& */
   .add-job-form-container form,
   .salary-input-form {
     width: 90%;
   }
 
+  .update-form,
+  .salary-input-form {
+    width: 86%;
+  }
+
   /* Interview questionnaire form grows to fit the small browser width */
-  .add-job-form-container .add-interview-form {
+  /* .add-job-form-container .add-interview-form {
     width: 98%;
+  } */
+
+  .add-interview-form {
+    width: 98%;
+  }
+
+  .add-interview-form form {
+    width: 90%;
   }
 
   /* Textarea (notes) width grows to fit the parent container */
@@ -690,6 +710,10 @@ button:hover {
 
   .salary-input-container .salary-input {
     width: 98%;
+  }
+
+  .job-salary-buttons-saved {
+    margin-bottom: 12px;
   }
 
   .pencil-icon {
