@@ -242,6 +242,7 @@ class UpdateJobForm extends Component {
                 I was offered / rejected
               </h3>
             </div>
+            <Link className="update-done-link" to ='/'>I'm done, take me back home.</Link>
           </div>
         );
       case 2:
