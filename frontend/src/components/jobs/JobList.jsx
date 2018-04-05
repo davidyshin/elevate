@@ -23,8 +23,8 @@ class JobList extends Component {
       .get('/users/getAllUserApps')
       .then(data => {
         const jobs = data.data.apps.sort(
-          (a, b) => new Date(a.date_applied).getTime() < new Date(b.date_applied).getTime()
-        );
+          (a, b) => new Date(b.date_applied).getTime() - new Date(a.date_applied)
+        )
         this.setState({
           jobList: jobs,
           renderJobList: jobs
