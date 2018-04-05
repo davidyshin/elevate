@@ -157,7 +157,9 @@ INSERT INTO Achievement_Badges_Earned
     (user_id, badge_id)
 VALUES
     (1, 1),
-    (1, 2);
+    (1, 2),
+    (1, 10),
+    (1, 11);
 
 DROP TABLE Forum_Posts
 CASCADE;
