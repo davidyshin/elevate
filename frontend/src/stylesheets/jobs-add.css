@@ -620,17 +620,9 @@ button:hover {
   .update-form,
   .add-job-form-container form,
   .add-interview-form,
-  /* .add-interview-form form, */
   .salary-input-form  {
     width: 80%;
   }
-
-  /* Child container's width shrinks to 70 */
-  /* .add-job-form-container form,
-  .add-interview-form form,
-  .salary-input-form {
-    width: 80%;
-  } */
 
   /* Get rid of the labels on the side */ 
   .add-job-labels-container,
@@ -669,29 +661,22 @@ button:hover {
 }
 
 @media screen and (max-width: 510px) {
-  /* Width grows to 90& */
+  /* Width grows to 90% */
   .add-job-form-container form,
   .salary-input-form {
     width: 90%;
   }
 
+  /* For some reason, having these at 90% width extends outside the page */
   .update-form,
   .salary-input-form {
     width: 86%;
   }
 
-  /* Interview questionnaire form grows to fit the small browser width */
-  /* .add-job-form-container .add-interview-form {
-    width: 98%;
-  } */
-
+  /* Contains interview form */
   .add-interview-form {
     width: 98%;
-  }
-
-  .add-interview-form form {
-    width: 90%;
-  }
+  } 
 
   /* Textarea (notes) width grows to fit the parent container */
   .add-interview-inputs-container textarea {
