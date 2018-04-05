@@ -631,16 +631,17 @@ p {
   transition: 0.15s all;
 }
 
-  /* 
-  // Hovering over the power sign 
-  */ 
+  /* Button pseudo elements */ 
   .user-logout-container button:hover {
     transform: scale(1.2);
+    outline: none;
+    border: none;
   }
 
   .user-logout-container button:focus, 
   .user-logout-container button:active {
     outline: none;
+    border: none;
   }
 
 /*
@@ -702,6 +703,15 @@ p {
       background-color: #f5f0f5;
       color: rgba(0, 0, 0, 0.6);
     }
+
+    .logout-button:focus,
+    .logout-button:active,
+    .logout-cancel-button:focus,
+    .logout-cancel-button:active {
+      outline: none;
+      border: none;
+    }
+
 
 /*
 // Logout warning modal fills up the screen
