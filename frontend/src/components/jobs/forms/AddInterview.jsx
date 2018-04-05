@@ -19,11 +19,6 @@ class AddInterview extends Component {
     };
   }
 
-  /* contact: req.body.contact,
-  note: req.body.note,
-  job_id: req.body.job_id,
-  interview_date: req.body.interview_date */
-
   updateJobProgress = (job_id, progress_in_search) => {
     axios
       .put('/users/updateJobProgress', {
@@ -56,13 +51,13 @@ class AddInterview extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const { date, contact, note, time } = this.state;
-    let job_id = this.props.job_id;
-
+    let {job_id} = this.props
+    
     axios
       .get('/users/getUserInterviews')
       .then(res => {
-        let interviews = res.data.interviews;
-
+        let {interviews} = res.data
+    
         axios
           .post('/users/createInterview', {
             contact: contact,

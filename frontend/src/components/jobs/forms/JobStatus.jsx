@@ -5,7 +5,6 @@ import '../../../stylesheets/jobs-update.css';
 class JobStatus extends Component {
   constructor() {
     super();
-    this.state = {};
   }
 
   render() {
