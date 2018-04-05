@@ -51,8 +51,6 @@ class UserContainer extends Component {
 
   render() {
     const { activeUser, activeComponent } = this.state;
-    console.log(this.state);
-
     return (
       <div className="user-container">
         <div className="user-top">
