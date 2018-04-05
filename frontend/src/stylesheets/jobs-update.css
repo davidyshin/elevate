@@ -11,7 +11,7 @@
   flex-direction: column;
   justify-content: center;
   padding-top: 80px;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   padding-bottom: 20px;
   background-color: #f5f0f5;
   transition: 0.3s all;
@@ -109,7 +109,7 @@ p {
   justify-content: center;
   align-items: center;
   padding: 22px;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   color: rgba(0, 0, 0, 0.9);
   transition: 0.3s all;
 }
@@ -421,10 +421,6 @@ button:hover {
 }
 
 @media screen and (max-width: 720px) {
-  /* .update-job-form-container {
-    padding-top: 100px;
-  } */
-
   .update-job-form-container form,
   .job-status-form {
     width: 80%;
@@ -432,6 +428,11 @@ button:hover {
 }
 
 @media screen and (max-width: 510px) {
+  /* Interview form that holds calendar and date inputs */
+  .update-job-form-container form {
+    width: 90%;
+  }
+
   .job-status-form {
     width: 86%;
   }
