@@ -14,7 +14,7 @@ const { reminder } = require('../emails/email');
 
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
-
+const moment = require('moment');
 // require the Twilio module and create a REST client
 const client = require('twilio')(accountSid, authToken);
 
@@ -588,7 +588,7 @@ const updateJobInfo = (req, res, next) => {
         job_id: req.body.job_id,
         date_applied: req.body.date_applied,
         position_title: req.body.position_title,
-        job_posting_url: req.body.job_posting_url,
+        job_posting_url: req.body.job_posting_url
       }
     )
     .then(function(data) {
@@ -687,7 +687,7 @@ const getNotificationEmail = () => {
           data[i].interview_date,
           data[i].interview_time
         );
-        Mail.subject = `reminder of your interview with ${
+        Mail.subject = `Reminder for your interview with ${
           data[i].company_name
         }`;
 
@@ -723,9 +723,11 @@ const getNotificationSms = () => {
             data[i].first_name
           }, this is a reminder that your interview with ${
             data[i].company_name
-          } is on ${data[i].interview_date} at ${
-            data[i].interview_time
-          }. -Team Elevate `
+          } is on ${moment(data[i].interview_date).format(
+            'dddd, MMMM Do YYYY'
+          )} at ${moment(data[i].interview_time, 'HH:mm').format(
+            'hh:mm a'
+          )}. -Team Elevate `
         });
       }
     })
@@ -738,9 +740,6 @@ setInterval(() => {
   getNotificationEmail();
   getNotificationSms();
 }, 1000);
-
-
-
 
 const updateJobSalary = (req, res) => {
   db
@@ -758,8 +757,6 @@ const updateJobSalary = (req, res) => {
       res.status(500).send(`error updating job salary: ${err}`);
     });
 };
-
-
 
 module.exports = {
   getAllUserApps,
