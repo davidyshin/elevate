@@ -552,6 +552,12 @@ button:hover {
   color: #fefefe;
 }
 
+/* back to home link on the job status */
+.back-to-home-link {
+  cursor:pointer;
+  color: #349adb
+}
+
 
 /*------------------------------------------*/
 /*       Media Queries for Job Info         */
