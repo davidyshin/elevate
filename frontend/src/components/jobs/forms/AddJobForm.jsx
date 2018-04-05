@@ -225,6 +225,22 @@ class AddJobForm extends Component {
     this.setState({ date_applied: date });
   };
 
+  handleNewJob = e => {
+    this.setState ({ 
+      company: '',
+      suggestedCompanies: [],
+      companyLogo: '',
+      position: '',
+      date_applied: '',
+      url: '',
+      applicationStage: 1,
+      job_id: '',
+      resume_url: '',
+      cover_url: '',
+      saved: false
+    })
+  }
+
   changeStage = e => {
     this.setState({ applicationStage: parseInt(e.target.id) });
   };
@@ -313,11 +329,12 @@ class AddJobForm extends Component {
             handleStatusChange={this.handleStatusChange}
             job_status={this.state.job_status}
             handleSkipButton={this.handleSkipButton}
+            handleNewJob={this.handleNewJob}
           />
         );
         break;
       case 7:
-        return <JobSalary job_id={job_id} />;
+        return <JobSalary handleNewJob={this.handleNewJob} job_id={job_id} />;
     }
   };
 
@@ -346,53 +363,8 @@ class AddJobForm extends Component {
       onChange: this.handleCompanyInput
     };
 
-    const stageContainer = saved ? (
-      <div className="stage-container">
-        <span className="stage-arrow-left">
-          <i
-            id="left"
-            onClick={this.setApplicationStage}
-            class="fas fa-arrow-left fa-2x"
-          />
-        </span>
-        <span
-          id="1"
-          onClick={this.changeStage}
-          className={applicationStage === 1 ? 'stage-active' : 'stage'}
-        />
-        <span
-          id="2"
-          onClick={this.changeStage}
-          className={applicationStage === 2 ? 'stage-active' : 'stage'}
-        />
-        <span
-          id="3"
-          onClick={this.changeStage}
-          className={applicationStage === 3 ? 'stage-active' : 'stage'}
-        />
-        <span
-          id="4"
-          onClick={this.changeStage}
-          className={applicationStage === 4 ? 'stage-active' : 'stage'}
-        />
-        <span
-          id="5"
-          onClick={this.changeStage}
-          className={applicationStage === 5 ? 'stage-active' : 'stage'}
-        />
-        <span className="stage-arrow-right">
-          <i
-            id="right"
-            onClick={this.setApplicationStage}
-            class="fas fa-arrow-right fa-2x"
-          />
-        </span>
-      </div>
-    ) : null;
-
     return (
       <div className="add-job-form-container">
-        {/* {stageContainer} */}
         <div hidden={applicationStage > 1 ? true : false}>
           <div data-aos="fade-up" className="add-job-info">
             <form onSubmit={this.handleFirstSubmit}>
