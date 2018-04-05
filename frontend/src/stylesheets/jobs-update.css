@@ -17,14 +17,20 @@
   transition: 0.3s all;
 }
 
-.update-job-form-container h1, h2, h3, h4, h5, h6, p {
+.update-job-form-container h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
   padding: 0;
   margin: 0;
 }
 
 /* Forms: update job, job status, salary input */
-.update-form, 
-.job-status-form, 
+.update-form,
+.job-status-form,
 .salary-input-form {
   font-family: 'Montserrat', sans-serif;
   background-color: #fefefe;
@@ -39,7 +45,7 @@
   transition: 0.3s all;
 }
 
-.job-status-form, 
+.job-status-form,
 .salary-input-form {
   justify-content: space-between;
 }
@@ -55,8 +61,8 @@
   padding-left: 22px;
 }
 
-.initial-prompt, 
-.job-status-form, 
+.initial-prompt,
+.job-status-form,
 .salary-input-form {
   height: 420px;
 }
@@ -70,11 +76,10 @@
 }
 
 .initial-prompt h3:hover {
-  color: #3B99D8;
+  color: #3b99d8;
   cursor: pointer;
   transition: 0.2s all;
 }
-
 
 .update-job-form-container p {
   font-weight: 300;
@@ -91,13 +96,11 @@
   transition: 0.2s all;
 }
 
-
-
 /*------------------------------------------*/
 /*              Update Job Form             */
 /*------------------------------------------*/
 
-.update-job-form-container form, 
+.update-job-form-container form,
 .update-initial-prompt {
   background-color: #fefefe;
   display: flex;
@@ -156,7 +159,6 @@ textarea {
   padding: 18px 22px;
 }
 
-
 .update-job-form-container form input[type='text'],
 .update-job-form-container form input[type='email'],
 .update-job-form-container form input[type='date'] {
@@ -179,7 +181,6 @@ textarea {
 button:focus {
   border-bottom: 2px solid rgba(52, 152, 219, 0.6);
 }
-
 
 /*------------------------------------------*/
 /*                  Buttons                 */
@@ -264,15 +265,15 @@ button:hover {
 
 /* Next button after user clicks Offered */
 .job-status-button-container {
-  display:flex;
+  display: flex;
   flex-direction: row;
   justify-content: center;
   align-content: center;
   margin-top: 22px;
 }
 
-.job-salary-buttons, 
-.job-salary-buttons-saved  {
+.job-salary-buttons,
+.job-salary-buttons-saved {
   border: none;
   outline: none;
   margin: 0 22px;
@@ -286,10 +287,10 @@ button:hover {
 
 .salary-input-button-container a {
   text-decoration: none;
-  color: #fefefe
+  color: #fefefe;
 }
 
-.job-status-message, 
+.job-status-message,
 .salary-input-button-container {
   height: 110px;
 }
@@ -323,7 +324,7 @@ button:hover {
 }
 
 .back-button {
-  color: rgba(0,0,0,.4)
+  color: rgba(0, 0, 0, 0.4);
 }
 
 .back-button i:hover {
@@ -334,7 +335,6 @@ button:hover {
 .switch-title {
   margin-bottom: 6px;
 }
-
 
 /*------------------------------------------*/
 /*             Job Status Buttons           */
@@ -362,7 +362,8 @@ button:hover {
   border: 1px solid rgba(0, 0, 0, 0.08);
   -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.08),
     0 1px rgba(255, 255, 255, 0.1);
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.08),
+    0 1px rgba(255, 255, 255, 0.1);
   -webkit-transition: all 0.1s ease-in-out;
   -moz-transition: all 0.1s ease-in-out;
   -ms-transition: all 0.1s ease-in-out;
@@ -397,7 +398,18 @@ button:hover {
   box-shadow: none;
   color: #fefefe;
 }
+.update-done-link {
+  display: flex;
+  justify-content: center;
+  padding: 22px;
+  font-size: 2.2rem;
+  color: #349adb;
+  text-decoration: none;
+}
 
+.update-done-link:visited{
+  color: #349adb;  
+}
 /*------------------------------------------*/
 /*               Media Queries              */
 /*------------------------------------------*/
