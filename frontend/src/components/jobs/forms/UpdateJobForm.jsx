@@ -304,6 +304,7 @@ class UpdateJobForm extends Component {
           <JobStatus
             handleStatusChange={this.handleStatusChange}
             job_status={this.state.job_status}
+            updateForm={true}
             handleSkipButton={this.handleSkipButton}
           />
         );
