@@ -48,8 +48,14 @@ class JobStatus extends Component {
         {this.props.job_status === 'offered' ? (
           <div className="job-status-message">
             <h3>Congratulations!</h3>
-            <div className='job-status-button-container'>
-              <button onClick={this.props.handleSkipButton} className='job-status-accepted-button' type="button">Next</button>
+            <div className="job-status-button-container">
+              <button
+                onClick={this.props.handleSkipButton}
+                className="job-status-accepted-button"
+                type="button"
+              >
+                Next
+              </button>
             </div>
           </div>
         ) : null}
@@ -57,14 +63,24 @@ class JobStatus extends Component {
         {this.props.job_status === 'awaiting' ? (
           <div className="job-status-message">
             <h3>Patience is a virtue</h3>
-            <Link to='/'><h3>Click here to return home</h3></Link>
+            <Link to="/">
+              <h3>Click here to return home</h3>
+            </Link>
+            <h3 className="back-to-home-link" onClick={this.props.handleNewJob}>
+              Or log another job
+            </h3>
           </div>
         ) : null}
 
         {this.props.job_status === 'rejected' ? (
           <div className="job-status-message">
             <h3>Hey, you made it this far</h3>
-            <Link to='/'><h3>Click here to return home</h3></Link>
+            <Link to="/">
+              <h3>Click here to return home</h3>
+            </Link>
+            <h3 className="back-to-home-link" onClick={this.props.handleNewJob}>
+              Or log another job
+            </h3>
           </div>
         ) : null}
       </div>
