@@ -59,7 +59,6 @@ class LeaderBoard extends Component {
     
     },
     ]
-console.log(user, top5)
 
 
 
