@@ -3,22 +3,11 @@ import WeeklyActivity from './WeeklyActivity.jsx';
 import UserProgress from './UserProgress.jsx';
 import UserStats from './UserStats.jsx';
 import UserBadges from './UserBadges.jsx';
-import JobSummary from '../../jobs/JobSummary.jsx'
-import MoreBadges from './MoreBadges.jsx'
+import MoreBadges from './MoreBadges.jsx';
+import LogoutWarning from './LogoutWarning.jsx';
 import Modal from 'react-modal';
 import axios from 'axios';
 
-class LogoutWarning extends Component {
-  render() {
-    return (
-      <div className="logout-warning-container">
-        <h3>Are you sure you want to log out?</h3>
-        <button onClick={this.props.logOut} className="logout-button">Logout</button>
-        <button onClick={this.props.toggleModal} className="logout-cancel-button">Cancel</button>
-      </div>
-    )
-  }
-}
 
 class UserOverview extends Component {
   constructor() {
