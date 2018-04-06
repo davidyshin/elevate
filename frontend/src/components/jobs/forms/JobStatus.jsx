@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../../../stylesheets/jobs-update.css';
 
+
 class JobStatus extends Component {
   constructor() {
     super();
