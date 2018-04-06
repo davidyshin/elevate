@@ -29,14 +29,14 @@ class SplashContainer extends Component {
                 src="https://i.imgur.com/JdYm85w.png"
                 alt="elevate"
               />
-              <h1>Elevate</h1>
+              <h1 data-aos="fade-up" data-aos-delay="100">Elevate</h1>
             </div>
-            <p>Elevate your job search experience.</p>
+            <p data-aos="fade-up" data-aos-delay="300">Elevate your job search experience.</p>
             <div className="splash-top-button-container">
-              <button id="signup" onClick={this.props.toggleActive}>
+              <button id="signup" onClick={this.props.toggleActive} data-aos="fade-up" data-aos-delay="500">
                 Create an account
               </button>
-              <button id="demo" onClick={this.props.toggleActive}>
+              <button id="demo" onClick={this.props.toggleActive} data-aos="fade-up" data-aos-delay="700">
                 Demo
               </button>
             </div>
