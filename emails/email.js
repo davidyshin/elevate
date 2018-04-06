@@ -1,4 +1,4 @@
-const moment = require('moment')
+const moment = require('moment');
 
 const welcomeEmail = firstName => `
 <table style = "background-color:#283c53; font-family:sans-serif; color:#fefefe; border-radius:4px;">
@@ -34,56 +34,62 @@ const welcomeEmail = firstName => `
     </td>
   </tr>
 </table>
-`
+`;
 
-// const welcomeEmail = firstName => `
-// <table style = "background-color:#32BBDA;  width:80%; height:1000px; border-radius: 25px">
-//   <tr>
-//     <td align="center">
-//       <img src="https://image.ibb.co/hMyhun/qK34BJA.png" style="width:5%;  height:25%;">
-//     </td>
-//   </tr>
-//   <tr style = "background-color:#E5F6FA;">
-//     <td style = "padding:40px; border-radius: 25px">
-//       <p> Hello ${firstName} </p>
-//       <p>Welcome to Elevate. Thank you for setting up your account! With Elevate you will be able to: </p>
-//       <ul>
-//         <li> Receive notifications for important dates </li>
-//         <li> Track each job application progress </li>
-//         <li> Earn points towards your success!</li>
-//       </ul>
-//       <br/>
-//       <p> Cheers, 
-//       <br/> 
-//       Team Elevate
-//       </p>
-//   </td>
-// </tr>
+const reminder = (firstName, company_name, interview_date, interview_time) => `
+<table style = "background-color:#283c53; font-family:sans-serif; color:#fefefe; border-radius:4px;">
+  <tr>
+    <td style = "text-align:center;">
+      <p style = "font-size:36px;"><img src="https://image.ibb.co/hMyhun/qK34BJA.png" style="height:32px; width:32px; padding:0 22px;"/>Elevate</p>
+    </td>
+  </tr>
+
+  <tr style="font-size:16px">
+    <td style="padding:22px 32px; line-height:1.8;">
+      <p>${firstName},</p>
+      <p>This is a reminder that your interview with ${company_name} is coming up on ${moment(interview_date).format('dddd, MMMM Do YYYY')} at ${moment(interview_time, 'HH:mm').format('hh:mm a')}.</p>
+      <p>Here are some resources to check out while preparing for your interview:</p>
+
+      <ul>
+        <li><a href="https://www.themuse.com/advice/10-types-of-interviews-and-how-to-ace-them" target="_blank" style="color:#3498db; text-decoration:none;">Ten Types of Interviews (and How to Ace Them)</a></li>
+        <li><a href="https://www.themuse.com/advice/your-interview-checklist-what-to-remember-before-during-and-after" target="_blank" style="color:#3498db; text-decoration:none;">Your Interview Checklist: What to Remember Before, During, and After</a></li>
+        <li><a href="https://www.themuse.com/advice/the-10-rules-of-interview-etiquette" target="_blank" style="color:#3498db; text-decoration:none;">The 10 Rules of Interview Etiquette</a></li>
+      </ul>
+      
+      <p>You got this!</p>
+      <p>Team Elevate</p>
+    </td>
+  </tr>
+
+  <tr>
+    <td style="text-align:center; padding:22px;">
+      <a href="https://github.com/davidyshin/elevate" target="_blank">
+        <img src="https://image.ibb.co/n6dFEn/Git_Hub_Mark_Light_120px_plus.png" style="height:40px; width:40px;"/>
+        </a>
+    </td>
+  </tr>
+</table>
+`;
+
+// const reminder = (firstName, company_name, interview_date, interview_time) =>
+//         `<table style = "background-color:#32BBDA;  width:80%; height:1000px; border-radius: 25px">
+//         <tr>
+//                <td align="center" ><img src="https://image.ibb.co/hMyhun/qK34BJA.png" style="width:5%;  height:25%;" > </td>
+//         </tr>
+//         <tr style = "background-color:#E5F6FA;" >
+//                <td style = "padding:40px; border-radius: 25px" > 
+//                <p> Hello ${firstName}</p>
+//                <p> This is a reminder for your interview with ${company_name} on ${moment(interview_date).format(
+//                 'dddd, MMMM Do YYYY')} at ${moment(interview_time, 'HH:mm').format('hh:mm a')}.<p>
+//                <p> Good Luck! </p>
+//                <p> -Team Elevate </p>
+//               </td>
+//         </tr>
 //         <tr>
 //                <td align="center"><img src="https://image.ibb.co/n6dFEn/Git_Hub_Mark_Light_120px_plus.png" style="width:5%;height:25%;"></td>
 //         </tr>
 // </table>
 // `;
-
-const reminder = (firstName, company_name, interview_date, interview_time) =>
-        `<table style = "background-color:#32BBDA;  width:80%; height:1000px; border-radius: 25px">
-        <tr>
-               <td align="center" ><img src="https://image.ibb.co/hMyhun/qK34BJA.png" style="width:5%;  height:25%;" > </td>
-        </tr>
-        <tr style = "background-color:#E5F6FA;" >
-               <td style = "padding:40px; border-radius: 25px" > 
-               <p> Hello ${firstName}</p>
-               <p> This is a reminder for your interview with ${company_name} on ${moment(interview_date).format(
-                'dddd, MMMM Do YYYY')} at ${moment(interview_time, 'HH:mm').format('hh:mm a')}.<p>
-               <p> Good Luck! </p>
-               <p> -Team Elevate </p>
-              </td>
-        </tr>
-        <tr>
-               <td align="center"><img src="https://image.ibb.co/n6dFEn/Git_Hub_Mark_Light_120px_plus.png" style="width:5%;height:25%;"></td>
-        </tr>
-</table>
-`;
 
 module.exports = {
         welcomeEmail: welcomeEmail,
