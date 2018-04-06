@@ -719,15 +719,15 @@ const getNotificationSms = () => {
         client.messages.create({
           to: data[i].phone_number,
           from: process.env.TWILIO_PHONE_NUMBER,
-          body: ` Hello ${
+          body: `Hello ${
             data[i].first_name
-          }, this is a reminder that your interview with ${
+          }. Your interview with ${
             data[i].company_name
           } is on ${moment(data[i].interview_date).format(
             'dddd, MMMM Do YYYY'
           )} at ${moment(data[i].interview_time, 'HH:mm').format(
             'hh:mm a'
-          )}. -Team Elevate `
+          )}. Good luck! -Team Elevate`
         });
       }
     })
