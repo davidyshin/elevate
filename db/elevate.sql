@@ -52,15 +52,12 @@ INSERT INTO Jobs
     (user_id, company_name, resume_url, cover_url, company_logo, job_posting_url, position_title, job_email, job_phone_number, date_applied, date_logged, progress_in_search, job_status, salary)
 VALUES
     (1, 'Apple', 'resume-8ds-resume.pdf', 'cover-9-Cover Letter - ShopKeep.docx', 'https://logo.clearbit.com/apple.com', 'https://www.indeed.com/q-Apple-Software-Engineer-jobs.html', 'Software Engineer', 'hiring@apple.com', '3471218976', '2018-04-05', '2018-04-05', 4, 'offered', '$70,000'),
-    (1, 'Facebook', 'resume-8ds-resume.pdf', 'cover-9-Cover Letter - ShopKeep.docx','https://logo.clearbit.com/facebook.com', 'https://www.facebook.com/careers/jobs/a0I1200000JXv00EAD/', 'Software Engineer, Full Stack', 'hiring@facebook.com', '3471218976', '2018-04-04', '2018-04-04', 4, 'awaiting', '70,000'),
+    (1, 'Facebook', 'resume-8ds-resume.pdf', 'cover-9-Cover Letter - ShopKeep.docx', 'https://logo.clearbit.com/facebook.com', 'https://www.facebook.com/careers/jobs/a0I1200000JXv00EAD/', 'Software Engineer, Full Stack', 'hiring@facebook.com', '3471218976', '2018-04-04', '2018-04-04', 4, 'awaiting', '70,000'),
     (1, 'Twitch', 'resume-8ds-resume.pdf', 'cover-9-Cover Letter - ShopKeep.docx', 'https://logo.clearbit.com/twitch.tv', 'https://jobs.lever.co/twitch/a5f652d5-4f30-40ae-a860-14b869b5a445' , 'Software Engineer', 'hiring@twitch.tv', '3471218976', '2018-03-30', '2018-04-30', 4, 'rejected', '70,000'),
     (1, 'Google', 'resume-8ds-resume.pdf', 'cover-9-Cover Letter - ShopKeep.docx', 'https://logo.clearbit.com/google.com', 'https://careers.google.com/jobs#!t=jo&jid=/google/software-engineer-76-9th-ave-new-york-ny-10011-usa-2748170192&', 'Software Engineer', 'hiring@google.com', '3471218976', '2018-04-03', '2018-04-05', 4, 'awaiting', '70,000'),
     (1, 'LinkedIn', 'resume-8ds-resume.pdf', 'cover-9-Cover Letter - ShopKeep.docx', 'https://logo.clearbit.com/linkedin.com', 'https://www.linkedin.com/jobs/view/626966558/', 'Senior Software Engineer', 'hiring@linkedin.com', '3471218976', '2018-04-02', '2018-04-02', 4, 'rejected', '70,000'),
     (1, 'KickStarter', 'resume-8ds-resume.pdf', 'cover-9-Cover Letter - ShopKeep.docx', 'https://logo.clearbit.com/apple.com', 'https://angel.co/kickstarter/jobs/291580-front-end-engineer?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic', 'Front End Engineer', 'hiring@kickstarter.com', '3471218976', '2018-04-05', '2018-04-02', 4, 'awaiting', '70,000'),
     (1, 'Coalition for Queens - C4Q', 'resume-8ds-resume.pdf', 'cover-9-Cover Letter - ShopKeep.docx', 'https://logo.clearbit.com/c4q.nyc', 'https://www.c4q.nyc/careers/', 'Web Development Technical Expert', 'hello@c4q.nyc', '3478416090', '2018-03-30', '2018-03-30', 4, 'awaiting', '');
-    
-
-    
 -- Drop TABLE Resumes CASCADE;
 -- Drop TABLE Cover_Letters CASCADE;
 DROP TABLE Interview
@@ -131,7 +128,7 @@ VALUES
     ('https://i.imgur.com/eFi0iJo.png', '10 Interviews Saved'),
     ('https://i.imgur.com/rjXM2x8.png', '15 Interviews Saved'),
     ('https://i.imgur.com/bxNfRwQ.png', '1st Rejection'),
-    ('https://i.imgur.com/NPzT2GH.png', 'darker blue'),
+    ('https://i.imgur.com/NPzT2GH.png', '1st Job Offer!'),
     ('https://i.imgur.com/yaSyJvK.png', 'true blue'),
     ('https://i.imgur.com/RSHqxEj.png', 'bluish periwinkle'),
     ('https://i.imgur.com/jizL5d1.png', 'blue purple'),
@@ -141,9 +138,7 @@ VALUES
     ('https://i.imgur.com/T4aux5D.png', 'bubble gum'),
     ('https://i.imgur.com/7qgqpQV.png', 'bright pink'),
     ('https://i.imgur.com/2RfEsRl.png', 'deep pink'),
-    ('https://i.imgur.com/Iy8dhRJ.png', 'slightly pink red');    
-
-
+    ('https://i.imgur.com/Iy8dhRJ.png', 'slightly pink red');
 DROP TABLE Achievement_Badges_Earned
 CASCADE;
 CREATE TABLE Achievement_Badges_Earned
@@ -160,12 +155,12 @@ VALUES
     (1, 2),
     (1, 10),
     (1, 11),
-    (1, 14);
-
+    (1, 14),
+    (1, 15);
 DROP TABLE Forum_Posts
 CASCADE;
 CREATE TABLE Forum_Posts
-(   
+(
     post_id SERIAL UNIQUE,
     user_id INTEGER,
     post_title VARCHAR,
@@ -174,7 +169,6 @@ CREATE TABLE Forum_Posts
     PRIMARY KEY (post_id),
     FOREIGN KEY (user_id) REFERENCES Users(id)
 );
-
 DROP TABLE Forum_Comments
 CASCADE;
 CREATE Table Forum_Comments
