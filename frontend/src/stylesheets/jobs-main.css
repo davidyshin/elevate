@@ -431,7 +431,8 @@
         transition: 0.5s color;
       }
 
-      .job-info-top a:hover, .interview-modal-button:hover {
+      .job-info-top a:hover, 
+      .interview-modal-button:hover {
         color: rgb(42, 70, 97);
         cursor: pointer;
       }
