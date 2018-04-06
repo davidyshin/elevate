@@ -582,6 +582,16 @@ button:hover {
 }
 
 @media screen and (max-width: 880px) {
+  .job-info-interview-modal {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .interviews-modal-container {
+    width: 80%;
+  }
+
   /* Input borders shrink */
   .add-job-form-container form input,
   .add-job-form-container form input,
@@ -589,17 +599,20 @@ button:hover {
     width: 394px;
   }
 
-  .add-job-form-container h1 {
+  .add-job-form-container h1,
+  .interviews-modal-container h1 {
     font-size: 2.6rem;
     padding-left: 0;
   }
 
-  .add-job-form-container h3 {
+  .add-job-form-container h3,
+  .interviews-modal-container h3 {
     font-size: 1.8rem;
     padding-left: 0;
   }
 
-  .add-job-form-container p {
+  .add-job-form-container p,
+  .interviews-modal-container p {
     font-size: 1.6rem;
     padding-left: 0;
   }
@@ -673,6 +686,10 @@ button:hover {
     width: 86%;
   }
 
+  .interviews-modal-container {
+    width: 98%;
+  }
+
   /* Contains interview form */
   .add-interview-form {
     width: 98%;
@@ -683,6 +700,10 @@ button:hover {
     width: 98%;
   }
 
+  .notes-text-area {
+    padding: 6px;
+  }
+
   .popup-reminder-container {
     height: 180px;
     width: 98%;
@@ -691,6 +712,14 @@ button:hover {
   .salary-input-container {
     align-items: center;
     flex-direction: column;
+  }
+
+  .interviews-info-titles {
+    width: 25%;
+  }
+
+  .interviews-info-details {
+    width: 75%;
   }
 
   .salary-input-container .salary-input {
