@@ -145,13 +145,10 @@
         transition: 0.3s all;
     }
 
-        /* 
-        // Demo and create an account button 
-        */
+        /* Demo and create an account button */
         .splash-top button {
             outline: none;
             border: none;
-            /* background-color: rgb(0, 149, 222); */
             background: rgba(0, 149, 222, 1); 
             color: #fefefe;
             border-radius: 60px;
@@ -167,12 +164,21 @@
             transition: 0.2s all;
             cursor: pointer;
         }
-        /*
-        // Button gets bigger on hover
-        */
-        .splash-top button:hover {
+
+        /* Button pseudo elements */
+
+        .splash-top button:focus,
+        .splash-top button:active {
+            outline: none;
+            border: none;
+        }
+
+        .splash-top button:hover,
+        .splash-top button.signup:hover,
+        .splash-top button.demo:hover {
             transform: scale(1.02);
         }
+
 
 @media screen and (max-width: 1300px) {
     .splash-top-image {
