@@ -1,10 +1,11 @@
-Our app has been deployed - [Click here to check it out!]('#)
+Our app has been deployed - [Click here to check it out!](http://elevate-ny.herokuapp.com/)
 
 # ELEVATE
 
 Elevate is a full stack web application that aims to assist and motivate active job seekers in their job application process.
 
 <img src="#" />
+
 
 ## Features
 * Visually pleasant, easy-to-use interface
@@ -21,6 +22,7 @@ ELEVATE was built using ReactJS, HTML/CSS, and the following APIs and Packages:
 * [React-autosuggest](http://react-autosuggest.js.org/)
 * [Plotly.js](https://plot.ly/javascript/)
 * [Clearbit](https://clearbit.com/docs#autocomplete-api)
+* [Moment](https://www.npmjs.com/package/moment)
 
 
 ## Authors
@@ -29,11 +31,14 @@ ELEVATE was built using ReactJS, HTML/CSS, and the following APIs and Packages:
 * [Jerell Davis](https://github.com/ramborell23)
 * [Sami Al Sudani](https://github.com/alaac4q)
 
+
 ## Acknowledgements 
 * [Reed Gaines](https://github.com/crymall)
 * [Lev Izraelit](https://github.com/lizraeli)
 * [Matthew Palmer](https://github.com/MattSPalmer)
 
+
 ## Future Features 
-* Community Forums
-* User Leaderboards
+* Community forums
+* Direct job applications
+* Company statistics
