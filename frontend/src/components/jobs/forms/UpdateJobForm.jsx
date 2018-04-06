@@ -14,6 +14,7 @@ import '../../../stylesheets/upload.css';
 import JobStatus from './JobStatus.jsx';
 import JobSideBar from './JobSideBar.jsx';
 import JobSalary from './JobSalary.jsx';
+import achieves from '../../achievements/checkForAchievements';
 
 class UpdateJobForm extends Component {
   constructor() {
@@ -90,14 +91,15 @@ class UpdateJobForm extends Component {
   handleStatusChange = e => {
     const job_status = e.target.name;
     const { job_id } = this.state;
+    if (job_status === 'rejected') {
+      achieves.checkForFirstRejection()
+    }
     axios
       .put('/users/updateJobStatus', {
         job_id: job_id,
         job_status: job_status
       })
-      .then(() => {
-        this.setState({ job_status });
-      })
+      .then(this.setState({ job_status }))
       .catch(err => console.log(err));
   };
 
@@ -236,7 +238,9 @@ class UpdateJobForm extends Component {
                 I was offered / rejected
               </h3>
             </div>
-            <Link className="update-done-link" to ='/'>I'm done, take me back home.</Link>
+            <Link className="update-done-link" to="/">
+              I'm done, take me back home.
+            </Link>
           </div>
         );
       case 2:
