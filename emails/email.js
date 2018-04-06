@@ -1,3 +1,5 @@
+const moment = require('moment')
+
 const welcomeEmail = firstName => `
 <table style = "background-color:#283c53; font-family:sans-serif; color:#fefefe; border-radius:4px;">
   <tr>
@@ -71,7 +73,8 @@ const reminder = (firstName, company_name, interview_date, interview_time) =>
         <tr style = "background-color:#E5F6FA;" >
                <td style = "padding:40px; border-radius: 25px" > 
                <p> Hello ${firstName}</p>
-               <p> This is a reminder for your interview with ${company_name} on ${interview_date} at ${interview_time}.<p>
+               <p> This is a reminder for your interview with ${company_name} on ${moment(interview_date).format(
+                'dddd, MMMM Do YYYY')} at ${moment(interview_time, 'HH:mm').format('hh:mm a')}.<p>
                <p> Good Luck! </p>
                <p> -Team Elevate </p>
               </td>

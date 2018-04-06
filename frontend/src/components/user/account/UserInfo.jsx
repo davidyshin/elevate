@@ -104,7 +104,6 @@ class UserInfo extends Component {
         phoneNumber: newPhoneNumber
       })
       .then(res => {
-        console.log(res);
         this.setState({
           first_name: newFirstName,
           last_name: newLastName,
@@ -144,7 +143,6 @@ class UserInfo extends Component {
         this.setState({
           notificationSaved: true
         });
-        console.log(res);
       })
       .catch(err => {
         console.log(err);
