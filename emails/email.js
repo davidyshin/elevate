@@ -19,7 +19,7 @@ const welcomeEmail = firstName => `
         <li>Earn points and level up towards your success!</li>
       </ul>
 
-      <p>Go ahead and <a href="http://elevate-ny.herokuapp.com/" target="_blank" style = "color:#3498db; text-decoration:none;">log your first job application.</a> Good luck on your job search journey.</p>
+      <p>Go ahead and <a href="http://www.elevate.careers/" target="_blank" style = "color:#3498db; text-decoration:none;">log your first job application.</a> Good luck on your job search journey.</p>
 
       <p>Cheers,</p>
       <p>Team Elevate</p>
