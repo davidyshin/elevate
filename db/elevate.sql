@@ -127,7 +127,7 @@ VALUES
     ('https://i.imgur.com/XAHcpNe.png', '5 Interviews Saved'),
     ('https://i.imgur.com/eFi0iJo.png', '10 Interviews Saved'),
     ('https://i.imgur.com/rjXM2x8.png', '15 Interviews Saved'),
-    ('https://i.imgur.com/bxNfRwQ.png', '1st Rejection'),
+    ('https://i.imgur.com/W9XD2Gr.png', '1st Rejection'),
     ('https://i.imgur.com/NPzT2GH.png', '1st Job Offer!'),
     ('https://i.imgur.com/yaSyJvK.png', 'Night Crawler'),
     ('https://i.imgur.com/RSHqxEj.png', 'bluish periwinkle'),
