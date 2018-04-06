@@ -545,15 +545,20 @@ p {
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.03);
   border-radius: 4px;
   width: 100%;
-  height: 320px;
+  height: 360px;
   margin: 52px auto 0 auto;
 }
+
 .user-stats {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 320px;
+  height: 100%;
+}
+
+.user-stats-mobile {
+  display: none;
 }
 
 .user-stats-container h3 {
@@ -967,5 +972,20 @@ Save button in User Info
 @media screen and (max-width: 720px) {
   .user-account-container {
     width: 98%;
+  }
+}
+
+@media screen and (max-width: 510px) {
+  .user-stats-container {
+    height: 340px;
+  }
+
+  .user-stats-mobile {
+    display: flex;
+    justify-content: center;
+  }
+
+  .user-stats {
+    display: none;
   }
 }
