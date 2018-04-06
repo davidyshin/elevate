@@ -22,20 +22,20 @@ class UserOverview extends Component {
   componentDidMount() {
     axios
       .get('/users/getUserAchieves')
-      .then(data => {
-        let achievements = data.data.achieves;
+      .then(response => {
+        let {achieves} = response.data;
         this.setState({
-          achievements: achievements
+          achievements: achieves
         });
       })
       .catch(err => {
         console.log(err);
       })
     axios.get('/users/getAllAchievementBadges')
-      .then(data => {
-        let allAchievements = data.data.all_achievements
+      .then(response => {
+        let {all_achievements} = response.data
         this.setState({
-          allAchievements
+          allAchievements: all_achievements
         })
       })
   }
