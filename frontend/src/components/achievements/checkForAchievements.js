@@ -133,7 +133,7 @@ const checkForFirstRejection = () => {
             .then(res => {
               let { achieves } = res.data;
               if (!achieves.find(achieve => achieve.badge_id === 14)) {
-                console.log('First Rejection!')
+                console.log('First Rejection!');
                 addAchievement(14);
               } else {
                 return;
@@ -164,7 +164,7 @@ const checkForFirstOffer = () => {
             .then(res => {
               let { achieves } = res.data;
               if (!achieves.find(achieve => achieve.badge_id === 15)) {
-                console.log('First Offer! YAY!')
+                console.log('First Offer! YAY!');
                 addAchievement(15);
               } else {
                 return;
@@ -181,10 +181,31 @@ const checkForFirstOffer = () => {
     });
 };
 
+const checkForLoginTime = () => {
+  let date = new Date();
+  let hour = date.getHours();
+  axios.get('/users/getUserAchieves').then(res => {
+    let { achieves } = res.data;
+    if (hour >= 23 || hour <= 5) {
+      if (!achieves.find(achieve => achieve.badge_id === 16)) {
+        console.log(
+          `You logged in at ${hour}, which is after 11:00pm. You earned the Night Crawler badge.`
+        );
+        addAchievement(16);
+      } else {
+        return;
+      }
+    } else {
+      return;
+    }
+  });
+};
+
 export default {
   checkJobNumber,
   checkInterviewNumber,
   addAchievement,
   checkForFirstRejection,
-  checkForFirstOffer
+  checkForFirstOffer,
+  checkForLoginTime
 };
