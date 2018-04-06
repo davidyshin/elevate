@@ -5,7 +5,6 @@ import '../../../stylesheets/jobs-update.css';
 class JobStatus extends Component {
   constructor() {
     super();
-    this.state = {};
   }
 
   render() {
@@ -66,9 +65,9 @@ class JobStatus extends Component {
             <Link to="/">
               <h3>Click here to return home</h3>
             </Link>
-            <h3 className="back-to-home-link" onClick={this.props.handleNewJob}>
+            {!this.props.updateForm ? <h3 className="back-to-home-link" onClick={this.props.handleNewJob}>
               Or log another job
-            </h3>
+            </h3> : null}
           </div>
         ) : null}
 
@@ -78,9 +77,9 @@ class JobStatus extends Component {
             <Link to="/">
               <h3>Click here to return home</h3>
             </Link>
-            <h3 className="back-to-home-link" onClick={this.props.handleNewJob}>
+            {!this.props.updateForm ? <h3 className="back-to-home-link" onClick={this.props.handleNewJob}>
               Or log another job
-            </h3>
+            </h3> : null}
           </div>
         ) : null}
       </div>

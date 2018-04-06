@@ -77,16 +77,11 @@ class UpdateJobForm extends Component {
   }
 
   handleSkipButton = e => {
-    // console.log('hello');
     e.preventDefault();
     let { applicationStage } = this.state;
     applicationStage += 1;
     this.setState({ applicationStage });
   };
-
-  // handleInput = e => {
-  //   this.setState({ [e.target.name]: e.target.value });
-  // };
 
   handleDate = date => {
     this.setState({ date_applied: date });
@@ -95,7 +90,6 @@ class UpdateJobForm extends Component {
   handleStatusChange = e => {
     const job_status = e.target.name;
     const { job_id } = this.state;
-    console.log('job_status:', job_status, 'job id:', job_id);
     axios
       .put('/users/updateJobStatus', {
         job_id: job_id,
@@ -304,6 +298,7 @@ class UpdateJobForm extends Component {
           <JobStatus
             handleStatusChange={this.handleStatusChange}
             job_status={this.state.job_status}
+            updateForm={true}
             handleSkipButton={this.handleSkipButton}
           />
         );
