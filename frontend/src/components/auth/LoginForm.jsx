@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import '../../stylesheets/auth-form.css';
+import achieves from '../achievements/checkForAchievements.js'
 
 class LoginForm extends Component {
   constructor() {
@@ -36,6 +37,7 @@ class LoginForm extends Component {
       })
       .then(res => {
         this.props.setActiveUser(res.data);
+        achieves.checkForLoginTime()
       })
       .catch(err => {
         console.log(err);
