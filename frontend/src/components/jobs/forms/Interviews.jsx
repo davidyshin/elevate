@@ -41,22 +41,22 @@ class Interviews extends Component {
               <h3> Interview {index + 1} </h3>
               <div className="interviews-info">
                 <div className="interviews-info-titles">
-                  <h3>Date:</h3>
-                  <h3>Time:</h3>
-                  <h3>Contact:</h3>
+                  <p>Date:</p>
+                  <p>Time:</p>
+                  <p>Contact:</p>
                 </div>
                 <div className="interviews-info-details">
-                  <h3> {moment(interview.interview_date).format("dddd, MMMM Do YYYY")}</h3>
-                  <h3> {moment(interview.interview_time, 'HH:mm').format('hh:mm a')}</h3>
-                  <h3> {interview.contact}</h3>
+                  <p> {moment(interview.interview_date).format("dddd, MMMM Do YYYY")}</p>
+                  <p> {moment(interview.interview_time, 'HH:mm').format('hh:mm a')}</p>
+                  <p> {interview.contact}</p>
                 </div>
               </div>
-                <div className="interviews-notes">
-                  <h3>Notes:</h3>
-                  <div className="notes-text-area">
-                    <p> {interview.note}</p>
-                  </div>
+              <div className="interviews-notes">
+                <h3>Notes:</h3>
+                <div className="notes-text-area">
+                  <p> {interview.note}</p>
                 </div>
+              </div>
             </div>
           );
         })}
@@ -65,8 +65,10 @@ class Interviews extends Component {
         </span>
       </div>
     ) : (
-      <h1>You haven't had any interviews for this job.</h1>
-    );
+        <div className="interviews-modal-container no-interviews">
+          <h1>You haven't had any interviews for this job.</h1>
+        </div>
+      );
   }
 }
 
