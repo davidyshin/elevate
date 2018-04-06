@@ -71,10 +71,10 @@ const renderActiveShape = props => {
         y={cy}
         dy={8}
         textAnchor="middle"
-        fontSize= '18'
+        fontSize='18'
         fill="#3A99D8"
       >
-      Applications
+        Applications
       </text>
       <Sector
         cx={cx}
@@ -105,17 +105,100 @@ const renderActiveShape = props => {
         y={ey}
         textAnchor={textAnchor}
         fill="#333"
-        fontSize= '20'        
+        fontSize='20'
       >{`${payload.name}`}</text>
       <text
         x={ex + (cos >= 0 ? 1 : -1) * 12}
         y={ey}
         dy={18}
         textAnchor={textAnchor}
-        fontSize= '12'        
+        fontSize='12'
         fill="#999"
       >
         {`${payload.value} Application (${(percent * 100).toFixed(2)}%)`}
+      </text>
+    </g>
+  );
+};
+
+const renderActiveShapeMobile = props => {
+  const RADIAN = Math.PI / 180;
+  const {
+    cx,
+    cy,
+    midAngle,
+    innerRadius,
+    outerRadius,
+    startAngle,
+    endAngle,
+    fill,
+    payload,
+    percent,
+    value
+  } = props;
+  const sin = Math.sin(-RADIAN * midAngle);
+  const cos = Math.cos(-RADIAN * midAngle);
+  const sx = cx + (outerRadius + 10) * cos;
+  const sy = cy + (outerRadius + 10) * sin;
+  const mx = cx + (outerRadius + 30) * cos;
+  const my = cy + (outerRadius + 30) * sin;
+  const ex = mx + (cos >= 0 ? 1 : -1) * 22;
+  const ey = my;
+  const textAnchor = cos >= 0 ? 'start' : 'end';
+
+  return (
+    <g>
+      <text
+        className="PieChartText"
+        x={cx}
+        y={cy}
+        dy={8}
+        textAnchor="middle"
+        fontSize='18'
+        fill="#3A99D8"
+      >
+        Applications
+      </text>
+      <Sector
+        cx={cx}
+        cy={cy}
+        innerRadius={innerRadius}
+        outerRadius={outerRadius}
+        startAngle={startAngle}
+        endAngle={endAngle}
+        fill={fill}
+      />
+      <Sector
+        cx={cx}
+        cy={cy}
+        startAngle={startAngle}
+        endAngle={endAngle}
+        innerRadius={outerRadius + 6}
+        outerRadius={outerRadius + 10}
+        fill={fill}
+      />
+      <path
+        d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`}
+        stroke={fill}
+        fill="none"
+      />
+      <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" />
+      <text
+        x={ex + (cos >= 0 ? 1 : -1) * 12}
+        y={ey}
+        textAnchor={textAnchor}
+        fill="#333"
+        fontSize='14'
+      >{`${payload.name}`}</text>
+      <text
+        x={ex + (cos >= 0 ? 1 : -1) * 12}
+        y={ey}
+        dy={18}
+        textAnchor={textAnchor}
+        fontSize='12'
+        fill="#999"
+      >
+        {`${payload.value} (${(percent * 100).toFixed(2)}%)`}
       </text>
     </g>
   );
@@ -155,6 +238,30 @@ class UserStats extends Component {
 
   render() {
     const { data } = this.state;
+
+    const mobileVersion = (
+      <div className="user-stats-mobile">
+        <PieChart width={360} height={300}>
+          <Pie
+            activeIndex={this.state.activeIndex}
+            activeShape={renderActiveShapeMobile}
+            data={data}
+            cx={180}
+            cy={120}
+            onMouseEnter={this.onPieEnter}
+            labelLine={false}
+            innerRadius={80}
+            outerRadius={100}
+            fill="#8884d8"
+          >
+            {data.map((entry, index) => (
+              <Cell fill={COLORS[index % COLORS.length]} />
+            ))}
+          </Pie>
+        </PieChart>
+      </div>
+    );
+
     return data.length > 1 ? (
       <div className="user-stats-container" data-aos="fade-up">
         <h3>{this.props.activeUser.first_name}'s Stats</h3>
@@ -178,10 +285,12 @@ class UserStats extends Component {
             </Pie>
           </PieChart>
         </div>
+
+        {mobileVersion}
       </div>
     ) : (
-      <h1>Loading</h1>
-    );
+        <h1>Loading</h1>
+      );
   }
 }
 
