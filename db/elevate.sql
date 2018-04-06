@@ -130,7 +130,7 @@ VALUES
     ('https://i.imgur.com/XAHcpNe.png', '5 Interviews Saved'),
     ('https://i.imgur.com/eFi0iJo.png', '10 Interviews Saved'),
     ('https://i.imgur.com/rjXM2x8.png', '15 Interviews Saved'),
-    ('https://i.imgur.com/bxNfRwQ.png', 'blue'),
+    ('https://i.imgur.com/bxNfRwQ.png', '1st Rejection'),
     ('https://i.imgur.com/NPzT2GH.png', 'darker blue'),
     ('https://i.imgur.com/yaSyJvK.png', 'true blue'),
     ('https://i.imgur.com/RSHqxEj.png', 'bluish periwinkle'),
@@ -159,7 +159,8 @@ VALUES
     (1, 1),
     (1, 2),
     (1, 10),
-    (1, 11);
+    (1, 11),
+    (1, 14);
 
 DROP TABLE Forum_Posts
 CASCADE;

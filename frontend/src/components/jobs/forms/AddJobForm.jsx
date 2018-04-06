@@ -95,14 +95,15 @@ class AddJobForm extends Component {
   handleStatusChange = e => {
     const job_status = e.target.name;
     const { job_id } = this.state;
+    if (job_status === 'rejected') {
+      achieves.checkForFirstRejection();
+    }
     axios
       .put('/users/updateJobStatus', {
         job_id: job_id,
         job_status: job_status
       })
-      .then(() => {
-        this.setState({ job_status });
-      })
+      .then(this.setState({ job_status }))
       .catch(err => console.log(err));
   };
 
@@ -226,7 +227,7 @@ class AddJobForm extends Component {
   };
 
   handleNewJob = e => {
-    this.setState ({ 
+    this.setState({
       company: '',
       suggestedCompanies: [],
       companyLogo: '',
@@ -238,8 +239,8 @@ class AddJobForm extends Component {
       resume_url: '',
       cover_url: '',
       saved: false
-    })
-  }
+    });
+  };
 
   changeStage = e => {
     this.setState({ applicationStage: parseInt(e.target.id) });
