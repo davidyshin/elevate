@@ -150,9 +150,41 @@ const checkForFirstRejection = () => {
     });
 };
 
+const checkForFirstOffer = () => {
+  axios
+    .get('/users/getAllUserApps')
+    .then(data => {
+      let jobs = data.data.apps;
+      jobs.forEach(job => {
+        if (job.job_status === 'offered') {
+          return;
+        } else {
+          axios
+            .get('/users/getUserAchieves')
+            .then(res => {
+              let { achieves } = res.data;
+              if (!achieves.find(achieve => achieve.badge_id === 15)) {
+                console.log('First Offer! YAY!')
+                addAchievement(15);
+              } else {
+                return;
+              }
+            })
+            .catch(err => {
+              console.log(err);
+            });
+        }
+      });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
 export default {
   checkJobNumber,
   checkInterviewNumber,
   addAchievement,
-  checkForFirstRejection
+  checkForFirstRejection,
+  checkForFirstOffer
 };

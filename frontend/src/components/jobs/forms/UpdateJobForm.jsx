@@ -93,6 +93,8 @@ class UpdateJobForm extends Component {
     const { job_id } = this.state;
     if (job_status === 'rejected') {
       achieves.checkForFirstRejection()
+    } else if (job_status === 'offered') {
+      achieves.checkForFirstOffer()
     }
     axios
       .put('/users/updateJobStatus', {
