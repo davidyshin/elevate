@@ -186,7 +186,7 @@ const checkForLoginTime = () => {
   let hour = date.getHours();
   axios.get('/users/getUserAchieves').then(res => {
     let { achieves } = res.data;
-    if (hour >= 23) {
+    if (hour >= 23 || hour <= 5) {
       if (!achieves.find(achieve => achieve.badge_id === 16)) {
         console.log(
           `You logged in at ${hour}, which is after 11:00pm. You earned the Night Crawler badge.`
