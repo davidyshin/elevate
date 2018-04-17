@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom';
 import achieves from '../../achievements/checkForAchievements';
 import '../../../stylesheets/jobs-add.css';
 import Calendar from 'react-calendar';
-
+import moment from 'moment'
 import dotenv from 'dotenv';
 dotenv.load();
 
@@ -55,9 +55,8 @@ class AddJobForm extends Component {
 
   handleFirstSubmit = e => {
     e.preventDefault();
-    let date = new Date(); // Today
-    let timeZone = new Date(date.getTime() - date.getTimezoneOffset() * 60000); // Today minus time zone
-    let dateLogged = timeZone.toISOString().substring(0, 10);
+    let dateLogged = moment().utcOffset(-240).format("YYYY-MM-DD")
+    console.log(dateLogged)
     const companyLogo = this.state.companyLogo
       ? this.state.companyLogo
       : 'https://i.imgur.com/gBiRInp.png';
@@ -225,6 +224,7 @@ class AddJobForm extends Component {
   };
 
   handleDate = date => {
+    moment(date).utcOffset(-240).format("YYYY-MM-DD")
     this.setState({ date_applied: date });
   };
 
