@@ -4,6 +4,7 @@ import axios from 'axios';
 import achieves from '../../achievements/checkForAchievements';
 import PopupReminder from '../PopupReminder.jsx';
 import Calendar from 'react-calendar';
+import moment from 'moment'
 import '../../../stylesheets/jobs-interview.css';
 
 class AddInterview extends Component {
@@ -43,6 +44,7 @@ class AddInterview extends Component {
   };
 
   handleDate = date => {
+    let dateLogged = moment(date).utcOffset(-240).format("YYYY-MM-DD")
     this.setState({
       date: date
     });
