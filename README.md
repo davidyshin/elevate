@@ -13,10 +13,16 @@ Elevate is a full stack web application that aims to assist and motivate active 
 * Reminds job seekers through their process of important dates, such as interview dates or post interview follow-ups via text or email 
 * Provides a fun and rewarding job search experience through the implementation of our reward system, which allows the user to accumulate points for every successful action towards a complete job application 
 
+
+View weekly activity and a list of all jobs logged.
 ![home](./public/images/home.gif)
 
-![add job](./public/images/add-job.gif)
 
+Log a new job application.
+![log job](./public/images/log-job.gif)
+
+
+Check out ranking, experience points earned, and achievement badges.
 ![profile](./public/images/profile.gif)
 
 
