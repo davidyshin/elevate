@@ -7,6 +7,7 @@ Elevate is a full stack web application that aims to assist and motivate active 
 ![splash](./public/images/splash.png)
 
 
+
 ## Features
 * Visually pleasant, easy-to-use interface
 * Reminds job seekers through their process of important dates, such as interview dates or post interview follow-ups via text or email 
