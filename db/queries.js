@@ -665,7 +665,7 @@ const updateNotification = (req, res, next) => {
 
 const getNotificationEmail = () => {
   const Mail = {
-    from: 'elevateC4Q@gmail.com'
+    from: '***REMOVED***'
   };
 
   db
