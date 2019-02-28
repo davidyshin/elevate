@@ -30,7 +30,7 @@ class About extends Component {
 
                     <div className="about-individual-container">
                         <div>
-                            <img src="https://media.licdn.com/dms/image/C4D03AQEXNgDMRrMjSQ/profile-displayphoto-shrink_800_800/0?e=1536192000&v=beta&t=4p7MFD9KsREt0Pf2T_oIsDxc2v2RXKQDuGJu4e619Sk" />
+                            <img src="https://media.licdn.com/dms/image/C4D03AQEXNgDMRrMjSQ/profile-displayphoto-shrink_800_800/0?e=1554940800&v=beta&t=2Fm5NNJBU89yE1BMQ-4EXG4VSpM83DpW_WxRLdWKpYY" />
                         </div>
                         <p>Jerell</p>
                         <div className="about-social-container">
